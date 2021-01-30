@@ -28,14 +28,15 @@ namespace MoreFactionInteraction
             {
                 foreach (Pawn performer in caravan.PlayerPawnsForStoryteller)
                 {
-                    if (!performer.story?.DisabledWorkTagsBackstoryAndTraits.OverlapsWithOnAnyWorkType(WorkTags.Artistic) ?? false)
+                    if (!performer.WorkTagIsDisabled(WorkTags.Artistic))
                     {
                         pawn.skills.Learn(sDef: SkillDefOf.Artistic, eventDef.xPGainFirstLoser, direct: true);
                         TryAppendExpGainInfo(ref rewards, performer, SkillDefOf.Artistic, eventDef.xPGainFirstLoser);
                     }
                 }
-                return rewards + (Rand.Bool ? string.Empty : 
-                                  Rand.Bool ? "\n\n---\n\n" + "MFI_AnnualExpoMedicalEmergency".Translate().RawText : "\n\n---\n\n" + "MFI_AnnualExpoMedicalEmergencySerious".Translate().RawText);
+                return rewards + (Rand.Bool ? new TaggedString(string.Empty) : Rand.Bool ? new TaggedString("\n\n---\n\n")
+                    
+                    + "MFI_AnnualExpoMedicalEmergency".Translate() : "\n\n---\n\n" + "MFI_AnnualExpoMedicalEmergencySerious".Translate());
             }
             return base.GenerateRewards(pawn, caravan, globalValidator, thingSetMakerDef);
         }

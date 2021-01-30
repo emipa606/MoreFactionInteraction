@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
-
   <WorldObjectDef>
     <defName>MFI_FactionWarPeaceTalks</defName>
     <label>peace talks</label>
@@ -14,7 +13,6 @@
       <li Class="WorldObjectCompProperties_Timeout" />
     </comps>
   </WorldObjectDef>
-
   <WorldObjectDef>
     <defName>MFI_AnnualExpoObject</defName>
     <label>annual expo</label>
@@ -28,7 +26,6 @@
       <li Class="WorldObjectCompProperties_Timeout" />
     </comps>
   </WorldObjectDef>
-
   <WorldObjectDef>
     <defName>MFI_MysticalShaman</defName>
     <label>mystical shaman</label>
@@ -42,7 +39,6 @@
       <li Class="WorldObjectCompProperties_Timeout" />
     </comps>
   </WorldObjectDef>
-
   <WorldObjectDef>
     <defName>MFI_RoadUnderConstruction</defName>
     <label>under construction road</label>
@@ -50,5 +46,4 @@
     <worldObjectClass>MoreFactionInteraction.WorldObject_RoadConstruction</worldObjectClass>
     <texture>World/WorldObjects/RoutePlannerWaypoint</texture>
   </WorldObjectDef>
-
 </Defs>

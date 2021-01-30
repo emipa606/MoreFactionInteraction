@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
-
   <RuleDef>
     <defName>Kitchen</defName>
     <symbol>kitchen</symbol>
@@ -11,7 +10,6 @@
       </li>
     </resolvers>
   </RuleDef>
-
   <RuleDef>
     <defName>Interior_Kitchen</defName>
     <symbol>interior_kitchen</symbol>
@@ -19,7 +17,6 @@
       <li Class="MoreFactionInteraction.World_Incidents.GenStep_SymbolResolver.SymbolResolver_Interior_Kitchen" />
     </resolvers>
   </RuleDef>
-
   <RuleDef>
     <defName>FillWithKitchen</defName>
     <symbol>fillWithKitchen</symbol>
@@ -27,5 +24,4 @@
       <li Class="MoreFactionInteraction.World_Incidents.GenStep_SymbolResolver.SymbolResolver_FillWithKitchen" />
     </resolvers>
   </RuleDef>
-
 </Defs>

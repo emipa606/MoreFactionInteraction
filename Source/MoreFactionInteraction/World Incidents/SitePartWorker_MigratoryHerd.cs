@@ -26,7 +26,7 @@ namespace MoreFactionInteraction.World_Incidents
             Find.Storyteller.incidentQueue.Add(qi: queuedIncident);
         }
 
-        //public override string GetPostProcessedDescriptionDialogue(Site site, SitePart siteCoreOrPart)
+        //public override string GetPostProcessedDescriptionDialogue(Site site, SitePart siteCoreOrPart, )
         //{
         //    return string.Format(base.GetPostProcessedDescriptionDialogue(site, siteCoreOrPart), GenLabel.BestKindLabel(siteCoreOrPart.parms.animalKind, Gender.None, true));
         //}

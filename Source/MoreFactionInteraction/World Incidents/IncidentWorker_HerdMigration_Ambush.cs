@@ -33,7 +33,7 @@ namespace MoreFactionInteraction.World_Incidents
 
         protected override List<Pawn> GeneratePawns(IncidentParms parms)
         {
-            if (!(parms.target is Map map))
+            if (parms.target is not Map map)
             {
                 pawnKindDef = PawnKindDefOf.Thrumbo; //something went really wrong. Let's uh.. brush it under the rug.
             }

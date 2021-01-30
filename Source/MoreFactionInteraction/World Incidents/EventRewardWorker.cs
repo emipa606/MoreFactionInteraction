@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using RimWorld;
 using RimWorld.Planet;
 using Verse;
@@ -26,7 +27,7 @@ namespace MoreFactionInteraction
             }
 
             var rewardsToCommaList = GenThing.ThingsToCommaList(rewards);
-            //GenThing.TryAppendSingleRewardInfo(ref rewardsToCommaList, rewards);
+            TryAppendSingleRewardInfo(ref rewardsToCommaList, rewards);
 
             foreach (Thing itemReward in rewards)
             {
@@ -34,6 +35,22 @@ namespace MoreFactionInteraction
             }
 
             return rewardsToCommaList;
+        }
+
+        public static void TryAppendSingleRewardInfo(ref string text, IList<Thing> rewards)
+        {
+            if (rewards.Count == 1 || (rewards.Count >= 2 && rewards.All((Thing x) => x.def == rewards[0].def)))
+            {
+                var text2 = text;
+                text = string.Concat(new string[]
+                {
+                    text2,
+                    "\n\n---\n\n",
+                    rewards[0].LabelCapNoCount,
+                    ": ",
+                    rewards[0].DescriptionFlavor
+                });
+            }
         }
 
         public virtual void TryAppendExpGainInfo(ref string rewardsOutcome, Pawn pawn, SkillDef skill, float amount)

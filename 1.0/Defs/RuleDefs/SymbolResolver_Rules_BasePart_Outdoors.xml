@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
-
   <!-- time to copy-pasta everything and make the Hunter's Lodge less of a loot pinata. -->
-
   <RuleDef>
     <defName>huntersLodgeBase</defName>
     <symbol>huntersLodgeBase</symbol>
@@ -12,7 +10,6 @@
       </li>
     </resolvers>
   </RuleDef>
-
   <RuleDef>
     <defName>huntersLodgeBigFarm</defName>
     <symbol>huntersLodgeBigFarm</symbol>
@@ -22,7 +19,6 @@
       </li>
     </resolvers>
   </RuleDef>
-
   <RuleDef>
     <defName>MFI_BasePart_Outdoors</defName>
     <symbol>MFI_basePart_outdoors</symbol>
@@ -30,7 +26,6 @@
       <li Class="MoreFactionInteraction.World_Incidents.GenStep_SymbolResolver.MFI_SymbolResolver_BasePart_Outdoors" />
     </resolvers>
   </RuleDef>
-
   <RuleDef>
     <defName>MFI_BasePart_Outdoors_Division</defName>
     <symbol>MFI_basePart_outdoors_division</symbol>
@@ -43,7 +38,6 @@
       </li>
     </resolvers>
   </RuleDef>
-
   <RuleDef>
     <defName>MFI_BasePart_Outdoors_LeafPossiblyDecorated</defName>
     <symbol>MFI_basePart_outdoors_leafPossiblyDecorated</symbol>
@@ -51,7 +45,6 @@
       <li Class="MoreFactionInteraction.World_Incidents.GenStep_SymbolResolver.MFI_SymbolResolver_BasePart_Outdoors_LeafPossiblyDecorated" />
     </resolvers>
   </RuleDef>
-
   <RuleDef>
     <defName>MFI_BasePart_Outdoors_LeafDecorated</defName>
     <symbol>MFI_basePart_outdoors_leafDecorated</symbol>
@@ -64,7 +57,6 @@
       </li>
     </resolvers>
   </RuleDef>
-
   <RuleDef>
     <defName>MFI_BasePart_Outdoors_Leaf</defName>
     <symbol>MFI_basePart_outdoors_leaf</symbol>
@@ -83,7 +75,5 @@
       </li>
     </resolvers>
   </RuleDef>
-
   <!--MoreFactionInteraction.World_Incidents.GenStep_SymbolResolver.MFI_ -->
-
 </Defs>

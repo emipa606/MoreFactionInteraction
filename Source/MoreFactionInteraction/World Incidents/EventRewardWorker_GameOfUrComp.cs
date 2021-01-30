@@ -25,7 +25,7 @@ namespace MoreFactionInteraction
                 string rewards = "MFI_AnnualExpoMedicalEmergency".Translate();
                 foreach (Pawn brawler in caravan.PlayerPawnsForStoryteller)
                 {
-                    if (!brawler.story?.DisabledWorkTagsBackstoryAndTraits.OverlapsWithOnAnyWorkType(WorkTags.Violent) ?? false)
+                    if (!brawler.WorkTagIsDisabled(WorkTags.Violent))
                     {
                         brawler.skills.Learn(SkillDefOf.Melee, eventDef.xPGainFirstPlace, true);
                         TryAppendExpGainInfo(ref rewards, brawler, SkillDefOf.Melee, eventDef.xPGainFirstPlace);

@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
-
   <SitePartDef>
     <defName>MFI_HuntersLodgePart</defName>
     <label>Hunter's lodge</label>
@@ -18,21 +17,18 @@
       <li>MigratoryHerd</li>
     </tags>
   </SitePartDef>
-
   <GenStepDef>
     <defName>MFI_HuntersLodgePart</defName>
     <linkWithSite>MFI_HuntersLodgePart</linkWithSite>
     <order>450</order>
     <genStep Class="MoreFactionInteraction.World_Incidents.GenStep_HuntersLodge" />
   </GenStepDef>
-
   <GenStepDef>
     <defName>MFI_HuntersLodgePartPower</defName>
     <linkWithSite>MFI_HuntersLodgePart</linkWithSite>
     <order>451</order>
     <genStep Class="GenStep_Power">
-    <canSpawnPowerGenerators>true</canSpawnPowerGenerators>
+      <canSpawnPowerGenerators>true</canSpawnPowerGenerators>
     </genStep>
   </GenStepDef>
-
 </Defs>

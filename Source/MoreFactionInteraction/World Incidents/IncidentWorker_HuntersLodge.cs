@@ -56,12 +56,21 @@ namespace MoreFactionInteraction.World_Incidents
             var text = string.Format(format: def.letterText, 
                                         faction, 
                                         faction.def.leaderTitle, 
-                                        site.GetDescription(), // SitePartUtility.GetDescriptionDialogue(site, site.parts.FirstOrDefault()), 
+                                        GetDescriptionDialogue(site, site.parts.FirstOrDefault()), 
                                         randomInRange)
                                 .CapitalizeFirst();
 
             Find.LetterStack.ReceiveLetter(label: def.letterLabel, text: text, textLetterDef: def.letterDef, lookTargets: site);
             return true;
+        }
+
+        public static string GetDescriptionDialogue(Site site, SitePart sitePart)
+        {
+            if (sitePart != null && !sitePart.def.defaultHidden)
+            {
+                return sitePart.def.description;
+            }
+            return "HiddenOrNoSitePartDescription".Translate();
         }
 
         private static bool TryFindTile(out int tile)

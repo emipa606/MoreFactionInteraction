@@ -57,7 +57,7 @@ namespace MoreFactionInteraction
 
             harmony.Patch(original: AccessTools.Method(typeof(Faction), nameof(Faction.Notify_RelationKindChanged)),
                 postfix: new HarmonyMethod(typeof(HarmonyPatches), nameof(Notify_RelationKindChanged)));
-
+            harmony.PatchAll();
             if (ModsConfig.ActiveModsInLoadOrder.Any(m => m.Name == "Relations Tab"))
             {
                 try
@@ -310,5 +310,54 @@ namespace MoreFactionInteraction
             }
         }
         #endregion
+    }
+
+
+    [HarmonyPatch(typeof(TransportPodsArrivalAction_VisitSite), "Arrived")]
+    internal static class Patch_Arrived
+    {
+        private static bool Prefix(Site ___site, PawnsArrivalModeDef ___arrivalMode, List<ActiveDropPodInfo> pods, int tile)
+        {
+            if (___site.parts != null)
+            {
+                foreach (var part in ___site.parts)
+                {
+                    if (part.def == MFI_DefOf.MFI_HuntersLodgePart)
+                    {
+                        Thing lookTarget = TransportPodsArrivalActionUtility.GetLookTarget(pods);
+                        var num = !___site.HasMap;
+                        Map orGenerateMap = GetOrGenerateMapUtility.GetOrGenerateMap(___site.Tile, CaravanArrivalAction_VisitSite.MapSize, null);
+                        if (num)
+                        {
+                            Find.TickManager.Notify_GeneratedPotentiallyHostileMap();
+                            PawnRelationUtility.Notify_PawnsSeenByPlayer_Letter_Send(orGenerateMap.mapPawns.AllPawns, "LetterRelatedPawnsInMapWherePlayerLanded".Translate(Faction.OfPlayer.def.pawnsPlural), LetterDefOf.NeutralEvent, informEvenIfSeenBefore: true);
+                        }
+                        Messages.Message("MessageTransportPodsArrived".Translate(), lookTarget, MessageTypeDefOf.TaskCompletion);
+                        ___arrivalMode.Worker.TravelingTransportPodsArrived(pods, orGenerateMap);
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+    }
+
+    [HarmonyPatch(typeof(SettlementUtility), "AffectRelationsOnAttacked_NewTmp")]
+    internal static class Patch_AffectRelationsOnAttacked_NewTmp
+    {
+        private static bool Prefix(MapParent mapParent, ref TaggedString letterText)
+        {
+            if (mapParent is Site site && site.parts != null)
+            {
+                foreach (var part in site.parts)
+                {
+                    if (part.def == MFI_DefOf.MFI_HuntersLodgePart)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
     }
 }

@@ -27,7 +27,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\Assemblies\</OutputPath>
+    <OutputPath>..\..\1.2\Assemblies\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -42,12 +42,9 @@
       <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Lib.Harmony">
-      <Version>2.0.2</Version>
+      <Version>2.0.4</Version>
       <ExcludeAssets>runtime</ExcludeAssets>
     </PackageReference>
-    <Reference Include="Fluffy_Relations">
-      <HintPath>..\..\..\..\..\..\workshop\content\294100\709317151\1.2\Assemblies\Fluffy_Relations.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="General\Dialog_MFIDebugActionMenu.cs" />
@@ -115,6 +112,12 @@
     <Compile Include="World Incidents\SitePartWorker_MigratoryHerd.cs" />
     <Compile Include="World Incidents\WorldObjectComp_SettlementBumperCropComp.cs" />
     <Compile Include="World Incidents\WorldObjectCompProperties_BumperCrop.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Fluffy_Relations">
+      <HintPath>..\..\..\..\..\..\workshop\content\294100\709317151\1.2\Assemblies\Fluffy_Relations.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

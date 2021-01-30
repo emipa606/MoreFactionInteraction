@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
-  <name>More Faction Interaction</name>
+  <name>More Faction Interaction (Continued)</name>
+  <packageId>Mlie.MoreFactionInteraction</packageId>
   <author>Mehni</author>
-  <url></url>
+  <url>https://github.com/emipa606/MoreFactionInteraction</url>
   <supportedVersions>
     <li>1.0</li>
     <li>1.1</li>
     <li>1.2</li>
   </supportedVersions>
-  <packageId>Mehni.MoreFactionInteraction</packageId>
   <modDependencies>
     <li>
       <packageId>brrainz.harmony</packageId>
@@ -17,35 +17,53 @@
       <downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
     </li>
   </modDependencies>
-  <description><![CDATA[<b>More Faction Interaction</b>
+  <loadAfter>
+    <li>brrainz.harmony</li>
+  </loadAfter>
+  <description>[img]https://i.imgur.com/WAEzk68.png[/img]
+Update of Mehnis mod
+https://steamcommunity.com/sharedfiles/filedetails/?id=1454024362
 
+- Updated by Taranchuk
+- Commissioned by Spark7979
+
+[img]https://i.imgur.com/7Gzt3Rg.png[/img]
+
+[table]
+    [tr]
+        [td][url=https://invite.gg/Mlie][img]https://i.imgur.com/zdzzBrc.png[/img][/url][/td]
+        [td][url=https://github.com/emipa606/MoreFactionInteraction][img]https://i.imgur.com/kTkpTOE.png[/img][/url][/td]
+    [/tr]
+[/table]
+	
+[img]https://i.imgur.com/NOW7jU1.png[/img]
 Adds more interaction with and between factions, bringing the world to life.
 
-<b>Meaningful faction relations</b>
+[h1]Meaningful faction relations[/h1]
 - Build up trust and factions will reward you
 - Cement relations by inter-faction marriages
-- Help factions recover from different setbacks
+- Help factions recover from various setbacks
 - Factions may call upon you for labour
 - Favours for favours
 - Increased rate of world events
 
-<b>Trade improvements</b>
+[h1]Trade improvements[/h1]
 - Specialised traders desperate for certain goods
 - More frequent traders, if you treat them right
 - Traders get richer as you build up trust
 - Traders bring higher quality as relations increase
 
-<b>A living world</b>
+[h1]A living world[/h1]
 - Pirates spread out and grow outposts
 - Pirates can demand tribute if they're close by - destroy their outposts!
 - Show off your skills at the yearly exposition. Maybe you'll do well and be invited to host next year?
 - Roadworks. To strengthen ties and increase trade, your allies can build roads as a nice silver sink.
 - Squatters! Someone found a use for an old deserted settlement.
 
-<b>Warring factions</b>
-- Unrest is brewing between two factions! Will you pick a side, stay neutral or profiteer?
+[h1]Warring factions[/h1]
+- Unrest is brewing between two factions! Will you pick a side, stay neutral or profiteer? 
 
-<b>TL;DR: More events</b>
+[h1]TL;DR: More events[/h1]
 - Diplomatic marriages
 - Reverse trade requests
 - Bumper crops
@@ -56,6 +74,54 @@ Adds more interaction with and between factions, bringing the world to life.
 - Squatters
 - Roadworks
 - Faction WAR
-]]>
-  </description>
+
+[h1]Credits[/h1]
+- SerpyDerpy, preview image and art.
+- Brrainz, Harmony.
+- XeoNovaDan, rubberducking and testing.
+- erdelf, erdelf.
+- ShotgunFrenzy, art.
+- Halno, art.
+- Ian, text revisions.
+- My testers. You know who you are. Thanks to [url=https://twitch.tv/Eviltrick]Eviltrick[/url] in particular.
+
+Shoutout to [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1123043922]Albion of Sparkling Worlds[/url], for the inspiration and support. 
+
+[h1]Languages[/h1]
+- Japanese, courtesy of Proxyer
+- Russian, courtesy of Djeban74/Reasonable Max
+- Chinese (Simplified), courtesy of =O.W.L.S=o_Onion and publicuser
+- Polish, courtesy of pawelik001
+- Spanish, courtesy of CANALETA
+- Spanish (Latin), courtesy of CANALETA
+- French, courtesy of jerlotrie
+- Italian, courtesy of EvaineQ
+
+Want to help translate this mod in your language? Check out the "Pirate" folder inside the Languages folder on GitHub for all up to date strings.
+
+[h1]Links[/h1]
+- Steam: https://steamcommunity.com/sharedfiles/filedetails/?id=1454024362
+- GitHub: https://github.com/Mehni/MoreFactionInteraction/releases
+- Ludeon: https://ludeon.com/forums/index.php?topic=35832
+
+[h1]Compatibility[/h1]
+- Yes you can add it to an existing save. Use a new one for best results, but it'll work on your current run. No, you can't remove it from an existing save.
+- Yes it's compatible with Hospitality.
+- Yes it's compatible with Roads of the Rim. MFI treats roadworks as a silver sink, with Roads of the Rim you're more involved.
+- For compatibility with Zetrith's multiplayer mod, you need https://steamcommunity.com/sharedfiles/filedetails/?id=1629973374
+
+If you like this mod, please considering buying me a coffee.
+[url=https://steamcommunity.com/linkfilter/?url=https://ko-fi.com/mehnicreates][img]https://i.imgur.com/QGcents.png[/img][/url]
+
+[img]https://i.imgur.com/Rs6T6cr.png[/img]
+[list]
+[*] See if the the error persists if you just have this mod and its requirements active.
+[*] If not, try adding your other mods until it happens again.
+[*] Post your error-log using [url=https://steamcommunity.com/workshop/filedetails/?id=818773962]HugsLib[/url] and command Ctrl+F12
+[*] For best support, please use the Discord-channel for error-reporting.
+[*] Do not report errors by making a discussion-thread, I get no notification of that.
+[*] If you have the solution for a problem, please post it to the GitHub repository.
+[/list]
+</description>
 </ModMetaData>
+

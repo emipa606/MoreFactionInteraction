@@ -150,20 +150,17 @@ namespace MoreFactionInteraction
             {
                 MFI_DefOf.MFI_ReverseTradeRequest,
                 MFI_DefOf.MFI_HuntersLodge,
-                IncidentDef.Named("Quest_ItemStash")
             };
 
         private readonly List<IncidentDef> allowedIncidentDefs =
             new List<IncidentDef>
             {
                 MFI_DefOf.MFI_QuestSpreadingPirateCamp,
-                IncidentDef.Named("Quest_BanditCamp"),
                 MFI_DefOf.MFI_DiplomaticMarriage,
                 MFI_DefOf.MFI_ReverseTradeRequest,
                 MFI_DefOf.MFI_BumperCropRequest,
                 MFI_DefOf.MFI_HuntersLodge,
                 IncidentDef.Named("MFI_MysticalShaman"),
-                IncidentDef.Named("Quest_ItemStash"),
                 IncidentDefOf.TraderCaravanArrival
             };
 

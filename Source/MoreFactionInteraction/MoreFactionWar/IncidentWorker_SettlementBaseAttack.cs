@@ -4,11 +4,9 @@ using RimWorld;
 using Verse;
 using RimWorld.Planet;
 using MoreFactionInteraction.General;
-using JetBrains.Annotations;
 
-namespace MoreFactionInteraction.MoreFactionWar
+namespace MoreFactionInteraction
 {
-    [UsedImplicitly]
     public class IncidentWorker_SettlementAttack : IncidentWorker
     {
         public override float BaseChanceThisGame => base.BaseChanceThisGame;

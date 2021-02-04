@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <MFI_HuntersLodgePart.label>Jägerhütte</MFI_HuntersLodgePart.label>
+  <MFI_HuntersLodgePart.description>Ein kleiner Außenposten, der von freundlichen Fraktionen als Jagdbasis genutzt wird.</MFI_HuntersLodgePart.description>
+  <MFI_HuntersLodgePart.approachingReportString>Besuch bei {0}</MFI_HuntersLodgePart.approachingReportString>
+  <MFI_HuntersLodgePart.approachOrderString>Besuche {0}</MFI_HuntersLodgePart.approachOrderString>
+  <MFI_HuntersLodgePart.arrivedLetter>Deine Karawane ist an der Jägerhütte angekommen. Es scheint, dass niemand hier ist, aber sie haben dich offensichtlich erwartet und den Ort gastfreundlich eingerichtet.</MFI_HuntersLodgePart.arrivedLetter>
+</LanguageData>

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <MFI_GameOfUrComp.label>Game-of-Ur-Wettbewerb</MFI_GameOfUrComp.label>
+  <MFI_GameOfUrComp.theme>Das königliche Game-of-Ur</MFI_GameOfUrComp.theme>
+  <MFI_GameOfUrComp.themeDesc>Schicke deinen besten Spieler.</MFI_GameOfUrComp.themeDesc>
+  <MFI_GameOfUrComp.outComeFirstPlace>Mit Geschick, Nerven und viel Glück hat [PAWN_nameDef] das Turnier gewonnen! Deine Belohnung für die Teilnahme lautet:\n\n {0}</MFI_GameOfUrComp.outComeFirstPlace>
+  <MFI_GameOfUrComp.outcomeFirstLoser>In der Endrunde trat [PAWN_nameDef] gegen den fünfjährigen amtierenden Champion an und verlor. Deine Belohnung für die Teilnahme lautet:\n\n {0}</MFI_GameOfUrComp.outcomeFirstLoser>
+  <MFI_GameOfUrComp.outComeFirstOther>Während des zweiten Innings der fünften Runde spielte [PAWN_nameDef] einen Zug, der den Gegner [PAWN_possessive] verwirrte und die Schiedsrichter verblüffte. Verständlicherweise kam es zu einer massiven Schlägerei. Deine Belohnung für die Teilnahme lautet:\n\n {0}</MFI_GameOfUrComp.outComeFirstOther>
+  <MFI_ShootingComp.label>Schießwettbewerb</MFI_ShootingComp.label>
+  <MFI_ShootingComp.theme>Ein Schießwettbewerb</MFI_ShootingComp.theme>
+  <MFI_ShootingComp.themeDesc>Schicke deinen besten Schützen.</MFI_ShootingComp.themeDesc>
+  <MFI_ShootingComp.outComeFirstPlace>Mit fast roboterhafter Genauigkeit zielte [PAWN_nameDef] und traf alle Ziele punktgenau. Die Richter waren sehr beeindruckt und belohnten die Leistung mit:\n\n {0}</MFI_ShootingComp.outComeFirstPlace>
+  <MFI_ShootingComp.outcomeFirstLoser>In diesem Jahr gab es ein starkes Anwärterfeld, in dem viele Fraktionsvertreter als Jäger gelebt haben oder einfach nur mit (Archotech-)Bionik geschmückt waren. [PAWN_nameDef] ist irgendwo im Viertelfinale gestrandet. Deine Belohnung für die Teilnahme lautet:\n\n {0}</MFI_ShootingComp.outcomeFirstLoser>
+  <MFI_ShootingComp.outComeFirstOther>[PAWN_nameDef] schaffte es nicht über die erste Runde hinaus, die darin bestand, "die Breitseite einer Scheune zu treffen". Dieser Teil wurde vor Jahren als Knebel hinzugefügt. [PAWN_nameDef] ist der erste Kolonist seit der Einführung, der diesen Test nicht bestand. Deine Belohnung für die Teilnahme lautet:\n\n {0}\n\nSie scheint die Fähigkeit von [PAWN_nameDef] als Schütze zu repräsentieren.</MFI_ShootingComp.outComeFirstOther>
+  <MFI_CulturalSwap.label>Kultureller Tausch</MFI_CulturalSwap.label>
+  <MFI_CulturalSwap.theme>Kultur und Kunst</MFI_CulturalSwap.theme>
+  <MFI_CulturalSwap.themeDesc>Es könnte die Gelegenheit für einen Handel geben.</MFI_CulturalSwap.themeDesc>
+  <MFI_CulturalSwap.outComeFirstPlace>Als das Tageslicht langsam nachließ, setzte sich [PAWN_nameDef] einfach auf einen Granithocker und erzählte von [PAWN_possessive] Erziehung als [PAWN_title]. Diese einfache Geschichte und vor allem die Atmosphäre [PAWN_pronoun] wurden von den Richtern für ihre Intimität, Originalität und Tapferkeit gelobt. Deine Belohnung für die Teilnahme lautet:\n\n {0}</MFI_CulturalSwap.outComeFirstPlace>
+  <MFI_CulturalSwap.outcomeFirstLoser>Da deine Karawane nicht besser vorbereitet war oder nichts mitgebracht hatte, brach sie in eine Lied- und Tanzroutine aus, wobei [PAWN_nameDef] im Mittelpunkt stand. Es war nicht gut einstudiert, was durch die Aufführung hindurchschimmerte. Nicht alle teilnehmenden Fraktionen konnten die improvisierte Show würdigen, aber es war dennoch eine bewundernswerte Anstrengung. Deine Belohnung für die Teilnahme lautet:\n\n {0}</MFI_CulturalSwap.outcomeFirstLoser>
+  <MFI_CulturalSwap.outComeFirstOther>Die Gastgeberrfraktion brachte das Publikum mit ihrer schillernden Darstellung zu Tränen; eine dramatische Nachstellung der Entdeckung der White Rabbit Mountain Range durch ihre Vorfahren. Es war ein rührendes Stück Theater, das Sprachbarrieren überwand und die Herzen von Jung und Alt gleichermaßen erreichte.\n\nUnd dann war da noch deine Truppe. Deine Belohnung für die Teilnahme lautet:\n\n {0}</MFI_CulturalSwap.outComeFirstOther>
+  <MFI_ScienceFaire.label>Wissenschaftsmesse</MFI_ScienceFaire.label>
+  <MFI_ScienceFaire.theme>Austausch von wissenschaftlichen Entdeckungen</MFI_ScienceFaire.theme>
+  <MFI_ScienceFaire.themeDesc>Aufregend!</MFI_ScienceFaire.themeDesc>
+  <MFI_ScienceFaire.outComeFirstPlace>Ein mächtiger Redner und großer Gelehrter, der sich leicht einleben kann, erklärt dir nichts über die Komplexität des Universums. Stattdessen enthüllen Er:\n\n {0}</MFI_ScienceFaire.outComeFirstPlace>
+  <MFI_ScienceFaire.outcomeFirstLoser>Deine Karawane schmiegt sich zwischen Mitglieder einer Gruppe, die "Wertschätzer der Wissenschaft" genannt wird. Sie geben dir ein Geschenk des Wissens:\n\n {0}</MFI_ScienceFaire.outcomeFirstLoser>
+  <MFI_ScienceFaire.outComeFirstOther>Müde von der langen Reise haben Ihre Karawanenmitglieder Probleme, während des langen und zarten Vortrags eines berühmten Professors wach zu bleiben. Als Abfluggeschenk erhälst du:\n\n {0}</MFI_ScienceFaire.outComeFirstOther>
+  <MFI_AcousticShow.label>Akustische Show</MFI_AcousticShow.label>
+  <MFI_AcousticShow.theme>Eine akustische Show</MFI_AcousticShow.theme>
+  <MFI_AcousticShow.themeDesc>Sie fragen sich, ob Sie Ohrstöpsel mitbringen sollen.</MFI_AcousticShow.themeDesc>
+  <MFI_AcousticShow.outComeFirstPlace>Deine Karawane verbrachte den Tag damit, durch die Stände zu galoppieren und die große Auswahl an vielseitigen nichtelektrischen Musikinstrumenten aus der ganzen Welt und darüber hinaus zu bewundern. Als die Dämmerung hereinbrach und die Leute ihre Instrumente sammelten, fand auf der Hauptbühne ein intimes Konzert statt. Es hob die Stimmung Ihrer Karawanenmitglieder. Die Belohnung für dein Kommen ist:\n\n {0}</MFI_AcousticShow.outComeFirstPlace>
+  <MFI_AcousticShow.outcomeFirstLoser>Die Messe erwies sich als ein sehr gemütliches Treffen, bei dem auf Gitarren gespielt wurde. Jemand spielte Wonderwall, aber ansonsten war es ein ziemlich entspannter Abend, an dem alle gute Laune hatten. Die Belohnung für dein Kommen ist:\n\n {0}</MFI_AcousticShow.outcomeFirstLoser>
+  <MFI_AcousticShow.outComeFirstOther>Ein Karawanenmitglieder nahm ein Instrument, das er nicht haben sollten, und brach, da es nicht musikalisch begabt war, eine Saite. Es wurde entschuldigt, aber es war nicht ausreichend: Dein Karawanenmitglied sollte in der Nacht der Aufführung als Bühnenarbeiter arbeiten. Da alle noch eine gute Zeit hatten, erhälst du die After-Party-Reste:\n\n {0}</MFI_AcousticShow.outComeFirstOther>
+</LanguageData>

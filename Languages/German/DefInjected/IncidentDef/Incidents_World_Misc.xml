@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <MFI_RoadWorks.label>Straßenarbeiten</MFI_RoadWorks.label>
+  <MFI_DiplomaticMarriage.label>Diplomatische Ehe</MFI_DiplomaticMarriage.label>
+  <MFI_DiplomaticMarriage.letterLabel>Diplomatische Ehe</MFI_DiplomaticMarriage.letterLabel>
+  <MFI_MysticalShaman.label>Mystischer Schamane</MFI_MysticalShaman.label>
+  <MFI_MysticalShaman.letterLabel>Mystischer Schamane</MFI_MysticalShaman.letterLabel>
+  <MFI_HuntersLodge.label>Jägerhütte</MFI_HuntersLodge.label>
+  <MFI_HuntersLodge.letterText>Du wurdest in die kleine Jägerhütte von {0} eingeladen. {2}. Es gibt einen Außenposten, der mit all dem Zeug, das du brauchst, um Mahlzeiten zuzubereiten ausgestattet ist und sie wollen, dass du kommst. Wenn Du nicht in {3} Tagen da bist, werden sie den gesamten Ort abfackeln.</MFI_HuntersLodge.letterText>
+  <MFI_HuntersLodge.letterLabel>Jägerhütte</MFI_HuntersLodge.letterLabel>
+  <MFI_SettlementBaseAttack.label>Fraktionsbasis angegriffen</MFI_SettlementBaseAttack.label>
+</LanguageData>

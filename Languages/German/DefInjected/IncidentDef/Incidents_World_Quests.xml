@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <MFI_BumperCropRequest.label>Ernteantrag</MFI_BumperCropRequest.label>
+  <MFI_Quest_PeaceTalks.label>Steht ein Krieg bevor?</MFI_Quest_PeaceTalks.label>
+  <MFI_Quest_PeaceTalks.letterText>Du hast eine Nachricht von [PAWN_nameDef], {0} von {1} erhalten. Die Fraktion hatte kürzlich einige Probleme mit anderen Jungs und fordert dich auf, mit ihnen und {2} zu sprechen. Sie haben einen nahe gelegenen Versteckstandort und laden dich ein, sich zu unterhalten.\n\nDieses Gespräch könnte die Beziehung verbessern, aber Vorsicht - ein schlechtes Gespräch kann dir mehr schaden als nützen.\n\nDas Angebot läuft nach {3} Tagen ab. Danach befürchtet [PAWN_nameDef] das Schlimmste.</MFI_Quest_PeaceTalks.letterText>
+  <MFI_Quest_PeaceTalks.letterLabel>Fraktionsunruhe</MFI_Quest_PeaceTalks.letterLabel>
+  <MFI_AnnualExpo.label>Die jährliche Ausstellung</MFI_AnnualExpo.label>
+  <MFI_AnnualExpo.letterLabel>Jährliche Ausstellung</MFI_AnnualExpo.letterLabel>
+</LanguageData>

@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <MFI_HerdMigration_Ambush.label>Herdenwanderung</MFI_HerdMigration_Ambush.label>
+  <MFI_HerdMigration_Ambush.letterText>Eine große Gruppe von {0} betritt den Bereich.\n\nEs ist Jagdzeit.</MFI_HerdMigration_Ambush.letterText>
+  <MFI_HerdMigration_Ambush.letterLabel>Herdenwanderung: {0}</MFI_HerdMigration_Ambush.letterLabel>
+</LanguageData>

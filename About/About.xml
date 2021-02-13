@@ -26,6 +26,14 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=1454024362
 - Updated by Taranchuk
 - Commissioned by Spark7979
 - Updated as is, have not been tested with other mods than those listed below. Please report if any mod is not compatible.
+- Added german translation, thanks Erdnussbrot!
+
+- Reported to work with Dynamic Diplomacy and the 'Vanilla Expanded' factions series. Thank you Black Goat.
+
+Regarding getting too many caravans: (via Black Goat)
+” MFI increases probability of trade caravans arriving based on faction goodwill. This is working as intended but I suspect this feature can be compounded to an unwanted degree for players using a lot of faction mods and/or by using Dynamic Diplomacy with certain settings.
+
+My recommendations for people who play with MFI + DD or faction mods would be to increase the "Time modifier for faction interaction" slider in the MFI mod settings menu from 1 to 3 and to disable the "Allow Alliance" and "Allow permanent enemy factions to change relationships" options for DD. ”
 
 [img]https://i.imgur.com/7Gzt3Rg.png[/img]
 

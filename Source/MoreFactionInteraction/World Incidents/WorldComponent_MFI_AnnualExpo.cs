@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using RimWorld;
-using Verse;
 using RimWorld.Planet;
+using Verse;
 
 namespace MoreFactionInteraction.More_Flavour
 {
@@ -12,18 +11,34 @@ namespace MoreFactionInteraction.More_Flavour
     {
         private readonly IncidentDef incident = MFI_DefOf.MFI_AnnualExpo;
         private readonly float intervalDays = 60f;
-        private float occuringTick;
-        public int timesHeld = 0;
-        private List<Buff> activeBuffList = new List<Buff>();
+        private List<Buff> activeBuffList = new();
 
-        public List<Buff> ActiveBuffsList => activeBuffList;
+        public Dictionary<EventDef, int> events = new()
+        {
+            {MFI_DefOf.MFI_GameOfUrComp, 0},
+            {MFI_DefOf.MFI_ShootingComp, 0},
+            {MFI_DefOf.MFI_CulturalSwap, 0},
+            {MFI_DefOf.MFI_ScienceFaire, 0},
+            {MFI_DefOf.MFI_AcousticShow, 0}
+        };
+
+        private float occuringTick;
+        public int timesHeld;
+
+        public WorldComponent_MFI_AnnualExpo(World world) : base(world)
+        {
+        }
+
+        private List<Buff> ActiveBuffsList => activeBuffList;
 
         public int TimesHeld => timesHeld + Rand.RangeInclusiveSeeded(
-            (int)PawnKindDefOf.Muffalo.race.race.lifeExpectancy,
-            (int)PawnKindDefOf.Thrumbo.race.race.lifeExpectancy,
-            (int)(Rand.ValueSeeded(Find.World.ConstantRandSeed) * 1000));
+            (int) PawnKindDefOf.Muffalo.race.race.lifeExpectancy,
+            (int) PawnKindDefOf.Thrumbo.race.race.lifeExpectancy,
+            (int) (Rand.ValueSeeded(Find.World.ConstantRandSeed) * 1000));
 
         public bool BuffedEmanator => ActiveBuffsList.Find(x => x is Buff_Emanator)?.Active ?? false; //used by patches.
+
+        private float IntervalTicks => GenDate.TicksPerDay * intervalDays;
 
         public void RegisterBuff(Buff buff)
         {
@@ -33,22 +48,9 @@ namespace MoreFactionInteraction.More_Flavour
             }
         }
 
-        public Dictionary<EventDef, int> events = new Dictionary<EventDef, int>
-        {
-            { MFI_DefOf.MFI_GameOfUrComp, 0 },
-            { MFI_DefOf.MFI_ShootingComp, 0 },
-            { MFI_DefOf.MFI_CulturalSwap, 0 },
-            { MFI_DefOf.MFI_ScienceFaire, 0 },
-            { MFI_DefOf.MFI_AcousticShow, 0 },
-        };
-
-        public WorldComponent_MFI_AnnualExpo(World world) : base(world)
-        {
-        }
-
         public Buff ApplyRandomBuff(Predicate<Buff> validator)
         {
-            if (ActiveBuffsList.Where(x => validator(x)).TryRandomElement(out Buff result))
+            if (ActiveBuffsList.Where(x => validator(x)).TryRandomElement(out var result))
             {
                 result.Apply();
             }
@@ -65,14 +67,15 @@ namespace MoreFactionInteraction.More_Flavour
             Buff_Pemmican.Register();
             Buff_PsychTea.Register();
 
-            foreach (Buff item in ActiveBuffsList.Where(x => x.Active))
+            foreach (var item in ActiveBuffsList.Where(x => x.Active))
             {
                 item.Apply();
             }
 
             if (occuringTick < 4f && timesHeld == 0) // I picked 4 in case of extraordinarily large values of 0.
             {
-                occuringTick = GenTicks.TicksAbs + new FloatRange(GenDate.TicksPerDay * 45, GenDate.TicksPerYear).RandomInRange;
+                occuringTick = GenTicks.TicksAbs +
+                               new FloatRange(GenDate.TicksPerDay * 45, GenDate.TicksPerYear).RandomInRange;
             }
         }
 
@@ -84,18 +87,21 @@ namespace MoreFactionInteraction.More_Flavour
                 return;
             }
 
-            if (Find.TickManager.TicksGame >= occuringTick)
+            if (!(Find.TickManager.TicksGame >= occuringTick))
             {
-                IncidentParms parms = StorytellerUtility.DefaultParmsNow(incident.category, Find.Maps.Where(x => x.IsPlayerHome).RandomElement());
+                return;
+            }
 
-                if (incident.Worker.TryExecute(parms))
-                {
-                    occuringTick += IntervalTicks;
-                }
-                else
-                {
-                    occuringTick += GenDate.TicksPerDay;
-                }
+            var parms = StorytellerUtility.DefaultParmsNow(incident.category,
+                Find.Maps.Where(x => x.IsPlayerHome).RandomElement());
+
+            if (incident.Worker.TryExecute(parms))
+            {
+                occuringTick += IntervalTicks;
+            }
+            else
+            {
+                occuringTick += GenDate.TicksPerDay;
             }
         }
 
@@ -107,7 +113,5 @@ namespace MoreFactionInteraction.More_Flavour
             Scribe_Collections.Look(ref activeBuffList, "MFI_buffList");
             Scribe_Values.Look(ref timesHeld, "MFI_AnnualExpoTimesHeld");
         }
-
-        private float IntervalTicks => GenDate.TicksPerDay * intervalDays;
     }
 }

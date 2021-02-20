@@ -9,36 +9,38 @@ namespace MoreFactionInteraction.World_Incidents
         public override void Resolve(ResolveParams rp)
         {
             //Map map = BaseGen.globalSettings.map;
-            Faction faction = rp.faction ?? Find.FactionManager.RandomAlliedFaction();
+            var faction = rp.faction ?? Find.FactionManager.RandomAlliedFaction();
             var num = 0;
 
-            if (rp.rect.Width >= 20 && rp.rect.Height >= 20 && (faction.def.techLevel >= TechLevel.Industrial || Rand.Bool))
+            if (rp.rect.Width >= 20 && rp.rect.Height >= 20 &&
+                (faction.def.techLevel >= TechLevel.Industrial || Rand.Bool))
             {
-                num = (!Rand.Bool) ? 4 : 2;
+                num = !Rand.Bool ? 4 : 2;
             }
 
-            var num2 = (float)rp.rect.Area / 144f * 0.17f;
-            BaseGen.globalSettings.minEmptyNodes = (num2 >= 1f) ? GenMath.RoundRandom(f: num2) : 0;
+            var num2 = rp.rect.Area / 144f * 0.17f;
+            BaseGen.globalSettings.minEmptyNodes = num2 >= 1f ? GenMath.RoundRandom(num2) : 0;
 
-            BaseGen.symbolStack.Push(symbol: "outdoorLighting", resolveParams: rp);
+            BaseGen.symbolStack.Push("outdoorLighting", rp);
             if (faction.def.techLevel >= TechLevel.Industrial)
             {
-                var num4 = (!Rand.Chance(chance: 0.75f)) ? 0 : GenMath.RoundRandom(f: (float)rp.rect.Area / 400f);
+                var num4 = !Rand.Chance(0.75f) ? 0 : GenMath.RoundRandom(rp.rect.Area / 400f);
                 for (var i = 0; i < num4; i++)
                 {
-                    ResolveParams resolveParams2 = rp;
+                    var resolveParams2 = rp;
                     resolveParams2.faction = faction;
-                    BaseGen.symbolStack.Push(symbol: "firefoamPopper", resolveParams: resolveParams2);
+                    BaseGen.symbolStack.Push("firefoamPopper", resolveParams2);
                 }
             }
-            ResolveParams resolveParams4 = rp;
-            resolveParams4.rect = rp.rect.ContractedBy(dist: num);
-            resolveParams4.faction = faction;
-            BaseGen.symbolStack.Push(symbol: "ensureCanReachMapEdge", resolveParams: resolveParams4);
 
-            ResolveParams mainBasePart = rp;
+            var resolveParams4 = rp;
+            resolveParams4.rect = rp.rect.ContractedBy(num);
+            resolveParams4.faction = faction;
+            BaseGen.symbolStack.Push("ensureCanReachMapEdge", resolveParams4);
+
+            var mainBasePart = rp;
             mainBasePart.faction = faction;
-            BaseGen.symbolStack.Push(symbol: "MFI_basePart_outdoors_division", resolveParams: mainBasePart);
+            BaseGen.symbolStack.Push("MFI_basePart_outdoors_division", mainBasePart);
         }
     }
 }

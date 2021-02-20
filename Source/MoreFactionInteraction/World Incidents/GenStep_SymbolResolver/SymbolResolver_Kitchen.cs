@@ -8,7 +8,7 @@ namespace MoreFactionInteraction.World_Incidents.GenStep_SymbolResolver
     {
         public override void Resolve(ResolveParams rp)
         {
-            BaseGen.symbolStack.Push(symbol: "kitchen", resolveParams: rp);
+            BaseGen.symbolStack.Push("kitchen", rp);
         }
     }
 
@@ -16,8 +16,8 @@ namespace MoreFactionInteraction.World_Incidents.GenStep_SymbolResolver
     {
         public override void Resolve(ResolveParams rp)
         {
-            InteriorSymbolResolverUtility.PushBedroomHeatersCoolersAndLightSourcesSymbols(rp: rp);
-            BaseGen.symbolStack.Push(symbol: "fillWithKitchen", resolveParams: rp);
+            InteriorSymbolResolverUtility.PushBedroomHeatersCoolersAndLightSourcesSymbols(rp);
+            BaseGen.symbolStack.Push("fillWithKitchen", rp);
         }
     }
 
@@ -25,12 +25,12 @@ namespace MoreFactionInteraction.World_Incidents.GenStep_SymbolResolver
     {
         public override void Resolve(ResolveParams rp)
         {
-            ThingDef stoveElectric = DefDatabase<ThingDef>.GetNamedSilentFail(defName: "ElectricStove");
-            ThingDef stoveFueled = DefDatabase<ThingDef>.GetNamedSilentFail(defName: "FueledStove");
-            ThingDef tableButcher = DefDatabase<ThingDef>.GetNamedSilentFail(defName: "TableButcher");
-            ThingDef spotButcher = DefDatabase<ThingDef>.GetNamedSilentFail(defName: "ButcherSpot");
+            var stoveElectric = DefDatabase<ThingDef>.GetNamedSilentFail("ElectricStove");
+            var stoveFueled = DefDatabase<ThingDef>.GetNamedSilentFail("FueledStove");
+            var tableButcher = DefDatabase<ThingDef>.GetNamedSilentFail("TableButcher");
+            var spotButcher = DefDatabase<ThingDef>.GetNamedSilentFail("ButcherSpot");
 
-            Map map = BaseGen.globalSettings.map;
+            var map = BaseGen.globalSettings.map;
             ThingDef thingDef;
             if (rp.singleThingDef != null)
             {
@@ -42,11 +42,11 @@ namespace MoreFactionInteraction.World_Incidents.GenStep_SymbolResolver
             }
             else
             {
-                thingDef = Rand.Element(a: stoveFueled, b: ThingDefOf.Campfire, c: spotButcher);
+                thingDef = Rand.Element(stoveFueled, ThingDefOf.Campfire, spotButcher);
             }
 
             var flipACoin = Rand.Bool;
-            foreach (IntVec3 potentialSpot in rp.rect)
+            foreach (var potentialSpot in rp.rect)
             {
                 if (flipACoin)
                 {
@@ -59,21 +59,30 @@ namespace MoreFactionInteraction.World_Incidents.GenStep_SymbolResolver
                 {
                     continue;
                 }
-                Rot4 rot = (!flipACoin) ? Rot4.North : Rot4.West;
-                if (!GenSpawn.WouldWipeAnythingWith(thingPos: potentialSpot, thingRot: rot, thingDef: thingDef, map: map, predicate: x => x.def.category == ThingCategory.Building))
+
+                var rot = !flipACoin ? Rot4.North : Rot4.West;
+                if (GenSpawn.WouldWipeAnythingWith(potentialSpot, rot, thingDef, map,
+                    x => x.def.category == ThingCategory.Building))
                 {
-                    var dontTouchMe = new IntVec2(thingDef.Size.x + 1, thingDef.Size.z + 1);
-                    if (!BaseGenUtility.AnyDoorAdjacentCardinalTo(rect: GenAdj.OccupiedRect(center: potentialSpot, rot: rot, size: dontTouchMe), map: map))
-                    {
-                        ResolveParams resolveParams = rp;
-                        resolveParams.rect = GenAdj.OccupiedRect(center: potentialSpot, rot: rot, size: thingDef.Size);
-                        resolveParams.singleThingDef = Rand.Element(a: thingDef, b: tableButcher);
-                        resolveParams.thingRot = rot;
-                        var skipSingleThingIfHasToWipeBuildingOrDoesntFit = rp.skipSingleThingIfHasToWipeBuildingOrDoesntFit;
-                        resolveParams.skipSingleThingIfHasToWipeBuildingOrDoesntFit = !skipSingleThingIfHasToWipeBuildingOrDoesntFit.HasValue || skipSingleThingIfHasToWipeBuildingOrDoesntFit.Value;
-                        BaseGen.symbolStack.Push(symbol: "thing", resolveParams: resolveParams);
-                    }
+                    continue;
                 }
+
+                var dontTouchMe = new IntVec2(thingDef.Size.x + 1, thingDef.Size.z + 1);
+                if (BaseGenUtility.AnyDoorAdjacentCardinalTo(
+                    GenAdj.OccupiedRect(potentialSpot, rot, dontTouchMe), map))
+                {
+                    continue;
+                }
+
+                var resolveParams = rp;
+                resolveParams.rect = GenAdj.OccupiedRect(potentialSpot, rot, thingDef.Size);
+                resolveParams.singleThingDef = Rand.Element(thingDef, tableButcher);
+                resolveParams.thingRot = rot;
+                var skipSingleThingIfHasToWipeBuildingOrDoesntFit = rp.skipSingleThingIfHasToWipeBuildingOrDoesntFit;
+                resolveParams.skipSingleThingIfHasToWipeBuildingOrDoesntFit =
+                    !skipSingleThingIfHasToWipeBuildingOrDoesntFit.HasValue ||
+                    skipSingleThingIfHasToWipeBuildingOrDoesntFit.Value;
+                BaseGen.symbolStack.Push("thing", resolveParams);
             }
         }
     }

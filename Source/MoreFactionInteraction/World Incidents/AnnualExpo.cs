@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Text;
 using RimWorld;
-using Verse;
 using RimWorld.Planet;
+using Verse;
 
 namespace MoreFactionInteraction.More_Flavour
 {
@@ -15,27 +13,30 @@ namespace MoreFactionInteraction.More_Flavour
 
         public void Notify_CaravanArrived(Caravan caravan)
         {
-            Pawn pawn = BestCaravanPawnUtility.FindPawnWithBestStat(caravan, eventDef.relevantStat);
+            var pawn = BestCaravanPawnUtility.FindPawnWithBestStat(caravan, eventDef.relevantStat);
             if (pawn == null)
             {
-                Messages.Message(text: "MFI_AnnualExpoMessageNoRepresentative".Translate(), lookTargets: caravan, def: MessageTypeDefOf.NegativeEvent);
+                Messages.Message("MFI_AnnualExpoMessageNoRepresentative".Translate(), caravan,
+                    MessageTypeDefOf.NegativeEvent);
             }
             else
             {
-                CameraJumper.TryJumpAndSelect(target: caravan);
-                Find.WindowStack.Add(window: new Dialog_NodeTree(new AnnualExpoDialogue(pawn, caravan, eventDef, host).AnnualExpoDialogueNode()));
+                CameraJumper.TryJumpAndSelect(caravan);
+                Find.WindowStack.Add(new Dialog_NodeTree(new AnnualExpoDialogue(pawn, caravan, eventDef, host)
+                    .AnnualExpoDialogueNode()));
                 Find.WorldObjects.Remove(this);
             }
         }
 
         public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Caravan caravan)
         {
-            foreach (FloatMenuOption o in base.GetFloatMenuOptions(caravan: caravan))
+            foreach (var o in base.GetFloatMenuOptions(caravan))
             {
                 yield return o;
             }
 
-            foreach (FloatMenuOption f in CaravanArrivalAction_VisitAnnualExpo.GetFloatMenuOptions(caravan: caravan, annualExpo: this))
+            foreach (var f in CaravanArrivalAction_VisitAnnualExpo.GetFloatMenuOptions(caravan,
+                this))
             {
                 yield return f;
             }
@@ -56,6 +57,7 @@ namespace MoreFactionInteraction.More_Flavour
             {
                 stringBuilder.AppendLine();
             }
+
             stringBuilder.Append(eventDef.LabelCap);
             return stringBuilder.ToString();
         }

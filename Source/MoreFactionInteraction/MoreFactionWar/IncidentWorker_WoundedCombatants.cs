@@ -1,33 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using RimWorld;
-using UnityEngine;
-using Verse;
 using MoreFactionInteraction.General;
+using RimWorld;
+using Verse;
 
 namespace MoreFactionInteraction.MoreFactionWar
 {
     public class IncidentWorker_WoundedCombatants : IncidentWorker
     {
-        private readonly IntRange pawnstoSpawn = new IntRange(min: 4, max: 6);
+        private readonly IntRange pawnstoSpawn = new(4, 6);
 
         protected override bool CanFireNowSub(IncidentParms parms)
         {
-            return base.CanFireNowSub(parms: parms) && Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarIsOngoing
-                                                    && FindAlliedWarringFaction(faction: out Faction _)
-                                                    && CommsConsoleUtility.PlayerHasPoweredCommsConsole(map: (Map)parms.target)
-                                                    && DropCellFinder.TryFindRaidDropCenterClose(spot: out IntVec3 _, map: (Map)parms.target);
+            return base.CanFireNowSub(parms) && Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarIsOngoing
+                                             && FindAlliedWarringFaction(out var _)
+                                             && CommsConsoleUtility.PlayerHasPoweredCommsConsole((Map) parms.target)
+                                             && DropCellFinder.TryFindRaidDropCenterClose(out var _,
+                                                 (Map) parms.target);
         }
 
         protected override bool TryExecuteWorker(IncidentParms parms)
         {
-            if (!DropCellFinder.TryFindRaidDropCenterClose(spot: out IntVec3 dropSpot, map: (Map)parms.target))
+            if (!DropCellFinder.TryFindRaidDropCenterClose(out var dropSpot, (Map) parms.target))
             {
                 return false;
             }
 
-            if (!FindAlliedWarringFaction(faction: out Faction faction))
+            if (!FindAlliedWarringFaction(out var faction))
             {
                 return false;
             }
@@ -40,10 +39,10 @@ namespace MoreFactionInteraction.MoreFactionWar
             var bamboozle = false;
             var arrivalText = string.Empty;
             var factionGoodWillLoss = MFI_DiplomacyTunings
-                                        .GoodWill_FactionWarPeaceTalks_ImpactSmall.RandomInRange / 2;
+                .GoodWill_FactionWarPeaceTalks_ImpactSmall.RandomInRange / 2;
 
-            IncidentParms raidParms =
-                StorytellerUtility.DefaultParmsNow(incCat: IncidentCategoryDefOf.ThreatBig, target: (Map)parms.target);
+            var raidParms =
+                StorytellerUtility.DefaultParmsNow(IncidentCategoryDefOf.ThreatBig, (Map) parms.target);
             raidParms.forced = true;
             raidParms.faction = faction.EnemyInFactionWar();
             raidParms.raidStrategy = RaidStrategyDefOf.ImmediateAttack;
@@ -51,116 +50,132 @@ namespace MoreFactionInteraction.MoreFactionWar
             raidParms.spawnCenter = dropSpot;
 
             if (faction.EnemyInFactionWar().def.techLevel >= TechLevel.Industrial
-                && faction.EnemyInFactionWar().RelationKindWith(other: Faction.OfPlayer) == FactionRelationKind.Hostile)
+                && faction.EnemyInFactionWar().RelationKindWith(Faction.OfPlayer) == FactionRelationKind.Hostile)
             {
-                bamboozle = Rand.Chance(chance: 0.25f);
+                bamboozle = Rand.Chance(0.25f);
             }
 
             if (bamboozle)
             {
-                arrivalText = string.Format(format: raidParms.raidArrivalMode.textEnemy, arg0: raidParms.faction.def.pawnsPlural, arg1: raidParms.faction.Name);
+                arrivalText = string.Format(raidParms.raidArrivalMode.textEnemy, raidParms.faction.def.pawnsPlural,
+                    raidParms.faction.Name);
             }
 
             //get combat-pawns to spawn.
-            PawnGroupMakerParms defaultPawnGroupMakerParms = IncidentParmsUtility.GetDefaultPawnGroupMakerParms(groupKind: PawnGroupKindDefOf.Combat, parms: raidParms);
-            defaultPawnGroupMakerParms.points = IncidentWorker_Raid.AdjustedRaidPoints(points: defaultPawnGroupMakerParms.points, raidArrivalMode: raidParms.raidArrivalMode, raidStrategy: raidParms.raidStrategy, faction: defaultPawnGroupMakerParms.faction, groupKind: PawnGroupKindDefOf.Combat);
-            IEnumerable<PawnKindDef> pawnKinds = PawnGroupMakerUtility.GeneratePawnKindsExample(parms: defaultPawnGroupMakerParms).ToList();
+            var defaultPawnGroupMakerParms =
+                IncidentParmsUtility.GetDefaultPawnGroupMakerParms(PawnGroupKindDefOf.Combat, raidParms);
+            defaultPawnGroupMakerParms.points = IncidentWorker_Raid.AdjustedRaidPoints(
+                defaultPawnGroupMakerParms.points, raidParms.raidArrivalMode, raidParms.raidStrategy,
+                defaultPawnGroupMakerParms.faction, PawnGroupKindDefOf.Combat);
+            IEnumerable<PawnKindDef> pawnKinds =
+                PawnGroupMakerUtility.GeneratePawnKindsExample(defaultPawnGroupMakerParms).ToList();
             var pawnlist = new List<Thing>();
 
             for (var i = 0; i < pawnstoSpawn.RandomInRange; i++)
             {
-                var request = new PawnGenerationRequest(kind: pawnKinds.RandomElement(), faction: faction, allowDowned: true, allowDead: true, mustBeCapableOfViolence: true);
-                Pawn woundedCombatant = PawnGenerator.GeneratePawn(request: request);
+                var request = new PawnGenerationRequest(pawnKinds.RandomElement(), faction, allowDowned: true,
+                    allowDead: true, mustBeCapableOfViolence: true);
+                var woundedCombatant = PawnGenerator.GeneratePawn(request);
                 woundedCombatant.guest.getRescuedThoughtOnUndownedBecauseOfPlayer = true;
-                ThingDef weapon = Rand.Bool ? DefDatabase<ThingDef>.AllDefsListForReading.Where(predicate: x => x.IsWeaponUsingProjectiles).RandomElement() : null;
+                var weapon = Rand.Bool
+                    ? DefDatabase<ThingDef>.AllDefsListForReading.Where(x => x.IsWeaponUsingProjectiles).RandomElement()
+                    : null;
 
-                ThingDef usedWeaponDef = weapon;
-                DamageDef damageDef = usedWeaponDef?.Verbs?.First()?.defaultProjectile?.projectile?.damageDef; //null? check? All? THE? THINGS!!!!?
+                var usedWeaponDef = weapon;
+                var damageDef =
+                    usedWeaponDef?.Verbs?.First()?.defaultProjectile?.projectile
+                        ?.damageDef; //null? check? All? THE? THINGS!!!!?
                 if (usedWeaponDef != null && damageDef == null)
                 {
                     usedWeaponDef = null;
                 }
-                CustomFaction_HealthUtility.DamageUntilDownedWithSpecialOptions(p: woundedCombatant, allowBleedingWounds: true, damageDef: damageDef, weapon: usedWeaponDef);
-                //todo: maybe add some storylogging.
-                pawnlist.Add(item: woundedCombatant);
+
+                CustomFaction_HealthUtility.DamageUntilDownedWithSpecialOptions(woundedCombatant,
+                    true, damageDef, usedWeaponDef);
+                //todo: maybe add some story logging.
+                pawnlist.Add(woundedCombatant);
             }
 
             string initialMessage = "MFI_WoundedCombatant".Translate(faction.Name);
-            var diaNode = new DiaNode(text: initialMessage);
+            var diaNode = new DiaNode(initialMessage);
 
-            var diaOptionOk = new DiaOption(text: "OK".Translate()) { resolveTree = true };
+            var diaOptionOk = new DiaOption("OK".Translate()) {resolveTree = true};
 
-            var diaOptionAccept = new DiaOption(text: "RansomDemand_Accept".Translate())
+            var diaOptionAccept = new DiaOption("RansomDemand_Accept".Translate())
             {
                 action = () =>
                 {
                     if (bamboozle)
                     {
                         Find.TickManager.slower.SignalForceNormalSpeedShort();
-                        IncidentDefOf.RaidEnemy.Worker.TryExecute(parms: raidParms);
+                        IncidentDefOf.RaidEnemy.Worker.TryExecute(raidParms);
                     }
                     else
                     {
-                        IntVec3 intVec = IntVec3.Invalid;
+                        var intVec = IntVec3.Invalid;
 
-                        var allBuildingsColonist = ((Map)parms.target).listerBuildings.allBuildingsColonist.Where(predicate: x => x.def.thingClass == typeof(Building_Bed)).ToList();
-                        for (var i = 0; i < allBuildingsColonist.Count; i++)
+                        var allBuildingsColonist = ((Map) parms.target).listerBuildings.allBuildingsColonist
+                            .Where(x => x.def.thingClass == typeof(Building_Bed)).ToList();
+                        foreach (var building in allBuildingsColonist)
                         {
-                            if (DropCellFinder.TryFindDropSpotNear(center: allBuildingsColonist[index: i].Position, map: (Map)parms.target, result: out intVec, allowFogged: false, canRoofPunch: false))
+                            if (DropCellFinder.TryFindDropSpotNear(building.Position, (Map) parms.target,
+                                out intVec, false, false))
                             {
                                 break;
                             }
                         }
+
                         if (intVec == IntVec3.Invalid)
                         {
-                            intVec = DropCellFinder.RandomDropSpot(map: (Map)parms.target);
+                            intVec = DropCellFinder.RandomDropSpot((Map) parms.target);
                         }
 
-                        DropPodUtility.DropThingsNear(dropCenter: intVec, map: (Map)parms.target, things: pawnlist, openDelay: 180, leaveSlag: true, canRoofPunch: false);
-                        Find.World.GetComponent<WorldComponent_MFI_FactionWar>().NotifyBattleWon(faction: faction);
+                        DropPodUtility.DropThingsNear(intVec, (Map) parms.target, pawnlist, 180, leaveSlag: true,
+                            canRoofPunch: false);
+                        Find.World.GetComponent<WorldComponent_MFI_FactionWar>().NotifyBattleWon(faction);
                     }
                 }
             };
             string bamboozledAndAmbushed = "MFI_WoundedCombatantAmbush".Translate(faction, arrivalText);
             string commanderGreatful = "MFI_WoundedCombatantGratitude".Translate();
-            var acceptDiaNode = new DiaNode(text: bamboozle ? bamboozledAndAmbushed : commanderGreatful);
+            var acceptDiaNode = new DiaNode(bamboozle ? bamboozledAndAmbushed : commanderGreatful);
             diaOptionAccept.link = acceptDiaNode;
-            diaNode.options.Add(item: diaOptionAccept);
-            acceptDiaNode.options.Add(item: diaOptionOk);
+            diaNode.options.Add(diaOptionAccept);
+            acceptDiaNode.options.Add(diaOptionOk);
 
-            var diaOptionRejection = new DiaOption(text: "RansomDemand_Reject".Translate())
+            var diaOptionRejection = new DiaOption("RansomDemand_Reject".Translate())
             {
                 action = () =>
                 {
                     if (bamboozle)
                     {
-                        Find.World.GetComponent<WorldComponent_MFI_FactionWar>().NotifyBattleWon(faction: faction);
+                        Find.World.GetComponent<WorldComponent_MFI_FactionWar>().NotifyBattleWon(faction);
                     }
                     else
                     {
-                        faction.TryAffectGoodwillWith(other: Faction.OfPlayer, goodwillChange: factionGoodWillLoss, canSendMessage: false);
+                        faction.TryAffectGoodwillWith(Faction.OfPlayer, factionGoodWillLoss, false);
                     }
                 }
             };
             string rejectionResponse = "MFI_WoundedCombatantRejected".Translate(faction.Name, factionGoodWillLoss);
             string bamboozlingTheBamboozler = "MFI_WoundedCombatantAmbushAvoided".Translate();
-            var rejectionDiaNode = new DiaNode(text: bamboozle ? bamboozlingTheBamboozler : rejectionResponse);
+            var rejectionDiaNode = new DiaNode(bamboozle ? bamboozlingTheBamboozler : rejectionResponse);
             diaOptionRejection.link = rejectionDiaNode;
-            diaNode.options.Add(item: diaOptionRejection);
-            rejectionDiaNode.options.Add(item: diaOptionOk);
+            diaNode.options.Add(diaOptionRejection);
+            rejectionDiaNode.options.Add(diaOptionOk);
 
-            string title = "MFI_WoundedCombatantTitle".Translate(((Map)parms.target).Parent.Label);
-            Find.WindowStack.Add(window: new Dialog_NodeTreeWithFactionInfo(nodeRoot: diaNode, faction: faction, delayInteractivity: true, radioMode: true, title: title));
-            Find.Archive.Add(archivable: new ArchivedDialog(text: diaNode.text, title: title, relatedFaction: faction));
+            string title = "MFI_WoundedCombatantTitle".Translate(((Map) parms.target).Parent.Label);
+            Find.WindowStack.Add(new Dialog_NodeTreeWithFactionInfo(diaNode, faction, true, true, title));
+            Find.Archive.Add(new ArchivedDialog(diaNode.text, title, faction));
             return true;
         }
 
         /// <summary>
-        /// Find warring allied faction that can send drop pods.
+        ///     Find warring allied faction that can send drop pods.
         /// </summary>
         /// <param name="faction"></param>
         /// <returns></returns>
-        protected bool FindAlliedWarringFaction(out Faction faction)
+        private bool FindAlliedWarringFaction(out Faction faction)
         {
             faction = null;
 
@@ -170,8 +185,10 @@ namespace MoreFactionInteraction.MoreFactionWar
             }
 
             if (Find.World.GetComponent<WorldComponent_MFI_FactionWar>().AllFactionsInVolvedInWar
-                    .Where(predicate: f => f.RelationWith(other: Faction.OfPlayer).kind == FactionRelationKind.Ally
-                             && f.def.techLevel >= TechLevel.Industrial).TryRandomElementByWeight(weightSelector: f => f.def.RaidCommonalityFromPoints(points: 600f), result: out faction))
+                .Where(f => f.RelationWith(Faction.OfPlayer).kind == FactionRelationKind.Ally
+                            && f.def.techLevel >= TechLevel.Industrial)
+                .TryRandomElementByWeight(f => f.def.RaidCommonalityFromPoints(600f),
+                    out faction))
             {
                 return true;
             }

@@ -10,11 +10,11 @@ namespace MoreFactionInteraction
     [Obsolete]
     public class ChoiceLetter_ReverseTradeRequest : ChoiceLetter
     {
-        public IncidentParms incidentParms;
-        public ThingCategoryDef thingCategoryDef;
-        public int fee = 100;
-        public Map map;
         public Faction faction;
+        public int fee = 100;
+        public IncidentParms incidentParms;
+        public Map map;
+        public ThingCategoryDef thingCategoryDef;
         public int tile;
 
         public override IEnumerable<DiaOption> Choices
@@ -27,44 +27,48 @@ namespace MoreFactionInteraction
                 }
                 else
                 {
-                    var traveltime = CalcuteTravelTimeForTrader(originTile: tile);
-                    var accept = new DiaOption(text: "RansomDemand_Accept".Translate())
+                    var traveltime = CalcuteTravelTimeForTrader(tile);
+                    var accept = new DiaOption("RansomDemand_Accept".Translate())
                     {
                         action = () =>
                         {
                             //spawn a trader with a stock gen that accepts our goods, has decent-ish money and nothing else.
                             //first attempt had a newly created trader for each, but the game can't save that. Had to define in XML.
                             incidentParms.faction = faction;
-                            TraderKindDef traderKind = DefDatabase<TraderKindDef>.GetNamed(defName: "MFI_EmptyTrader_" + thingCategoryDef);
+                            var traderKind = DefDatabase<TraderKindDef>.GetNamed("MFI_EmptyTrader_" + thingCategoryDef);
 
-                            traderKind.stockGenerators.First(predicate: x => x.HandlesThingDef(thingDef: ThingDefOf.Silver)).countRange.max += fee;
-                            traderKind.stockGenerators.First(predicate: x => x.HandlesThingDef(thingDef: ThingDefOf.Silver)).countRange.min += fee;
+                            traderKind.stockGenerators.First(x => x.HandlesThingDef(ThingDefOf.Silver)).countRange
+                                .max += fee;
+                            traderKind.stockGenerators.First(x => x.HandlesThingDef(ThingDefOf.Silver)).countRange
+                                .min += fee;
 
                             traderKind.label = thingCategoryDef.label + " " + "MFI_Trader".Translate();
                             incidentParms.traderKind = traderKind;
                             incidentParms.forced = true;
                             incidentParms.target = map;
 
-                            Find.Storyteller.incidentQueue.Add(def: IncidentDefOf.TraderCaravanArrival, fireTick: Find.TickManager.TicksGame + traveltime, parms: incidentParms);
-                            TradeUtility.LaunchSilver(map: map, fee: fee);
-                        },
+                            Find.Storyteller.incidentQueue.Add(IncidentDefOf.TraderCaravanArrival,
+                                Find.TickManager.TicksGame + traveltime, incidentParms);
+                            TradeUtility.LaunchSilver(map, fee);
+                        }
                     };
-                    var acceptLink = new DiaNode(text: "MFI_TraderSent".Translate(
+                    var acceptLink = new DiaNode("MFI_TraderSent".Translate(
                         faction.leader?.LabelShort,
-                        traveltime.ToStringTicksToPeriodVague(vagueMin: false)
+                        traveltime.ToStringTicksToPeriodVague(false)
                     ).CapitalizeFirst());
-                    acceptLink.options.Add(item: Option_Close);
+                    acceptLink.options.Add(Option_Close);
                     accept.link = acceptLink;
 
-                    if (!TradeUtility.ColonyHasEnoughSilver(map: map, fee: fee))
+                    if (!TradeUtility.ColonyHasEnoughSilver(map, fee))
                     {
-                        accept.Disable(newDisabledReason: "NeedSilverLaunchable".Translate(fee.ToString()));
+                        accept.Disable("NeedSilverLaunchable".Translate(fee.ToString()));
                     }
+
                     yield return accept;
 
-                    var reject = new DiaOption(text: "RansomDemand_Reject".Translate())
+                    var reject = new DiaOption("RansomDemand_Reject".Translate())
                     {
-                        action = () => Find.LetterStack.RemoveLetter(@let: this),
+                        action = () => Find.LetterStack.RemoveLetter(this),
                         resolveTree = true
                     };
                     yield return reject;
@@ -73,23 +77,24 @@ namespace MoreFactionInteraction
             }
         }
 
+        public override bool CanShowInLetterStack => base.CanShowInLetterStack && Find.Maps.Contains(map) &&
+                                                     !faction.HostileTo(Faction.OfPlayer);
+
         private int CalcuteTravelTimeForTrader(int originTile)
         {
-            var travelTime = CaravanArrivalTimeEstimator.EstimatedTicksToArrive(@from: originTile, to: map.Tile, caravan: null);
-            return Math.Min(val1: travelTime, val2: GenDate.TicksPerDay * 4);
+            var travelTime = CaravanArrivalTimeEstimator.EstimatedTicksToArrive(originTile, map.Tile, null);
+            return Math.Min(travelTime, GenDate.TicksPerDay * 4);
         }
-
-        public override bool CanShowInLetterStack => base.CanShowInLetterStack && Find.Maps.Contains(item: map) && !faction.HostileTo(other: Faction.OfPlayer);
 
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Defs.Look(value: ref thingCategoryDef, label: "MFI_thingCategoryDef");
-            Scribe_Deep.Look(target: ref incidentParms, label: "MFI_incidentParms", ctorArgs: new object[0]);
-            Scribe_References.Look(refee: ref map, label: "MFI_map");
-            Scribe_References.Look(refee: ref faction, label: "MFI_faction");
-            Scribe_Values.Look(value: ref fee, label: "MFI_fee");
-            Scribe_Values.Look(value: ref tile, label: "MFI_tile");
+            Scribe_Defs.Look(ref thingCategoryDef, "MFI_thingCategoryDef");
+            Scribe_Deep.Look(ref incidentParms, "MFI_incidentParms", new object[0]);
+            Scribe_References.Look(ref map, "MFI_map");
+            Scribe_References.Look(ref faction, "MFI_faction");
+            Scribe_Values.Look(ref fee, "MFI_fee");
+            Scribe_Values.Look(ref tile, "MFI_tile");
         }
     }
 }

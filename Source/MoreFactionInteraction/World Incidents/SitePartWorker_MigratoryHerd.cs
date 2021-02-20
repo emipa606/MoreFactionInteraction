@@ -1,8 +1,8 @@
-﻿using RimWorld;
+﻿using System.Linq;
+using RimWorld;
 using RimWorld.Planet;
-using Verse;
-using System.Linq;
 using UnityEngine;
+using Verse;
 
 namespace MoreFactionInteraction.World_Incidents
 {
@@ -11,19 +11,21 @@ namespace MoreFactionInteraction.World_Incidents
         public override string GetPostProcessedThreatLabel(Site site, SitePart siteCoreOrPart)
         {
             return string.Concat(base.GetPostProcessedThreatLabel(site, siteCoreOrPart),
-                                     " (",
-                                     GenLabel.BestKindLabel(siteCoreOrPart.parms.animalKind, Gender.None, true),
-                                     ")"
-                                 );
+                " (",
+                GenLabel.BestKindLabel(siteCoreOrPart.parms.animalKind, Gender.None, true),
+                ")"
+            );
         }
 
         public override void PostMapGenerate(Map map)
         {
-            IncidentParms incidentParms = StorytellerUtility.DefaultParmsNow(incCat: IncidentCategoryDefOf.Misc, target: map);
+            var incidentParms = StorytellerUtility.DefaultParmsNow(IncidentCategoryDefOf.Misc, map);
             incidentParms.forced = true;
             //this part is forced to bypass CanFireNowSub, to solve issue with scenario-added incident.
-            var queuedIncident = new QueuedIncident(firingInc: new FiringIncident(def: DefDatabase<IncidentDef>.GetNamed(defName: "MFI_HerdMigration_Ambush"), source: null, parms: incidentParms), fireTick: Find.TickManager.TicksGame + Rand.RangeInclusive(min: GenDate.TicksPerDay / 2, max: GenDate.TicksPerDay));
-            Find.Storyteller.incidentQueue.Add(qi: queuedIncident);
+            var queuedIncident = new QueuedIncident(
+                new FiringIncident(DefDatabase<IncidentDef>.GetNamed("MFI_HerdMigration_Ambush"), null, incidentParms),
+                Find.TickManager.TicksGame + Rand.RangeInclusive(GenDate.TicksPerDay / 2, GenDate.TicksPerDay));
+            Find.Storyteller.incidentQueue.Add(queuedIncident);
         }
 
         //public override string GetPostProcessedDescriptionDialogue(Site site, SitePart siteCoreOrPart, )
@@ -33,11 +35,12 @@ namespace MoreFactionInteraction.World_Incidents
 
         private bool TryFindAnimalKind(int tile, out PawnKindDef animalKind)
         {
-            PawnKindDef fallback = PawnKindDefOf.Thrumbo;
+            var fallback = PawnKindDefOf.Thrumbo;
 
             animalKind = (from k in DefDatabase<PawnKindDef>.AllDefs
-                    where k.RaceProps.CanDoHerdMigration && Find.World.tileTemperatures.SeasonAndOutdoorTemperatureAcceptableFor(tile: tile, animalRace: k.race)
-                    select k).RandomElementByWeightWithFallback(weightSelector: (PawnKindDef x) => x.RaceProps.wildness, fallback);
+                where k.RaceProps.CanDoHerdMigration &&
+                      Find.World.tileTemperatures.SeasonAndOutdoorTemperatureAcceptableFor(tile, k.race)
+                select k).RandomElementByWeightWithFallback(x => x.RaceProps.wildness, fallback);
 
             return animalKind != fallback;
         }
@@ -47,8 +50,10 @@ namespace MoreFactionInteraction.World_Incidents
             var siteCoreOrPartParams = base.GenerateDefaultParams(myThreatPoints, tile, faction);
             if (TryFindAnimalKind(tile, out siteCoreOrPartParams.animalKind))
             {
-                siteCoreOrPartParams.threatPoints = Mathf.Max(siteCoreOrPartParams.threatPoints, siteCoreOrPartParams.animalKind.combatPower);
+                siteCoreOrPartParams.threatPoints = Mathf.Max(siteCoreOrPartParams.threatPoints,
+                    siteCoreOrPartParams.animalKind.combatPower);
             }
+
             return siteCoreOrPartParams;
         }
     }

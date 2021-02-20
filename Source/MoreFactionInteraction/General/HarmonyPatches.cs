@@ -1,14 +1,14 @@
-﻿using HarmonyLib;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection.Emit;
+using Fluffy_Relations;
+using HarmonyLib;
 using MoreFactionInteraction.More_Flavour;
 using MoreFactionInteraction.MoreFactionWar;
 using MoreFactionInteraction.World_Incidents;
 using RimWorld;
 using RimWorld.Planet;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Reflection.Emit;
 using UnityEngine;
 using Verse;
 
@@ -18,95 +18,115 @@ namespace MoreFactionInteraction
     public static class HarmonyPatches
     {
         //resources must be loaded in cctor
-        public static Texture2D setPlantToGrowTex = ContentFinder<Texture2D>.Get(itemPath: "UI/Commands/SetPlantToGrow");
+        public static readonly Texture2D setPlantToGrowTex = ContentFinder<Texture2D>.Get("UI/Commands/SetPlantToGrow");
 
         static HarmonyPatches()
         {
-            var harmony = new Harmony(id: "mehni.rimworld.MFI.main");
+            var harmony = new Harmony("mehni.rimworld.MFI.main");
             //HarmonyInstance.DEBUG = true;
 
             #region MoreTraders
-            harmony.Patch(original: AccessTools.Method(typeof(TraderKindDef), nameof(TraderKindDef.PriceTypeFor)),
+
+            harmony.Patch(AccessTools.Method(typeof(TraderKindDef), nameof(TraderKindDef.PriceTypeFor)),
                 postfix: new HarmonyMethod(typeof(HarmonyPatches), nameof(PriceTypeSetter_PostFix)));
 
-            harmony.Patch(original: AccessTools.Method(typeof(StoryState), nameof(StoryState.Notify_IncidentFired)),
+            harmony.Patch(AccessTools.Method(typeof(StoryState), nameof(StoryState.Notify_IncidentFired)),
                 postfix: new HarmonyMethod(typeof(HarmonyPatches), nameof(IncidentFired_TradeCounter_Postfix)));
 
-            harmony.Patch(original: AccessTools.Method(typeof(CompQuality), nameof(CompQuality.PostPostGeneratedForTrader)),
-                 prefix: new HarmonyMethod(typeof(HarmonyPatches), nameof(CompQuality_TradeQualityIncreaseDestructivePreFix)));
+            harmony.Patch(AccessTools.Method(typeof(CompQuality), nameof(CompQuality.PostPostGeneratedForTrader)),
+                new HarmonyMethod(typeof(HarmonyPatches), nameof(CompQuality_TradeQualityIncreaseDestructivePreFix)));
 
-            harmony.Patch(original: AccessTools.Method(typeof(ThingSetMaker), nameof(ThingSetMaker.Generate), parameters: new Type[] { typeof(ThingSetMakerParams) }),
+            harmony.Patch(
+                AccessTools.Method(typeof(ThingSetMaker), nameof(ThingSetMaker.Generate),
+                    new[] {typeof(ThingSetMakerParams)}),
                 postfix: new HarmonyMethod(typeof(HarmonyPatches), nameof(TraderStocker_OverStockerPostFix)));
 
-            harmony.Patch(original: AccessTools.Method(typeof(Tradeable), "InitPriceDataIfNeeded"),
+            harmony.Patch(AccessTools.Method(typeof(Tradeable), "InitPriceDataIfNeeded"),
                 transpiler: new HarmonyMethod(typeof(HarmonyPatches), nameof(ErrorSuppressionSssh)));
+
             #endregion
 
             #region WorldIncidents
-            harmony.Patch(original: AccessTools.Method(typeof(WorldReachabilityUtility), nameof(WorldReachabilityUtility.CanReach)),
+
+            harmony.Patch(
+                AccessTools.Method(typeof(WorldReachabilityUtility), nameof(WorldReachabilityUtility.CanReach)),
                 postfix: new HarmonyMethod(typeof(HarmonyPatches), nameof(WorldReachUtility_PostFix)));
+
             #endregion
 
 #if DEBUG
-            harmony.Patch(original: AccessTools.Method(typeof(DebugWindowsOpener), "ToggleDebugActionsMenu"),
-                transpiler: new HarmonyMethod(typeof(HarmonyPatches), nameof(DebugWindowsOpener_ToggleDebugActionsMenu_Patch)));
+            harmony.Patch(AccessTools.Method(typeof(DebugWindowsOpener), "ToggleDebugActionsMenu"),
+                transpiler: new HarmonyMethod(typeof(HarmonyPatches),
+                    nameof(DebugWindowsOpener_ToggleDebugActionsMenu_Patch)));
 #endif
 
-            harmony.Patch(original: AccessTools.Method(typeof(ThoughtWorker_PsychicEmanatorSoothe), "CurrentStateInternal"),
+            harmony.Patch(AccessTools.Method(typeof(ThoughtWorker_PsychicEmanatorSoothe), "CurrentStateInternal"),
                 transpiler: new HarmonyMethod(typeof(HarmonyPatches), nameof(PsychicEmanatorSoothe_Transpiler)));
 
-            harmony.Patch(original: AccessTools.Method(typeof(Faction), nameof(Faction.Notify_RelationKindChanged)),
+            harmony.Patch(AccessTools.Method(typeof(Faction), nameof(Faction.Notify_RelationKindChanged)),
                 postfix: new HarmonyMethod(typeof(HarmonyPatches), nameof(Notify_RelationKindChanged)));
             harmony.PatchAll();
-            if (ModsConfig.ActiveModsInLoadOrder.Any(m => m.Name == "Relations Tab"))
+            if (ModsConfig.ActiveModsInLoadOrder.All(m => m.Name != "Relations Tab"))
             {
-                try
+                return;
+            }
+
+            try
+            {
+                ((Action) (() =>
                 {
-                    ((Action)(() =>
+                    static float func(Faction faction, Vector2 pos, float width)
                     {
-                        static float func(Faction faction, Vector2 pos, float width)
+                        if (!Find.World.GetComponent<WorldComponent_MFI_FactionWar>().StuffIsGoingDown)
                         {
-                            if (Find.World.GetComponent<WorldComponent_MFI_FactionWar>().StuffIsGoingDown)
-                            {
-                                var canvas = new Rect(pos.x, pos.y, width, 125f);
-                                MainTabWindow_FactionWar.DrawFactionWarBar(canvas);
-                                return 125f;
-                            }
                             return 0;
                         }
-                        Fluffy_Relations.MainTabWindow_Relations.ExtraFactionDetailDrawers.Add(func);
-                    }))();
-                }
-                catch (TypeLoadException) { }
+
+                        var canvas = new Rect(pos.x, pos.y, width, 125f);
+                        MainTabWindow_FactionWar.DrawFactionWarBar(canvas);
+                        return 125f;
+                    }
+
+                    MainTabWindow_Relations.ExtraFactionDetailDrawers.Add(func);
+                }))();
+            }
+            catch (TypeLoadException)
+            {
             }
         }
 
         private static void Notify_RelationKindChanged(Faction __instance, Faction other)
         {
-            if (other == Faction.OfPlayer && __instance.HostileTo(other))
+            if (other != Faction.OfPlayer || !__instance.HostileTo(other))
             {
-                foreach (WorldObject item in Find.WorldObjects.AllWorldObjects.Where(x => x is WorldObject_RoadConstruction && x.Faction == __instance))
-                {
-                    Find.WorldObjects.Remove(item);
-                }
-                foreach (Settlement stlmnt in Find.WorldObjects.Settlements.Where(x => x.Faction == __instance))
-                {
-                    stlmnt.GetComponent<WorldObjectComp_SettlementBumperCropComp>()?.Disable();
-                }
+                return;
+            }
+
+            foreach (var item in Find.WorldObjects.AllWorldObjects.Where(x =>
+                x is WorldObject_RoadConstruction && x.Faction == __instance))
+            {
+                Find.WorldObjects.Remove(item);
+            }
+
+            foreach (var stlmnt in Find.WorldObjects.Settlements.Where(x => x.Faction == __instance))
+            {
+                stlmnt.GetComponent<WorldObjectComp_SettlementBumperCropComp>()?.Disable();
             }
         }
 
-        private static IEnumerable<CodeInstruction> PsychicEmanatorSoothe_Transpiler(IEnumerable<CodeInstruction> instructions)
+        private static IEnumerable<CodeInstruction> PsychicEmanatorSoothe_Transpiler(
+            IEnumerable<CodeInstruction> instructions)
         {
-            MethodInfo helperMethod = AccessTools.Method(typeof(HarmonyPatches), nameof(HarmonyPatches.SootheTranspilerHelperMethod));
+            var helperMethod = AccessTools.Method(typeof(HarmonyPatches), nameof(SootheTranspilerHelperMethod));
 
-            foreach (CodeInstruction codeInstruction in instructions)
+            foreach (var codeInstruction in instructions)
             {
                 if (codeInstruction.opcode == OpCodes.Ldc_R4)
                 {
                     codeInstruction.opcode = OpCodes.Call;
                     codeInstruction.operand = helperMethod;
                 }
+
                 yield return codeInstruction;
             }
         }
@@ -117,114 +137,156 @@ namespace MoreFactionInteraction
         }
 
         //thx Brrainz
-        private static IEnumerable<CodeInstruction> DebugWindowsOpener_ToggleDebugActionsMenu_Patch(IEnumerable<CodeInstruction> instructions)
+        private static IEnumerable<CodeInstruction> DebugWindowsOpener_ToggleDebugActionsMenu_Patch(
+            IEnumerable<CodeInstruction> instructions)
         {
-            ConstructorInfo from = AccessTools.Constructor( typeof(Dialog_DebugActionsMenu));
-            ConstructorInfo to = AccessTools.Constructor( typeof(Dialog_MFIDebugActionMenu));
-            return instructions.MethodReplacer(from: from, to: to);
+            var from = AccessTools.Constructor(typeof(Dialog_DebugActionsMenu));
+            var to = AccessTools.Constructor(typeof(Dialog_MFIDebugActionMenu));
+            return instructions.MethodReplacer(from, to);
         }
 
-        #region MoreTraders
-        private static void TraderStocker_OverStockerPostFix(ref List<Thing> __result, ThingSetMakerParams parms)
+        #region WorldIncidents
+
+        private static void WorldReachUtility_PostFix(ref bool __result, Caravan c)
         {
-            if (parms.traderDef != null)
+            var settlement = CaravanVisitUtility.SettlementVisitedNow(c);
+            var bumperCropComponent = settlement?.GetComponent<WorldObjectComp_SettlementBumperCropComp>();
+
+            if (bumperCropComponent != null)
             {
-                Map map = null;
-
-                if (parms.tile != null && parms.tile != -1 && (Current.Game.FindMap(tile: parms.tile.Value)?.IsPlayerHome ?? false))
-                {
-                    map = Current.Game.FindMap(tile: parms.tile.Value);
-                }
-                else if (Find.AnyPlayerHomeMap != null)
-                {
-                    map = Find.AnyPlayerHomeMap;
-                }
-                else if (Find.CurrentMap != null)
-                {
-                    map = Find.CurrentMap;
-                }
-
-                if (map != null && (parms.traderDef.orbital || parms.traderDef.defName.Contains(value: "Base_")))
-                {
-                    //nullable float because not all traders bring silver
-                    float? silverCount = __result.Find(x => x.def == ThingDefOf.Silver)?.stackCount;
-                    if (!silverCount.HasValue)
-                    {
-                        return;
-                    }
-
-                    silverCount *= WealthSilverIncreaseDeterminationCurve.Evaluate(x: map.PlayerWealthForStoryteller);
-                    __result.First(predicate: x => x.def == ThingDefOf.Silver).stackCount = (int)silverCount;
-                    return;
-                }
-                if (map != null && parms.makingFaction != null)
-                {
-                    //nullable float because not all traders bring silver
-                    float? silverCount = __result.Find(x => x.def == ThingDefOf.Silver)?.stackCount;
-                    if (!silverCount.HasValue)
-                    {
-                        return;
-                    }
-
-                    __result.First(predicate: x => x.def == ThingDefOf.Silver).stackCount += (int)(parms.makingFaction.GoodwillWith(other: Faction.OfPlayer) * (map.GetComponent<MapComponent_GoodWillTrader>().TimesTraded[key: parms.makingFaction] * MoreFactionInteraction_Settings.traderWealthOffsetFromTimesTraded));
-                }
+                __result = !bumperCropComponent.CaravanIsWorking;
             }
         }
 
-        private static readonly SimpleCurve WealthSilverIncreaseDeterminationCurve = new SimpleCurve
+        #endregion
+
+        #region MoreTraders
+
+        private static void TraderStocker_OverStockerPostFix(ref List<Thing> __result, ThingSetMakerParams parms)
         {
-            new CurvePoint(x: 0, y: 0.8f),
-            new CurvePoint(x: 10000, y: 1),
-            new CurvePoint(x: 75000, y: 2),
-            new CurvePoint(x: 300000, y: 4),
-            new CurvePoint(x: 1000000, y: 6f),
-            new CurvePoint(x: 2000000, y: 7f)
+            if (parms.traderDef == null)
+            {
+                return;
+            }
+
+            Map map = null;
+
+            if (parms.tile != null && parms.tile != -1 &&
+                (Current.Game.FindMap(parms.tile.Value)?.IsPlayerHome ?? false))
+            {
+                map = Current.Game.FindMap(parms.tile.Value);
+            }
+            else if (Find.AnyPlayerHomeMap != null)
+            {
+                map = Find.AnyPlayerHomeMap;
+            }
+            else if (Find.CurrentMap != null)
+            {
+                map = Find.CurrentMap;
+            }
+
+            if (map != null && (parms.traderDef.orbital || parms.traderDef.defName.Contains("Base_")))
+            {
+                //nullable float because not all traders bring silver
+                float? silverCount = __result.Find(x => x.def == ThingDefOf.Silver)?.stackCount;
+                if (!silverCount.HasValue)
+                {
+                    return;
+                }
+
+                silverCount *= WealthSilverIncreaseDeterminationCurve.Evaluate(map.PlayerWealthForStoryteller);
+                __result.First(x => x.def == ThingDefOf.Silver).stackCount = (int) silverCount;
+                return;
+            }
+
+            if (map == null || parms.makingFaction == null)
+            {
+                return;
+            }
+
+            {
+                //nullable float because not all traders bring silver
+                float? silverCount = __result.Find(x => x.def == ThingDefOf.Silver)?.stackCount;
+                if (!silverCount.HasValue)
+                {
+                    return;
+                }
+
+                __result.First(x => x.def == ThingDefOf.Silver).stackCount +=
+                    (int) (parms.makingFaction.GoodwillWith(Faction.OfPlayer) *
+                           (map.GetComponent<MapComponent_GoodWillTrader>().TimesTraded[parms.makingFaction] *
+                            MoreFactionInteraction_Settings.traderWealthOffsetFromTimesTraded));
+            }
+        }
+
+        private static readonly SimpleCurve WealthSilverIncreaseDeterminationCurve = new()
+        {
+            new CurvePoint(0, 0.8f),
+            new CurvePoint(10000, 1),
+            new CurvePoint(75000, 2),
+            new CurvePoint(300000, 4),
+            new CurvePoint(1000000, 6f),
+            new CurvePoint(2000000, 7f)
         };
 
         #region TradeQualityImprovements
-        private static bool CompQuality_TradeQualityIncreaseDestructivePreFix(CompQuality __instance, TraderKindDef trader, int forTile, Faction forFaction)
+
+        private static bool CompQuality_TradeQualityIncreaseDestructivePreFix(CompQuality __instance,
+            TraderKindDef trader, int forTile, Faction forFaction)
         {
             //forTile is assigned in RimWorld.ThingSetMaker_TraderStock.Generate. It's either a best-effort map, or -1.
             Map map = null;
             if (forTile != -1)
             {
-                map = Current.Game.FindMap(tile: forTile);
+                map = Current.Game.FindMap(forTile);
             }
 
-            __instance.SetQuality(q: FactionAndGoodWillDependantQuality(faction: forFaction, map: map, trader: trader), source: ArtGenerationContext.Outsider);
+            __instance.SetQuality(FactionAndGoodWillDependantQuality(forFaction, map, trader),
+                ArtGenerationContext.Outsider);
             return false;
         }
 
         /// <summary>
-        /// Change quality carried by traders depending on Faction/Goodwill/Wealth.
+        ///     Change quality carried by traders depending on Faction/Goodwill/Wealth.
         /// </summary>
-        /// <returns>QualityCategory depending on wealth or goodwill. Fallsback to vanilla when fails.</returns>
-        private static QualityCategory FactionAndGoodWillDependantQuality(Faction faction, Map map, TraderKindDef trader)
+        /// <returns>QualityCategory depending on wealth or goodwill. Fallback to vanilla when fails.</returns>
+        private static QualityCategory FactionAndGoodWillDependantQuality(Faction faction, Map map,
+            TraderKindDef trader)
         {
-            if ((trader.orbital || trader.defName.Contains(value: "_Base")) && map != null)
+            if ((trader.orbital || trader.defName.Contains("_Base")) && map != null)
             {
                 if (Rand.Value < 0.25f)
                 {
                     return QualityCategory.Normal;
                 }
-                var num = Rand.Gaussian(centerX: WealthQualityDeterminationCurve.Evaluate(x: map.wealthWatcher.WealthTotal), widthFactor: WealthQualitySpreadDeterminationCurve.Evaluate(x: map.wealthWatcher.WealthTotal));
-                num = Mathf.Clamp(value: num, min: 0f, max: QualityUtility.AllQualityCategories.Count - 0.5f);
-                return (QualityCategory)num;
+
+                var num = Rand.Gaussian(WealthQualityDeterminationCurve.Evaluate(map.wealthWatcher.WealthTotal),
+                    WealthQualitySpreadDeterminationCurve.Evaluate(map.wealthWatcher.WealthTotal));
+                num = Mathf.Clamp(num, 0f, QualityUtility.AllQualityCategories.Count - 0.5f);
+                return (QualityCategory) num;
             }
-            if (map != null && faction != null)
+
+            if (map == null || faction == null)
             {
-                var qualityIncreaseFromTimesTradedWithFaction = Mathf.Clamp01(value: (float)map.GetComponent<MapComponent_GoodWillTrader>().TimesTraded[key: faction] / 100);
-                var qualityIncreaseFactorFromPlayerGoodWill = Mathf.Clamp01(value: (float)faction.GoodwillWith(other: Faction.OfPlayer) / 100);
+                return QualityUtility.GenerateQualityTraderItem();
+            }
+
+            {
+                var qualityIncreaseFromTimesTradedWithFaction =
+                    Mathf.Clamp01((float) map.GetComponent<MapComponent_GoodWillTrader>().TimesTraded[faction] / 100);
+                var qualityIncreaseFactorFromPlayerGoodWill =
+                    Mathf.Clamp01((float) faction.GoodwillWith(Faction.OfPlayer) / 100);
 
                 if (Rand.Value < 0.25f)
                 {
                     return QualityCategory.Normal;
                 }
-                var num = Rand.Gaussian(centerX: 2.5f + qualityIncreaseFactorFromPlayerGoodWill, widthFactor: 0.84f + qualityIncreaseFromTimesTradedWithFaction);
-                num = Mathf.Clamp(value: num, min: 0f, max: QualityUtility.AllQualityCategories.Count - 0.5f);
-                return (QualityCategory)num;
+
+                var num = Rand.Gaussian(2.5f + qualityIncreaseFactorFromPlayerGoodWill,
+                    0.84f + qualityIncreaseFromTimesTradedWithFaction);
+                num = Mathf.Clamp(num, 0f, QualityUtility.AllQualityCategories.Count - 0.5f);
+                return (QualityCategory) num;
             }
-            return QualityUtility.GenerateQualityTraderItem();
         }
 
         private static IEnumerable<CodeInstruction> ErrorSuppressionSssh(IEnumerable<CodeInstruction> instructions)
@@ -232,62 +294,69 @@ namespace MoreFactionInteraction
             var instructionList = instructions.ToList();
             for (var i = 0; i < instructionList.Count; i++)
             {
-                if (instructionList[index: i].opcode == OpCodes.Ldstr)
+                if (instructionList[i].opcode == OpCodes.Ldstr)
                 {
                     for (var j = 0; j < 7; j++)
                     {
-                        instructionList[index: i + j].opcode = OpCodes.Nop;
+                        instructionList[i + j].opcode = OpCodes.Nop;
                     }
                 }
-                yield return instructionList[index: i];
+
+                yield return instructionList[i];
             }
         }
 
         #region SimpleCurves
-        private static readonly SimpleCurve WealthQualityDeterminationCurve = new SimpleCurve
+
+        private static readonly SimpleCurve WealthQualityDeterminationCurve = new()
         {
-            new CurvePoint(x: 0, y: 1),
-            new CurvePoint(x: 10000, y: 1.5f),
-            new CurvePoint(x: 75000, y: 2.5f),
-            new CurvePoint(x: 300000, y: 3),
-            new CurvePoint(x: 1000000, y: 3.8f),
-            new CurvePoint(x: 2000000, y: 4.3f)
+            new CurvePoint(0, 1),
+            new CurvePoint(10000, 1.5f),
+            new CurvePoint(75000, 2.5f),
+            new CurvePoint(300000, 3),
+            new CurvePoint(1000000, 3.8f),
+            new CurvePoint(2000000, 4.3f)
         };
 
-        private static readonly SimpleCurve WealthQualitySpreadDeterminationCurve = new SimpleCurve
+        private static readonly SimpleCurve WealthQualitySpreadDeterminationCurve = new()
         {
-            new CurvePoint(x: 0, y: 4.2f),
-            new CurvePoint(x: 10000, y: 4),
-            new CurvePoint(x: 75000, y: 2.5f),
-            new CurvePoint(x: 300000, y: 2.1f),
-            new CurvePoint(x: 1000000, y: 1.5f),
-            new CurvePoint(x: 2000000, y: 1.2f)
+            new CurvePoint(0, 4.2f),
+            new CurvePoint(10000, 4),
+            new CurvePoint(75000, 2.5f),
+            new CurvePoint(300000, 2.1f),
+            new CurvePoint(1000000, 1.5f),
+            new CurvePoint(2000000, 1.2f)
         };
+
         #endregion SimpleCurves
+
         #endregion TradeQualityImprovements
 
         /// <summary>
-        /// Increment TimesTraded count of dictionary by one for this faction.
+        ///     Increment TimesTraded count of dictionary by one for this faction.
         /// </summary>
         private static void IncidentFired_TradeCounter_Postfix(ref FiringIncident fi)
         {
             if (fi.parms.target is Map map && fi.def == IncidentDefOf.TraderCaravanArrival && fi.parms.faction != null)
             {
-                map.GetComponent<MapComponent_GoodWillTrader>().TimesTraded[key: fi.parms.faction]++;
+                map.GetComponent<MapComponent_GoodWillTrader>().TimesTraded[fi.parms.faction]++;
             }
         }
 
-        private static void PriceTypeSetter_PostFix(TraderKindDef __instance, ref PriceType __result, TradeAction action)
+        private static void PriceTypeSetter_PostFix(TraderKindDef __instance, ref PriceType __result,
+            TradeAction action)
         {
             //PriceTypeSetter is more finicky than I'd like, part of the reason traders arrive without any sellable inventory.
             // had issues with pricetype undefined, pricetype normal and *all* traders having pricetype expensive for *all* goods. This works.
-            PriceType priceType = __result;
+            var priceType = __result;
             if (priceType == PriceType.Undefined)
             {
                 return;
             }
+
             //if (__instance.stockGenerators[i] is StockGenerator_BuyCategory && action == TradeAction.PlayerSells)
-            if (__instance.stockGenerators.Any(predicate: x => x is StockGenerator_BuyCategory) && action == TradeAction.PlayerSells)
+            if (__instance.stockGenerators.Any(x => x is StockGenerator_BuyCategory) &&
+                action == TradeAction.PlayerSells)
             {
                 __result = PriceType.Expensive;
             }
@@ -296,19 +365,7 @@ namespace MoreFactionInteraction
                 __result = priceType;
             }
         }
-        #endregion
 
-        #region WorldIncidents
-        private static void WorldReachUtility_PostFix(ref bool __result, Caravan c)
-        {
-            var settlement = CaravanVisitUtility.SettlementVisitedNow(caravan: c);
-            WorldObjectComp_SettlementBumperCropComp bumperCropComponent = settlement?.GetComponent<WorldObjectComp_SettlementBumperCropComp>();
-
-            if (bumperCropComponent != null)
-            {
-                __result = !bumperCropComponent.CaravanIsWorking;
-            }
-        }
         #endregion
     }
 
@@ -316,28 +373,39 @@ namespace MoreFactionInteraction
     [HarmonyPatch(typeof(TransportPodsArrivalAction_VisitSite), "Arrived")]
     internal static class Patch_Arrived
     {
-        private static bool Prefix(Site ___site, PawnsArrivalModeDef ___arrivalMode, List<ActiveDropPodInfo> pods, int tile)
+        private static bool Prefix(Site ___site, PawnsArrivalModeDef ___arrivalMode, List<ActiveDropPodInfo> pods,
+            int tile)
         {
-            if (___site.parts != null)
+            if (___site.parts == null)
             {
-                foreach (var part in ___site.parts)
-                {
-                    if (part.def == MFI_DefOf.MFI_HuntersLodgePart)
-                    {
-                        Thing lookTarget = TransportPodsArrivalActionUtility.GetLookTarget(pods);
-                        var num = !___site.HasMap;
-                        Map orGenerateMap = GetOrGenerateMapUtility.GetOrGenerateMap(___site.Tile, CaravanArrivalAction_VisitSite.MapSize, null);
-                        if (num)
-                        {
-                            Find.TickManager.Notify_GeneratedPotentiallyHostileMap();
-                            PawnRelationUtility.Notify_PawnsSeenByPlayer_Letter_Send(orGenerateMap.mapPawns.AllPawns, "LetterRelatedPawnsInMapWherePlayerLanded".Translate(Faction.OfPlayer.def.pawnsPlural), LetterDefOf.NeutralEvent, informEvenIfSeenBefore: true);
-                        }
-                        Messages.Message("MessageTransportPodsArrived".Translate(), lookTarget, MessageTypeDefOf.TaskCompletion);
-                        ___arrivalMode.Worker.TravelingTransportPodsArrived(pods, orGenerateMap);
-                        return false;
-                    }
-                }
+                return true;
             }
+
+            foreach (var part in ___site.parts)
+            {
+                if (part.def != MFI_DefOf.MFI_HuntersLodgePart)
+                {
+                    continue;
+                }
+
+                var lookTarget = TransportPodsArrivalActionUtility.GetLookTarget(pods);
+                var num = !___site.HasMap;
+                var orGenerateMap = GetOrGenerateMapUtility.GetOrGenerateMap(___site.Tile,
+                    CaravanArrivalAction_VisitSite.MapSize, null);
+                if (num)
+                {
+                    Find.TickManager.Notify_GeneratedPotentiallyHostileMap();
+                    PawnRelationUtility.Notify_PawnsSeenByPlayer_Letter_Send(orGenerateMap.mapPawns.AllPawns,
+                        "LetterRelatedPawnsInMapWherePlayerLanded".Translate(Faction.OfPlayer.def.pawnsPlural),
+                        LetterDefOf.NeutralEvent, true);
+                }
+
+                Messages.Message("MessageTransportPodsArrived".Translate(), lookTarget,
+                    MessageTypeDefOf.TaskCompletion);
+                ___arrivalMode.Worker.TravelingTransportPodsArrived(pods, orGenerateMap);
+                return false;
+            }
+
             return true;
         }
     }
@@ -347,16 +415,19 @@ namespace MoreFactionInteraction
     {
         private static bool Prefix(MapParent mapParent, ref TaggedString letterText)
         {
-            if (mapParent is Site site && site.parts != null)
+            if (mapParent is not Site site || site.parts == null)
             {
-                foreach (var part in site.parts)
+                return true;
+            }
+
+            foreach (var part in site.parts)
+            {
+                if (part.def == MFI_DefOf.MFI_HuntersLodgePart)
                 {
-                    if (part.def == MFI_DefOf.MFI_HuntersLodgePart)
-                    {
-                        return false;
-                    }
+                    return false;
                 }
             }
+
             return true;
         }
     }

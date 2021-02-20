@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
-using Verse;
 using RimWorld.Planet;
+using Verse;
 
 namespace MoreFactionInteraction
 {
@@ -18,14 +18,15 @@ namespace MoreFactionInteraction
         {
             get
             {
-                var modifier = (float)NearbyHostileEncampments().Count() / 10;
+                var modifier = (float) NearbyHostileEncampments().Count() / 10;
                 return (def.baseChance * 1) + modifier;
             }
         }
 
-        private static bool RandomNearbyHostileWorldObject(int originTile, out WorldObject encampment, out Faction faction)
+        private static bool RandomNearbyHostileWorldObject(int originTile, out WorldObject encampment,
+            out Faction faction)
         {
-            encampment = NearbyHostileEncampments(forTile: originTile).RandomElementWithFallback();
+            encampment = NearbyHostileEncampments(originTile).RandomElementWithFallback();
 
             faction = encampment?.Faction;
             return faction != null;
@@ -43,59 +44,68 @@ namespace MoreFactionInteraction
             }
 
             return from worldObject in Find.WorldObjects.AllWorldObjects
-                   where (worldObject is Settlement || worldObject is Site)
-                           && worldObject.Faction != null
-                           && worldObject.Faction.HostileTo(other: Faction.OfPlayer)
-                           && (!worldObject.GetComponent<TimeoutComp>()?.Active ?? true)
-                           && worldObject.Faction.def.permanentEnemy
-                           && Find.WorldGrid.ApproxDistanceInTiles(firstTile: forTile, secondTile: worldObject.Tile) < 20f
-                           && (Find.WorldReachability.CanReach(startTile: forTile, destTile: worldObject.Tile) || forTile == -1)
-                   select worldObject;
+                where (worldObject is Settlement || worldObject is Site)
+                      && worldObject.Faction != null
+                      && worldObject.Faction.HostileTo(Faction.OfPlayer)
+                      && (!worldObject.GetComponent<TimeoutComp>()?.Active ?? true)
+                      && worldObject.Faction.def.permanentEnemy
+                      && Find.WorldGrid.ApproxDistanceInTiles(forTile, worldObject.Tile) < 20f
+                      && (Find.WorldReachability.CanReach(forTile, worldObject.Tile) || forTile == -1)
+                select worldObject;
         }
 
         protected override bool CanFireNowSub(IncidentParms parms)
         {
-            var map = (Map)parms.target;
-            return base.CanFireNowSub(parms: parms) && CommsConsoleUtility.PlayerHasPoweredCommsConsole(map: map)
-                                                    && RandomNearbyHostileWorldObject(originTile: parms.target.Tile, encampment: out worldObject, faction: out faction);
+            var map = (Map) parms.target;
+            return base.CanFireNowSub(parms) && CommsConsoleUtility.PlayerHasPoweredCommsConsole(map)
+                                             && RandomNearbyHostileWorldObject(parms.target.Tile, out worldObject,
+                                                 out faction);
         }
 
         protected override bool TryExecuteWorker(IncidentParms parms)
         {
-            var map = (Map)parms.target;
+            var map = (Map) parms.target;
 
-            if (RandomNearbyHostileWorldObject(originTile: map.Tile, encampment: out worldObject, faction: out faction))
+            if (!RandomNearbyHostileWorldObject(map.Tile, out worldObject, out faction))
             {
-                var extorsionDemand = Math.Max(val1: Rand.Range(min: 150, max: 300), val2: (int)parms.points) * NearbyHostileEncampments(forTile: map.Tile).Count();
+                return false;
+            }
 
-                Pawn representative = faction.leader ?? ((worldObject is Settlement baese) ? baese.previouslyGeneratedInhabitants.FirstOrDefault() : null);
+            var extorsionDemand = Math.Max(Rand.Range(150, 300), (int) parms.points) *
+                                  NearbyHostileEncampments(map.Tile).Count();
 
-                var choiceLetterExtortionDemand = (ChoiceLetter_ExtortionDemand)LetterMaker.MakeLetter(label: def.letterLabel, text: "MFI_ExtortionDemand".Translate(
+            var representative = faction.leader ?? (worldObject is Settlement baese
+                ? baese.previouslyGeneratedInhabitants.FirstOrDefault()
+                : null);
+
+            var choiceLetterExtortionDemand = (ChoiceLetter_ExtortionDemand) LetterMaker.MakeLetter(def.letterLabel,
+                "MFI_ExtortionDemand".Translate(
                     representative?.LabelShort ?? "MFI_Representative".Translate(),
                     faction.def.leaderTitle,
                     faction.Name,
                     worldObject.def.label,
                     worldObject.Label,
                     extorsionDemand
-                ).AdjustedFor(p: faction.leader ?? Find.WorldPawns.AllPawnsAlive.Where(x => x.Faction == faction).RandomElement()), def: def.letterDef);
+                ).AdjustedFor(faction.leader ??
+                              Find.WorldPawns.AllPawnsAlive.Where(x => x.Faction == faction).RandomElement()),
+                def.letterDef);
 
-                choiceLetterExtortionDemand.title = "MFI_ExtortionDemandTitle".Translate(map.info.parent.Label).CapitalizeFirst();
+            choiceLetterExtortionDemand.title =
+                "MFI_ExtortionDemandTitle".Translate(map.info.parent.Label).CapitalizeFirst();
 
-                if (worldObject is Site)
-                {
-                    choiceLetterExtortionDemand.outpost = true;
-                }
-
-                choiceLetterExtortionDemand.radioMode = true;
-                choiceLetterExtortionDemand.faction = faction;
-                choiceLetterExtortionDemand.map = map;
-                choiceLetterExtortionDemand.fee = extorsionDemand;
-                choiceLetterExtortionDemand.StartTimeout(duration: TimeoutTicks);
-                Find.LetterStack.ReceiveLetter(@let: choiceLetterExtortionDemand);
-                Find.World.GetComponent<WorldComponent_OutpostGrower>().Registerletter(choiceLetterExtortionDemand);
-                return true;
+            if (worldObject is Site)
+            {
+                choiceLetterExtortionDemand.outpost = true;
             }
-            return false;
+
+            choiceLetterExtortionDemand.radioMode = true;
+            choiceLetterExtortionDemand.faction = faction;
+            choiceLetterExtortionDemand.map = map;
+            choiceLetterExtortionDemand.fee = extorsionDemand;
+            choiceLetterExtortionDemand.StartTimeout(TimeoutTicks);
+            Find.LetterStack.ReceiveLetter(choiceLetterExtortionDemand);
+            Find.World.GetComponent<WorldComponent_OutpostGrower>().Registerletter(choiceLetterExtortionDemand);
+            return true;
         }
     }
 }

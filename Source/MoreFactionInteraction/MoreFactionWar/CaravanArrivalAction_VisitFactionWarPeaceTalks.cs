@@ -9,15 +9,6 @@ namespace MoreFactionInteraction.MoreFactionWar
     {
         private FactionWarPeaceTalks factionWarPeaceTalks;
 
-        public override string Label => "VisitPeaceTalks".Translate(factionWarPeaceTalks.Label);
-
-        public override string ReportString => "CaravanVisiting".Translate(factionWarPeaceTalks.Label);
-
-        public override void Arrived(Caravan caravan)
-        {
-            factionWarPeaceTalks.Notify_CaravanArrived(caravan: caravan);
-        }
-
         public CaravanArrivalAction_VisitFactionWarPeaceTalks()
         {
         }
@@ -27,17 +18,26 @@ namespace MoreFactionInteraction.MoreFactionWar
             this.factionWarPeaceTalks = factionWarPeaceTalks;
         }
 
+        public override string Label => "VisitPeaceTalks".Translate(factionWarPeaceTalks.Label);
+
+        public override string ReportString => "CaravanVisiting".Translate(factionWarPeaceTalks.Label);
+
+        public override void Arrived(Caravan caravan)
+        {
+            factionWarPeaceTalks.Notify_CaravanArrived(caravan);
+        }
+
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_References.Look(refee: ref factionWarPeaceTalks, label: "factionWarPeaceTalks");
+            Scribe_References.Look(ref factionWarPeaceTalks, "factionWarPeaceTalks");
         }
 
         public override FloatMenuAcceptanceReport StillValid(Caravan caravan, int destinationTile)
         {
-            if (!base.StillValid(caravan: caravan, destinationTile: destinationTile))
+            if (!base.StillValid(caravan, destinationTile))
             {
-                return base.StillValid(caravan: caravan, destinationTile: destinationTile);
+                return base.StillValid(caravan, destinationTile);
             }
 
             if (factionWarPeaceTalks?.Tile != destinationTile)
@@ -45,7 +45,7 @@ namespace MoreFactionInteraction.MoreFactionWar
                 return false;
             }
 
-            return CanVisit(factionWarPeaceTalks: factionWarPeaceTalks);
+            return CanVisit(factionWarPeaceTalks);
         }
 
         public static FloatMenuAcceptanceReport CanVisit(FactionWarPeaceTalks factionWarPeaceTalks)
@@ -53,14 +53,14 @@ namespace MoreFactionInteraction.MoreFactionWar
             return factionWarPeaceTalks != null && factionWarPeaceTalks.Spawned;
         }
 
-        public static IEnumerable<FloatMenuOption> GetFloatMenuOptions(Caravan caravan, FactionWarPeaceTalks factionWarPeaceTalks)
+        public static IEnumerable<FloatMenuOption> GetFloatMenuOptions(Caravan caravan,
+            FactionWarPeaceTalks factionWarPeaceTalks)
         {
-            return CaravanArrivalActionUtility.GetFloatMenuOptions(acceptanceReportGetter:
-                                                                   () => CanVisit(factionWarPeaceTalks: factionWarPeaceTalks), arrivalActionGetter:
-                                                                   () => new CaravanArrivalAction_VisitFactionWarPeaceTalks(factionWarPeaceTalks: factionWarPeaceTalks),
-                                                                   label: "VisitPeaceTalks".Translate(factionWarPeaceTalks.Label),
-                                                                   caravan: caravan, pathDestination: factionWarPeaceTalks.Tile,
-                                                                   revalidateWorldClickTarget: factionWarPeaceTalks);
+            return CaravanArrivalActionUtility.GetFloatMenuOptions(() => CanVisit(factionWarPeaceTalks),
+                () => new CaravanArrivalAction_VisitFactionWarPeaceTalks(factionWarPeaceTalks),
+                "VisitPeaceTalks".Translate(factionWarPeaceTalks.Label),
+                caravan, factionWarPeaceTalks.Tile,
+                factionWarPeaceTalks);
         }
     }
 }

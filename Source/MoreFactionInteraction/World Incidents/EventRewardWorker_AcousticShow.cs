@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using RimWorld;
 using RimWorld.Planet;
 using Verse;
@@ -12,13 +9,8 @@ namespace MoreFactionInteraction
     {
         private readonly EventDef eventDef = MFI_DefOf.MFI_AcousticShow;
 
-        public override Predicate<ThingDef> ValidatorFirstPlace => base.ValidatorFirstPlace;
-
-        public override Predicate<ThingDef> ValidatorFirstLoser => base.ValidatorFirstLoser;
-
-        public override Predicate<ThingDef> ValidatorFirstOther => base.ValidatorFirstOther;
-
-        public override string GenerateRewards(Pawn pawn, Caravan caravan, Predicate<ThingDef> globalValidator, ThingSetMakerDef thingSetMakerDef)
+        public override string GenerateRewards(Pawn pawn, Caravan caravan, Predicate<ThingDef> globalValidator,
+            ThingSetMakerDef thingSetMakerDef)
         {
             if (thingSetMakerDef == eventDef.rewardFirstPlace)
             {
@@ -40,11 +32,11 @@ namespace MoreFactionInteraction
 
         private static void GiveHappyThoughtsToCaravan(Caravan caravan, int amount)
         {
-            foreach (Pawn pawn in caravan.PlayerPawnsForStoryteller)
+            foreach (var pawn in caravan.PlayerPawnsForStoryteller)
             {
                 for (var i = 0; i < amount; i++)
                 {
-                    pawn.needs?.mood?.thoughts?.memories?.TryGainMemory(ThoughtDefOf.AttendedParty, null);
+                    pawn.needs?.mood?.thoughts?.memories?.TryGainMemory(ThoughtDefOf.AttendedParty);
                 }
             }
         }

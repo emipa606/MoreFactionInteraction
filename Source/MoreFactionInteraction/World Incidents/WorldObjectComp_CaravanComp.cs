@@ -5,15 +5,17 @@ namespace MoreFactionInteraction.World_Incidents
 {
     public class WorldObjectComp_CaravanComp : WorldObjectComp
     {
+        public bool caravanIsWorking;
         public int workWillBeDoneAtTick;
-        public bool caravanIsWorking = false;
 
         public override string CompInspectStringExtra()
         {
-            if (CaravanVisitUtility.SettlementVisitedNow(caravan: (Caravan) parent)?.GetComponent<WorldObjectComp_SettlementBumperCropComp>()?.CaravanIsWorking ?? false)
+            if (CaravanVisitUtility.SettlementVisitedNow((Caravan) parent)
+                ?.GetComponent<WorldObjectComp_SettlementBumperCropComp>()?.CaravanIsWorking ?? false)
             {
                 return "MFI_CaravanWorking".Translate();
             }
+
             return string.Empty;
         }
 
@@ -21,7 +23,8 @@ namespace MoreFactionInteraction.World_Incidents
         {
             if (caravanIsWorking && Find.TickManager.TicksGame > workWillBeDoneAtTick)
             {
-                CaravanVisitUtility.SettlementVisitedNow(caravan: (Caravan) parent)?.GetComponent<WorldObjectComp_SettlementBumperCropComp>().DoOutcome(caravan: (Caravan) parent);
+                CaravanVisitUtility.SettlementVisitedNow((Caravan) parent)
+                    ?.GetComponent<WorldObjectComp_SettlementBumperCropComp>().DoOutcome((Caravan) parent);
             }
         }
 

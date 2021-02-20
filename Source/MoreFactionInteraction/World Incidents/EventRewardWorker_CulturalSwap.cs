@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using MoreFactionInteraction.General;
 using RimWorld;
 using RimWorld.Planet;
 using Verse;
@@ -14,51 +10,55 @@ namespace MoreFactionInteraction
         private static readonly float OVERPAYINGBY = 3f;
         private readonly EventDef eventDef = MFI_DefOf.MFI_CulturalSwap;
 
-        public override Predicate<ThingDef> ValidatorFirstPlace => (x) => /*x.stuffCategories.Contains(StuffCategoryDefOf.Metallic) &&*/ (x.BaseMarketValue > 6 || x.smallVolume) && base.ValidatorFirstPlace(x);
+        public override Predicate<ThingDef> ValidatorFirstPlace =>
+            x => /*x.stuffCategories.Contains(StuffCategoryDefOf.Metallic) &&*/
+                (x.BaseMarketValue > 6 || x.smallVolume) && base.ValidatorFirstPlace(x);
 
-        public override Predicate<ThingDef> ValidatorFirstLoser => base.ValidatorFirstLoser;
-
-        public override Predicate<ThingDef> ValidatorFirstOther => base.ValidatorFirstOther;
-
-        public override string GenerateRewards(Pawn pawn, Caravan caravan, Predicate<ThingDef> globalValidator, ThingSetMakerDef thingSetMakerDef)
+        public override string GenerateRewards(Pawn pawn, Caravan caravan, Predicate<ThingDef> globalValidator,
+            ThingSetMakerDef thingSetMakerDef)
         {
             var rewards = string.Empty;
 
-            if (thingSetMakerDef == eventDef.rewardFirstLoser)
+            if (thingSetMakerDef != eventDef.rewardFirstLoser)
             {
-                foreach (Pawn performer in caravan.PlayerPawnsForStoryteller)
-                {
-                    if (!performer.WorkTagIsDisabled(WorkTags.Artistic))
-                    {
-                        pawn.skills.Learn(sDef: SkillDefOf.Artistic, eventDef.xPGainFirstLoser, direct: true);
-                        TryAppendExpGainInfo(ref rewards, performer, SkillDefOf.Artistic, eventDef.xPGainFirstLoser);
-                    }
-                }
-                return rewards + (Rand.Bool ? new TaggedString(string.Empty) : Rand.Bool ? new TaggedString("\n\n---\n\n")
-                    
-                    + "MFI_AnnualExpoMedicalEmergency".Translate() : "\n\n---\n\n" + "MFI_AnnualExpoMedicalEmergencySerious".Translate());
+                return base.GenerateRewards(pawn, caravan, globalValidator, thingSetMakerDef);
             }
-            return base.GenerateRewards(pawn, caravan, globalValidator, thingSetMakerDef);
+
+            foreach (var performer in caravan.PlayerPawnsForStoryteller)
+            {
+                if (performer.WorkTagIsDisabled(WorkTags.Artistic))
+                {
+                    continue;
+                }
+
+                pawn.skills.Learn(SkillDefOf.Artistic, eventDef.xPGainFirstLoser, true);
+                TryAppendExpGainInfo(ref rewards, performer, SkillDefOf.Artistic, eventDef.xPGainFirstLoser);
+            }
+
+            return rewards + (Rand.Bool ? new TaggedString(string.Empty) :
+                Rand.Bool ? new TaggedString("\n\n---\n\n")
+                            + "MFI_AnnualExpoMedicalEmergency".Translate() :
+                "\n\n---\n\n" + "MFI_AnnualExpoMedicalEmergencySerious".Translate());
         }
 
         public static DiaNode DialogueResolverArtOffer(string textResult, Thing broughtSculpture, Caravan caravan)
         {
             var marketValue = broughtSculpture.GetStatValue(StatDefOf.MarketValue);
-            var resolver = new DiaNode(text: textResult.Translate(broughtSculpture, marketValue * OVERPAYINGBY, marketValue));
-            var accept = new DiaOption(text: "RansomDemand_Accept".Translate())
+            var resolver = new DiaNode(textResult.Translate(broughtSculpture, marketValue * OVERPAYINGBY, marketValue));
+            var accept = new DiaOption("RansomDemand_Accept".Translate())
             {
                 resolveTree = true,
                 action = () =>
                 {
                     broughtSculpture.Destroy();
-                    Thing silver = ThingMaker.MakeThing(ThingDefOf.Silver);
-                    silver.stackCount = (int)(marketValue * OVERPAYINGBY);
+                    var silver = ThingMaker.MakeThing(ThingDefOf.Silver);
+                    silver.stackCount = (int) (marketValue * OVERPAYINGBY);
                     CaravanInventoryUtility.GiveThing(caravan, silver);
                 }
             };
             var reject = new DiaOption("RansomDemand_Reject".Translate())
             {
-                resolveTree = true,
+                resolveTree = true
             };
             resolver.options.Add(accept);
             resolver.options.Add(reject);

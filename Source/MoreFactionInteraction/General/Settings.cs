@@ -64,10 +64,5 @@ namespace MoreFactionInteraction
         {
             return "More Faction Interaction";
         }
-
-        public override void WriteSettings()
-        {
-            base.WriteSettings();
-        }
     }
 }

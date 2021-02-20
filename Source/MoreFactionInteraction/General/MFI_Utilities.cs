@@ -1,7 +1,6 @@
-﻿using RimWorld;
+﻿using System.Linq;
+using RimWorld;
 using RimWorld.Planet;
-using System.Collections.Generic;
-using System.Linq;
 using Verse;
 
 namespace MoreFactionInteraction.General
@@ -37,26 +36,29 @@ namespace MoreFactionInteraction.General
         public static bool IsPartOfFactionWar(this Faction faction)
         {
             return faction == Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionOne
-                       || faction == Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionTwo;
+                   || faction == Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionTwo;
         }
 
         public static bool TryGetBestArt(Caravan caravan, out Thing thing, out Pawn owner)
         {
             thing = null;
-            List<Thing> list = CaravanInventoryUtility.AllInventoryItems(caravan);
+            var list = CaravanInventoryUtility.AllInventoryItems(caravan);
             var num = 0f;
-            foreach (Thing current in list)
+            foreach (var current in list)
             {
-                if (current.GetInnerIfMinified().GetStatValue(StatDefOf.Beauty) > num && (current.GetInnerIfMinified().TryGetComp<CompArt>()?.Props?.canBeEnjoyedAsArt ?? false))
+                if (current.GetInnerIfMinified().GetStatValue(StatDefOf.Beauty) > num &&
+                    (current.GetInnerIfMinified().TryGetComp<CompArt>()?.Props?.canBeEnjoyedAsArt ?? false))
                 {
                     thing = current;
                 }
             }
+
             if (thing != null)
             {
                 owner = CaravanInventoryUtility.GetOwnerOf(caravan, thing);
                 return true;
             }
+
             owner = null;
             return false;
         }
@@ -64,23 +66,23 @@ namespace MoreFactionInteraction.General
         public static bool IsScenarioBlocked(this IncidentWorker incidentWorker)
         {
             return Find.Scenario.AllParts.Any(x => x is ScenPart_DisableIncident scenPart
-                                                        && scenPart.Incident == incidentWorker.def);
+                                                   && scenPart.Incident == incidentWorker.def);
         }
 
         public static bool IsScenarioBlocked(this IncidentDef incidentDef)
         {
             return Find.Scenario.AllParts.Any(x => x is ScenPart_DisableIncident scenPart
-                                                        && scenPart.Incident == incidentDef);
+                                                   && scenPart.Incident == incidentDef);
         }
 
         public static bool CaravanOrRichestColonyHasAnyOf(ThingDef thingdef, Caravan caravan, out Thing thing)
         {
-            if (CaravanInventoryUtility.TryGetThingOfDef(caravan, thingdef, out thing, out Pawn owner))
+            if (CaravanInventoryUtility.TryGetThingOfDef(caravan, thingdef, out thing, out _))
             {
                 return true;
             }
 
-            List<Map> maps = Find.Maps.FindAll(x => x.IsPlayerHome);
+            var maps = Find.Maps.FindAll(x => x.IsPlayerHome);
 
             if (maps.NullOrEmpty())
             {
@@ -88,35 +90,40 @@ namespace MoreFactionInteraction.General
             }
 
             maps.SortBy(x => x.PlayerWealthForStoryteller);
-            Map richestMap = maps.First();
+            var richestMap = maps.First();
 
             if (thingdef.IsBuildingArtificial)
             {
                 return FindBuildingOrMinifiedVersionThereOf(thingdef, richestMap, out thing);
             }
+
             var thingsOfDef = richestMap.listerThings.ThingsOfDef(thingdef);
 
             thing = thingsOfDef.FirstOrDefault();
             return thingsOfDef.Any();
         }
 
-        public static bool FindBuildingOrMinifiedVersionThereOf(ThingDef thingdef, Map map, out Thing thing)
+        private static bool FindBuildingOrMinifiedVersionThereOf(ThingDef thingdef, Map map, out Thing thing)
         {
-            IEnumerable<Building> buildingsOfDef = map.listerBuildings.AllBuildingsColonistOfDef(thingdef);
+            var buildingsOfDef = map.listerBuildings.AllBuildingsColonistOfDef(thingdef);
             if (buildingsOfDef.Any())
             {
                 thing = buildingsOfDef.First();
                 return true;
             }
+
             var minifiedBuilds = map.listerThings.ThingsInGroup(ThingRequestGroup.MinifiedThing);
-            foreach (Thing t in minifiedBuilds)
+            foreach (var t in minifiedBuilds)
             {
-                if (t.GetInnerIfMinified().def == thingdef)
+                if (t.GetInnerIfMinified().def != thingdef)
                 {
-                    thing = t;
-                    return true;
+                    continue;
                 }
+
+                thing = t;
+                return true;
             }
+
             thing = null;
             return false;
         }

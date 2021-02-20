@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using RimWorld;
 using RimWorld.Planet;
 using Verse;
@@ -16,24 +13,27 @@ namespace MoreFactionInteraction
 
         public override Predicate<ThingDef> ValidatorFirstLoser => x => !x.isTechHediff && base.ValidatorFirstLoser(x);
 
-        public override Predicate<ThingDef> ValidatorFirstOther => base.ValidatorFirstOther;
-
-        public override string GenerateRewards(Pawn pawn, Caravan caravan, Predicate<ThingDef> globalValidator, ThingSetMakerDef thingSetMakerDef)
+        public override string GenerateRewards(Pawn pawn, Caravan caravan, Predicate<ThingDef> globalValidator,
+            ThingSetMakerDef thingSetMakerDef)
         {
-            if (thingSetMakerDef == eventDef.rewardFirstOther)
+            if (thingSetMakerDef != eventDef.rewardFirstOther)
             {
-                string rewards = "MFI_AnnualExpoMedicalEmergency".Translate();
-                foreach (Pawn brawler in caravan.PlayerPawnsForStoryteller)
-                {
-                    if (!brawler.WorkTagIsDisabled(WorkTags.Violent))
-                    {
-                        brawler.skills.Learn(SkillDefOf.Melee, eventDef.xPGainFirstPlace, true);
-                        TryAppendExpGainInfo(ref rewards, brawler, SkillDefOf.Melee, eventDef.xPGainFirstPlace);
-                    }
-                }
-                return rewards;
+                return base.GenerateRewards(pawn, caravan, globalValidator, thingSetMakerDef);
             }
-            return base.GenerateRewards(pawn, caravan, globalValidator, thingSetMakerDef);
+
+            string rewards = "MFI_AnnualExpoMedicalEmergency".Translate();
+            foreach (var brawler in caravan.PlayerPawnsForStoryteller)
+            {
+                if (brawler.WorkTagIsDisabled(WorkTags.Violent))
+                {
+                    continue;
+                }
+
+                brawler.skills.Learn(SkillDefOf.Melee, eventDef.xPGainFirstPlace, true);
+                TryAppendExpGainInfo(ref rewards, brawler, SkillDefOf.Melee, eventDef.xPGainFirstPlace);
+            }
+
+            return rewards;
         }
     }
 }

@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using RimWorld;
 using RimWorld.Planet;
 using Verse;
 
 namespace MoreFactionInteraction.More_Flavour
 {
-    class CaravanArrivalAction_VisitAnnualExpo : CaravanArrivalAction
+    internal class CaravanArrivalAction_VisitAnnualExpo : CaravanArrivalAction
     {
         private AnnualExpo annualExpo;
 
-        public CaravanArrivalAction_VisitAnnualExpo() { }
+        public CaravanArrivalAction_VisitAnnualExpo()
+        {
+        }
 
-        public CaravanArrivalAction_VisitAnnualExpo(AnnualExpo annualExpo)
+        private CaravanArrivalAction_VisitAnnualExpo(AnnualExpo annualExpo)
         {
             this.annualExpo = annualExpo;
         }
@@ -24,14 +23,14 @@ namespace MoreFactionInteraction.More_Flavour
 
         public static IEnumerable<FloatMenuOption> GetFloatMenuOptions(Caravan caravan, AnnualExpo annualExpo)
         {
-            return CaravanArrivalActionUtility.GetFloatMenuOptions(acceptanceReportGetter: () => CanVisit(caravan, annualExpo),
-                                                                    arrivalActionGetter: () => new CaravanArrivalAction_VisitAnnualExpo(annualExpo),
-                                                                    label: "VisitPeaceTalks".Translate(annualExpo.Label),
-                                                                    caravan: caravan, pathDestination: annualExpo.Tile,
-                                                                    revalidateWorldClickTarget: annualExpo);
+            return CaravanArrivalActionUtility.GetFloatMenuOptions(() => CanVisit(annualExpo),
+                () => new CaravanArrivalAction_VisitAnnualExpo(annualExpo),
+                "VisitPeaceTalks".Translate(annualExpo.Label),
+                caravan, annualExpo.Tile,
+                annualExpo);
         }
 
-        private static FloatMenuAcceptanceReport CanVisit(Caravan caravan, AnnualExpo annualExpo)
+        private static FloatMenuAcceptanceReport CanVisit(AnnualExpo annualExpo)
         {
             return annualExpo != null && annualExpo.Spawned;
         }
@@ -41,15 +40,10 @@ namespace MoreFactionInteraction.More_Flavour
             annualExpo.Notify_CaravanArrived(caravan);
         }
 
-        public override FloatMenuAcceptanceReport StillValid(Caravan caravan, int destinationTile)
-        {
-            return base.StillValid(caravan, destinationTile);
-        }
-
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_References.Look(refee: ref annualExpo, label: "MFI_annualExpo");
+            Scribe_References.Look(ref annualExpo, "MFI_annualExpo");
         }
     }
 }

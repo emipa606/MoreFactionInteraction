@@ -5,25 +5,24 @@ using Verse;
 
 namespace MoreFactionInteraction.World_Incidents
 {
-
     public class IncidentWorker_HuntersLodge : IncidentWorker
     {
         private const int MinDistance = 2;
         private const int MaxDistance = 15;
 
-        private static readonly IntRange TimeoutDaysRange = new IntRange(min: 15, max: 25);
+        private static readonly IntRange TimeoutDaysRange = new(15, 25);
 
 
         protected override bool CanFireNowSub(IncidentParms parms)
         {
-            return base.CanFireNowSub(parms: parms) && Find.AnyPlayerHomeMap != null 
-                                                    && Find.FactionManager.RandomAlliedFaction(allowHidden: false, allowDefeated: false, allowNonHumanlike: false) != null 
-                                                    && TryFindTile(tile: out _);
+            return base.CanFireNowSub(parms) && Find.AnyPlayerHomeMap != null
+                                             && Find.FactionManager.RandomAlliedFaction(false, false, false) != null
+                                             && TryFindTile(out _);
         }
 
         protected override bool TryExecuteWorker(IncidentParms parms)
         {
-            Faction faction = parms.faction ?? Find.FactionManager.RandomAlliedFaction(allowHidden: false, allowDefeated: false, allowNonHumanlike: false);
+            var faction = parms.faction ?? Find.FactionManager.RandomAlliedFaction(false, false, false);
 
             if (faction == null)
             {
@@ -31,13 +30,13 @@ namespace MoreFactionInteraction.World_Incidents
                 faction = Find.FactionManager.RandomNonHostileFaction(allowNonHumanlike: false);
             }
 
-            if (!TryFindTile(tile: out var tile))
+            if (!TryFindTile(out var tile))
             {
                 return false;
             }
 
-            Site site = SiteMaker.MakeSite(sitePart: MFI_DefOf.MFI_HuntersLodgePart, 
-                                           tile: tile, faction: faction, ifHostileThenMustRemainHostile: false);
+            var site = SiteMaker.MakeSite(MFI_DefOf.MFI_HuntersLodgePart,
+                tile, faction, false);
 
             if (site == null)
             {
@@ -47,20 +46,21 @@ namespace MoreFactionInteraction.World_Incidents
             var randomInRange = TimeoutDaysRange.RandomInRange;
 
             site.Tile = tile;
-            site.GetComponent<TimeoutComp>().StartTimeout(ticks: randomInRange * GenDate.TicksPerDay);
-            site.SetFaction(newFaction: faction);
-            site.customLabel = site.def.LabelCap + site.parts.First(predicate: x => x.def == MFI_DefOf.MFI_HuntersLodgePart).def.Worker.GetPostProcessedThreatLabel(site, site.parts.FirstOrDefault());
+            site.GetComponent<TimeoutComp>().StartTimeout(randomInRange * GenDate.TicksPerDay);
+            site.SetFaction(faction);
+            site.customLabel = site.def.LabelCap + site.parts.First(x => x.def == MFI_DefOf.MFI_HuntersLodgePart).def
+                .Worker.GetPostProcessedThreatLabel(site, site.parts.FirstOrDefault());
 
-            Find.WorldObjects.Add(o: site);
+            Find.WorldObjects.Add(site);
 
-            var text = string.Format(format: def.letterText, 
-                                        faction, 
-                                        faction.def.leaderTitle, 
-                                        GetDescriptionDialogue(site, site.parts.FirstOrDefault()), 
-                                        randomInRange)
-                                .CapitalizeFirst();
+            var text = string.Format(def.letterText,
+                    faction,
+                    faction.def.leaderTitle,
+                    GetDescriptionDialogue(site, site.parts.FirstOrDefault()),
+                    randomInRange)
+                .CapitalizeFirst();
 
-            Find.LetterStack.ReceiveLetter(label: def.letterLabel, text: text, textLetterDef: def.letterDef, lookTargets: site);
+            Find.LetterStack.ReceiveLetter(def.letterLabel, text, def.letterDef, site);
             return true;
         }
 
@@ -70,12 +70,13 @@ namespace MoreFactionInteraction.World_Incidents
             {
                 return sitePart.def.description;
             }
+
             return "HiddenOrNoSitePartDescription".Translate();
         }
 
         private static bool TryFindTile(out int tile)
         {
-            return TileFinder.TryFindNewSiteTile(tile: out tile, minDist: MinDistance, maxDist: MaxDistance, allowCaravans: true, preferCloserTiles: false);
+            return TileFinder.TryFindNewSiteTile(out tile, MinDistance, MaxDistance, true, false);
         }
     }
 }

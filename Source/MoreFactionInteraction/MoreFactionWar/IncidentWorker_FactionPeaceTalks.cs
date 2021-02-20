@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using RimWorld;
 using RimWorld.Planet;
 using Verse;
@@ -8,14 +7,15 @@ namespace MoreFactionInteraction.MoreFactionWar
 {
     public class IncidentWorker_FactionPeaceTalks : IncidentWorker
     {
-        private static readonly IntRange TimeoutDaysRange = new IntRange(min: 21, max: 23);
+        private static readonly IntRange TimeoutDaysRange = new(21, 23);
 
         protected override bool CanFireNowSub(IncidentParms parms)
         {
-            return base.CanFireNowSub(parms: parms) && FoundTwoFactions() 
-                                                    && TryFindTile(tile: out _)                                        
-                                                    && !Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarIsOngoing 
-                                                    && !Find.World.GetComponent<WorldComponent_MFI_FactionWar>().UnrestIsBrewing;
+            return base.CanFireNowSub(parms) && FoundTwoFactions()
+                                             && TryFindTile(out _)
+                                             && !Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarIsOngoing
+                                             && !Find.World.GetComponent<WorldComponent_MFI_FactionWar>()
+                                                 .UnrestIsBrewing;
         }
 
         protected override bool TryExecuteWorker(IncidentParms parms)
@@ -25,54 +25,58 @@ namespace MoreFactionInteraction.MoreFactionWar
                 return false;
             }
 
-            if (!TryFindTile(tile: out var tile))
+            if (!TryFindTile(out var tile))
             {
                 return false;
             }
 
-            Faction faction = TryFindFactions(instigatingFaction: out Faction instigatingFaction);
+            var faction = TryFindFactions(out var instigatingFaction);
 
             if (faction == null)
             {
                 return false;
             }
 
-            var factionWarPeaceTalks = (FactionWarPeaceTalks)WorldObjectMaker.MakeWorldObject(def: MFI_DefOf.MFI_FactionWarPeaceTalks);
+            var factionWarPeaceTalks =
+                (FactionWarPeaceTalks) WorldObjectMaker.MakeWorldObject(MFI_DefOf.MFI_FactionWarPeaceTalks);
             factionWarPeaceTalks.Tile = tile;
-            factionWarPeaceTalks.SetFaction(newFaction: faction);
-            factionWarPeaceTalks.SetWarringFactions(factionOne: faction, factionInstigator: instigatingFaction);
+            factionWarPeaceTalks.SetFaction(faction);
+            factionWarPeaceTalks.SetWarringFactions(faction, instigatingFaction);
             var randomInRange = TimeoutDaysRange.RandomInRange;
-            factionWarPeaceTalks.GetComponent<TimeoutComp>().StartTimeout(ticks: randomInRange * GenDate.TicksPerDay);
-            Find.WorldObjects.Add(o: factionWarPeaceTalks);
+            factionWarPeaceTalks.GetComponent<TimeoutComp>().StartTimeout(randomInRange * GenDate.TicksPerDay);
+            Find.WorldObjects.Add(factionWarPeaceTalks);
 
-            var text = string.Format(format: def.letterText.AdjustedFor(p: faction.leader), faction.def.leaderTitle, faction.Name, instigatingFaction.Name, randomInRange).CapitalizeFirst();
-            Find.LetterStack.ReceiveLetter(label: def.letterLabel, text: text, textLetterDef: def.letterDef, lookTargets: factionWarPeaceTalks, relatedFaction: faction);
-            Find.World.GetComponent<WorldComponent_MFI_FactionWar>().StartUnrest(factionOne: faction, factionTwo: instigatingFaction);
+            var text = string.Format(def.letterText.AdjustedFor(faction.leader), faction.def.leaderTitle, faction.Name,
+                instigatingFaction.Name, randomInRange).CapitalizeFirst();
+            Find.LetterStack.ReceiveLetter(def.letterLabel, text, def.letterDef, factionWarPeaceTalks, faction);
+            Find.World.GetComponent<WorldComponent_MFI_FactionWar>()
+                .StartUnrest(factionOne: faction, factionTwo: instigatingFaction);
 
             return true;
         }
 
         private static bool TryFindTile(out int tile)
         {
-            return TileFinder.TryFindNewSiteTile(tile: out tile, minDist: 5, maxDist: 13, allowCaravans: false, preferCloserTiles: false);
+            return TileFinder.TryFindNewSiteTile(out tile, 5, 13, false, false);
         }
 
         private static bool FoundTwoFactions()
         {
-            return TryFindFactions(instigatingFaction: out _) != null;
+            return TryFindFactions(out _) != null;
         }
 
         private static Faction TryFindFactions(out Faction instigatingFaction)
         {
-            IEnumerable<Faction> factions = Find.FactionManager.AllFactions
-                                                .Where(predicate: x => !x.def.hidden && !x.defeated && !x.IsPlayer && !x.def.permanentEnemy && x.leader != null);
+            var factions = Find.FactionManager.AllFactions
+                .Where(x => !x.def.hidden && !x.defeated && !x.IsPlayer && !x.def.permanentEnemy && x.leader != null);
 
-            Faction alliedFaction = factions.RandomElement();
+            var alliedFaction = factions.RandomElement();
 
-            IEnumerable<Faction> factionsPartTwo = Find.FactionManager.AllFactions
-                                                       .Where(predicate: x => !x.def.hidden && !x.defeated && !x.IsPlayer && !x.def.permanentEnemy && x != alliedFaction && x.leader != null);
+            var factionsPartTwo = Find.FactionManager.AllFactions
+                .Where(x => !x.def.hidden && !x.defeated && !x.IsPlayer && !x.def.permanentEnemy &&
+                            x != alliedFaction && x.leader != null);
 
-            return factionsPartTwo.TryRandomElement(result: out instigatingFaction) ? alliedFaction : null;
+            return factionsPartTwo.TryRandomElement(out instigatingFaction) ? alliedFaction : null;
         }
     }
 }

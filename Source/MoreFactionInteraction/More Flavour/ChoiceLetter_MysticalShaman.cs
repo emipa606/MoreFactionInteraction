@@ -1,22 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Verse;
+using MoreFactionInteraction.More_Flavour;
 using RimWorld;
 using RimWorld.Planet;
-using MoreFactionInteraction.More_Flavour;
+using Verse;
 
 namespace MoreFactionInteraction
 {
     [Obsolete]
     public class ChoiceLetter_MysticalShaman : ChoiceLetter
     {
-        public int tile;
+        private static readonly IntRange TimeoutDaysRange = new(5, 15);
         public Faction faction;
-        public Map map;
         public int fee;
-        private static readonly IntRange TimeoutDaysRange = new IntRange(min: 5, max: 15);
+        public Map map;
+        public int tile;
 
         public override IEnumerable<DiaOption> Choices
         {
@@ -28,31 +26,34 @@ namespace MoreFactionInteraction
                 }
                 else
                 {
-                    var accept = new DiaOption(text: "RansomDemand_Accept".Translate())
+                    var accept = new DiaOption("RansomDemand_Accept".Translate())
                     {
                         action = () =>
                         {
-                            var mysticalShaman = (MysticalShaman)WorldObjectMaker.MakeWorldObject(def: MFI_DefOf.MFI_MysticalShaman);
+                            var mysticalShaman =
+                                (MysticalShaman) WorldObjectMaker.MakeWorldObject(MFI_DefOf.MFI_MysticalShaman);
                             mysticalShaman.Tile = tile;
                             mysticalShaman.SetFaction(newFaction: faction);
                             var randomInRange = TimeoutDaysRange.RandomInRange;
-                            mysticalShaman.GetComponent<TimeoutComp>().StartTimeout(ticks: randomInRange * GenDate.TicksPerDay);
+                            mysticalShaman.GetComponent<TimeoutComp>()
+                                .StartTimeout(ticks: randomInRange * GenDate.TicksPerDay);
                             Find.WorldObjects.Add(o: mysticalShaman);
 
-                            TradeUtility.LaunchSilver(map: map, fee: fee);
-                            Find.LetterStack.RemoveLetter(let: this);
+                            TradeUtility.LaunchSilver(map, fee);
+                            Find.LetterStack.RemoveLetter(this);
                         },
                         resolveTree = true
                     };
-                    if (!TradeUtility.ColonyHasEnoughSilver(map: map, fee: fee))
+                    if (!TradeUtility.ColonyHasEnoughSilver(map, fee))
                     {
-                        accept.Disable(newDisabledReason: "NeedSilverLaunchable".Translate(fee.ToString()));
+                        accept.Disable("NeedSilverLaunchable".Translate(fee.ToString()));
                     }
+
                     yield return accept;
 
-                    var reject = new DiaOption(text: "RansomDemand_Reject".Translate())
+                    var reject = new DiaOption("RansomDemand_Reject".Translate())
                     {
-                        action = () => Find.LetterStack.RemoveLetter(let: this),
+                        action = () => Find.LetterStack.RemoveLetter(this),
                         resolveTree = true
                     };
                     yield return reject;
@@ -61,15 +62,15 @@ namespace MoreFactionInteraction
             }
         }
 
-        public override bool CanShowInLetterStack => base.CanShowInLetterStack && Find.Maps.Contains(item: map);
+        public override bool CanShowInLetterStack => base.CanShowInLetterStack && Find.Maps.Contains(map);
 
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_References.Look(refee: ref map, label: "MFI_Shaman_Map");
-            Scribe_References.Look(refee: ref faction, label: "MFI_Shaman_Faction");
+            Scribe_References.Look(ref map, "MFI_Shaman_Map");
+            Scribe_References.Look(ref faction, "MFI_Shaman_Faction");
             Scribe_Values.Look(ref tile, "MFI_ShamanTile");
-            Scribe_Values.Look(value: ref fee, label: "MFI_ShamanFee");
+            Scribe_Values.Look(ref fee, "MFI_ShamanFee");
         }
     }
 }

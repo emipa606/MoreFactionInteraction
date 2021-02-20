@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using RimWorld;
 using Verse;
 
@@ -11,25 +9,26 @@ namespace MoreFactionInteraction.More_Flavour
     {
         public bool Active;
 
+        public bool Equals(Buff obj)
+        {
+            return obj != null && obj.GetType() == GetType();
+        }
+
+        public abstract void ExposeData();
+
         public virtual TechLevel MinTechLevel()
         {
             return TechLevel.Undefined;
         }
 
         public abstract void Apply();
-        public abstract void ExposeData();
         public abstract string Description();
         public abstract ThingDef RelevantThingDef();
 
-        public bool Equals(Buff obj)
-        {
-            return obj != null && obj.GetType() == GetType();
-        }
-
-        public override int GetHashCode() //oof.
-        {
-            return base.GetHashCode();
-        }
+        //public override int GetHashCode() //oof.
+        //{
+        //    return base.GetHashCode();
+        //}
     }
 
     public class Buff_Pemmican : Buff
@@ -67,7 +66,8 @@ namespace MoreFactionInteraction.More_Flavour
         {
             ThoughtDef.Named("PsychicEmanatorSoothe").stages.First().baseMoodEffect = 6f;
             ThingDefOf.PsychicEmanator.specialDisplayRadius = 20f;
-            var power = (CompProperties_Power)ThingDefOf.PsychicEmanator.comps.FirstOrDefault(x => x is CompProperties_Power);
+            var power = (CompProperties_Power) ThingDefOf.PsychicEmanator.comps.FirstOrDefault(x =>
+                x is CompProperties_Power);
 
             if (power != null)
             {
@@ -107,7 +107,8 @@ namespace MoreFactionInteraction.More_Flavour
     {
         public override void Apply()
         {
-            var giveHediff = (IngestionOutcomeDoer_GiveHediff)ThingDef.Named("PsychiteTea").ingestible.outcomeDoers.FirstOrDefault(x => x is IngestionOutcomeDoer_GiveHediff);
+            var giveHediff = (IngestionOutcomeDoer_GiveHediff) ThingDef.Named("PsychiteTea").ingestible.outcomeDoers
+                .FirstOrDefault(x => x is IngestionOutcomeDoer_GiveHediff);
             if (giveHediff != null)
             {
                 giveHediff.severity = 1f;
@@ -141,11 +142,13 @@ namespace MoreFactionInteraction.More_Flavour
     {
         public override void Apply()
         {
-            var spawner = (CompProperties_Spawner)ThingDefOf.InfiniteChemreactor.comps.FirstOrDefault(x => x is CompProperties_Spawner);
+            var spawner =
+                (CompProperties_Spawner) ThingDefOf.InfiniteChemreactor.comps.FirstOrDefault(x =>
+                    x is CompProperties_Spawner);
 
             if (spawner != null)
             {
-                spawner.spawnIntervalRange.min = (int)(spawner.spawnIntervalRange.min * 0.9f);
+                spawner.spawnIntervalRange.min = (int) (spawner.spawnIntervalRange.min * 0.9f);
             }
 
             Active = true;
@@ -173,7 +176,8 @@ namespace MoreFactionInteraction.More_Flavour
 
         public override string Description()
         {
-            return "MFI_buffChemfuel".Translate(ThingDefOf.InfiniteChemreactor.label, ThingDefOf.InfiniteChemreactor.GetCompProperties<CompProperties_Spawner>().thingToSpawn.label);
+            return "MFI_buffChemfuel".Translate(ThingDefOf.InfiniteChemreactor.label,
+                ThingDefOf.InfiniteChemreactor.GetCompProperties<CompProperties_Spawner>().thingToSpawn.label);
         }
     }
 }

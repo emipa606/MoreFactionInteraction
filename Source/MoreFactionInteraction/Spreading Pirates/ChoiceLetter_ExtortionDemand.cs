@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
-using Verse;
 using RimWorld;
+using Verse;
 
 namespace MoreFactionInteraction
 {
     public class ChoiceLetter_ExtortionDemand : ChoiceLetter
     {
-        public Map map;
+        public bool completed;
         public Faction faction;
-        public bool outpost = false;
         public int fee;
-        public bool completed = false;
+        public Map map;
+        public bool outpost = false;
 
         public override IEnumerable<DiaOption> Choices
         {
@@ -22,28 +22,30 @@ namespace MoreFactionInteraction
                 }
                 else
                 {
-                    var accept = new DiaOption(text: "RansomDemand_Accept".Translate())
+                    var accept = new DiaOption("RansomDemand_Accept".Translate())
                     {
                         action = () =>
                         {
                             completed = true;
-                            TradeUtility.LaunchSilver(map: map, fee: fee);
-                            Find.LetterStack.RemoveLetter(@let: this);
+                            TradeUtility.LaunchSilver(map, fee);
+                            Find.LetterStack.RemoveLetter(this);
                         },
                         resolveTree = true
                     };
-                    if (!TradeUtility.ColonyHasEnoughSilver(map: map, fee: fee))
+                    if (!TradeUtility.ColonyHasEnoughSilver(map, fee))
                     {
-                        accept.Disable(newDisabledReason: "NeedSilverLaunchable".Translate(fee.ToString()));
+                        accept.Disable("NeedSilverLaunchable".Translate(fee.ToString()));
                     }
+
                     yield return accept;
 
-                    var reject = new DiaOption(text: "RansomDemand_Reject".Translate())
+                    var reject = new DiaOption("RansomDemand_Reject".Translate())
                     {
                         action = () =>
                         {
                             completed = true;
-                            IncidentParms incidentParms = StorytellerUtility.DefaultParmsNow(incCat: IncidentCategoryDefOf.ThreatBig, target: map);
+                            var incidentParms =
+                                StorytellerUtility.DefaultParmsNow(IncidentCategoryDefOf.ThreatBig, map);
                             incidentParms.forced = true;
                             incidentParms.faction = faction;
                             incidentParms.raidStrategy = RaidStrategyDefOf.ImmediateAttack;
@@ -54,8 +56,8 @@ namespace MoreFactionInteraction
                                 incidentParms.points *= 0.7f;
                             }
 
-                            IncidentDefOf.RaidEnemy.Worker.TryExecute(parms: incidentParms);
-                            Find.LetterStack.RemoveLetter(@let: this);
+                            IncidentDefOf.RaidEnemy.Worker.TryExecute(incidentParms);
+                            Find.LetterStack.RemoveLetter(this);
                         },
                         resolveTree = true
                     };
@@ -65,14 +67,14 @@ namespace MoreFactionInteraction
             }
         }
 
-        public override bool CanShowInLetterStack => Find.Maps.Contains(item: map);
+        public override bool CanShowInLetterStack => Find.Maps.Contains(map);
 
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_References.Look<Map>(refee: ref map, label: "map");
-            Scribe_References.Look<Faction>(refee: ref faction, label: "faction");
-            Scribe_Values.Look<int>(value: ref fee, label: "fee");
+            Scribe_References.Look(ref map, "map");
+            Scribe_References.Look(ref faction, "faction");
+            Scribe_Values.Look(ref fee, "fee");
             Scribe_Values.Look(ref completed, "completed");
         }
     }

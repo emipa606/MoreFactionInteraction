@@ -1,21 +1,21 @@
 ﻿using System.Collections.Generic;
+using MoreFactionInteraction.MoreFactionWar;
 using RimWorld;
 using RimWorld.Planet;
-using Verse;
 using UnityEngine;
-using MoreFactionInteraction.MoreFactionWar;
+using Verse;
 
 namespace MoreFactionInteraction
 {
     public class FactionWarPeaceTalks : WorldObject
     {
-        private Material cachedMat;
         private Texture2D cachedExpandoIco;
-
-        private Faction factionOne;
-        private Faction factionInstigator;
+        private Material cachedMat;
 
         private bool canRemoveWithoutPostRemove;
+        private Faction factionInstigator;
+
+        private Faction factionOne;
 
         public override Material Material
         {
@@ -23,7 +23,8 @@ namespace MoreFactionInteraction
             {
                 if (cachedMat == null && Faction != null)
                 {
-                    cachedMat = MaterialPool.MatFrom(texPath: def.texture, shader: ShaderDatabase.WorldOverlayTransparentLit, color: factionOne?.Color ?? Color.white, renderQueue: WorldMaterials.WorldObjectRenderQueue);
+                    cachedMat = MaterialPool.MatFrom(def.texture, ShaderDatabase.WorldOverlayTransparentLit,
+                        factionOne?.Color ?? Color.white, WorldMaterials.WorldObjectRenderQueue);
                 }
 
                 return cachedMat;
@@ -38,7 +39,8 @@ namespace MoreFactionInteraction
             {
                 if (cachedExpandoIco == null)
                 {
-                    cachedExpandoIco = MatFrom(texPath: def.expandingIconTexture, shader: ShaderDatabase.CutoutComplex, color: factionOne.Color, colorTwo: factionInstigator.Color, renderQueue: WorldMaterials.WorldObjectRenderQueue).GetMaskTexture();
+                    cachedExpandoIco = MatFrom(def.expandingIconTexture, ShaderDatabase.CutoutComplex, factionOne.Color,
+                        factionInstigator.Color, WorldMaterials.WorldObjectRenderQueue).GetMaskTexture();
                 }
 
                 return cachedExpandoIco;
@@ -47,17 +49,18 @@ namespace MoreFactionInteraction
 
         public void Notify_CaravanArrived(Caravan caravan)
         {
-            Pawn pawn = BestCaravanPawnUtility.FindBestDiplomat(caravan: caravan);
+            var pawn = BestCaravanPawnUtility.FindBestDiplomat(caravan);
             if (pawn == null)
             {
-                Messages.Message(text: "MessagePeaceTalksNoDiplomat".Translate(), lookTargets: caravan, def: MessageTypeDefOf.NegativeEvent, historical: false);
+                Messages.Message("MessagePeaceTalksNoDiplomat".Translate(), caravan, MessageTypeDefOf.NegativeEvent,
+                    false);
             }
             else
             {
-                CameraJumper.TryJumpAndSelect(target: caravan);
-                var dialogue = new FactionWarDialogue(pawn: pawn, factionOne: factionOne, factionInstigator: factionInstigator, incidentTarget: caravan);
+                CameraJumper.TryJumpAndSelect(caravan);
+                var dialogue = new FactionWarDialogue(pawn, factionOne, factionInstigator, caravan);
                 var nodeRoot = dialogue.FactionWarPeaceTalks();
-                Find.WindowStack.Add(window: new Dialogue_FactionWarNegotiation(factionOne: factionOne, factionInstigator: factionInstigator, nodeRoot: nodeRoot));
+                Find.WindowStack.Add(new Dialogue_FactionWarNegotiation(factionOne, factionInstigator, nodeRoot));
                 canRemoveWithoutPostRemove = true;
                 Find.WorldObjects.Remove(this);
             }
@@ -65,14 +68,14 @@ namespace MoreFactionInteraction
 
         private static Material MatFrom(string texPath, Shader shader, Color color, Color colorTwo, int renderQueue)
         {
-            var materialRequest = new MaterialRequest(tex: ContentFinder<Texture2D>.Get(itemPath: texPath), shader: shader)
+            var materialRequest = new MaterialRequest(ContentFinder<Texture2D>.Get(texPath), shader)
             {
                 renderQueue = renderQueue,
                 color = colorTwo,
                 colorTwo = color,
-                maskTex = ContentFinder<Texture2D>.Get(itemPath: texPath + Graphic_Single.MaskSuffix, reportFailure: false),
+                maskTex = ContentFinder<Texture2D>.Get(texPath + Graphic_Single.MaskSuffix, false)
             };
-            return MaterialPool.MatFrom(req: materialRequest);
+            return MaterialPool.MatFrom(materialRequest);
         }
 
         public void SetWarringFactions(Faction factionOne, Faction factionInstigator)
@@ -83,12 +86,12 @@ namespace MoreFactionInteraction
 
         public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Caravan caravan)
         {
-            foreach (FloatMenuOption o in base.GetFloatMenuOptions(caravan: caravan))
+            foreach (var o in base.GetFloatMenuOptions(caravan))
             {
                 yield return o;
             }
 
-            foreach (FloatMenuOption f in CaravanArrivalAction_VisitFactionWarPeaceTalks.GetFloatMenuOptions(caravan: caravan, factionWarPeaceTalks: this))
+            foreach (var f in CaravanArrivalAction_VisitFactionWarPeaceTalks.GetFloatMenuOptions(caravan, this))
             {
                 yield return f;
             }
@@ -99,7 +102,8 @@ namespace MoreFactionInteraction
             base.PostRemove();
             if (!canRemoveWithoutPostRemove)
             {
-                Find.World.GetComponent<WorldComponent_MFI_FactionWar>().DetermineWarAsIfNoPlayerInteraction(factionOne, factionInstigator);
+                Find.World.GetComponent<WorldComponent_MFI_FactionWar>()
+                    .DetermineWarAsIfNoPlayerInteraction(factionOne, factionInstigator);
             }
         }
 

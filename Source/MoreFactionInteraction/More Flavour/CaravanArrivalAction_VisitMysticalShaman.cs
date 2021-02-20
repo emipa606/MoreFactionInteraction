@@ -1,24 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using RimWorld;
 using RimWorld.Planet;
 using Verse;
 
 namespace MoreFactionInteraction.More_Flavour
 {
-    class CaravanArrivalAction_VisitMysticalShaman : CaravanArrivalAction
+    internal class CaravanArrivalAction_VisitMysticalShaman : CaravanArrivalAction
     {
         private MysticalShaman mysticalShaman;
-
-        public override string Label => "VisitPeaceTalks".Translate(mysticalShaman.Label);
-        public override string ReportString => "CaravanVisiting".Translate(mysticalShaman.Label);
-
-        public override void Arrived(Caravan caravan)
-        {
-            mysticalShaman.Notify_CaravanArrived(caravan: caravan);
-        }
 
         public CaravanArrivalAction_VisitMysticalShaman()
         {
@@ -29,13 +18,22 @@ namespace MoreFactionInteraction.More_Flavour
             this.mysticalShaman = mysticalShaman;
         }
 
+        public override string Label => "VisitPeaceTalks".Translate(mysticalShaman.Label);
+        public override string ReportString => "CaravanVisiting".Translate(mysticalShaman.Label);
+
+        public override void Arrived(Caravan caravan)
+        {
+            mysticalShaman.Notify_CaravanArrived(caravan: caravan);
+        }
+
         public static IEnumerable<FloatMenuOption> GetFloatMenuOptions(Caravan caravan, MysticalShaman mysticalShaman)
         {
-            return CaravanArrivalActionUtility.GetFloatMenuOptions(acceptanceReportGetter: () => CanVisit(mysticalShaman: mysticalShaman),
-                                                                    arrivalActionGetter: () => new CaravanArrivalAction_VisitMysticalShaman(mysticalShaman: mysticalShaman),
-                                                                    label: "VisitPeaceTalks".Translate(mysticalShaman.Label),
-                                                                    caravan: caravan, pathDestination: mysticalShaman.Tile,
-                                                                    revalidateWorldClickTarget: mysticalShaman);
+            return CaravanArrivalActionUtility.GetFloatMenuOptions(
+                acceptanceReportGetter: () => CanVisit(mysticalShaman: mysticalShaman),
+                arrivalActionGetter: () => new CaravanArrivalAction_VisitMysticalShaman(mysticalShaman: mysticalShaman),
+                label: "VisitPeaceTalks".Translate(mysticalShaman.Label),
+                caravan: caravan, pathDestination: mysticalShaman.Tile,
+                revalidateWorldClickTarget: mysticalShaman);
         }
 
         public static FloatMenuAcceptanceReport CanVisit(MysticalShaman mysticalShaman)

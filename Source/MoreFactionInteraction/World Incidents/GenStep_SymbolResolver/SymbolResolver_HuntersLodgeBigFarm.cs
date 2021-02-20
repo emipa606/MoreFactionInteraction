@@ -6,35 +6,40 @@ namespace MoreFactionInteraction.World_Incidents
 {
     public class SymbolResolver_HuntersLodgeBigFarm : SymbolResolver
     {
-        public override bool CanResolve(ResolveParams rp)
-        {
-            return base.CanResolve(rp: rp);
-        }
-
         public override void Resolve(ResolveParams rp)
         {
             var num = 0;
-            if (rp.rect.Width >= 20 && rp.rect.Height >= 20 && (rp.faction.def.techLevel >= TechLevel.Industrial || Rand.Bool))
+            if (rp.rect.Width >= 20 && rp.rect.Height >= 20 &&
+                (rp.faction.def.techLevel >= TechLevel.Industrial || Rand.Bool))
             {
-                num = (!Rand.Bool) ? 4 : 2;
+                num = !Rand.Bool ? 4 : 2;
             }
+
             //bottomLeft
-            ResolveParams farmBottomLeft = rp;
-            farmBottomLeft.rect = new CellRect(minX: rp.rect.minX, minZ: rp.rect.minZ, width: (rp.rect.Width / 2) - 1, height: (rp.rect.Height / 2) - 1).ContractedBy(dist: num);
-            BaseGen.symbolStack.Push(symbol: "farm", resolveParams: farmBottomLeft);
+            var farmBottomLeft = rp;
+            farmBottomLeft.rect =
+                new CellRect(rp.rect.minX, rp.rect.minZ, (rp.rect.Width / 2) - 1, (rp.rect.Height / 2) - 1)
+                    .ContractedBy(num);
+            BaseGen.symbolStack.Push("farm", farmBottomLeft);
 
             //bottomRight
-            ResolveParams farmBottomRight = rp;
-            farmBottomRight.rect = new CellRect(minX: rp.rect.maxX - (rp.rect.Width / 2) - 1, minZ: rp.rect.minZ, width: (rp.rect.Width / 2) - 1, height: (rp.rect.Height / 2) - 1).ContractedBy(dist: Rand.Range(min: 3, max: 6));
-            BaseGen.symbolStack.Push(symbol: "farm", resolveParams: farmBottomRight);
+            var farmBottomRight = rp;
+            farmBottomRight.rect =
+                new CellRect(rp.rect.maxX - (rp.rect.Width / 2) - 1, rp.rect.minZ, (rp.rect.Width / 2) - 1,
+                    (rp.rect.Height / 2) - 1).ContractedBy(Rand.Range(3, 6));
+            BaseGen.symbolStack.Push("farm", farmBottomRight);
 
-            ResolveParams farmTopLeft = rp;
-            farmTopLeft.rect = new CellRect(minX: rp.rect.minX, minZ: rp.rect.maxZ - (rp.rect.Height / 2) - 1, width: (rp.rect.Width / 2) - 1, height: (rp.rect.Height / 2) - 1).ContractedBy(dist: Rand.Range(min: 3, max: 7));
-            BaseGen.symbolStack.Push(symbol: "farm", resolveParams: farmTopLeft);
+            var farmTopLeft = rp;
+            farmTopLeft.rect =
+                new CellRect(rp.rect.minX, rp.rect.maxZ - (rp.rect.Height / 2) - 1, (rp.rect.Width / 2) - 1,
+                    (rp.rect.Height / 2) - 1).ContractedBy(Rand.Range(3, 7));
+            BaseGen.symbolStack.Push("farm", farmTopLeft);
 
-            ResolveParams farmTopRight = rp;
-            farmTopRight.rect = new CellRect(minX: rp.rect.maxX - (rp.rect.Width / 2) - 1, minZ: rp.rect.maxZ - (rp.rect.Height / 2) - 1, width: (rp.rect.Width / 2) - 1, height: (rp.rect.Height / 2) - 1).ContractedBy(dist: Rand.Range(min: 1, max: 4));
-            BaseGen.symbolStack.Push(symbol: "farm", resolveParams: farmTopRight);
+            var farmTopRight = rp;
+            farmTopRight.rect =
+                new CellRect(rp.rect.maxX - (rp.rect.Width / 2) - 1, rp.rect.maxZ - (rp.rect.Height / 2) - 1,
+                    (rp.rect.Width / 2) - 1, (rp.rect.Height / 2) - 1).ContractedBy(Rand.Range(1, 4));
+            BaseGen.symbolStack.Push("farm", farmTopRight);
         }
     }
 }

@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using RimWorld;
 using Verse;
 
@@ -9,34 +7,31 @@ namespace MoreFactionInteraction
 {
     public class EventDef : Def
     {
-        public ThingSetMakerDef rewardFirstPlace;
-        public ThingSetMakerDef rewardFirstLoser;
-        public ThingSetMakerDef rewardFirstOther;
+        public List<SkillDef> learnedSkills;
 
-        [MustTranslate]
-        public string theme;
-        [MustTranslate]
-        public string themeDesc;
+        [MustTranslate] public string outcomeFirstLoser;
+
+        [MustTranslate] public string outComeFirstOther;
+
+        [MustTranslate] public string outComeFirstPlace;
 
         public StatDef relevantStat;
+        public ThingSetMakerDef rewardFirstLoser;
+        public ThingSetMakerDef rewardFirstOther;
+        public ThingSetMakerDef rewardFirstPlace;
 
-        [MustTranslate]
-        public string outComeFirstPlace;
-        [MustTranslate]
-        public string outcomeFirstLoser;
-        [MustTranslate]
-        public string outComeFirstOther;
+        [MustTranslate] public string theme;
 
-        public float xPGainFirstPlace = 4000f;
+        [MustTranslate] public string themeDesc;
+
+        public Type workerClass = typeof(EventRewardWorker);
+
+        [Unsaved] private EventRewardWorker workerInt;
+
         public float xPGainFirstLoser = 2000f;
         public float xPGainFirstOther = 1000f;
 
-        public List<SkillDef> learnedSkills;
-
-        [Unsaved]
-        private EventRewardWorker workerInt;
-
-        public Type workerClass = typeof(EventRewardWorker);
+        public float xPGainFirstPlace = 4000f;
 
         //dunno why vanilla caches it but there's prolly good reason for it.
         public EventRewardWorker Worker
@@ -45,8 +40,9 @@ namespace MoreFactionInteraction
             {
                 if (workerInt == null)
                 {
-                    workerInt = (EventRewardWorker)Activator.CreateInstance(workerClass);
+                    workerInt = (EventRewardWorker) Activator.CreateInstance(workerClass);
                 }
+
                 return workerInt;
             }
         }

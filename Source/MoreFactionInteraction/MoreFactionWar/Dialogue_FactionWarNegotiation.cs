@@ -19,7 +19,7 @@ namespace MoreFactionInteraction
             this.factionInstigator = factionInstigator;
         }
 
-        public override Vector2 InitialSize => new(720f, 600f);
+        public override Vector2 InitialSize => new Vector2(720f, 600f);
 
         public override void DoWindowContents(Rect inRect)
         {

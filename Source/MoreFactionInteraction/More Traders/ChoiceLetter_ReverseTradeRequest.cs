@@ -90,7 +90,7 @@ namespace MoreFactionInteraction
         {
             base.ExposeData();
             Scribe_Defs.Look(ref thingCategoryDef, "MFI_thingCategoryDef");
-            Scribe_Deep.Look(ref incidentParms, "MFI_incidentParms", new object[0]);
+            Scribe_Deep.Look(ref incidentParms, "MFI_incidentParms");
             Scribe_References.Look(ref map, "MFI_map");
             Scribe_References.Look(ref faction, "MFI_faction");
             Scribe_Values.Look(ref fee, "MFI_fee");

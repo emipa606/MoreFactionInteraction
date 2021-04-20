@@ -7,7 +7,7 @@ namespace MoreFactionInteraction.MoreFactionWar
 {
     public class IncidentWorker_FactionPeaceTalks : IncidentWorker
     {
-        private static readonly IntRange TimeoutDaysRange = new(21, 23);
+        private static readonly IntRange TimeoutDaysRange = new IntRange(21, 23);
 
         protected override bool CanFireNowSub(IncidentParms parms)
         {
@@ -50,7 +50,7 @@ namespace MoreFactionInteraction.MoreFactionWar
                 instigatingFaction.Name, randomInRange).CapitalizeFirst();
             Find.LetterStack.ReceiveLetter(def.letterLabel, text, def.letterDef, factionWarPeaceTalks, faction);
             Find.World.GetComponent<WorldComponent_MFI_FactionWar>()
-                .StartUnrest(factionOne: faction, factionTwo: instigatingFaction);
+                .StartUnrest(faction, instigatingFaction);
 
             return true;
         }

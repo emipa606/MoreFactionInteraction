@@ -10,7 +10,7 @@ namespace MoreFactionInteraction
     [Obsolete]
     public class ChoiceLetter_MysticalShaman : ChoiceLetter
     {
-        private static readonly IntRange TimeoutDaysRange = new(5, 15);
+        private static readonly IntRange TimeoutDaysRange = new IntRange(5, 15);
         public Faction faction;
         public int fee;
         public Map map;
@@ -33,11 +33,11 @@ namespace MoreFactionInteraction
                             var mysticalShaman =
                                 (MysticalShaman) WorldObjectMaker.MakeWorldObject(MFI_DefOf.MFI_MysticalShaman);
                             mysticalShaman.Tile = tile;
-                            mysticalShaman.SetFaction(newFaction: faction);
+                            mysticalShaman.SetFaction(faction);
                             var randomInRange = TimeoutDaysRange.RandomInRange;
                             mysticalShaman.GetComponent<TimeoutComp>()
-                                .StartTimeout(ticks: randomInRange * GenDate.TicksPerDay);
-                            Find.WorldObjects.Add(o: mysticalShaman);
+                                .StartTimeout(randomInRange * GenDate.TicksPerDay);
+                            Find.WorldObjects.Add(mysticalShaman);
 
                             TradeUtility.LaunchSilver(map, fee);
                             Find.LetterStack.RemoveLetter(this);

@@ -20,12 +20,40 @@ namespace MoreFactionInteraction
         //resources must be loaded in cctor
         public static readonly Texture2D setPlantToGrowTex = ContentFinder<Texture2D>.Get("UI/Commands/SetPlantToGrow");
 
+        private static readonly SimpleCurve WealthSilverIncreaseDeterminationCurve = new SimpleCurve
+        {
+            new CurvePoint(0, 0.8f),
+            new CurvePoint(10000, 1),
+            new CurvePoint(75000, 2),
+            new CurvePoint(300000, 4),
+            new CurvePoint(1000000, 6f),
+            new CurvePoint(2000000, 7f)
+        };
+
+        private static readonly SimpleCurve WealthQualityDeterminationCurve = new SimpleCurve
+        {
+            new CurvePoint(0, 1),
+            new CurvePoint(10000, 1.5f),
+            new CurvePoint(75000, 2.5f),
+            new CurvePoint(300000, 3),
+            new CurvePoint(1000000, 3.8f),
+            new CurvePoint(2000000, 4.3f)
+        };
+
+        private static readonly SimpleCurve WealthQualitySpreadDeterminationCurve = new SimpleCurve
+        {
+            new CurvePoint(0, 4.2f),
+            new CurvePoint(10000, 4),
+            new CurvePoint(75000, 2.5f),
+            new CurvePoint(300000, 2.1f),
+            new CurvePoint(1000000, 1.5f),
+            new CurvePoint(2000000, 1.2f)
+        };
+
         static HarmonyPatches()
         {
             var harmony = new Harmony("mehni.rimworld.MFI.main");
             //HarmonyInstance.DEBUG = true;
-
-            #region MoreTraders
 
             harmony.Patch(AccessTools.Method(typeof(TraderKindDef), nameof(TraderKindDef.PriceTypeFor)),
                 postfix: new HarmonyMethod(typeof(HarmonyPatches), nameof(PriceTypeSetter_PostFix)));
@@ -44,15 +72,9 @@ namespace MoreFactionInteraction
             harmony.Patch(AccessTools.Method(typeof(Tradeable), "InitPriceDataIfNeeded"),
                 transpiler: new HarmonyMethod(typeof(HarmonyPatches), nameof(ErrorSuppressionSssh)));
 
-            #endregion
-
-            #region WorldIncidents
-
             harmony.Patch(
                 AccessTools.Method(typeof(WorldReachabilityUtility), nameof(WorldReachabilityUtility.CanReach)),
                 postfix: new HarmonyMethod(typeof(HarmonyPatches), nameof(WorldReachUtility_PostFix)));
-
-            #endregion
 
 #if DEBUG
             harmony.Patch(AccessTools.Method(typeof(DebugWindowsOpener), "ToggleDebugActionsMenu"),
@@ -145,8 +167,6 @@ namespace MoreFactionInteraction
             return instructions.MethodReplacer(from, to);
         }
 
-        #region WorldIncidents
-
         private static void WorldReachUtility_PostFix(ref bool __result, Caravan c)
         {
             var settlement = CaravanVisitUtility.SettlementVisitedNow(c);
@@ -157,10 +177,6 @@ namespace MoreFactionInteraction
                 __result = !bumperCropComponent.CaravanIsWorking;
             }
         }
-
-        #endregion
-
-        #region MoreTraders
 
         private static void TraderStocker_OverStockerPostFix(ref List<Thing> __result, ThingSetMakerParams parms)
         {
@@ -218,18 +234,6 @@ namespace MoreFactionInteraction
                             MoreFactionInteraction_Settings.traderWealthOffsetFromTimesTraded));
             }
         }
-
-        private static readonly SimpleCurve WealthSilverIncreaseDeterminationCurve = new()
-        {
-            new CurvePoint(0, 0.8f),
-            new CurvePoint(10000, 1),
-            new CurvePoint(75000, 2),
-            new CurvePoint(300000, 4),
-            new CurvePoint(1000000, 6f),
-            new CurvePoint(2000000, 7f)
-        };
-
-        #region TradeQualityImprovements
 
         private static bool CompQuality_TradeQualityIncreaseDestructivePreFix(CompQuality __instance,
             TraderKindDef trader, int forTile, Faction forFaction)
@@ -306,32 +310,6 @@ namespace MoreFactionInteraction
             }
         }
 
-        #region SimpleCurves
-
-        private static readonly SimpleCurve WealthQualityDeterminationCurve = new()
-        {
-            new CurvePoint(0, 1),
-            new CurvePoint(10000, 1.5f),
-            new CurvePoint(75000, 2.5f),
-            new CurvePoint(300000, 3),
-            new CurvePoint(1000000, 3.8f),
-            new CurvePoint(2000000, 4.3f)
-        };
-
-        private static readonly SimpleCurve WealthQualitySpreadDeterminationCurve = new()
-        {
-            new CurvePoint(0, 4.2f),
-            new CurvePoint(10000, 4),
-            new CurvePoint(75000, 2.5f),
-            new CurvePoint(300000, 2.1f),
-            new CurvePoint(1000000, 1.5f),
-            new CurvePoint(2000000, 1.2f)
-        };
-
-        #endregion SimpleCurves
-
-        #endregion TradeQualityImprovements
-
         /// <summary>
         ///     Increment TimesTraded count of dictionary by one for this faction.
         /// </summary>
@@ -364,71 +342,6 @@ namespace MoreFactionInteraction
             {
                 __result = priceType;
             }
-        }
-
-        #endregion
-    }
-
-
-    [HarmonyPatch(typeof(TransportPodsArrivalAction_VisitSite), "Arrived")]
-    internal static class Patch_Arrived
-    {
-        private static bool Prefix(Site ___site, PawnsArrivalModeDef ___arrivalMode, List<ActiveDropPodInfo> pods,
-            int tile)
-        {
-            if (___site.parts == null)
-            {
-                return true;
-            }
-
-            foreach (var part in ___site.parts)
-            {
-                if (part.def != MFI_DefOf.MFI_HuntersLodgePart)
-                {
-                    continue;
-                }
-
-                var lookTarget = TransportPodsArrivalActionUtility.GetLookTarget(pods);
-                var num = !___site.HasMap;
-                var orGenerateMap = GetOrGenerateMapUtility.GetOrGenerateMap(___site.Tile,
-                    CaravanArrivalAction_VisitSite.MapSize, null);
-                if (num)
-                {
-                    Find.TickManager.Notify_GeneratedPotentiallyHostileMap();
-                    PawnRelationUtility.Notify_PawnsSeenByPlayer_Letter_Send(orGenerateMap.mapPawns.AllPawns,
-                        "LetterRelatedPawnsInMapWherePlayerLanded".Translate(Faction.OfPlayer.def.pawnsPlural),
-                        LetterDefOf.NeutralEvent, true);
-                }
-
-                Messages.Message("MessageTransportPodsArrived".Translate(), lookTarget,
-                    MessageTypeDefOf.TaskCompletion);
-                ___arrivalMode.Worker.TravelingTransportPodsArrived(pods, orGenerateMap);
-                return false;
-            }
-
-            return true;
-        }
-    }
-
-    [HarmonyPatch(typeof(SettlementUtility), "AffectRelationsOnAttacked_NewTmp")]
-    internal static class Patch_AffectRelationsOnAttacked_NewTmp
-    {
-        private static bool Prefix(MapParent mapParent, ref TaggedString letterText)
-        {
-            if (mapParent is not Site site || site.parts == null)
-            {
-                return true;
-            }
-
-            foreach (var part in site.parts)
-            {
-                if (part.def == MFI_DefOf.MFI_HuntersLodgePart)
-                {
-                    return false;
-                }
-            }
-
-            return true;
         }
     }
 }

@@ -13,6 +13,16 @@ namespace MoreFactionInteraction.MoreFactionWar
         private static Texture2D factionOneColorTexture;
         private static Texture2D factionTwoColorTexture;
 
+
+        //[TweakValue("MainTabWindow_FactionWar", -100f, 150f)]
+        private static readonly float yMaxOffset = 0;
+
+        //[TweakValue("MainTabWindow_FactionWar", -50f, 50f)]
+        private static readonly float yPositionBar = 33;
+
+        //[TweakValue("MainTabWindow_FactionWar", -50f, 50f)]
+        private static readonly float barHeight = 32;
+
         public static void ResetBars()
         {
             factionOneColorTexture = null;
@@ -138,17 +148,5 @@ namespace MoreFactionInteraction.MoreFactionWar
             GUI.color = Color.white;
             GUI.EndGroup();
         }
-
-
-        //[TweakValue("MainTabWindow_FactionWar", -100f, 150f)]
-#pragma warning disable IDE0044 // Add readonly modifier
-        private static readonly float yMaxOffset = 0;
-
-        //[TweakValue("MainTabWindow_FactionWar", -50f, 50f)]
-        private static readonly float yPositionBar = 33;
-
-        //[TweakValue("MainTabWindow_FactionWar", -50f, 50f)]
-        private static readonly float barHeight = 32;
-#pragma warning restore IDE0044 // Add readonly modifier
     }
 }

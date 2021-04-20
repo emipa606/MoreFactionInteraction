@@ -9,7 +9,7 @@ namespace MoreFactionInteraction
 {
     public class WorldComponent_MFI_FactionWar : WorldComponent
     {
-        private readonly List<Faction> allFactionsInVolvedInWar = new();
+        private readonly List<Faction> allFactionsInVolvedInWar = new List<Faction>();
         private Faction factionOne;
 
         private int factionOneBattlesWon = 1;

@@ -9,7 +9,7 @@ namespace MoreFactionInteraction.More_Flavour
     {
         private const int MinDistance = 12;
         private const int MaxDistance = 26;
-        private static readonly IntRange TimeoutDaysRange = new(15, 21);
+        private static readonly IntRange TimeoutDaysRange = new IntRange(15, 21);
 
         public override float BaseChanceThisGame => 0f;
 
@@ -79,7 +79,7 @@ namespace MoreFactionInteraction.More_Flavour
         private static bool TryGetFactionHost(out Faction faction)
         {
             return Find.FactionManager.AllFactionsVisible
-                .Where(x => !x.defeated && !x.def.permanentEnemy && !x.IsPlayer).TryRandomElement(out faction);
+                .Where(x => !x.defeated && !x.def.permanentEnemy && !x.IsPlayer && !x.temporary).TryRandomElement(out faction);
         }
 
         private static bool TryGetRandomAvailableTargetMap(out Map map)

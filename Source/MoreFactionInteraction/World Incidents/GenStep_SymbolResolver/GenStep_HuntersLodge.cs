@@ -9,7 +9,7 @@ namespace MoreFactionInteraction.World_Incidents
     {
         private const int Size = 36;
 
-        private static readonly List<CellRect> possibleRects = new();
+        private static readonly List<CellRect> possibleRects = new List<CellRect>();
 
         public override int SeedPart => 735013949;
 

@@ -13,7 +13,7 @@ namespace MoreFactionInteraction.World_Incidents
         private const int basereward = 50;
         private const int workAmount = GenDate.TicksPerDay;
         private const float expGain = 6000f;
-        private static readonly IntRange FactionRelationOffset = new(3, 8);
+        private static readonly IntRange FactionRelationOffset = new IntRange(3, 8);
 
         private readonly Texture2D setPlantToGrowTex = HarmonyPatches.setPlantToGrowTex;
         public int expiration = -1;

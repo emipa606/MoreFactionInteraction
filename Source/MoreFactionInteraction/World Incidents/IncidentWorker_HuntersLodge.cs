@@ -10,7 +10,7 @@ namespace MoreFactionInteraction.World_Incidents
         private const int MinDistance = 2;
         private const int MaxDistance = 15;
 
-        private static readonly IntRange TimeoutDaysRange = new(15, 25);
+        private static readonly IntRange TimeoutDaysRange = new IntRange(15, 25);
 
 
         protected override bool CanFireNowSub(IncidentParms parms)

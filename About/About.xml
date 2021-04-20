@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
   <name>More Faction Interaction (Continued)</name>
   <packageId>Mlie.MoreFactionInteraction</packageId>
@@ -30,6 +30,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=1454024362
 - Increased the time modifier for faction interaction max-value to 10
 
 - Reported to work with Dynamic Diplomacy and the 'Vanilla Expanded' factions series. Thank you Black Goat.
+- Seems to work best loaded at the bottom of the mod-list
 
 Regarding getting too many caravans: (via Black Goat)
 ” MFI increases probability of trade caravans arriving based on faction goodwill. This is working as intended but I suspect this feature can be compounded to an unwanted degree for players using a lot of faction mods and/or by using Dynamic Diplomacy with certain settings.

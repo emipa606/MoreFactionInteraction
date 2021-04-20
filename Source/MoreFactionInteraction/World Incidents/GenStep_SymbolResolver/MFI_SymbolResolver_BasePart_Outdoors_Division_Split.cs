@@ -9,7 +9,7 @@ namespace MoreFactionInteraction.World_Incidents.GenStep_SymbolResolver
     {
         private const int MinLengthAfterSplit = 5;
 
-        private static readonly IntRange SpaceBetweenRange = new(1, 2);
+        private static readonly IntRange SpaceBetweenRange = new IntRange(1, 2);
 
         public override bool CanResolve(ResolveParams rp)
         {

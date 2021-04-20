@@ -11,7 +11,7 @@ namespace MoreFactionInteraction
     public class MapComponent_GoodWillTrader : MapComponent
     {
         private readonly List<IncidentDef> allowedIncidentDefs =
-            new()
+            new List<IncidentDef>
             {
                 MFI_DefOf.MFI_QuestSpreadingPirateCamp,
                 MFI_DefOf.MFI_DiplomaticMarriage,
@@ -23,20 +23,20 @@ namespace MoreFactionInteraction
             };
 
         private readonly List<IncidentDef> incidentsInNeedOfValidFactionLeader =
-            new()
+            new List<IncidentDef>
             {
                 MFI_DefOf.MFI_ReverseTradeRequest,
                 MFI_DefOf.MFI_HuntersLodge
             };
 
         //working lists for ExposeData.
-        private List<Faction> factionsListforInteraction = new();
-        private List<Faction> factionsListforTimesTraded = new();
-        private List<int> intListForInteraction = new();
-        private List<int> intListforTimesTraded = new();
-        private Dictionary<Faction, int> nextFactionInteraction = new();
+        private List<Faction> factionsListforInteraction = new List<Faction>();
+        private List<Faction> factionsListforTimesTraded = new List<Faction>();
+        private List<int> intListForInteraction = new List<int>();
+        private List<int> intListforTimesTraded = new List<int>();
+        private Dictionary<Faction, int> nextFactionInteraction = new Dictionary<Faction, int>();
         private List<QueuedIncident> queued;
-        private Dictionary<Faction, int> timesTraded = new();
+        private Dictionary<Faction, int> timesTraded = new Dictionary<Faction, int>();
 
         //empty constructor
         public MapComponent_GoodWillTrader(Map map) : base(map)
@@ -74,7 +74,7 @@ namespace MoreFactionInteraction
                 {
                     var friendlyFactions = from faction in Find.FactionManager.AllFactionsVisible
                         where !faction.IsPlayer && faction != Faction.OfPlayerSilentFail &&
-                              !Faction.OfPlayer.HostileTo(faction)
+                              !Faction.OfPlayer.HostileTo(faction) && !faction.temporary
                         select faction;
 
                     foreach (var faction in friendlyFactions)
@@ -96,13 +96,13 @@ namespace MoreFactionInteraction
                 //and the opposite
                 while ((from faction in Find.FactionManager.AllFactionsVisible
                     where !faction.IsPlayer && faction != Faction.OfPlayerSilentFail &&
-                          !faction.HostileTo(Faction.OfPlayerSilentFail) && !nextFactionInteraction.ContainsKey(faction)
+                          !faction.HostileTo(Faction.OfPlayerSilentFail) && !nextFactionInteraction.ContainsKey(faction) && !faction.temporary
                     select faction).Any())
                 {
                     nextFactionInteraction.Add(
                         (from faction in Find.FactionManager.AllFactionsVisible
                             where !faction.HostileTo(Faction.OfPlayerSilentFail) && !faction.IsPlayer &&
-                                  !nextFactionInteraction.ContainsKey(faction)
+                                  !nextFactionInteraction.ContainsKey(faction) && !faction.temporary
                             select faction).First(),
                         Find.TickManager.TicksGame +
                         Rand.RangeInclusive(GenDate.TicksPerDay * 2, GenDate.TicksPerDay * 8));

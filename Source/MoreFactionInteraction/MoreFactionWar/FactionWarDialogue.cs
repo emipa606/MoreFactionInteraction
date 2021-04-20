@@ -8,14 +8,6 @@ using Verse.AI.Group;
 
 namespace MoreFactionInteraction.MoreFactionWar
 {
-    public enum DesiredOutcome
-    {
-        CURRY_FAVOUR_FACTION_ONE = 1,
-        CURRY_FAVOUR_FACTION_TWO = 2,
-        SABOTAGE = 3,
-        BROKER_PEACE = 4
-    }
-
     public class FactionWarDialogue
     {
         private const float BaseWeight_Disaster = 0.05f;
@@ -228,7 +220,7 @@ namespace MoreFactionInteraction.MoreFactionWar
         {
             _pawn.skills.Learn(SkillDefOf.Social, 6000f, true);
 
-            var (chosenOutcome, _, flavor) = outComes.RandomElementByWeight(x => x.weight);
+            (var chosenOutcome, var _, var flavor) = outComes.RandomElementByWeight(x => x.weight);
             chosenOutcome();
             return flavor;
         }
@@ -315,13 +307,5 @@ namespace MoreFactionInteraction.MoreFactionWar
             return MFI_DiplomacyTunings.BadOutcomeFactorAtStatPower.Evaluate(
                 _pawn.GetStatValue(StatDefOf.NegotiationAbility));
         }
-    }
-
-    public struct Outcome
-    {
-        public bool startWar;
-        public bool setHostile;
-        public int goodwillChangeFavouredFaction;
-        public int goodwillChangeBurdenedFaction;
     }
 }

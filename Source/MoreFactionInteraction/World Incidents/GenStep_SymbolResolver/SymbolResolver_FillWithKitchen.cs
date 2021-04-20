@@ -4,23 +4,6 @@ using Verse;
 
 namespace MoreFactionInteraction.World_Incidents.GenStep_SymbolResolver
 {
-    public class SymbolResolver_BasePart_Indoors_Leaf_Kitchen : SymbolResolver
-    {
-        public override void Resolve(ResolveParams rp)
-        {
-            BaseGen.symbolStack.Push("kitchen", rp);
-        }
-    }
-
-    public class SymbolResolver_Interior_Kitchen : SymbolResolver
-    {
-        public override void Resolve(ResolveParams rp)
-        {
-            InteriorSymbolResolverUtility.PushBedroomHeatersCoolersAndLightSourcesSymbols(rp);
-            BaseGen.symbolStack.Push("fillWithKitchen", rp);
-        }
-    }
-
     public class SymbolResolver_FillWithKitchen : SymbolResolver
     {
         public override void Resolve(ResolveParams rp)

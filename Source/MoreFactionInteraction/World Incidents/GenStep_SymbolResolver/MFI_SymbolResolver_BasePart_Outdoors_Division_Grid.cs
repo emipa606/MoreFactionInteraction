@@ -22,14 +22,14 @@ namespace MoreFactionInteraction.World_Incidents.GenStep_SymbolResolver
         private const float AllowNonSquareRoomsInTheFirstStepChance = 0.2f;
 
         private static readonly List<Pair<Pair<int, int>, Pair<int, int>>> options =
-            new();
+            new List<Pair<Pair<int, int>, Pair<int, int>>>();
 
         private readonly List<Child> children =
-            new();
+            new List<Child>();
 
-        private readonly List<Pair<int, int>> optionsX = new();
+        private readonly List<Pair<int, int>> optionsX = new List<Pair<int, int>>();
 
-        private readonly List<Pair<int, int>> optionsZ = new();
+        private readonly List<Pair<int, int>> optionsZ = new List<Pair<int, int>>();
 
         public override bool CanResolve(ResolveParams rp)
         {

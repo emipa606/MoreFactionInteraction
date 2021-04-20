@@ -7,17 +7,17 @@ namespace MoreFactionInteraction
 {
     public static class FactionInteractionTimeSeperator
     {
-        public static SimpleCurve TimeBetweenInteraction = new()
+        public static SimpleCurve TimeBetweenInteraction = new SimpleCurve
         {
-            new(0,
+            new CurvePoint(0,
                 GenDate.TicksPerDay * 8 * Mathf.Max(1,
                     Find.FactionManager.AllFactionsVisible.Count(f => !f.IsPlayer && !f.HostileTo(Faction.OfPlayer)),
                     10)),
-            new(50,
+            new CurvePoint(50,
                 GenDate.TicksPerDay * 5 * Mathf.Max(1,
                     Find.FactionManager.AllFactionsVisible.Count(f => !f.IsPlayer && !f.HostileTo(Faction.OfPlayer)),
                     10)),
-            new(100,
+            new CurvePoint(100,
                 GenDate.TicksPerDay * 3 * Mathf.Max(1,
                     Find.FactionManager.AllFactionsVisible.Count(f => !f.IsPlayer && !f.HostileTo(Faction.OfPlayer)),
                     10))

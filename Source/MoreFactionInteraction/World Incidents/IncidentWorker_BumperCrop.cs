@@ -8,7 +8,7 @@ namespace MoreFactionInteraction.World_Incidents
 {
     public class IncidentWorker_BumperCrop : IncidentWorker
     {
-        private static readonly IntRange OfferDurationRange = new(10, 30);
+        private static readonly IntRange OfferDurationRange = new IntRange(10, 30);
 
         public override float BaseChanceThisGame => base.BaseChanceThisGame
                                                     + (float) (Find.FactionManager.AllFactionsVisible

@@ -3,34 +3,6 @@ using Verse;
 
 namespace MoreFactionInteraction.World_Incidents.GenStep_SymbolResolver
 {
-    internal class MFI_SymbolResolver_BasePart_Outdoors_LeafPossiblyDecorated : SymbolResolver
-    {
-        public override void Resolve(ResolveParams rp)
-        {
-            if (rp.rect.Width >= 10 && rp.rect.Height >= 10 && Rand.Chance(0.25f))
-            {
-                BaseGen.symbolStack.Push("MFI_basePart_outdoors_leafDecorated", rp);
-            }
-            else
-            {
-                BaseGen.symbolStack.Push("MFI_basePart_outdoors_leaf", rp);
-            }
-        }
-    }
-
-    internal class MFI_SymbolResolver_BasePart_Outdoors_LeafDecorated_EdgeStreet : SymbolResolver
-    {
-        public override void Resolve(ResolveParams rp)
-        {
-            var resolveParams = rp;
-            resolveParams.floorDef = rp.pathwayFloorDef ?? BaseGenUtility.RandomBasicFloorDef(rp.faction);
-            BaseGen.symbolStack.Push("edgeStreet", resolveParams);
-            var resolveParams2 = rp;
-            resolveParams2.rect = rp.rect.ContractedBy(1);
-            BaseGen.symbolStack.Push("MFI_basePart_outdoors_leaf", resolveParams2);
-        }
-    }
-
     internal class MFI_SymbolResolver_BasePart_Outdoors_LeafDecorated_RandomInnerRect : SymbolResolver
     {
         private const int MinLength = 5;

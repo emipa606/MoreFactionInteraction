@@ -11,9 +11,9 @@ namespace MoreFactionInteraction.More_Flavour
     {
         private readonly IncidentDef incident = MFI_DefOf.MFI_AnnualExpo;
         private readonly float intervalDays = 60f;
-        private List<Buff> activeBuffList = new();
+        private List<Buff> activeBuffList = new List<Buff>();
 
-        public Dictionary<EventDef, int> events = new()
+        public Dictionary<EventDef, int> events = new Dictionary<EventDef, int>
         {
             {MFI_DefOf.MFI_GameOfUrComp, 0},
             {MFI_DefOf.MFI_ShootingComp, 0},

@@ -9,7 +9,7 @@ namespace MoreFactionInteraction
 {
     internal class WorldComponent_OutpostGrower : WorldComponent
     {
-        private List<ChoiceLetter> choiceLetters = new();
+        private List<ChoiceLetter> choiceLetters = new List<ChoiceLetter>();
 
         public WorldComponent_OutpostGrower(World world) : base(world)
         {

@@ -23,17 +23,17 @@ namespace MoreFactionInteraction.More_Flavour
 
         public override void Arrived(Caravan caravan)
         {
-            mysticalShaman.Notify_CaravanArrived(caravan: caravan);
+            mysticalShaman.Notify_CaravanArrived(caravan);
         }
 
         public static IEnumerable<FloatMenuOption> GetFloatMenuOptions(Caravan caravan, MysticalShaman mysticalShaman)
         {
             return CaravanArrivalActionUtility.GetFloatMenuOptions(
-                acceptanceReportGetter: () => CanVisit(mysticalShaman: mysticalShaman),
-                arrivalActionGetter: () => new CaravanArrivalAction_VisitMysticalShaman(mysticalShaman: mysticalShaman),
-                label: "VisitPeaceTalks".Translate(mysticalShaman.Label),
-                caravan: caravan, pathDestination: mysticalShaman.Tile,
-                revalidateWorldClickTarget: mysticalShaman);
+                () => CanVisit(mysticalShaman),
+                () => new CaravanArrivalAction_VisitMysticalShaman(mysticalShaman),
+                "VisitPeaceTalks".Translate(mysticalShaman.Label),
+                caravan, mysticalShaman.Tile,
+                mysticalShaman);
         }
 
         public static FloatMenuAcceptanceReport CanVisit(MysticalShaman mysticalShaman)
@@ -44,7 +44,7 @@ namespace MoreFactionInteraction.More_Flavour
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_References.Look(refee: ref mysticalShaman, label: "mysticalShaman");
+            Scribe_References.Look(ref mysticalShaman, "mysticalShaman");
         }
     }
 }

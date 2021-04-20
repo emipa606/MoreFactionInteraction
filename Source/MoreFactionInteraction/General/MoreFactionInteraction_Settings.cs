@@ -1,5 +1,4 @@
-﻿using JetBrains.Annotations;
-using RimWorld;
+﻿using RimWorld;
 using UnityEngine;
 using Verse;
 
@@ -43,26 +42,6 @@ namespace MoreFactionInteraction
             Scribe_Values.Look(ref timeModifierBetweenFactionInteraction, "timeModifierBetweenFactionInteraction", 1f);
             Scribe_Values.Look(ref traderWealthOffsetFromTimesTraded, "traderWealthOffsetFromTimesTraded", 0.8f);
             Scribe_Values.Look(ref pirateBaseUpgraderModifier, "MFI_pirateBaseUpgraderModifier", 0.8f);
-        }
-    }
-
-    [UsedImplicitly]
-    public class MoreFactionInteractionMod : Mod
-    {
-        public MoreFactionInteractionMod(ModContentPack content) : base(content)
-        {
-            GetSettings<MoreFactionInteraction_Settings>();
-        }
-
-        public override void DoSettingsWindowContents(Rect inRect)
-        {
-            base.DoSettingsWindowContents(inRect);
-            GetSettings<MoreFactionInteraction_Settings>().DoWindowContents(inRect);
-        }
-
-        public override string SettingsCategory()
-        {
-            return "More Faction Interaction";
         }
     }
 }

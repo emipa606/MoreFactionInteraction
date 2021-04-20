@@ -8,7 +8,7 @@ namespace MoreFactionInteraction.MoreFactionWar
 {
     public class IncidentWorker_WoundedCombatants : IncidentWorker
     {
-        private readonly IntRange pawnstoSpawn = new(4, 6);
+        private readonly IntRange pawnstoSpawn = new IntRange(4, 6);
 
         protected override bool CanFireNowSub(IncidentParms parms)
         {

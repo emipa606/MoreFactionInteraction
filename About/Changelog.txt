@@ -1,5 +1,8 @@
 # Changelog for MoreFactionInteraction
 
+1.0.8.0 - Added a setting for disabling the annual expo
+
+
 1.0.7.0 - Will no longer save temporary factions for goodwill trader
 
 

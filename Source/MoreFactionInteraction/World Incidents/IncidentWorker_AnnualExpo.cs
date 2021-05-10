@@ -15,6 +15,11 @@ namespace MoreFactionInteraction.More_Flavour
 
         protected override bool CanFireNowSub(IncidentParms parms)
         {
+            if (!MoreFactionInteraction_Settings.enableAnnualExpo)
+            {
+                return false;
+            }
+
             return base.CanFireNowSub(parms) && Find.AnyPlayerHomeMap != null
                                              && TryGetRandomAvailableTargetMap(out _)
                                              && TryFindTile(out _)
@@ -24,7 +29,13 @@ namespace MoreFactionInteraction.More_Flavour
 
         protected override bool TryExecuteWorker(IncidentParms parms)
         {
+            if (!MoreFactionInteraction_Settings.enableAnnualExpo)
+            {
+                return false;
+            }
+
             var worldComp = Find.World.GetComponent<WorldComponent_MFI_AnnualExpo>();
+
 
             if (worldComp == null)
             {
@@ -79,7 +90,8 @@ namespace MoreFactionInteraction.More_Flavour
         private static bool TryGetFactionHost(out Faction faction)
         {
             return Find.FactionManager.AllFactionsVisible
-                .Where(x => !x.defeated && !x.def.permanentEnemy && !x.IsPlayer && !x.temporary).TryRandomElement(out faction);
+                .Where(x => !x.defeated && !x.def.permanentEnemy && !x.IsPlayer && !x.temporary)
+                .TryRandomElement(out faction);
         }
 
         private static bool TryGetRandomAvailableTargetMap(out Map map)

@@ -10,6 +10,7 @@ namespace MoreFactionInteraction
         public static float timeModifierBetweenFactionInteraction = 1f;
         public static float traderWealthOffsetFromTimesTraded = 0.7f;
         public static float pirateBaseUpgraderModifier = 0.8f;
+        public static bool enableAnnualExpo = true;
 
         public void DoWindowContents(Rect rect)
         {
@@ -32,6 +33,8 @@ namespace MoreFactionInteraction
             options.SliderLabeled("MFI_traderWealthOffsetFromTimesTraded".Translate(),
                 ref traderWealthOffsetFromTimesTraded,
                 traderWealthOffsetFromTimesTraded.ToStringByStyle(ToStringStyle.FloatOne), 0.5f, 3f);
+            options.CheckboxLabeled("MFI_enableannualexpo".Translate(), ref enableAnnualExpo,
+                "MFI_enableannualexpotooltip".Translate());
             options.End();
             Mod.GetSettings<MoreFactionInteraction_Settings>().Write();
         }
@@ -39,6 +42,7 @@ namespace MoreFactionInteraction
         public override void ExposeData()
         {
             Scribe_Values.Look(ref ticksToUpgrade, "ticksToUpgrade", 2700000);
+            Scribe_Values.Look(ref enableAnnualExpo, "enableAnnualExpo", true);
             Scribe_Values.Look(ref timeModifierBetweenFactionInteraction, "timeModifierBetweenFactionInteraction", 1f);
             Scribe_Values.Look(ref traderWealthOffsetFromTimesTraded, "traderWealthOffsetFromTimesTraded", 0.8f);
             Scribe_Values.Look(ref pirateBaseUpgraderModifier, "MFI_pirateBaseUpgraderModifier", 0.8f);

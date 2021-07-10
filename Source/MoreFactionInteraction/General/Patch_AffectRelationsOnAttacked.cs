@@ -1,13 +1,12 @@
 ﻿using HarmonyLib;
 using RimWorld.Planet;
-using Verse;
 
 namespace MoreFactionInteraction
 {
-    [HarmonyPatch(typeof(SettlementUtility), "AffectRelationsOnAttacked_NewTmp")]
-    internal static class Patch_AffectRelationsOnAttacked_NewTmp
+    [HarmonyPatch(typeof(SettlementUtility), "AffectRelationsOnAttacked")]
+    internal static class Patch_AffectRelationsOnAttacked
     {
-        private static bool Prefix(MapParent mapParent, ref TaggedString letterText)
+        private static bool Prefix(MapParent mapParent)
         {
             if (mapParent is not Site site || site.parts == null)
             {

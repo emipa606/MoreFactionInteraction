@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using MoreFactionInteraction.General;
 using RimWorld;
 using RimWorld.Planet;

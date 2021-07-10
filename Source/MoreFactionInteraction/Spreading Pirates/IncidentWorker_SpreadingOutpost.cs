@@ -49,7 +49,7 @@ namespace MoreFactionInteraction
                 return false;
             }
 
-            if (!TileFinder.TryFindNewSiteTile(out var tile, 2, 8, false, true, pirateTile))
+            if (!TileFinder.TryFindNewSiteTile(out var tile, 2, 8, false, TileFinderMode.Near, pirateTile))
             {
                 return false;
             }

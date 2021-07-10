@@ -10,14 +10,15 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=1454024362
 - Updated as is, have not been tested with other mods than those listed below. Please report if any mod is not compatible.
 - Added german translation, thanks Erdnussbrot!
 - Increased the time modifier for faction interaction max-value to 10
+- Added option to disable Annual Expo since it seems to cause issues for some users
 
-- Reported to work with Dynamic Diplomacy and the 'Vanilla Expanded' factions series. Thank you Black Goat.
+- Reported to work with Dynamic Diplomacy and the &apos;Vanilla Expanded&apos; factions series. Thank you Black Goat.
 - Seems to work best loaded at the bottom of the mod-list
 
 Regarding getting too many caravans: (via Black Goat)
 ” MFI increases probability of trade caravans arriving based on faction goodwill. This is working as intended but I suspect this feature can be compounded to an unwanted degree for players using a lot of faction mods and/or by using Dynamic Diplomacy with certain settings.
 
-My recommendations for people who play with MFI + DD or faction mods would be to increase the "Time modifier for faction interaction" slider in the MFI mod settings menu from 1 to 3 and to disable the "Allow Alliance" and "Allow permanent enemy factions to change relationships" options for DD. ”
+My recommendations for people who play with MFI + DD or faction mods would be to increase the &quot;Time modifier for faction interaction&quot; slider in the MFI mod settings menu from 1 to 3 and to disable the &quot;Allow Alliance&quot; and &quot;Allow permanent enemy factions to change relationships&quot; options for DD. ”
 
 ![Image](https://i.imgur.com/7Gzt3Rg.png)
 
@@ -54,8 +55,8 @@ Adds more interaction with and between factions, bringing the world to life.
 # A living world
 
 - Pirates spread out and grow outposts
-- Pirates can demand tribute if they're close by - destroy their outposts!
-- Show off your skills at the yearly exposition. Maybe you'll do well and be invited to host next year?
+- Pirates can demand tribute if they&apos;re close by - destroy their outposts!
+- Show off your skills at the yearly exposition. Maybe you&apos;ll do well and be invited to host next year?
 - Roadworks. To strengthen ties and increase trade, your allies can build roads as a nice silver sink.
 - Squatters! Someone found a use for an old deserted settlement.
 
@@ -68,7 +69,7 @@ Adds more interaction with and between factions, bringing the world to life.
 - Diplomatic marriages
 - Reverse trade requests
 - Bumper crops
-- Hunter's Lodge
+- Hunter&apos;s Lodge
 - Pirate extortion
 - Mystical Shaman
 - Annual Expo
@@ -100,7 +101,7 @@ Shoutout to https://steamcommunity.com/sharedfiles/filedetails/?id=1123043922]Al
 - French, courtesy of jerlotrie
 - Italian, courtesy of EvaineQ
 
-Want to help translate this mod in your language? Check out the "Pirate" folder inside the Languages folder on GitHub for all up to date strings.
+Want to help translate this mod in your language? Check out the &quot;Pirate&quot; folder inside the Languages folder on GitHub for all up to date strings.
 
 # Links
 
@@ -108,10 +109,10 @@ Want to help translate this mod in your language? Check out the "Pirate" folder 
 
 # Compatibility
 
-- Yes you can add it to an existing save. Use a new one for best results, but it'll work on your current run. No, you can't remove it from an existing save.
-- Yes it's compatible with Hospitality.
-- Yes it's compatible with Roads of the Rim. MFI treats roadworks as a silver sink, with Roads of the Rim you're more involved.
-[strike]- For compatibility with Zetrith's multiplayer mod, you need https://steamcommunity.com/sharedfiles/filedetails/?id=1629973374[/strike]
+- Yes you can add it to an existing save. Use a new one for best results, but it&apos;ll work on your current run. No, you can&apos;t remove it from an existing save.
+- Yes it&apos;s compatible with Hospitality.
+- Yes it&apos;s compatible with Roads of the Rim. MFI treats roadworks as a silver sink, with Roads of the Rim you&apos;re more involved.
+[strike]- For compatibility with Zetrith&apos;s multiplayer mod, you need https://steamcommunity.com/sharedfiles/filedetails/?id=1629973374[/strike]
 
 ![Image](https://i.imgur.com/Rs6T6cr.png)
 

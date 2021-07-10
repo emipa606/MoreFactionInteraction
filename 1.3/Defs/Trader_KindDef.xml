@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <TraderKindDef>
+    <defName>MFI_EmptyTrader_Apparel</defName>
+    <commonality>0</commonality>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <!--actual silver value is set in C#-->
+        <countRange>
+          <min>250</min>
+          <max>410</max>
+        </countRange>
+      </li>
+      <li Class="MoreFactionInteraction.StockGenerator_BuyCategory">
+        <thingCategoryDef>Apparel</thingCategoryDef>
+      </li>
+    </stockGenerators>
+  </TraderKindDef>
+  <TraderKindDef>
+    <defName>MFI_EmptyTrader_PlantFoodRaw</defName>
+    <commonality>0</commonality>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>
+          <min>250</min>
+          <max>410</max>
+        </countRange>
+      </li>
+      <li Class="MoreFactionInteraction.StockGenerator_BuyCategory">
+        <thingCategoryDef>PlantFoodRaw</thingCategoryDef>
+      </li>
+    </stockGenerators>
+  </TraderKindDef>
+  <TraderKindDef>
+    <defName>MFI_EmptyTrader_Weapons</defName>
+    <commonality>0</commonality>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>
+          <min>250</min>
+          <max>410</max>
+        </countRange>
+      </li>
+      <li Class="MoreFactionInteraction.StockGenerator_BuyCategory">
+        <thingCategoryDef>Weapons</thingCategoryDef>
+      </li>
+    </stockGenerators>
+  </TraderKindDef>
+  <TraderKindDef>
+    <defName>MFI_EmptyTrader_Medicine</defName>
+    <commonality>0</commonality>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>
+          <min>250</min>
+          <max>410</max>
+        </countRange>
+      </li>
+      <li Class="MoreFactionInteraction.StockGenerator_BuyCategory">
+        <thingCategoryDef>Medicine</thingCategoryDef>
+      </li>
+    </stockGenerators>
+  </TraderKindDef>
+</Defs>

@@ -1,5 +1,5 @@
-﻿using RimWorld;
-using System.Linq;
+﻿using System.Linq;
+using RimWorld;
 using Verse;
 
 namespace MoreFactionInteraction.More_Flavour
@@ -9,12 +9,12 @@ namespace MoreFactionInteraction.More_Flavour
         public override void Apply()
         {
             var spawner =
-                (CompProperties_Spawner)ThingDefOf.InfiniteChemreactor.comps.FirstOrDefault(x =>
-                   x is CompProperties_Spawner);
+                (CompProperties_Spawner) ThingDefOf.InfiniteChemreactor.comps.FirstOrDefault(x =>
+                    x is CompProperties_Spawner);
 
             if (spawner != null)
             {
-                spawner.spawnIntervalRange.min = (int)(spawner.spawnIntervalRange.min * 0.9f);
+                spawner.spawnIntervalRange.min = (int) (spawner.spawnIntervalRange.min * 0.9f);
             }
 
             Active = true;

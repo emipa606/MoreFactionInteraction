@@ -9,8 +9,7 @@ namespace MoreFactionInteraction
     [HarmonyPatch(typeof(TransportPodsArrivalAction_VisitSite), "Arrived")]
     internal static class Patch_Arrived
     {
-        private static bool Prefix(Site ___site, PawnsArrivalModeDef ___arrivalMode, List<ActiveDropPodInfo> pods,
-            int tile)
+        private static bool Prefix(Site ___site, PawnsArrivalModeDef ___arrivalMode, List<ActiveDropPodInfo> pods)
         {
             if (___site.parts == null)
             {
@@ -27,7 +26,7 @@ namespace MoreFactionInteraction
                 var lookTarget = TransportPodsArrivalActionUtility.GetLookTarget(pods);
                 var num = !___site.HasMap;
                 var orGenerateMap = GetOrGenerateMapUtility.GetOrGenerateMap(___site.Tile,
-                    CaravanArrivalAction_VisitSite.MapSize, null);
+                    ___site.PreferredMapSize, null);
                 if (num)
                 {
                     Find.TickManager.Notify_GeneratedPotentiallyHostileMap();

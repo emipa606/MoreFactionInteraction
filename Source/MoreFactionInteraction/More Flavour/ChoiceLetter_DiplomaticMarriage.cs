@@ -41,11 +41,11 @@ namespace MoreFactionInteraction
                         {
                             goodWillGainedFromMarriage =
                                 (int) MFI_DiplomacyTunings.PawnValueInGoodWillAmountOut.Evaluate(betrothed.MarketValue);
-                            marriageSeeker.Faction.TrySetRelationKind(Faction.OfPlayer,
+                            marriageSeeker.Faction.SetRelationDirect(Faction.OfPlayer,
                                 (FactionRelationKind) Math.Min((int) marriageSeeker.Faction.PlayerRelationKind + 1, 2),
                                 true, "LetterLabelAcceptedProposal".Translate());
                             marriageSeeker.Faction.TryAffectGoodwillWith(Faction.OfPlayer, goodWillGainedFromMarriage,
-                                false, true, "LetterLabelAcceptedProposal".Translate());
+                                false);
                             betrothed.relations.AddDirectRelation(PawnRelationDefOf.Fiance, marriageSeeker);
 
                             if (betrothed.GetCaravan() is { } caravan)
@@ -72,8 +72,7 @@ namespace MoreFactionInteraction
                             if (Rand.Chance(0.2f))
                             {
                                 marriageSeeker.Faction.TryAffectGoodwillWith(Faction.OfPlayer,
-                                    MFI_DiplomacyTunings.GoodWill_DeclinedMarriage_Impact.RandomInRange, true, true,
-                                    "LetterLabelRejectedProposal".Translate());
+                                    MFI_DiplomacyTunings.GoodWill_DeclinedMarriage_Impact.RandomInRange);
                             }
 
                             Find.LetterStack.RemoveLetter(this);

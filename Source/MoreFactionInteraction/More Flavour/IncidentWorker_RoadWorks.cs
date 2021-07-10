@@ -14,9 +14,9 @@ namespace MoreFactionInteraction
 
         protected override bool CanFireNowSub(IncidentParms parms)
         {
-            return base.CanFireNowSub(parms) && TryGetRandomAvailableTargetMap(out var map)
+            return base.CanFireNowSub(parms) && TryGetRandomAvailableTargetMap(out var localMap)
                                              && CommsConsoleUtility.PlayerHasPoweredCommsConsole()
-                                             && RandomNearbyTradeableSettlement(map.Tile) != null;
+                                             && RandomNearbyTradeableSettlement(localMap.Tile) != null;
         }
 
         protected override bool TryExecuteWorker(IncidentParms parms)
@@ -163,9 +163,9 @@ namespace MoreFactionInteraction
                 select settlement).RandomElement();
         }
 
-        private bool TryGetRandomAvailableTargetMap(out Map map)
+        private bool TryGetRandomAvailableTargetMap(out Map localMap)
         {
-            return Find.Maps.Where(m => m.IsPlayerHome).TryRandomElement(out map);
+            return Find.Maps.Where(m => m.IsPlayerHome).TryRandomElement(out localMap);
         }
     }
 }

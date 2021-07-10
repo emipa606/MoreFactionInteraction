@@ -22,8 +22,7 @@ namespace MoreFactionInteraction.World_Incidents.GenStep_SymbolResolver
             }
             else
             {
-                var flag = Rand.Bool && rp.rect.Height >= MinWidthOrHeight || rp.rect.Width < MinWidthOrHeight;
-                if (flag)
+                if (Rand.Bool && rp.rect.Height >= MinWidthOrHeight || rp.rect.Width < MinWidthOrHeight)
                 {
                     var num = Rand.RangeInclusive(4, rp.rect.Height - MinLengthAfterSplit);
                     var resolveParams = rp;

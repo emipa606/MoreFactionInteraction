@@ -1,5 +1,5 @@
-﻿using RimWorld;
-using System.Linq;
+﻿using System.Linq;
+using RimWorld;
 using Verse;
 
 namespace MoreFactionInteraction.More_Flavour
@@ -10,8 +10,8 @@ namespace MoreFactionInteraction.More_Flavour
         {
             ThoughtDef.Named("PsychicEmanatorSoothe").stages.First().baseMoodEffect = 6f;
             ThingDefOf.PsychicEmanator.specialDisplayRadius = 20f;
-            var power = (CompProperties_Power)ThingDefOf.PsychicEmanator.comps.FirstOrDefault(x =>
-               x is CompProperties_Power);
+            var power = (CompProperties_Power) ThingDefOf.PsychicEmanator.comps.FirstOrDefault(x =>
+                x is CompProperties_Power);
 
             if (power != null)
             {

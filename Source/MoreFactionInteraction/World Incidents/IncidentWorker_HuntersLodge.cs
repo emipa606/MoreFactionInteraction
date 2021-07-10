@@ -76,7 +76,7 @@ namespace MoreFactionInteraction.World_Incidents
 
         private static bool TryFindTile(out int tile)
         {
-            return TileFinder.TryFindNewSiteTile(out tile, MinDistance, MaxDistance, true, false);
+            return TileFinder.TryFindNewSiteTile(out tile, MinDistance, MaxDistance, true);
         }
     }
 }

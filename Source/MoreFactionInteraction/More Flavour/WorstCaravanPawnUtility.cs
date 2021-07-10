@@ -139,10 +139,9 @@ namespace MoreFactionInteraction.More_Flavour
                     continue;
                 }
 
-                var flag = current.CurStage != null && current.CurStage.lifeThreatening;
-                var flag2 = current.def.lethalSeverity >= 0f &&
-                            current.Severity / current.def.lethalSeverity >= 0.8f;
-                if (!flag && !flag2)
+                if (!(current.CurStage != null && current.CurStage.lifeThreatening) &&
+                    !(current.def.lethalSeverity >= 0f &&
+                      current.Severity / current.def.lethalSeverity >= 0.8f))
                 {
                     continue;
                 }

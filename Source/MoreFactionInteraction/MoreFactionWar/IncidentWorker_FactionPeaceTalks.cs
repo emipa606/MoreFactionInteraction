@@ -57,7 +57,7 @@ namespace MoreFactionInteraction.MoreFactionWar
 
         private static bool TryFindTile(out int tile)
         {
-            return TileFinder.TryFindNewSiteTile(out tile, 5, 13, false, false);
+            return TileFinder.TryFindNewSiteTile(out tile, 5, 13);
         }
 
         private static bool FoundTwoFactions()

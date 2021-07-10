@@ -220,7 +220,7 @@ namespace MoreFactionInteraction.MoreFactionWar
         {
             _pawn.skills.Learn(SkillDefOf.Social, 6000f, true);
 
-            (var chosenOutcome, var _, var flavor) = outComes.RandomElementByWeight(x => x.weight);
+            var (chosenOutcome, _, flavor) = outComes.RandomElementByWeight(x => x.weight);
             chosenOutcome();
             return flavor;
         }
@@ -250,7 +250,7 @@ namespace MoreFactionInteraction.MoreFactionWar
 
             if (result.setHostile)
             {
-                _burdenedFaction.TrySetRelationKind(_pawn.Faction, FactionRelationKind.Hostile, false);
+                _burdenedFaction.SetRelationDirect(_pawn.Faction, FactionRelationKind.Hostile, false);
             }
 
             if (result.startWar)
@@ -263,7 +263,7 @@ namespace MoreFactionInteraction.MoreFactionWar
         private static void Outcome_TalksSabotageDisaster(Faction favouredFaction, Faction burdenedFaction, Pawn pawn,
             IIncidentTarget incidentTarget)
         {
-            favouredFaction.TrySetRelationKind(pawn.Faction, FactionRelationKind.Hostile, false);
+            favouredFaction.SetRelationDirect(pawn.Faction, FactionRelationKind.Hostile, false);
             LongEventHandler.QueueLongEvent(delegate
             {
                 var incidentParms = StorytellerUtility.DefaultParmsNow(IncidentCategoryDefOf.ThreatBig, incidentTarget);

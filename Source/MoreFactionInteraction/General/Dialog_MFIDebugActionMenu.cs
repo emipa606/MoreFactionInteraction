@@ -1,8 +1,4 @@
-﻿using System.Linq;
-using MoreFactionInteraction.More_Flavour;
-using RimWorld;
-using RimWorld.Planet;
-using Verse;
+﻿using Verse;
 
 namespace MoreFactionInteraction
 {

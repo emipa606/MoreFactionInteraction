@@ -74,8 +74,8 @@ namespace MoreFactionInteraction
             SetSecondWarringFaction(factionInstigator);
             factionOneBattlesWon = 1;
             factionTwoBattlesWon = 1;
-            factionOne.TrySetRelationKind(factionInstigator, FactionRelationKind.Hostile, false);
-            factionInstigator.TrySetRelationKind(factionOne, FactionRelationKind.Hostile, false);
+            factionOne.SetRelationDirect(factionInstigator, FactionRelationKind.Hostile, false);
+            factionInstigator.SetRelationDirect(factionOne, FactionRelationKind.Hostile, false);
 
             if (selfResolved)
             {

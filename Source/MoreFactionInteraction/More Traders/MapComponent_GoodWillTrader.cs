@@ -96,7 +96,8 @@ namespace MoreFactionInteraction
                 //and the opposite
                 while ((from faction in Find.FactionManager.AllFactionsVisible
                     where !faction.IsPlayer && faction != Faction.OfPlayerSilentFail &&
-                          !faction.HostileTo(Faction.OfPlayerSilentFail) && !nextFactionInteraction.ContainsKey(faction) && !faction.temporary
+                          !faction.HostileTo(Faction.OfPlayerSilentFail) &&
+                          !nextFactionInteraction.ContainsKey(faction) && !faction.temporary
                     select faction).Any())
                 {
                     nextFactionInteraction.Add(

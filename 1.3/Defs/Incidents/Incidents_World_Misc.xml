@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <IncidentDef>
+    <defName>MFI_RoadWorks</defName>
+    <label>road works</label>
+    <category>Misc</category>
+    <targetTags>
+      <li>World</li>
+    </targetTags>
+    <workerClass>MoreFactionInteraction.IncidentWorker_RoadWorks</workerClass>
+    <baseChance>0.2</baseChance>
+    <earliestDay>60</earliestDay>
+    <minRefireDays>30</minRefireDays>
+  </IncidentDef>
+  <IncidentDef>
+    <defName>MFI_DiplomaticMarriage</defName>
+    <label>diplomatic marriage</label>
+    <category>Misc</category>
+    <targetTags>
+      <li>World</li>
+    </targetTags>
+    <workerClass>MoreFactionInteraction.IncidentWorker_DiplomaticMarriage</workerClass>
+    <letterLabel>Diplomatic marriage</letterLabel>
+    <letterDef>DiplomaticMarriage</letterDef>
+    <baseChance>0.5</baseChance>
+    <earliestDay>15</earliestDay>
+    <minRefireDays>30</minRefireDays>
+  </IncidentDef>
+  <IncidentDef>
+    <defName>MFI_MysticalShaman</defName>
+    <label>mystical shaman</label>
+    <category>Misc</category>
+    <targetTags>
+      <li>World</li>
+    </targetTags>
+    <workerClass>MoreFactionInteraction.IncidentWorker_MysticalShaman</workerClass>
+    <letterLabel>Mystical shaman</letterLabel>
+    <!-- <letterDef>MysticalShaman</letterDef> -->
+    <baseChance>0.8</baseChance>
+    <earliestDay>1</earliestDay>
+    <minRefireDays>20</minRefireDays>
+  </IncidentDef>
+  <IncidentDef>
+    <defName>MFI_SettlementBaseAttack</defName>
+    <label>Faction base attacked</label>
+    <category>Misc</category>
+    <targetTags>
+      <li>World</li>
+    </targetTags>
+    <workerClass>MoreFactionInteraction.IncidentWorker_SettlementAttack</workerClass>
+    <baseChance>0.8</baseChance>
+    <earliestDay>20</earliestDay>
+    <minRefireDays>5</minRefireDays>
+  </IncidentDef>
+</Defs>

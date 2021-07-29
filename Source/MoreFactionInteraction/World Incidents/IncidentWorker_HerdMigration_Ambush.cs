@@ -38,7 +38,7 @@ namespace MoreFactionInteraction.World_Incidents
             }
             else if (Find.WorldObjects.SiteAt(map.Tile) is { } site)
             {
-                pawnKindDef = site.parts.First(x => x.def == MFI_DefOf.MFI_HuntersLodgePart)?.parms?.animalKind ??
+                pawnKindDef = site.parts.First(x => x.def == MFI_DefOf.MFI_HuntersLodgePart).parms?.animalKind ??
                               PawnKindDefOf.Thrumbo;
             }
 

@@ -1,5 +1,8 @@
 # Changelog for MoreFactionInteraction
 
+1.0.11.0 - Better skill-checks for the different contests, thanks Serilyn
+
+
 1.0.10.0 - Recompiled on 1.3, the beta build had GUI-issues. Thanks to Serilyn for the report!
 
 

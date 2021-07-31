@@ -9,7 +9,7 @@
       <li>Intellectual</li>
       <li>Social</li>
     </learnedSkills>
-    <relevantStat>MeleeHitChance</relevantStat>
+    <relevantStat>GlobalLearningFactor</relevantStat>
     <workerClass>MoreFactionInteraction.EventRewardWorker_GameOfUrComp</workerClass>
     <xPGainFirstOther>0</xPGainFirstOther>
     <outComeFirstPlace>Through skill, nerves of steel and a good amount of luck, [PAWN_nameDef] won the tournament! Your reward for participating is:\n\n{0}</outComeFirstPlace>
@@ -46,7 +46,7 @@
       <li>Social</li>
       <li>Artistic</li>
     </learnedSkills>
-    <relevantStat>SocialImpact</relevantStat>
+    <relevantStat>NegotiationAbility</relevantStat>
     <workerClass>MoreFactionInteraction.EventRewardWorker_CulturalSwap</workerClass>
     <xPGainFirstLoser>0</xPGainFirstLoser>
     <outComeFirstPlace>As the last of daylight slowly dimmed away, [PAWN_nameDef] simply sat down on a granite stool and told of [PAWN_possessive] upbringing as a [PAWN_title]. This simple story and more importantly the atmosphere [PAWN_pronoun] created was lauded by judges for its intimacy, originality and bravery. Your reward for participating is:\n\n{0}</outComeFirstPlace>
@@ -81,7 +81,7 @@
     <learnedSkills>
       <li>Artistic</li>
     </learnedSkills>
-    <relevantStat>TradePriceImprovement</relevantStat>
+    <relevantStat>SocialImpact</relevantStat>
     <workerClass>MoreFactionInteraction.EventRewardWorker_AcousticShow</workerClass>
     <outComeFirstPlace>Your caravan spent the day gallivanting through the stalls and admiring the wide array of eclectic non-electric musical instruments from all over this world and beyond. As dusk fell and people gathered their instruments an intimate concert was held on the main-stage. It lifted the spirits of your caravan members. Your reward for coming is:\n\n{0}</outComeFirstPlace>
     <outcomeFirstLoser>The expo turned out to be a very cosy get-together, spent jamming on guitars. Someone played Wonderwall but other than that it was a pretty chill evening that put everybody in a good mood. Your reward for coming is:\n\n{0}</outcomeFirstLoser>

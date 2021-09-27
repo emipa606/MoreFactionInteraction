@@ -66,7 +66,7 @@ namespace MoreFactionInteraction
 
             harmony.Patch(
                 AccessTools.Method(typeof(ThingSetMaker), nameof(ThingSetMaker.Generate),
-                    new[] {typeof(ThingSetMakerParams)}),
+                    new[] { typeof(ThingSetMakerParams) }),
                 postfix: new HarmonyMethod(typeof(HarmonyPatches), nameof(TraderStocker_OverStockerPostFix)));
 
             harmony.Patch(AccessTools.Method(typeof(Tradeable), "InitPriceDataIfNeeded"),
@@ -95,7 +95,7 @@ namespace MoreFactionInteraction
 
             try
             {
-                ((Action) (() =>
+                ((Action)(() =>
                 {
                     static float func(Faction faction, Vector2 pos, float width)
                     {
@@ -211,7 +211,7 @@ namespace MoreFactionInteraction
                 }
 
                 silverCount *= WealthSilverIncreaseDeterminationCurve.Evaluate(map.PlayerWealthForStoryteller);
-                __result.First(x => x.def == ThingDefOf.Silver).stackCount = (int) silverCount;
+                __result.First(x => x.def == ThingDefOf.Silver).stackCount = (int)silverCount;
                 return;
             }
 
@@ -229,9 +229,9 @@ namespace MoreFactionInteraction
                 }
 
                 __result.First(x => x.def == ThingDefOf.Silver).stackCount +=
-                    (int) (parms.makingFaction.GoodwillWith(Faction.OfPlayer) *
-                           (map.GetComponent<MapComponent_GoodWillTrader>().TimesTraded[parms.makingFaction] *
-                            MoreFactionInteraction_Settings.traderWealthOffsetFromTimesTraded));
+                    (int)(parms.makingFaction.GoodwillWith(Faction.OfPlayer) *
+                          (map.GetComponent<MapComponent_GoodWillTrader>().TimesTraded[parms.makingFaction] *
+                           MoreFactionInteraction_Settings.traderWealthOffsetFromTimesTraded));
             }
         }
 
@@ -267,7 +267,7 @@ namespace MoreFactionInteraction
                 var num = Rand.Gaussian(WealthQualityDeterminationCurve.Evaluate(map.wealthWatcher.WealthTotal),
                     WealthQualitySpreadDeterminationCurve.Evaluate(map.wealthWatcher.WealthTotal));
                 num = Mathf.Clamp(num, 0f, QualityUtility.AllQualityCategories.Count - 0.5f);
-                return (QualityCategory) num;
+                return (QualityCategory)num;
             }
 
             if (map == null || faction == null)
@@ -277,9 +277,9 @@ namespace MoreFactionInteraction
 
             {
                 var qualityIncreaseFromTimesTradedWithFaction =
-                    Mathf.Clamp01((float) map.GetComponent<MapComponent_GoodWillTrader>().TimesTraded[faction] / 100);
+                    Mathf.Clamp01((float)map.GetComponent<MapComponent_GoodWillTrader>().TimesTraded[faction] / 100);
                 var qualityIncreaseFactorFromPlayerGoodWill =
-                    Mathf.Clamp01((float) faction.GoodwillWith(Faction.OfPlayer) / 100);
+                    Mathf.Clamp01((float)faction.GoodwillWith(Faction.OfPlayer) / 100);
 
                 if (Rand.Value < 0.25f)
                 {
@@ -289,7 +289,7 @@ namespace MoreFactionInteraction
                 var num = Rand.Gaussian(2.5f + qualityIncreaseFactorFromPlayerGoodWill,
                     0.84f + qualityIncreaseFromTimesTradedWithFaction);
                 num = Mathf.Clamp(num, 0f, QualityUtility.AllQualityCategories.Count - 0.5f);
-                return (QualityCategory) num;
+                return (QualityCategory)num;
             }
         }
 

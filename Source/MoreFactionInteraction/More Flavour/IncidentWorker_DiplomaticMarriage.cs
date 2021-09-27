@@ -52,7 +52,7 @@ namespace MoreFactionInteraction
             PawnRelationUtility.TryAppendRelationsWithColonistsInfo(ref text, marriageSeeker);
 
             var choiceLetterDiplomaticMarriage =
-                (ChoiceLetter_DiplomaticMarriage) LetterMaker.MakeLetter(def.letterLabel, text, def.letterDef);
+                (ChoiceLetter_DiplomaticMarriage)LetterMaker.MakeLetter(def.letterLabel, text, def.letterDef);
             choiceLetterDiplomaticMarriage.title =
                 "MFI_DiplomaticMarriageLabel".Translate(betrothed.LabelShort).CapitalizeFirst();
             choiceLetterDiplomaticMarriage.radioMode = false;

@@ -34,7 +34,7 @@ namespace MoreFactionInteraction
             var thingCategoryDef = DetermineThingCategoryDef();
 
             var letterToSend = DetermineLetterToSend(thingCategoryDef);
-            var feeRequest = Math.Max(Rand.Range(150, 300), (int) parms.points);
+            var feeRequest = Math.Max(Rand.Range(150, 300), (int)parms.points);
             var categorylabel = thingCategoryDef == ThingCategoryDefOf.PlantFoodRaw
                 ? thingCategoryDef.label + " items"
                 : thingCategoryDef.label;
@@ -90,7 +90,7 @@ namespace MoreFactionInteraction
                 resolveTree = true
             };
 
-            diaNode.options = new List<DiaOption> {accept, reject};
+            diaNode.options = new List<DiaOption> { accept, reject };
 
             Find.WindowStack.Add(new Dialog_NodeTreeWithFactionInfo(diaNode, settlement.Faction,
                 title: "MFI_ReverseTradeRequestTitle".Translate(map.info.parent.Label).CapitalizeFirst()));
@@ -142,17 +142,14 @@ namespace MoreFactionInteraction
 
         private static Settlement RandomNearbyTradeableSettlement(int originTile)
         {
-            return Find.WorldObjects.Settlements.Where(settlement => settlement != null
-                                                                     && settlement.Visitable &&
-                                                                     settlement.Faction?.leader != null
-                                                                     && settlement.GetComponent<TradeRequestComp>() !=
-                                                                     null
-                                                                     && !settlement.GetComponent<TradeRequestComp>()
-                                                                         .ActiveRequest
-                                                                     && Find.WorldGrid.ApproxDistanceInTiles(originTile,
-                                                                         settlement.Tile) < 36f
-                                                                     && Find.WorldReachability.CanReach(originTile,
-                                                                         settlement.Tile)
+            return Find.WorldObjects.Settlements.Where(settlement => settlement is
+                {
+                    Visitable: true, Faction: { leader: { } }
+                } && settlement.GetComponent<TradeRequestComp>() !=
+                null && !settlement.GetComponent<TradeRequestComp>()
+                    .ActiveRequest && Find.WorldGrid.ApproxDistanceInTiles(originTile,
+                    settlement.Tile) < 36f && Find.WorldReachability.CanReach(originTile,
+                    settlement.Tile)
             ).RandomElementWithFallback();
         }
 

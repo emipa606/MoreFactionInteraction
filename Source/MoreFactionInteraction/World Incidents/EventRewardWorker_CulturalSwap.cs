@@ -52,7 +52,7 @@ namespace MoreFactionInteraction
                 {
                     broughtSculpture.Destroy();
                     var silver = ThingMaker.MakeThing(ThingDefOf.Silver);
-                    silver.stackCount = (int) (marketValue * OVERPAYINGBY);
+                    silver.stackCount = (int)(marketValue * OVERPAYINGBY);
                     CaravanInventoryUtility.GiveThing(caravan, silver);
                 }
             };

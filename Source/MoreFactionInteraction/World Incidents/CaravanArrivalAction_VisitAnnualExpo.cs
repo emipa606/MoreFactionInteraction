@@ -32,7 +32,7 @@ namespace MoreFactionInteraction.More_Flavour
 
         private static FloatMenuAcceptanceReport CanVisit(AnnualExpo annualExpo)
         {
-            return annualExpo != null && annualExpo.Spawned;
+            return annualExpo is { Spawned: true };
         }
 
         public override void Arrived(Caravan caravan)

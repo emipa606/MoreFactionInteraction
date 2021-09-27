@@ -18,7 +18,7 @@ namespace MoreFactionInteraction
         {
             get
             {
-                var modifier = (float) NearbyHostileEncampments().Count() / 10;
+                var modifier = (float)NearbyHostileEncampments().Count() / 10;
                 return (def.baseChance * 1) + modifier;
             }
         }
@@ -56,7 +56,7 @@ namespace MoreFactionInteraction
 
         protected override bool CanFireNowSub(IncidentParms parms)
         {
-            var map = (Map) parms.target;
+            var map = (Map)parms.target;
             return base.CanFireNowSub(parms) && CommsConsoleUtility.PlayerHasPoweredCommsConsole(map)
                                              && RandomNearbyHostileWorldObject(parms.target.Tile, out worldObject,
                                                  out faction);
@@ -64,21 +64,21 @@ namespace MoreFactionInteraction
 
         protected override bool TryExecuteWorker(IncidentParms parms)
         {
-            var map = (Map) parms.target;
+            var map = (Map)parms.target;
 
             if (!RandomNearbyHostileWorldObject(map.Tile, out worldObject, out faction))
             {
                 return false;
             }
 
-            var extorsionDemand = Math.Max(Rand.Range(150, 300), (int) parms.points) *
+            var extorsionDemand = Math.Max(Rand.Range(150, 300), (int)parms.points) *
                                   NearbyHostileEncampments(map.Tile).Count();
 
             var representative = faction.leader ?? (worldObject is Settlement baese
                 ? baese.previouslyGeneratedInhabitants.FirstOrDefault()
                 : null);
 
-            var choiceLetterExtortionDemand = (ChoiceLetter_ExtortionDemand) LetterMaker.MakeLetter(def.letterLabel,
+            var choiceLetterExtortionDemand = (ChoiceLetter_ExtortionDemand)LetterMaker.MakeLetter(def.letterLabel,
                 "MFI_ExtortionDemand".Translate(
                     representative?.LabelShort ?? "MFI_Representative".Translate(),
                     faction.def.leaderTitle,

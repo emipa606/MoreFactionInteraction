@@ -31,7 +31,7 @@ namespace MoreFactionInteraction
                         action = () =>
                         {
                             var mysticalShaman =
-                                (MysticalShaman) WorldObjectMaker.MakeWorldObject(MFI_DefOf.MFI_MysticalShaman);
+                                (MysticalShaman)WorldObjectMaker.MakeWorldObject(MFI_DefOf.MFI_MysticalShaman);
                             mysticalShaman.Tile = tile;
                             mysticalShaman.SetFaction(faction);
                             var randomInRange = TimeoutDaysRange.RandomInRange;

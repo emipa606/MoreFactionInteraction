@@ -8,7 +8,7 @@ namespace MoreFactionInteraction.More_Flavour
     {
         public override void Apply()
         {
-            var giveHediff = (IngestionOutcomeDoer_GiveHediff) ThingDef.Named("PsychiteTea").ingestible.outcomeDoers
+            var giveHediff = (IngestionOutcomeDoer_GiveHediff)ThingDef.Named("PsychiteTea").ingestible.outcomeDoers
                 .FirstOrDefault(x => x is IngestionOutcomeDoer_GiveHediff);
             if (giveHediff != null)
             {

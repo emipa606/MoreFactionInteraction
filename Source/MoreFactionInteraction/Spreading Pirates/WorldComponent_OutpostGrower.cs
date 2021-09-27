@@ -70,7 +70,7 @@ namespace MoreFactionInteraction
                 }
 
                 if (!(Find.TickManager.TicksGame > wObject.creationGameTicks +
-                    (GenDate.TicksPerYear * (1 + Mathf.Clamp01(wObject.ID / 10)))))
+                    (GenDate.TicksPerYear * (1 + Mathf.Clamp01((float)wObject.ID / 10)))))
                 {
                     continue;
                 }
@@ -80,7 +80,7 @@ namespace MoreFactionInteraction
                     continue;
                 }
 
-                var settlement = (Settlement) WorldObjectMaker.MakeWorldObject(WorldObjectDefOf.Settlement);
+                var settlement = (Settlement)WorldObjectMaker.MakeWorldObject(WorldObjectDefOf.Settlement);
                 settlement.SetFaction(Find.FactionManager.AllFactionsVisible
                     .Where(x => x.def.settlementGenerationWeight > 0f).RandomElement());
                 settlement.Tile = wObject.Tile;
@@ -95,7 +95,7 @@ namespace MoreFactionInteraction
 
         private static void UpgradeSiteToSettlement(Site toUpgrade)
         {
-            var factionBase = (Settlement) WorldObjectMaker.MakeWorldObject(WorldObjectDefOf.Settlement);
+            var factionBase = (Settlement)WorldObjectMaker.MakeWorldObject(WorldObjectDefOf.Settlement);
             factionBase.SetFaction(toUpgrade.Faction);
             factionBase.Tile = toUpgrade.Tile;
             factionBase.Name = SettlementNameGenerator.GenerateSettlementName(factionBase);
@@ -124,7 +124,7 @@ namespace MoreFactionInteraction
                     continue;
                 }
 
-                if (letter is ChoiceLetter_ExtortionDemand {completed: false})
+                if (letter is ChoiceLetter_ExtortionDemand { completed: false })
                 {
                     Find.LetterStack.ReceiveLetter(letter);
                     letter.OpenLetter();

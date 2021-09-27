@@ -40,9 +40,9 @@ namespace MoreFactionInteraction
                         action = () =>
                         {
                             goodWillGainedFromMarriage =
-                                (int) MFI_DiplomacyTunings.PawnValueInGoodWillAmountOut.Evaluate(betrothed.MarketValue);
+                                (int)MFI_DiplomacyTunings.PawnValueInGoodWillAmountOut.Evaluate(betrothed.MarketValue);
                             marriageSeeker.Faction.SetRelationDirect(Faction.OfPlayer,
-                                (FactionRelationKind) Math.Min((int) marriageSeeker.Faction.PlayerRelationKind + 1, 2),
+                                (FactionRelationKind)Math.Min((int)marriageSeeker.Faction.PlayerRelationKind + 1, 2),
                                 true, "LetterLabelAcceptedProposal".Translate());
                             marriageSeeker.Faction.TryAffectGoodwillWith(Faction.OfPlayer, goodWillGainedFromMarriage,
                                 false);

@@ -72,9 +72,9 @@ namespace MoreFactionInteraction
                     cost2 += Caravan_PathFollower.CostToMove(CaravanTicksPerMoveUtility.DefaultTicksPerMove,
                         path.NodesReversed[i], path.NodesReversed[i + 1]);
 
-                    timeToBuild += (int) (2 * GenDate.TicksPerDay
-                                            * WorldPathGrid.CalculatedMovementDifficultyAt(path.NodesReversed[i], true)
-                                            * Find.WorldGrid.GetRoadMovementDifficultyMultiplier(i, i + 1));
+                    timeToBuild += (int)(2 * GenDate.TicksPerDay
+                                           * WorldPathGrid.CalculatedMovementDifficultyAt(path.NodesReversed[i], true)
+                                           * Find.WorldGrid.GetRoadMovementDifficultyMultiplier(i, i + 1));
 
                     if (!Find.WorldGrid[path.NodesReversed[i]].Roads.NullOrEmpty()
                         && Find.WorldGrid[path.NodesReversed[i]].Roads
@@ -84,7 +84,7 @@ namespace MoreFactionInteraction
                     }
 
                     var roadConstruction =
-                        (WorldObject_RoadConstruction) WorldObjectMaker.MakeWorldObject(MFI_DefOf
+                        (WorldObject_RoadConstruction)WorldObjectMaker.MakeWorldObject(MFI_DefOf
                             .MFI_RoadUnderConstruction);
                     roadConstruction.Tile = path.NodesReversed[i];
                     roadConstruction.nextTile = path.NodesReversed[i + 1];

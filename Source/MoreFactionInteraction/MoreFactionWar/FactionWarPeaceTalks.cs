@@ -78,10 +78,10 @@ namespace MoreFactionInteraction
             return MaterialPool.MatFrom(materialRequest);
         }
 
-        public void SetWarringFactions(Faction factionOne, Faction factionInstigator)
+        public void SetWarringFactions(Faction one, Faction instigator)
         {
-            this.factionOne = factionOne;
-            this.factionInstigator = factionInstigator;
+            factionOne = one;
+            factionInstigator = instigator;
         }
 
         public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Caravan caravan)

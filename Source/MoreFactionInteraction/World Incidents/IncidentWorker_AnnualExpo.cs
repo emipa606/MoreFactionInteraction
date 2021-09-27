@@ -62,7 +62,7 @@ namespace MoreFactionInteraction.More_Flavour
                 return false;
             }
 
-            var annualExpo = (AnnualExpo) WorldObjectMaker.MakeWorldObject(MFI_DefOf.MFI_AnnualExpoObject);
+            var annualExpo = (AnnualExpo)WorldObjectMaker.MakeWorldObject(MFI_DefOf.MFI_AnnualExpoObject);
             annualExpo.Tile = tile;
             annualExpo.GetComponent<TimeoutComp>().StartTimeout(TimeoutDaysRange.RandomInRange * GenDate.TicksPerDay);
             worldComp.events.InRandomOrder().TryMinBy(kvp => kvp.Value, out var result);

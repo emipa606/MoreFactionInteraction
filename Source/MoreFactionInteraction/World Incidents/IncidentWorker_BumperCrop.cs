@@ -11,13 +11,13 @@ namespace MoreFactionInteraction.World_Incidents
         private static readonly IntRange OfferDurationRange = new IntRange(10, 30);
 
         public override float BaseChanceThisGame => base.BaseChanceThisGame
-                                                    + (float) (Find.FactionManager.AllFactionsVisible
-                                                                   .Where(faction =>
-                                                                       !faction.defeated && !faction.IsPlayer &&
-                                                                       !faction.HostileTo(Faction.OfPlayer))
-                                                                   .Average(faction =>
-                                                                       faction.GoodwillWith(Faction.OfPlayer)) /
-                                                               100);
+                                                    + (float)(Find.FactionManager.AllFactionsVisible
+                                                                  .Where(faction =>
+                                                                      !faction.defeated && !faction.IsPlayer &&
+                                                                      !faction.HostileTo(Faction.OfPlayer))
+                                                                  .Average(faction =>
+                                                                      faction.GoodwillWith(Faction.OfPlayer)) /
+                                                              100);
 
         protected override bool CanFireNowSub(IncidentParms parms)
         {
@@ -72,15 +72,14 @@ namespace MoreFactionInteraction.World_Incidents
         private static Settlement RandomNearbyGrowerSettlement(int originTile)
         {
             return Find.WorldObjects.Settlements
-                .Where(settlement => settlement != null
-                                     && settlement.Visitable
-                                     && settlement.GetComponent<TradeRequestComp>() != null
-                                     && !settlement.GetComponent<TradeRequestComp>().ActiveRequest
-                                     && settlement.GetComponent<WorldObjectComp_SettlementBumperCropComp>() != null
-                                     && !settlement.GetComponent<WorldObjectComp_SettlementBumperCropComp>()
-                                         .ActiveRequest
-                                     && Find.WorldGrid.ApproxDistanceInTiles(originTile, settlement.Tile) < 36f
-                                     && Find.WorldReachability.CanReach(originTile, settlement.Tile))
+                .Where(settlement => settlement is { Visitable: true } &&
+                                     settlement.GetComponent<TradeRequestComp>() != null &&
+                                     !settlement.GetComponent<TradeRequestComp>().ActiveRequest &&
+                                     settlement.GetComponent<WorldObjectComp_SettlementBumperCropComp>() != null &&
+                                     !settlement.GetComponent<WorldObjectComp_SettlementBumperCropComp>()
+                                         .ActiveRequest &&
+                                     Find.WorldGrid.ApproxDistanceInTiles(originTile, settlement.Tile) < 36f &&
+                                     Find.WorldReachability.CanReach(originTile, settlement.Tile))
                 .RandomElementWithFallback();
         }
 
@@ -88,7 +87,7 @@ namespace MoreFactionInteraction.World_Incidents
         {
             var offerValidForDays = OfferDurationRange.RandomInRange;
             var travelTimeByCaravan = CaravanArrivalTimeEstimator.EstimatedTicksToArrive(tileIdFrom, tileIdTo, null);
-            var daysWorthOfTravel = (float) travelTimeByCaravan / GenDate.TicksPerDay;
+            var daysWorthOfTravel = (float)travelTimeByCaravan / GenDate.TicksPerDay;
             var b = Mathf.CeilToInt(Mathf.Max(daysWorthOfTravel + 1f, daysWorthOfTravel * 1.1f));
             offerValidForDays = Mathf.Max(offerValidForDays, b);
             if (offerValidForDays > OfferDurationRange.max)

@@ -27,7 +27,7 @@ namespace MoreFactionInteraction
             options.GapLine();
             options.SliderLabeled("MFI_timeModifierBetweenFactionInteraction".Translate(),
                 ref timeModifierBetweenFactionInteraction,
-                timeModifierBetweenFactionInteraction.ToStringByStyle(ToStringStyle.FloatOne), 0.5f, 10f,
+                timeModifierBetweenFactionInteraction.ToStringByStyle(ToStringStyle.FloatOne), 0.5f, 20f,
                 "MFI_timeModifierBetweenFactionInteractionDesc".Translate());
             options.Gap();
             options.SliderLabeled("MFI_traderWealthOffsetFromTimesTraded".Translate(),

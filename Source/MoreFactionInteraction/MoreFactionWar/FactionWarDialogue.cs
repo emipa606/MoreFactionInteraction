@@ -227,9 +227,7 @@ namespace MoreFactionInteraction.MoreFactionWar
 
         private void SwapFavouredFaction()
         {
-            var temp = _favouredFaction;
-            _favouredFaction = _burdenedFaction;
-            _burdenedFaction = temp;
+            (_favouredFaction, _burdenedFaction) = (_burdenedFaction, _favouredFaction);
         }
 
         private static DiaNode DialogueResolver(string textResult)
@@ -273,8 +271,7 @@ namespace MoreFactionInteraction.MoreFactionWar
                 defaultPawnGroupMakerParms.generateFightersOnly = true;
                 var list = PawnGroupMakerUtility.GeneratePawns(defaultPawnGroupMakerParms).ToList();
 
-                var burdenedFactionIncidentParms = incidentParms;
-                burdenedFactionIncidentParms.faction = burdenedFaction;
+                incidentParms.faction = burdenedFaction;
                 var burdenedFactionPawnGroupMakerParms =
                     IncidentParmsUtility.GetDefaultPawnGroupMakerParms(PawnGroupKindDefOf.Combat, incidentParms, true);
                 burdenedFactionPawnGroupMakerParms.generateFightersOnly = true;
@@ -294,7 +291,7 @@ namespace MoreFactionInteraction.MoreFactionWar
 
                 if (burdenedFactionWarriors.Any())
                 {
-                    LordMaker.MakeNewLord(burdenedFactionIncidentParms.faction,
+                    LordMaker.MakeNewLord(incidentParms.faction,
                         new LordJob_AssaultColony(burdenedFaction), map, burdenedFactionWarriors);
                 }
 

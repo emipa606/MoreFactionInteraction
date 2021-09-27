@@ -10,7 +10,7 @@ namespace MoreFactionInteraction.More_Flavour
         {
             ThoughtDef.Named("PsychicEmanatorSoothe").stages.First().baseMoodEffect = 6f;
             ThingDefOf.PsychicEmanator.specialDisplayRadius = 20f;
-            var power = (CompProperties_Power) ThingDefOf.PsychicEmanator.comps.FirstOrDefault(x =>
+            var power = (CompProperties_Power)ThingDefOf.PsychicEmanator.comps.FirstOrDefault(x =>
                 x is CompProperties_Power);
 
             if (power != null)

@@ -22,7 +22,7 @@ namespace MoreFactionInteraction
             return base.CanFireNowSub(parms) && TryFindFaction(out faction)
                                              && TileFinder.TryFindNewSiteTile(out _, minDist, maxDist)
                                              && TryGetRandomAvailableTargetMap(out _)
-                                             && Find.World.worldObjects.Sites.Count() <= maxSites;
+                                             && Find.World.worldObjects.Sites.Count <= maxSites;
         }
 
         protected override bool TryExecuteWorker(IncidentParms parms)

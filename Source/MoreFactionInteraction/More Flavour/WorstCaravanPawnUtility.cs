@@ -290,7 +290,7 @@ namespace MoreFactionInteraction.More_Flavour
             var hediffs = pawn.health.hediffSet.hediffs;
             foreach (var current in hediffs)
             {
-                if (current is Hediff_Addiction {Visible: true} hediffAddiction &&
+                if (current is Hediff_Addiction { Visible: true } hediffAddiction &&
                     hediffAddiction.def.everCurableByItem)
                 {
                     return hediffAddiction;
@@ -306,7 +306,8 @@ namespace MoreFactionInteraction.More_Flavour
             var hediffs = pawn.health.hediffSet.hediffs;
             foreach (var currentHediff in hediffs)
             {
-                if (currentHediff is not Hediff_Injury {Visible: true} hediffInjury2 || !hediffInjury2.IsPermanent() ||
+                if (currentHediff is not Hediff_Injury { Visible: true } hediffInjury2 ||
+                    !hediffInjury2.IsPermanent() ||
                     !hediffInjury2.def.everCurableByItem)
                 {
                     continue;
@@ -332,7 +333,7 @@ namespace MoreFactionInteraction.More_Flavour
             var hediffs = pawn.health.hediffSet.hediffs;
             foreach (var hediff in hediffs)
             {
-                if (hediff is not Hediff_Injury {Visible: true} hediffInjury2 || !hediffInjury2.def.everCurableByItem)
+                if (hediff is not Hediff_Injury { Visible: true } hediffInjury2 || !hediffInjury2.def.everCurableByItem)
                 {
                     continue;
                 }

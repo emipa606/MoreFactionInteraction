@@ -14,7 +14,7 @@ namespace MoreFactionInteraction
         {
             float fVal = val;
             ls.SliderLabeled(label, ref fVal, format, min, max);
-            val = (int) fVal;
+            val = (int)fVal;
         }
 
         public static void SliderLabeled(this Listing_Standard ls, string label, ref float val, string format,

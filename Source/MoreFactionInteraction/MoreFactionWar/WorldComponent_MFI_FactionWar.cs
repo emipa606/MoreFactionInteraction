@@ -60,22 +60,22 @@ namespace MoreFactionInteraction
         /// <summary>
         ///     Starts the war and sets up stuff.
         /// </summary>
-        /// <param name="factionOne"></param>
+        /// <param name="one"></param>
         /// <param name="factionInstigator"></param>
         /// <param name="selfResolved">
         ///     Used in cases where we don't want to send standard letter. (i.e.
         ///     DetermineWarAsIfNoPlayerInteraction)
         /// </param>
-        public void StartWar(Faction factionOne, Faction factionInstigator, bool selfResolved)
+        public void StartWar(Faction one, Faction factionInstigator, bool selfResolved)
         {
             warIsOngoing = true;
             unrestIsBrewing = false;
-            SetFirstWarringFaction(factionOne);
+            SetFirstWarringFaction(one);
             SetSecondWarringFaction(factionInstigator);
             factionOneBattlesWon = 1;
             factionTwoBattlesWon = 1;
-            factionOne.SetRelationDirect(factionInstigator, FactionRelationKind.Hostile, false);
-            factionInstigator.SetRelationDirect(factionOne, FactionRelationKind.Hostile, false);
+            one.SetRelationDirect(factionInstigator, FactionRelationKind.Hostile, false);
+            factionInstigator.SetRelationDirect(one, FactionRelationKind.Hostile, false);
 
             if (selfResolved)
             {
@@ -83,20 +83,20 @@ namespace MoreFactionInteraction
             }
 
             var peacetalks =
-                (WorldObject) (Find.WorldObjects.AllWorldObjects.FirstOrDefault(x =>
-                                   x.def == MFI_DefOf.MFI_FactionWarPeaceTalks)
-                               ?? GlobalTargetInfo.Invalid);
+                (WorldObject)(Find.WorldObjects.AllWorldObjects.FirstOrDefault(x =>
+                                  x.def == MFI_DefOf.MFI_FactionWarPeaceTalks)
+                              ?? GlobalTargetInfo.Invalid);
 
             Find.LetterStack.ReceiveLetter("MFI_FactionWarStarted".Translate(),
-                "MFI_FactionWarExplanation".Translate(factionOne.Name, factionInstigator.Name),
+                "MFI_FactionWarExplanation".Translate(one.Name, factionInstigator.Name),
                 LetterDefOf.NegativeEvent, new GlobalTargetInfo(peacetalks));
         }
 
-        public void StartUnrest(Faction factionOne, Faction factionTwo)
+        public void StartUnrest(Faction one, Faction two)
         {
             unrestIsBrewing = true;
-            SetFirstWarringFaction(factionOne);
-            SetSecondWarringFaction(factionTwo);
+            SetFirstWarringFaction(one);
+            SetSecondWarringFaction(two);
         }
 
         private void ResolveWar()
@@ -120,12 +120,12 @@ namespace MoreFactionInteraction
         {
             if (faction == factionOne)
             {
-                return (float) factionOneBattlesWon / (factionOneBattlesWon + factionTwoBattlesWon);
+                return (float)factionOneBattlesWon / (factionOneBattlesWon + factionTwoBattlesWon);
             }
 
             if (faction == factionTwo)
             {
-                return (float) factionTwoBattlesWon / (factionOneBattlesWon + factionTwoBattlesWon);
+                return (float)factionTwoBattlesWon / (factionOneBattlesWon + factionTwoBattlesWon);
             }
 
             return 0f;

@@ -38,7 +38,7 @@ namespace MoreFactionInteraction.MoreFactionWar
             }
 
             var factionWarPeaceTalks =
-                (FactionWarPeaceTalks) WorldObjectMaker.MakeWorldObject(MFI_DefOf.MFI_FactionWarPeaceTalks);
+                (FactionWarPeaceTalks)WorldObjectMaker.MakeWorldObject(MFI_DefOf.MFI_FactionWarPeaceTalks);
             factionWarPeaceTalks.Tile = tile;
             factionWarPeaceTalks.SetFaction(faction);
             factionWarPeaceTalks.SetWarringFactions(faction, instigatingFaction);

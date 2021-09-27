@@ -15,11 +15,11 @@ namespace MoreFactionInteraction.More_Flavour
 
         public Dictionary<EventDef, int> events = new Dictionary<EventDef, int>
         {
-            {MFI_DefOf.MFI_GameOfUrComp, 0},
-            {MFI_DefOf.MFI_ShootingComp, 0},
-            {MFI_DefOf.MFI_CulturalSwap, 0},
-            {MFI_DefOf.MFI_ScienceFaire, 0},
-            {MFI_DefOf.MFI_AcousticShow, 0}
+            { MFI_DefOf.MFI_GameOfUrComp, 0 },
+            { MFI_DefOf.MFI_ShootingComp, 0 },
+            { MFI_DefOf.MFI_CulturalSwap, 0 },
+            { MFI_DefOf.MFI_ScienceFaire, 0 },
+            { MFI_DefOf.MFI_AcousticShow, 0 }
         };
 
         private float occuringTick;
@@ -32,9 +32,9 @@ namespace MoreFactionInteraction.More_Flavour
         private List<Buff> ActiveBuffsList => activeBuffList;
 
         public int TimesHeld => timesHeld + Rand.RangeInclusiveSeeded(
-            (int) PawnKindDefOf.Muffalo.race.race.lifeExpectancy,
-            (int) PawnKindDefOf.Thrumbo.race.race.lifeExpectancy,
-            (int) (Rand.ValueSeeded(Find.World.ConstantRandSeed) * 1000));
+            (int)PawnKindDefOf.Muffalo.race.race.lifeExpectancy,
+            (int)PawnKindDefOf.Thrumbo.race.race.lifeExpectancy,
+            (int)(Rand.ValueSeeded(Find.World.ConstantRandSeed) * 1000));
 
         public bool BuffedEmanator => ActiveBuffsList.Find(x => x is Buff_Emanator)?.Active ?? false; //used by patches.
 

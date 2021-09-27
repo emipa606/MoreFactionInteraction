@@ -14,14 +14,14 @@ namespace MoreFactionInteraction.MoreFactionWar
         {
             return base.CanFireNowSub(parms) && Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarIsOngoing
                                              && FindAlliedWarringFaction(out var _)
-                                             && CommsConsoleUtility.PlayerHasPoweredCommsConsole((Map) parms.target)
+                                             && CommsConsoleUtility.PlayerHasPoweredCommsConsole((Map)parms.target)
                                              && DropCellFinder.TryFindRaidDropCenterClose(out var _,
-                                                 (Map) parms.target);
+                                                 (Map)parms.target);
         }
 
         protected override bool TryExecuteWorker(IncidentParms parms)
         {
-            if (!DropCellFinder.TryFindRaidDropCenterClose(out var dropSpot, (Map) parms.target))
+            if (!DropCellFinder.TryFindRaidDropCenterClose(out var dropSpot, (Map)parms.target))
             {
                 return false;
             }
@@ -42,7 +42,7 @@ namespace MoreFactionInteraction.MoreFactionWar
                 .GoodWill_FactionWarPeaceTalks_ImpactSmall.RandomInRange / 2;
 
             var raidParms =
-                StorytellerUtility.DefaultParmsNow(IncidentCategoryDefOf.ThreatBig, (Map) parms.target);
+                StorytellerUtility.DefaultParmsNow(IncidentCategoryDefOf.ThreatBig, (Map)parms.target);
             raidParms.forced = true;
             raidParms.faction = faction.EnemyInFactionWar();
             raidParms.raidStrategy = RaidStrategyDefOf.ImmediateAttack;
@@ -99,7 +99,7 @@ namespace MoreFactionInteraction.MoreFactionWar
             string initialMessage = "MFI_WoundedCombatant".Translate(faction.Name);
             var diaNode = new DiaNode(initialMessage);
 
-            var diaOptionOk = new DiaOption("OK".Translate()) {resolveTree = true};
+            var diaOptionOk = new DiaOption("OK".Translate()) { resolveTree = true };
 
             var diaOptionAccept = new DiaOption("RansomDemand_Accept".Translate())
             {
@@ -114,11 +114,11 @@ namespace MoreFactionInteraction.MoreFactionWar
                     {
                         var intVec = IntVec3.Invalid;
 
-                        var allBuildingsColonist = ((Map) parms.target).listerBuildings.allBuildingsColonist
+                        var allBuildingsColonist = ((Map)parms.target).listerBuildings.allBuildingsColonist
                             .Where(x => x.def.thingClass == typeof(Building_Bed)).ToList();
                         foreach (var building in allBuildingsColonist)
                         {
-                            if (DropCellFinder.TryFindDropSpotNear(building.Position, (Map) parms.target,
+                            if (DropCellFinder.TryFindDropSpotNear(building.Position, (Map)parms.target,
                                 out intVec, false, false))
                             {
                                 break;
@@ -127,10 +127,10 @@ namespace MoreFactionInteraction.MoreFactionWar
 
                         if (intVec == IntVec3.Invalid)
                         {
-                            intVec = DropCellFinder.RandomDropSpot((Map) parms.target);
+                            intVec = DropCellFinder.RandomDropSpot((Map)parms.target);
                         }
 
-                        DropPodUtility.DropThingsNear(intVec, (Map) parms.target, pawnlist, 180, leaveSlag: true,
+                        DropPodUtility.DropThingsNear(intVec, (Map)parms.target, pawnlist, 180, leaveSlag: true,
                             canRoofPunch: false);
                         Find.World.GetComponent<WorldComponent_MFI_FactionWar>().NotifyBattleWon(faction);
                     }
@@ -164,7 +164,7 @@ namespace MoreFactionInteraction.MoreFactionWar
             diaNode.options.Add(diaOptionRejection);
             rejectionDiaNode.options.Add(diaOptionOk);
 
-            string title = "MFI_WoundedCombatantTitle".Translate(((Map) parms.target).Parent.Label);
+            string title = "MFI_WoundedCombatantTitle".Translate(((Map)parms.target).Parent.Label);
             Find.WindowStack.Add(new Dialog_NodeTreeWithFactionInfo(diaNode, faction, true, true, title));
             Find.Archive.Add(new ArchivedDialog(diaNode.text, title, faction));
             return true;

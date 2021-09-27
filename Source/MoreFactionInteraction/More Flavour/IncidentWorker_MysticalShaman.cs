@@ -63,7 +63,7 @@ namespace MoreFactionInteraction
                 action = () =>
                 {
                     var mysticalShaman =
-                        (MysticalShaman) WorldObjectMaker.MakeWorldObject(MFI_DefOf.MFI_MysticalShaman);
+                        (MysticalShaman)WorldObjectMaker.MakeWorldObject(MFI_DefOf.MFI_MysticalShaman);
                     mysticalShaman.Tile = tile;
                     mysticalShaman.SetFaction(faction);
                     var randomInRange = TimeoutDaysRange.RandomInRange;
@@ -83,7 +83,7 @@ namespace MoreFactionInteraction
                 action = () => { },
                 resolveTree = true
             };
-            diaNode.options = new List<DiaOption> {accept, reject};
+            diaNode.options = new List<DiaOption> { accept, reject };
 
             Find.WindowStack.Add(new Dialog_NodeTree(diaNode, title: def.letterLabel));
             Find.Archive.Add(new ArchivedDialog(diaNode.text, def.letterLabel));

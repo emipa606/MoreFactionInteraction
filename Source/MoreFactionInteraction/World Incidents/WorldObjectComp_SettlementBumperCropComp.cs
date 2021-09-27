@@ -115,7 +115,7 @@ namespace MoreFactionInteraction.World_Incidents
             //v3 (2018/12/18): base of 50 * avg of plant harvest yield * (count*0.75) * avg grow skill = (50 * 0.99 * (2.25) * 14.5 = ~1615 or (50 * 0.99 * (4.5) * 20 = 4455
             var totalreward = basereward * totalYieldPowerForCaravan * (allMembersCapableOfGrowing.Count * 0.75f)
                               * Mathf.Max(1,
-                                  (float) allMembersCapableOfGrowing.Average(pawn =>
+                                  (float)allMembersCapableOfGrowing.Average(pawn =>
                                       pawn.skills.GetSkill(SkillDefOf.Plants).Level));
 
             var reward = ThingMaker.MakeThing(RandomRawFood());

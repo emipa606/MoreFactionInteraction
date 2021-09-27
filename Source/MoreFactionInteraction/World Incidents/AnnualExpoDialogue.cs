@@ -158,7 +158,7 @@ namespace MoreFactionInteraction.More_Flavour
             if (participant.skills.GetSkill(thisYearsRelevantSkill).TotallyDisabled)
             {
                 thisYearsRelevantSkill = participant.skills.skills.Where(x => !x.TotallyDisabled)
-                    .RandomElementByWeight(x => (int) x.passion).def;
+                    .RandomElementByWeight(x => (int)x.passion).def;
             }
 
             switch (DeterminePlacementFor(participant, activity, out _, out _, out _,
@@ -207,7 +207,7 @@ namespace MoreFactionInteraction.More_Flavour
             var leaders = Find.FactionManager.AllFactionsVisible
                 .Select(faction => faction.leader)
                 .Where(leader => leader != null && !eventDef.relevantStat.Worker.IsDisabledFor(leader))
-                .Concat(new[] {rep})
+                .Concat(new[] { rep })
                 .Concat(Find.WorldPawns.AllPawnsAlive
                     .Where(x => x.Faction == host && !eventDef.relevantStat.Worker.IsDisabledFor(x)).Take(25))
                 .Select(pawn => new
@@ -228,7 +228,7 @@ namespace MoreFactionInteraction.More_Flavour
             variance = (((max - min + 1) * (max - min + 1)) - 1.0) / 12;
             stdDev = Math.Sqrt(variance);
 
-            var averageSkillRange = new FloatRange((float) (mean - (stdDev * 0.3)), (float) (mean + (stdDev * 0.3)));
+            var averageSkillRange = new FloatRange((float)(mean - (stdDev * 0.3)), (float)(mean + (stdDev * 0.3)));
 
             if (leaders[0].pawn == rep)
             {

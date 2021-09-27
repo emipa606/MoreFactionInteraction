@@ -1,5 +1,8 @@
 # Changelog for MoreFactionInteraction
 
+1.0.12.0 - Hopefully made the mass-trader issue less frequent
+
+
 1.0.11.0 - Better skill-checks for the different contests, thanks Serilyn
 
 

@@ -40,7 +40,7 @@ namespace MoreFactionInteraction
             {
                 if (workerInt == null)
                 {
-                    workerInt = (EventRewardWorker) Activator.CreateInstance(workerClass);
+                    workerInt = (EventRewardWorker)Activator.CreateInstance(workerClass);
                 }
 
                 return workerInt;

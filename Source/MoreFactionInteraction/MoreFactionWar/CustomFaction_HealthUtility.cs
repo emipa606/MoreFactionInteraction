@@ -75,10 +75,9 @@ namespace MoreFactionInteraction.MoreFactionWar
                 }
 
                 var def = damageDef;
-                var amount = (float) num3;
+                var amount = (float)num3;
                 var armorPenetration = 999f;
-                var hitPart = bodyPartRecord;
-                var dinfo = new DamageInfo(def, amount, armorPenetration, -1f, null, hitPart, weapon);
+                var dinfo = new DamageInfo(def, amount, armorPenetration, -1f, null, bodyPartRecord, weapon);
                 dinfo.SetAllowDamagePropagation(false);
                 p.TakeDamage(dinfo);
             }

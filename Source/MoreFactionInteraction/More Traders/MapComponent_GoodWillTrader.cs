@@ -82,7 +82,8 @@ namespace MoreFactionInteraction
                         Rand.PushState(faction.loadID ^ faction.GetHashCode());
                         nextFactionInteraction.Add(faction,
                             Find.TickManager.TicksGame +
-                            Rand.RangeInclusive(GenDate.TicksPerDay * 2, GenDate.TicksPerDay * 8));
+                            (int)Math.Round(Rand.RangeInclusive(GenDate.TicksPerDay * 2, GenDate.TicksPerDay * 8) *
+                                            MoreFactionInteraction_Settings.timeModifierBetweenFactionInteraction));
                         Rand.PopState();
                     }
                 }
@@ -106,7 +107,8 @@ namespace MoreFactionInteraction
                                   !nextFactionInteraction.ContainsKey(faction) && !faction.temporary
                             select faction).First(),
                         Find.TickManager.TicksGame +
-                        Rand.RangeInclusive(GenDate.TicksPerDay * 2, GenDate.TicksPerDay * 8));
+                        (int)Math.Round(Rand.RangeInclusive(GenDate.TicksPerDay * 2, GenDate.TicksPerDay * 8) *
+                                        MoreFactionInteraction_Settings.timeModifierBetweenFactionInteraction));
                 }
 
                 return nextFactionInteraction;
@@ -163,9 +165,9 @@ namespace MoreFactionInteraction
 
                 NextFactionInteraction[faction] =
                     Find.TickManager.TicksGame
-                    + (int) (FactionInteractionTimeSeperator.TimeBetweenInteraction.Evaluate(
-                                 faction.PlayerGoodwill)
-                             * MoreFactionInteraction_Settings.timeModifierBetweenFactionInteraction);
+                    + (int)(FactionInteractionTimeSeperator.TimeBetweenInteraction.Evaluate(
+                                faction.PlayerGoodwill)
+                            * MoreFactionInteraction_Settings.timeModifierBetweenFactionInteraction);
 
                 //kids, you shouldn't change values you iterate over.
                 break;
@@ -185,7 +187,7 @@ namespace MoreFactionInteraction
                 .RandomElementByWeight(x => x.Worker.BaseChanceThisGame);
         }
 
-        private void CleanIncidentQueue(Map map, bool removeHostile = false)
+        private void CleanIncidentQueue(Map localMap, bool removeHostile = false)
         {
             if (queued == null)
             {
@@ -201,7 +203,7 @@ namespace MoreFactionInteraction
 
             //Theoretically there is no way this should happen. Reality has proven me wrong.
             queued.RemoveAll(qi => qi.FiringIncident.parms.target == null
-                                   || qi.FiringIncident.parms.target == map
+                                   || qi.FiringIncident.parms.target == localMap
                                    || qi.FiringIncident.def == null
                                    || qi.FireTick + GenDate.TicksPerDay < Find.TickManager.TicksGame);
         }

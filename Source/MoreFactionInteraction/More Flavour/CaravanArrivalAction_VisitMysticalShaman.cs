@@ -38,7 +38,7 @@ namespace MoreFactionInteraction.More_Flavour
 
         public static FloatMenuAcceptanceReport CanVisit(MysticalShaman mysticalShaman)
         {
-            return mysticalShaman != null && mysticalShaman.Spawned;
+            return mysticalShaman is { Spawned: true };
         }
 
         public override void ExposeData()

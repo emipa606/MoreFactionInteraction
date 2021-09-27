@@ -125,7 +125,7 @@ namespace MoreFactionInteraction
         {
             if (Rand.ChanceSeeded(0.5f, someRandomPreferablyNearbySettlement.ID))
             {
-                var factionBase = (Settlement) WorldObjectMaker.MakeWorldObject(WorldObjectDefOf.Settlement);
+                var factionBase = (Settlement)WorldObjectMaker.MakeWorldObject(WorldObjectDefOf.Settlement);
                 factionBase.SetFaction(someRandomPreferablyNearbySettlement.Faction.EnemyInFactionWar());
                 factionBase.Tile = someRandomPreferablyNearbySettlement.Tile;
                 factionBase.Name = SettlementNameGenerator.GenerateSettlementName(factionBase);
@@ -136,7 +136,7 @@ namespace MoreFactionInteraction
             }
 
             var destroyedSettlement =
-                (DestroyedSettlement) WorldObjectMaker.MakeWorldObject(WorldObjectDefOf.DestroyedSettlement);
+                (DestroyedSettlement)WorldObjectMaker.MakeWorldObject(WorldObjectDefOf.DestroyedSettlement);
             destroyedSettlement.Tile = someRandomPreferablyNearbySettlement.Tile;
             var loserFaction = someRandomPreferablyNearbySettlement.Faction;
             Find.WorldObjects.Add(destroyedSettlement);

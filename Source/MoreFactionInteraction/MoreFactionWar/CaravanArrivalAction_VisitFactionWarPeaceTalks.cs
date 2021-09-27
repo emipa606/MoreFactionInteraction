@@ -50,7 +50,7 @@ namespace MoreFactionInteraction.MoreFactionWar
 
         public static FloatMenuAcceptanceReport CanVisit(FactionWarPeaceTalks factionWarPeaceTalks)
         {
-            return factionWarPeaceTalks != null && factionWarPeaceTalks.Spawned;
+            return factionWarPeaceTalks is { Spawned: true };
         }
 
         public static IEnumerable<FloatMenuOption> GetFloatMenuOptions(Caravan caravan,

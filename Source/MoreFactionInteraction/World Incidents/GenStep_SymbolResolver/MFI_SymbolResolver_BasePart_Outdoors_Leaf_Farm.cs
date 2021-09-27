@@ -13,7 +13,7 @@ namespace MoreFactionInteraction.World_Incidents.GenStep_SymbolResolver
                                        && BaseGen.globalSettings.basePart_emptyNodesResolved >=
                                        BaseGen.globalSettings.minEmptyNodes
                                        && BaseGen.globalSettings.basePart_farmsCoverage +
-                                       (rp.rect.Area / (float) BaseGen.globalSettings.mainRect.Area) < MaxCoverage
+                                       (rp.rect.Area / (float)BaseGen.globalSettings.mainRect.Area) < MaxCoverage
                                        && rp.rect.Width <= 15 && rp.rect.Height <= 15
                                        && (rp.cultivatedPlantDef != null ||
                                            SymbolResolver_CultivatedPlants.DeterminePlantDef(rp.rect) != null);
@@ -23,7 +23,7 @@ namespace MoreFactionInteraction.World_Incidents.GenStep_SymbolResolver
         {
             BaseGen.symbolStack.PushMany(rp, "farm", "farm", "farm", "farm"); //I really like farms.
             BaseGen.globalSettings.basePart_farmsCoverage +=
-                rp.rect.Area / (float) BaseGen.globalSettings.mainRect.Area;
+                rp.rect.Area / (float)BaseGen.globalSettings.mainRect.Area;
         }
     }
 }

@@ -1,12 +1,12 @@
 ﻿using Verse;
 
-namespace MoreFactionInteraction
+namespace MoreFactionInteraction;
+
+internal class Dialog_MFIDebugActionMenu : Dialog_DebugActionsMenu
 {
-    internal class Dialog_MFIDebugActionMenu : Dialog_DebugActionsMenu
+    protected override void DoListingItems()
     {
-        protected override void DoListingItems()
-        {
-            base.DoListingItems();
+        base.DoListingItems();
 #if DEBUG
             if (!WorldRendererUtility.WorldRenderedNow)
             {
@@ -49,6 +49,5 @@ namespace MoreFactionInteraction
                 new AnnualExpoDialogue(null, null, null, Find.FactionManager.RandomAlliedFaction())
                     .DebugLogChances, false);
 #endif
-        }
     }
 }

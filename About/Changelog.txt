@@ -1,5 +1,8 @@
 # Changelog for MoreFactionInteraction
 
+1.0.13.0 - Should now support visitors from hidden factions, for example from [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2653963772]Treasure Hunter: The Forbidden Caravan[/url]
+
+
 1.0.12.0 - Hopefully made the mass-trader issue less frequent
 
 

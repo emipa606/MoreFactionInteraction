@@ -1,10 +1,9 @@
-﻿namespace MoreFactionInteraction.MoreFactionWar
+﻿namespace MoreFactionInteraction.MoreFactionWar;
+
+public struct Outcome
 {
-    public struct Outcome
-    {
-        public bool startWar;
-        public bool setHostile;
-        public int goodwillChangeFavouredFaction;
-        public int goodwillChangeBurdenedFaction;
-    }
+    public bool startWar;
+    public bool setHostile;
+    public int goodwillChangeFavouredFaction;
+    public int goodwillChangeBurdenedFaction;
 }

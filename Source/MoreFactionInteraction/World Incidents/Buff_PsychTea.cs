@@ -2,40 +2,39 @@
 using RimWorld;
 using Verse;
 
-namespace MoreFactionInteraction.More_Flavour
+namespace MoreFactionInteraction.More_Flavour;
+
+public class Buff_PsychTea : Buff
 {
-    public class Buff_PsychTea : Buff
+    public override void Apply()
     {
-        public override void Apply()
+        var giveHediff = (IngestionOutcomeDoer_GiveHediff)ThingDef.Named("PsychiteTea").ingestible.outcomeDoers
+            .FirstOrDefault(x => x is IngestionOutcomeDoer_GiveHediff);
+        if (giveHediff != null)
         {
-            var giveHediff = (IngestionOutcomeDoer_GiveHediff)ThingDef.Named("PsychiteTea").ingestible.outcomeDoers
-                .FirstOrDefault(x => x is IngestionOutcomeDoer_GiveHediff);
-            if (giveHediff != null)
-            {
-                giveHediff.severity = 1f;
-            }
-
-            Active = true;
+            giveHediff.severity = 1f;
         }
 
-        public override void ExposeData()
-        {
-            Scribe_Values.Look(ref Active, "MFI_Buff_PsychTea");
-        }
+        Active = true;
+    }
 
-        public static void Register()
-        {
-            Find.World.GetComponent<WorldComponent_MFI_AnnualExpo>().RegisterBuff(new Buff_PsychTea());
-        }
+    public override void ExposeData()
+    {
+        Scribe_Values.Look(ref Active, "MFI_Buff_PsychTea");
+    }
 
-        public override ThingDef RelevantThingDef()
-        {
-            return DefDatabase<ThingDef>.GetNamed("PsychiteTea");
-        }
+    public static void Register()
+    {
+        Find.World.GetComponent<WorldComponent_MFI_AnnualExpo>().RegisterBuff(new Buff_PsychTea());
+    }
 
-        public override string Description()
-        {
-            return "MFI_buffPsychite".Translate(ThingDef.Named("PsychiteTea").label);
-        }
+    public override ThingDef RelevantThingDef()
+    {
+        return DefDatabase<ThingDef>.GetNamed("PsychiteTea");
+    }
+
+    public override string Description()
+    {
+        return "MFI_buffPsychite".Translate(ThingDef.Named("PsychiteTea").label);
     }
 }

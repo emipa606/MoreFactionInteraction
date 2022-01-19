@@ -3,129 +3,128 @@ using RimWorld;
 using RimWorld.Planet;
 using Verse;
 
-namespace MoreFactionInteraction.General
+namespace MoreFactionInteraction.General;
+
+//I'm fancy, I wrote an extension method.
+public static class MFI_Utilities
 {
-    //I'm fancy, I wrote an extension method.
-    public static class MFI_Utilities
+    public static Faction EnemyInFactionWar(this Faction faction)
     {
-        public static Faction EnemyInFactionWar(this Faction faction)
+        if (faction == Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionOne)
         {
-            if (faction == Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionOne)
-            {
-                return Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionTwo;
-            }
-
-            if (faction == Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionTwo)
-            {
-                return Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionOne;
-            }
-
-            return null;
-
-            //Dear reader: Resharper suggests the following:
-            //
-            //return faction == Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionOne
-            //      ? Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionTwo
-            //      : (faction == Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionTwo
-            //          ? Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionOne
-            //          : null);
-            //
-            // which is a nested ternary and just awful to read. Be happy I spared you.
+            return Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionTwo;
         }
 
-        public static bool IsPartOfFactionWar(this Faction faction)
+        if (faction == Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionTwo)
         {
-            return faction == Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionOne
-                   || faction == Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionTwo;
+            return Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionOne;
         }
 
-        public static bool TryGetBestArt(Caravan caravan, out Thing thing, out Pawn owner)
+        return null;
+
+        //Dear reader: Resharper suggests the following:
+        //
+        //return faction == Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionOne
+        //      ? Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionTwo
+        //      : (faction == Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionTwo
+        //          ? Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionOne
+        //          : null);
+        //
+        // which is a nested ternary and just awful to read. Be happy I spared you.
+    }
+
+    public static bool IsPartOfFactionWar(this Faction faction)
+    {
+        return faction == Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionOne
+               || faction == Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionTwo;
+    }
+
+    public static bool TryGetBestArt(Caravan caravan, out Thing thing, out Pawn owner)
+    {
+        thing = null;
+        var list = CaravanInventoryUtility.AllInventoryItems(caravan);
+        var num = 0f;
+        foreach (var current in list)
         {
-            thing = null;
-            var list = CaravanInventoryUtility.AllInventoryItems(caravan);
-            var num = 0f;
-            foreach (var current in list)
+            if (current.GetInnerIfMinified().GetStatValue(StatDefOf.Beauty) > num &&
+                (current.GetInnerIfMinified().TryGetComp<CompArt>()?.Props?.canBeEnjoyedAsArt ?? false))
             {
-                if (current.GetInnerIfMinified().GetStatValue(StatDefOf.Beauty) > num &&
-                    (current.GetInnerIfMinified().TryGetComp<CompArt>()?.Props?.canBeEnjoyedAsArt ?? false))
-                {
-                    thing = current;
-                }
+                thing = current;
             }
+        }
 
-            if (thing != null)
-            {
-                owner = CaravanInventoryUtility.GetOwnerOf(caravan, thing);
-                return true;
-            }
+        if (thing != null)
+        {
+            owner = CaravanInventoryUtility.GetOwnerOf(caravan, thing);
+            return true;
+        }
 
-            owner = null;
+        owner = null;
+        return false;
+    }
+
+    public static bool IsScenarioBlocked(this IncidentWorker incidentWorker)
+    {
+        return Find.Scenario.AllParts.Any(x => x is ScenPart_DisableIncident scenPart
+                                               && scenPart.Incident == incidentWorker.def);
+    }
+
+    public static bool IsScenarioBlocked(this IncidentDef incidentDef)
+    {
+        return Find.Scenario.AllParts.Any(x => x is ScenPart_DisableIncident scenPart
+                                               && scenPart.Incident == incidentDef);
+    }
+
+    public static bool CaravanOrRichestColonyHasAnyOf(ThingDef thingdef, Caravan caravan, out Thing thing)
+    {
+        if (CaravanInventoryUtility.TryGetThingOfDef(caravan, thingdef, out thing, out _))
+        {
+            return true;
+        }
+
+        var maps = Find.Maps.FindAll(x => x.IsPlayerHome);
+
+        if (maps.NullOrEmpty())
+        {
             return false;
         }
 
-        public static bool IsScenarioBlocked(this IncidentWorker incidentWorker)
+        maps.SortBy(x => x.PlayerWealthForStoryteller);
+        var richestMap = maps.First();
+
+        if (thingdef.IsBuildingArtificial)
         {
-            return Find.Scenario.AllParts.Any(x => x is ScenPart_DisableIncident scenPart
-                                                   && scenPart.Incident == incidentWorker.def);
+            return FindBuildingOrMinifiedVersionThereOf(thingdef, richestMap, out thing);
         }
 
-        public static bool IsScenarioBlocked(this IncidentDef incidentDef)
+        var thingsOfDef = richestMap.listerThings.ThingsOfDef(thingdef);
+
+        thing = thingsOfDef.FirstOrDefault();
+        return thingsOfDef.Any();
+    }
+
+    private static bool FindBuildingOrMinifiedVersionThereOf(ThingDef thingdef, Map map, out Thing thing)
+    {
+        var buildingsOfDef = map.listerBuildings.AllBuildingsColonistOfDef(thingdef);
+        if (buildingsOfDef.Any())
         {
-            return Find.Scenario.AllParts.Any(x => x is ScenPart_DisableIncident scenPart
-                                                   && scenPart.Incident == incidentDef);
+            thing = buildingsOfDef.First();
+            return true;
         }
 
-        public static bool CaravanOrRichestColonyHasAnyOf(ThingDef thingdef, Caravan caravan, out Thing thing)
+        var minifiedBuilds = map.listerThings.ThingsInGroup(ThingRequestGroup.MinifiedThing);
+        foreach (var t in minifiedBuilds)
         {
-            if (CaravanInventoryUtility.TryGetThingOfDef(caravan, thingdef, out thing, out _))
+            if (t.GetInnerIfMinified().def != thingdef)
             {
-                return true;
+                continue;
             }
 
-            var maps = Find.Maps.FindAll(x => x.IsPlayerHome);
-
-            if (maps.NullOrEmpty())
-            {
-                return false;
-            }
-
-            maps.SortBy(x => x.PlayerWealthForStoryteller);
-            var richestMap = maps.First();
-
-            if (thingdef.IsBuildingArtificial)
-            {
-                return FindBuildingOrMinifiedVersionThereOf(thingdef, richestMap, out thing);
-            }
-
-            var thingsOfDef = richestMap.listerThings.ThingsOfDef(thingdef);
-
-            thing = thingsOfDef.FirstOrDefault();
-            return thingsOfDef.Any();
+            thing = t;
+            return true;
         }
 
-        private static bool FindBuildingOrMinifiedVersionThereOf(ThingDef thingdef, Map map, out Thing thing)
-        {
-            var buildingsOfDef = map.listerBuildings.AllBuildingsColonistOfDef(thingdef);
-            if (buildingsOfDef.Any())
-            {
-                thing = buildingsOfDef.First();
-                return true;
-            }
-
-            var minifiedBuilds = map.listerThings.ThingsInGroup(ThingRequestGroup.MinifiedThing);
-            foreach (var t in minifiedBuilds)
-            {
-                if (t.GetInnerIfMinified().def != thingdef)
-                {
-                    continue;
-                }
-
-                thing = t;
-                return true;
-            }
-
-            thing = null;
-            return false;
-        }
+        thing = null;
+        return false;
     }
 }

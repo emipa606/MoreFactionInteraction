@@ -1,12 +1,11 @@
 ﻿using RimWorld;
 
-namespace MoreFactionInteraction.World_Incidents
+namespace MoreFactionInteraction.World_Incidents;
+
+internal class WorldObjectCompProperties_BumperCrop : WorldObjectCompProperties
 {
-    internal class WorldObjectCompProperties_BumperCrop : WorldObjectCompProperties
+    public WorldObjectCompProperties_BumperCrop()
     {
-        public WorldObjectCompProperties_BumperCrop()
-        {
-            compClass = typeof(WorldObjectComp_SettlementBumperCropComp);
-        }
+        compClass = typeof(WorldObjectComp_SettlementBumperCropComp);
     }
 }

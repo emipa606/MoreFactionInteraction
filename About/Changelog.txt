@@ -1,5 +1,8 @@
 # Changelog for MoreFactionInteraction
 
+1.3.1 - Blocked faction-events from trying to use temporary factions, like logging camps
+
+
 1.0.13.0 - Should now support visitors from hidden factions, for example from [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2653963772]Treasure Hunter: The Forbidden Caravan[/url]
 
 

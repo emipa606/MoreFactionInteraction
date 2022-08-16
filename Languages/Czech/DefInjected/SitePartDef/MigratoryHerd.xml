@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <MFI_HuntersLodgePart.label>Lovecká chata</MFI_HuntersLodgePart.label>
+  <MFI_HuntersLodgePart.description>Malá základna, kterou používají spřátelené frakce jako loveckou základnu</MFI_HuntersLodgePart.description>
+  <MFI_HuntersLodgePart.descriptionDialogue>Obvykle v tuto roční dobu přichází velké stádo {0}.</MFI_HuntersLodgePart.descriptionDialogue>
+  <MFI_HuntersLodgePart.approachingReportString> Návštěva {0}</MFI_HuntersLodgePart.approachingReportString>
+  <MFI_HuntersLodgePart.approachingOrderString>Navštívit {0}</MFI_HuntersLodgePart.approachingOrderString>
+  <MFI_HuntersLodgePart.arrivedLetter>Vaše karavana dorazila do lovecké chaty. Zdá se, že tu nikdo není, ale zřejmě vás tu očekávali a udělali si tu příjemné místo.</MFI_HuntersLodgePart.arrivedLetter>
+  <MFI_HuntersLodgePart.arrivedLetterLabel> Lovecká chata</MFI_HuntersLodgePart.arrivedLetterLabel>
+</LanguageData>

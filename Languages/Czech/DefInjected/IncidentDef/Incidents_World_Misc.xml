@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <MFI_DiplomaticMarriage.label> diplomatický sňatek </MFI_DiplomaticMarriage.label>
+  <MFI_DiplomaticMarriage.letterLabel> Diplomatický sňatek </MFI_DiplomaticMarriage.letterLabel>
+  <MFI_MysticalShaman.label> mystický šaman </MFI_MysticalShaman.label>
+  <MFI_MysticalShaman.letterLabel> Mystický šaman </MFI_MysticalShaman.letterLabel>
+  <MFI_HuntersLodge.label> chata lovců </MFI_HuntersLodge.label>
+  <MFI_HuntersLodge.letterText> Jste zváni na letní útočiště {1} uživatele {0}. {2}. Na místě je základna se všemi potřebnými zařízeními pro přípravu jídel a rozšířili svou pohostinnost pro vás. Platnost této nabídky vyprší za {3} dní. </MFI_HuntersLodge.letterText>
+  <MFI_HuntersLodge.letterLabel> Lovecká chata </MFI_HuntersLodge.letterLabel>
+  <MFI_SettlementBaseAttack.label> Základna napadené frakce </MFI_SettlementBaseAttack.label>
+</LanguageData>

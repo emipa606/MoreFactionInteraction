@@ -20,6 +20,8 @@ Regarding getting too many caravans: (via Black Goat)
 
 My recommendations for people who play with MFI + DD or faction mods would be to increase the "Time modifier for faction interaction" slider in the MFI mod settings menu from 1 to 3 and to disable the "Allow Alliance" and "Allow permanent enemy factions to change relationships" options for DD. ”
 
+- Another solution for the trader-spam is to use my mod https://steamcommunity.com/sharedfiles/filedetails/?id=2813027453]Ask before enter
+
 ![Image](https://i.imgur.com/pufA0kM.png)
 
 	
@@ -103,7 +105,7 @@ Want to help translate this mod in your language? Check out the "Pirate" folder 
 - Yes you can add it to an existing save. Use a new one for best results, but it'll work on your current run. No, you can't remove it from an existing save.
 - Yes it's compatible with Hospitality.
 - Yes it's compatible with Roads of the Rim. MFI treats roadworks as a silver sink, with Roads of the Rim you're more involved.
-[strike]- For compatibility with Zetrith's multiplayer mod, you need https://steamcommunity.com/sharedfiles/filedetails/?id=1629973374[/strike]
+- For compatibility with Zetrith's multiplayer mod, you need https://steamcommunity.com/sharedfiles/filedetails/?id=1629973374
 
 ![Image](https://i.imgur.com/PwoNOj4.png)
 
@@ -115,6 +117,7 @@ Want to help translate this mod in your language? Check out the "Pirate" folder 
 -  For best support, please use the Discord-channel for error-reporting.
 -  Do not report errors by making a discussion-thread, I get no notification of that.
 -  If you have the solution for a problem, please post it to the GitHub repository.
+
 
 
 

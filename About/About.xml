@@ -39,6 +39,8 @@ Regarding getting too many caravans: (via Black Goat)
 
 My recommendations for people who play with MFI + DD or faction mods would be to increase the "Time modifier for faction interaction" slider in the MFI mod settings menu from 1 to 3 and to disable the "Allow Alliance" and "Allow permanent enemy factions to change relationships" options for DD. ”
 
+- Another solution for the trader-spam is to use my mod [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2813027453]Ask before enter[/url]
+
 [img]https://i.imgur.com/pufA0kM.png[/img]
 
 [table]
@@ -133,5 +135,6 @@ Want to help translate this mod in your language? Check out the "Pirate" folder 
 [*] Do not report errors by making a discussion-thread, I get no notification of that.
 [*] If you have the solution for a problem, please post it to the GitHub repository.
 [/list]
+
 </description>
 </ModMetaData>

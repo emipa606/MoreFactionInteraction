@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <MFI_ReverseTradeRequest.label>žádost o obchod</MFI_ReverseTradeRequest.label>.
+  <MFI_ReverseTradeRequest.letterLabel>Žádost o obchod</MFI_ReverseTradeRequest.letterLabel>.
+  <MFI_BumperCropRequest.label> Požadavek na sběr</MFI_BumperCropRequest.label>.
+  <MFI_Quest_PeaceTalks.label>Blíží se válka</MFI_Quest_PeaceTalks.label>.
+  <MFI_Quest_PeaceTalks.letterText> Obdrželi jste zprávu od [PAWN_nameDef], {0} z {1}. Jejich frakce měla nedávno diplomatické problémy s jinou frakcí a vyzvala vás k vyjednávání mezi nimi a {2}. Vybrali si nedaleké neutrální místo a zvou vás k vyjednávání.Je to skvělá příležitost, jak zlepšit vztahy s jejich frakcí, ale pozor - špatný vyjednavač může způsobit více škody než dobrý a dokonce vyvolat hněv.Nabídka vyprší po {3} dnech, poté se [PAWN_jménoDef] bude obávat nejhoršího.</MFI_Quest_PeaceTalks.letterText>.
+  <MFI_Quest_PeaceTalks.letterLabel>Fakce nepokojů</MFI_Quest_PeaceTalks.letterLabel>.
+</LanguageData>

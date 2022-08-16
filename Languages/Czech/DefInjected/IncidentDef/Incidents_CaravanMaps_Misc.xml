@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <MFI_HerdMigration_Ambush.label>migrace stáda</MFI_HerdMigration_Ambush.label>.
+  <MFI_HerdMigration_Ambush.letterText>Skupina {0} prochází oblastí.</MFI_HerdMigration_Ambush.letterText>.
+  <MFI_HerdMigration_Ambush.letterLabel> Migrace zvířat: {0}</MFI_HerdMigration_Ambush.letterLabel>.
+</LanguageData>

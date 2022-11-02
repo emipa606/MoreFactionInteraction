@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using MoreFactionInteraction.MoreFactionWar;
 using RimWorld;
 using RimWorld.Planet;

@@ -10,11 +10,8 @@ public class SitePartWorker_MigratoryHerd : SitePartWorker
 {
     public override string GetPostProcessedThreatLabel(Site site, SitePart siteCoreOrPart)
     {
-        return string.Concat(base.GetPostProcessedThreatLabel(site, siteCoreOrPart),
-            " (",
-            GenLabel.BestKindLabel(siteCoreOrPart.parms.animalKind, Gender.None, true),
-            ")"
-        );
+        return
+            $"{base.GetPostProcessedThreatLabel(site, siteCoreOrPart)} ({GenLabel.BestKindLabel(siteCoreOrPart.parms.animalKind, Gender.None, true)})";
     }
 
     public override void PostMapGenerate(Map map)

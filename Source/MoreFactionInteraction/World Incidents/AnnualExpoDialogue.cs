@@ -191,8 +191,7 @@ public class AnnualExpoDialogue
             default:
                 Log.Error($"P: {participant}, C: {caravan}, E: {activity}");
                 throw new Exception(
-                    "Something went wrong with More Faction Interaction. Contact the mod author with this year's theme. " +
-                    $"If you bring a log (press CTRL+F12 now), you get a cookie. P: {participant} C: {caravan} E: {activity} H: {host}. C: default.");
+                    $"Something went wrong with More Faction Interaction. Contact the mod author with this year's theme. If you bring a log (press CTRL+F12 now), you get a cookie. P: {participant} C: {caravan} E: {activity} H: {host}. C: default.");
         }
     }
 
@@ -247,7 +246,7 @@ public class AnnualExpoDialogue
     {
         if (amount > 0)
         {
-            rewardsOutcome = rewardsOutcome + "\n\n" +
+            rewardsOutcome = $"{rewardsOutcome}\n\n" +
                              "MFI_AnnualExpoXPGain".Translate(pawn.LabelShort, amount.ToString("F0"), skill.label);
         }
     }

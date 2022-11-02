@@ -32,7 +32,7 @@ public class CustomFaction_HealthUtility
         }
 
         var hediffSet = p.health.hediffSet;
-        p.health.forceIncap = true;
+        p.health.forceDowned = true;
         IEnumerable<BodyPartRecord> source = HittablePartsViolence(hediffSet).Where(x => !p.health.hediffSet
             .hediffs
             .Any(y => y.Part == x && y.CurStage?.partEfficiencyOffset < 0f)).ToList();
@@ -85,16 +85,16 @@ public class CustomFaction_HealthUtility
         if (p.Dead)
         {
             var stringBuilder = new StringBuilder();
-            stringBuilder.AppendLine(p + " died during GiveInjuriesToForceDowned");
+            stringBuilder.AppendLine($"{p} died during GiveInjuriesToForceDowned");
             foreach (var hediff in p.health.hediffSet.hediffs)
             {
-                stringBuilder.AppendLine("   -" + hediff);
+                stringBuilder.AppendLine($"   -{hediff}");
             }
 
             Log.Error(stringBuilder.ToString());
         }
 
-        p.health.forceIncap = false;
+        p.health.forceDowned = false;
     }
 
     private static IEnumerable<BodyPartRecord> HittablePartsViolence(HediffSet bodyModel)

@@ -46,15 +46,14 @@ public abstract class EventRewardWorker
         }
 
         var text2 = text;
-        text = string.Concat(text2, "\n\n---\n\n", rewards[0].LabelCapNoCount, ": ",
-            rewards[0].DescriptionFlavor);
+        text = $"{text2}\n\n---\n\n{rewards[0].LabelCapNoCount}: {rewards[0].DescriptionFlavor}";
     }
 
     protected void TryAppendExpGainInfo(ref string rewardsOutcome, Pawn pawn, SkillDef skill, float amount)
     {
         if (amount > 0)
         {
-            rewardsOutcome = rewardsOutcome + "\n\n" + "MFI_AnnualExpoXPGain"
+            rewardsOutcome = $"{rewardsOutcome}\n\n" + "MFI_AnnualExpoXPGain"
                 .Translate(pawn.LabelShort, amount.ToString("F0"), skill.label);
         }
     }

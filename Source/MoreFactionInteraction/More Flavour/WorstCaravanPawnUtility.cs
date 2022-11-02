@@ -139,7 +139,7 @@ internal class WorstCaravanPawnUtility
                 continue;
             }
 
-            if (!(current.CurStage != null && current.CurStage.lifeThreatening) &&
+            if (current.CurStage is not { lifeThreatening: true } &&
                 !(current.def.lethalSeverity >= 0f &&
                   current.Severity / current.def.lethalSeverity >= 0.8f))
             {
@@ -236,8 +236,7 @@ internal class WorstCaravanPawnUtility
                 continue;
             }
 
-            if (current is Hediff_Injury || current is Hediff_MissingPart || current is Hediff_Addiction ||
-                current is Hediff_AddedPart)
+            if (current is Hediff_Injury or Hediff_MissingPart or Hediff_Addiction or Hediff_AddedPart)
             {
                 continue;
             }

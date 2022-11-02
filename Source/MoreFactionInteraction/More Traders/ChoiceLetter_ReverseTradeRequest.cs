@@ -35,14 +35,14 @@ public class ChoiceLetter_ReverseTradeRequest : ChoiceLetter
                         //spawn a trader with a stock gen that accepts our goods, has decent-ish money and nothing else.
                         //first attempt had a newly created trader for each, but the game can't save that. Had to define in XML.
                         incidentParms.faction = faction;
-                        var traderKind = DefDatabase<TraderKindDef>.GetNamed("MFI_EmptyTrader_" + thingCategoryDef);
+                        var traderKind = DefDatabase<TraderKindDef>.GetNamed($"MFI_EmptyTrader_{thingCategoryDef}");
 
                         traderKind.stockGenerators.First(x => x.HandlesThingDef(ThingDefOf.Silver)).countRange
                             .max += fee;
                         traderKind.stockGenerators.First(x => x.HandlesThingDef(ThingDefOf.Silver)).countRange
                             .min += fee;
 
-                        traderKind.label = thingCategoryDef.label + " " + "MFI_Trader".Translate();
+                        traderKind.label = $"{thingCategoryDef.label} " + "MFI_Trader".Translate();
                         incidentParms.traderKind = traderKind;
                         incidentParms.forced = true;
                         incidentParms.target = map;

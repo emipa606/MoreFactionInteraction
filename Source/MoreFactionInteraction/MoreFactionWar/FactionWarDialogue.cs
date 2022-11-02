@@ -104,8 +104,7 @@ public class FactionWarDialogue
         factionWarNegotiationsOutcome =
             "Something went wrong with More Faction Interaction. Please contact mod author.";
 
-        if (desiredOutcome == DesiredOutcome.CURRY_FAVOUR_FACTION_ONE ||
-            desiredOutcome == DesiredOutcome.CURRY_FAVOUR_FACTION_TWO)
+        if (desiredOutcome is DesiredOutcome.CURRY_FAVOUR_FACTION_ONE or DesiredOutcome.CURRY_FAVOUR_FACTION_TWO)
         {
             factionWarNegotiationsOutcome = CurryFavour(badOutcomeWeightFactor, goodOutcomeWeightFactor);
         }

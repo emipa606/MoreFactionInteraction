@@ -44,7 +44,7 @@ public class IncidentWorker_Extortion : IncidentWorker
         }
 
         return from worldObject in Find.WorldObjects.AllWorldObjects
-            where (worldObject is Settlement || worldObject is Site)
+            where worldObject is Settlement or Site
                   && worldObject.Faction != null
                   && worldObject.Faction.HostileTo(Faction.OfPlayer)
                   && (!worldObject.GetComponent<TimeoutComp>()?.Active ?? true)

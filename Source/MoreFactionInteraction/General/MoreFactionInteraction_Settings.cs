@@ -35,6 +35,14 @@ public class MoreFactionInteraction_Settings : ModSettings
             traderWealthOffsetFromTimesTraded.ToStringByStyle(ToStringStyle.FloatOne), 0.5f, 3f);
         options.CheckboxLabeled("MFI_enableannualexpo".Translate(), ref enableAnnualExpo,
             "MFI_enableannualexpotooltip".Translate());
+        if (MoreFactionInteractionMod.currentVersion != null)
+        {
+            options.Gap();
+            GUI.contentColor = Color.gray;
+            options.Label("MFI_CurrentModVersion".Translate(MoreFactionInteractionMod.currentVersion));
+            GUI.contentColor = Color.white;
+        }
+
         options.End();
         Mod.GetSettings<MoreFactionInteraction_Settings>().Write();
     }

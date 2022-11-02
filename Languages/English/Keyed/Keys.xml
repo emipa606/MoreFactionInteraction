@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
   <!--settings -->
+  <MFI_CurrentModVersion>Installed mod-version: {0}</MFI_CurrentModVersion>
   <MFI_enableannualexpo>Enable annual expo</MFI_enableannualexpo>
   <MFI_enableannualexpotooltip>Since this event seem to be causing issues for some users, it can be disabled here</MFI_enableannualexpotooltip>
   <MFI_ticksToUpgrade>How much time it takes for pirates to upgrade their outposts to bases</MFI_ticksToUpgrade>

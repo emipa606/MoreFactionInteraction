@@ -196,16 +196,16 @@ public class MapComponent_GoodWillTrader : MapComponent
 
         if (removeHostile)
         {
-            queued.RemoveAll(qi =>
+            queued?.RemoveAll(qi =>
                 qi.FiringIncident.parms.faction.HostileTo(Faction.OfPlayer) &&
                 allowedIncidentDefs.Contains(qi.FiringIncident.def));
         }
 
         //Theoretically there is no way this should happen. Reality has proven me wrong.
-        queued.RemoveAll(qi => qi.FiringIncident.parms.target == null
-                               || qi.FiringIncident.parms.target == localMap
-                               || qi.FiringIncident.def == null
-                               || qi.FireTick + GenDate.TicksPerDay < Find.TickManager.TicksGame);
+        queued?.RemoveAll(qi => qi.FiringIncident.parms.target == null
+                                || qi.FiringIncident.parms.target == localMap
+                                || qi.FiringIncident.def == null
+                                || qi.FireTick + GenDate.TicksPerDay < Find.TickManager.TicksGame);
     }
 
     public override void ExposeData()

@@ -15,12 +15,9 @@ public static class MFI_Utilities
             return Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionTwo;
         }
 
-        if (faction == Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionTwo)
-        {
-            return Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionOne;
-        }
-
-        return null;
+        return faction == Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionTwo
+            ? Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionOne
+            : null;
 
         //Dear reader: Resharper suggests the following:
         //

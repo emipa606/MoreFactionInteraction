@@ -158,14 +158,6 @@ public static class HarmonyPatches
         return Find.World?.GetComponent<WorldComponent_MFI_AnnualExpo>()?.BuffedEmanator ?? false ? 20f : 15f;
     }
 
-    //thx Brrainz
-    private static IEnumerable<CodeInstruction> DebugWindowsOpener_ToggleDebugActionsMenu_Patch(
-        IEnumerable<CodeInstruction> instructions)
-    {
-        var from = AccessTools.Constructor(typeof(Dialog_DebugActionsMenu));
-        var to = AccessTools.Constructor(typeof(Dialog_MFIDebugActionMenu));
-        return instructions.MethodReplacer(from, to);
-    }
 
     private static void WorldReachUtility_PostFix(ref bool __result, Caravan c)
     {

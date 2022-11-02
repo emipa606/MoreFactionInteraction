@@ -146,7 +146,7 @@ internal class IncidentWorker_RoadWorks : IncidentWorker
     {
         return (from settlement in Find.WorldObjects.Settlements
             where settlement.Visitable && settlement.Faction?.leader != null
-                                       && settlement.trader != null && settlement.trader.CanTradeNow
+                                       && settlement.trader is { CanTradeNow: true }
                                        && Find.WorldGrid.ApproxDistanceInTiles(originTile, settlement.Tile) < 36f
                                        && Find.WorldReachability.CanReach(originTile, settlement.Tile)
             select settlement).RandomElementWithFallback();

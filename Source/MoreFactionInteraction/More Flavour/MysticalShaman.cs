@@ -44,8 +44,6 @@ public class MysticalShaman : WorldObject
         if (pawn == null)
         {
             Find.WindowStack.Add(new Dialog_MessageBox("MFI_MysticalShamanFoundNoSickPawn".Translate()));
-            //    Dialog_MessageBox.CreateConfirmation(text: "MFI_MysticalShamanFoundNoSickPawn".Translate(),
-            //                                                 confirmedAct: () => Find.WorldObjects.Remove(o: this)));
         }
         else
         {

@@ -81,7 +81,7 @@ public class IncidentWorker_DiplomaticMarriage : IncidentWorker
             where x.Faction != null && !x.Faction.def.hidden && !x.Faction.def.permanentEnemy && !x.Faction.IsPlayer
                   && x.Faction.PlayerGoodwill <= 50 && !x.Faction.defeated &&
                   x.Faction.def.techLevel <= TechLevel.Medieval
-                  && x.Faction.leader != null && !x.Faction.leader.IsPrisoner && !x.Faction.leader.Spawned
+                  && x.Faction.leader is { IsPrisoner: false, Spawned: false }
                   && !x.IsPrisoner && !x.Spawned && x.relations != null && x.RaceProps.Humanlike
                   && !SettlementUtility.IsPlayerAttackingAnySettlementOf(x.Faction) && !PeaceTalksExist(x.Faction)
                   && (!LovePartnerRelationUtility.HasAnyLovePartner(x) ||

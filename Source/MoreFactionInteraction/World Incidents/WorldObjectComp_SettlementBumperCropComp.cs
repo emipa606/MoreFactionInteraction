@@ -138,8 +138,8 @@ public class WorldObjectComp_SettlementBumperCropComp : WorldObjectComp
         return (from x in ThingSetMakerUtility.allGeneratableItems
             where x.IsNutritionGivingIngestible && !x.IsCorpse && x.ingestible.HumanEdible && !x.IsMeat
                   && !x.IsDrug && !x.HasComp(typeof(CompHatcher)) && !x.HasComp(typeof(CompIngredients))
-                  && x.BaseMarketValue < 3 && (x.ingestible.preferability == FoodPreferability.RawBad ||
-                                               x.ingestible.preferability == FoodPreferability.RawTasty)
+                  && x.BaseMarketValue < 3 &&
+                  x.ingestible.preferability is FoodPreferability.RawBad or FoodPreferability.RawTasty
             select x).RandomElementWithFallback(ThingDefOf.RawPotatoes);
     }
 

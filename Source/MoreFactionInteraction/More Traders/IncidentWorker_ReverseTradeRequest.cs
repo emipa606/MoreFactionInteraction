@@ -36,7 +36,7 @@ public class IncidentWorker_ReverseTradeRequest : IncidentWorker
         var letterToSend = DetermineLetterToSend(thingCategoryDef);
         var feeRequest = Math.Max(Rand.Range(150, 300), (int)parms.points);
         var categorylabel = thingCategoryDef == ThingCategoryDefOf.PlantFoodRaw
-            ? thingCategoryDef.label + " items"
+            ? $"{thingCategoryDef.label} items"
             : thingCategoryDef.label;
         var diaNode = new DiaNode(letterToSend.Translate(
             settlement.Faction.leader.LabelShort,
@@ -55,14 +55,14 @@ public class IncidentWorker_ReverseTradeRequest : IncidentWorker
                 //spawn a trader with a stock gen that accepts our goods, has decent-ish money and nothing else.
                 //first attempt had a newly created trader for each, but the game can't save that. Had to define in XML.
                 parms.faction = settlement.Faction;
-                var traderKind = DefDatabase<TraderKindDef>.GetNamed("MFI_EmptyTrader_" + thingCategoryDef);
+                var traderKind = DefDatabase<TraderKindDef>.GetNamed($"MFI_EmptyTrader_{thingCategoryDef}");
 
                 traderKind.stockGenerators.First(x => x.HandlesThingDef(ThingDefOf.Silver)).countRange.max +=
                     feeRequest;
                 traderKind.stockGenerators.First(x => x.HandlesThingDef(ThingDefOf.Silver)).countRange.min +=
                     feeRequest;
 
-                traderKind.label = thingCategoryDef.label + " " + "MFI_Trader".Translate();
+                traderKind.label = $"{thingCategoryDef.label} " + "MFI_Trader".Translate();
                 parms.traderKind = traderKind;
                 parms.forced = true;
                 parms.target = map;
@@ -104,22 +104,17 @@ public class IncidentWorker_ReverseTradeRequest : IncidentWorker
     {
         var rand = Rand.RangeInclusive(0, 100);
 
-        if (rand <= 33)
+        switch (rand)
         {
-            return ThingCategoryDefOf.Apparel;
+            case <= 33:
+                return ThingCategoryDefOf.Apparel;
+            case <= 66:
+                return ThingCategoryDefOf.PlantFoodRaw;
+            case < 90:
+                return ThingCategoryDefOf.Weapons;
+            default:
+                return ThingCategoryDefOf.Medicine;
         }
-
-        if (rand <= 66)
-        {
-            return ThingCategoryDefOf.PlantFoodRaw;
-        }
-
-        if (rand < 90)
-        {
-            return ThingCategoryDefOf.Weapons;
-        }
-
-        return ThingCategoryDefOf.Medicine;
     }
 
     private static string DetermineLetterToSend(ThingCategoryDef thingCategoryDef)

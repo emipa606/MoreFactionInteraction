@@ -15,7 +15,7 @@ public class Buff_Emanator : Buff
 
         if (power != null)
         {
-            power.basePowerConsumption = 350f;
+            typeof(CompProperties_Power).GetField("basePowerConsumption").SetValue(power, 350f);
         }
 
         Active = true;

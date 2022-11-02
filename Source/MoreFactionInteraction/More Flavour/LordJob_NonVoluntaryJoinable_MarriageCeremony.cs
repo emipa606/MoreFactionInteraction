@@ -115,53 +115,6 @@ public class LordJob_NonVoluntaryJoinable_MarriageCeremony : LordJob
                !GatheringsUtility.AcceptableGameConditionsToContinueGathering(Map);
     }
 
-    //public override float VoluntaryJoinPriorityFor(Pawn p)
-    //{
-    //    float result;
-    //    if (this.IsFiance(p))
-    //    {
-    //        if (!MarriageCeremonyUtility.FianceCanContinueCeremony(p))
-    //        {
-    //            result = 0f;
-    //        }
-    //        else
-    //        {
-    //            result = VoluntarilyJoinableLordJobJoinPriorities.MarriageCeremonyFiance;
-    //        }
-    //    }
-    //    else if (this.IsGuest(p))
-    //    {
-    //        if (!MarriageCeremonyUtility.ShouldGuestKeepAttendingCeremony(p))
-    //        {
-    //            result = 0f;
-    //        }
-    //        else
-    //        {
-    //            if (!this.lord.ownedPawns.Contains(p))
-    //            {
-    //                if (this.IsCeremonyAboutToEnd())
-    //                {
-    //                    result = 0f;
-    //                    return result;
-    //                }
-    //                LordToil_MarriageCeremony lordToil_MarriageCeremony = this.lord.CurLordToil as LordToil_MarriageCeremony;
-    //                IntVec3 intVec;
-    //                if (lordToil_MarriageCeremony != null && !SpectatorCellFinder.TryFindSpectatorCellFor(p, lordToil_MarriageCeremony.Data.spectateRect, base.Map, out intVec, lordToil_MarriageCeremony.Data.spectateRectAllowedSides, 1, null))
-    //                {
-    //                    result = 0f;
-    //                    return result;
-    //                }
-    //            }
-    //            result = VoluntarilyJoinableLordJobJoinPriorities.MarriageCeremonyGuest;
-    //        }
-    //    }
-    //    else
-    //    {
-    //        result = 0f;
-    //    }
-    //    return result;
-    //}
-
     public override void ExposeData()
     {
         Scribe_References.Look(ref firstPawn, "firstPawn");

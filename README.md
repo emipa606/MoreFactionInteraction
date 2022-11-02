@@ -9,6 +9,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=1454024362
 - Commissioned by Spark7979
 - Updated as is, have not been tested with other mods than those listed below. Please report if any mod is not compatible.
 - Added german translation, thanks Erdnussbrot!
+- Added Czech translation, thanks FubarXS!
 - Increased the time modifier for faction interaction max-value to 10
 - Added option to disable Annual Expo since it seems to cause issues for some users
 

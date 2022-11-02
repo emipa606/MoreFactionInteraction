@@ -84,7 +84,7 @@ internal class MFI_SymbolResolver_BasePart_Outdoors_Division_Grid : SymbolResolv
 
         if (!TryResolveRandomOption(999999, 999999, rp))
         {
-            Log.Warning("Grid resolver could not resolve any grid size. params=" + rp);
+            Log.Warning($"Grid resolver could not resolve any grid size. params={rp}");
         }
     }
 

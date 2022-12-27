@@ -24,12 +24,17 @@ public class Buff_PsychTea : Buff
 
     public static void Register()
     {
+        if (DefDatabase<ThingDef>.GetNamedSilentFail("PsychiteTea") == null)
+        {
+            return;
+        }
+
         Find.World.GetComponent<WorldComponent_MFI_AnnualExpo>().RegisterBuff(new Buff_PsychTea());
     }
 
     public override ThingDef RelevantThingDef()
     {
-        return DefDatabase<ThingDef>.GetNamed("PsychiteTea");
+        return DefDatabase<ThingDef>.GetNamedSilentFail("PsychiteTea");
     }
 
     public override string Description()

@@ -28,6 +28,11 @@ public class Buff_Emanator : Buff
 
     public static void Register()
     {
+        if (DefDatabase<ThingDef>.GetNamedSilentFail("PsychicEmanator") == null)
+        {
+            return;
+        }
+
         Find.World.GetComponent<WorldComponent_MFI_AnnualExpo>().RegisterBuff(new Buff_Emanator());
     }
 

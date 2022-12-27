@@ -26,6 +26,11 @@ public class Buff_Chemfuel : Buff
 
     public static void Register()
     {
+        if (DefDatabase<ThingDef>.GetNamedSilentFail("InfiniteChemreactor") == null)
+        {
+            return;
+        }
+
         Find.World.GetComponent<WorldComponent_MFI_AnnualExpo>().RegisterBuff(new Buff_Chemfuel());
     }
 

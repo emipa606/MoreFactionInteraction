@@ -13,6 +13,11 @@ public class Buff_Pemmican : Buff
 
     public static void Register()
     {
+        if (DefDatabase<ThingDef>.GetNamedSilentFail("Pemmican") == null)
+        {
+            return;
+        }
+
         Find.World.GetComponent<WorldComponent_MFI_AnnualExpo>().RegisterBuff(new Buff_Pemmican());
     }
 

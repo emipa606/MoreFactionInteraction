@@ -122,3 +122,4 @@ Want to help translate this mod in your language? Check out the "Pirate" folder 
 
 
 
+https://steamcommunity.com/sharedfiles/filedetails/changelog/2379076640]Last updated 2022-12-27

@@ -1,5 +1,8 @@
 # Changelog for MoreFactionInteraction
 
+1.4.3 - Some null-checks added to the buff enamanator code
+
+
 1.4.2 - Added nullcheck for event rewards missing.
 
 

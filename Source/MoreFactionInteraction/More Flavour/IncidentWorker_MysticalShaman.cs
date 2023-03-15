@@ -13,7 +13,7 @@ public class IncidentWorker_MysticalShaman : IncidentWorker
     private const int MaxDistance = 22;
     private static readonly IntRange TimeoutDaysRange = new IntRange(5, 15);
 
-    protected override bool CanFireNowSub(IncidentParms parms)
+    public override bool CanFireNowSub(IncidentParms parms)
     {
         return base.CanFireNowSub(parms) && Find.AnyPlayerHomeMap != null
                                          && !Find.WorldObjects.AllWorldObjects.Any(o =>
@@ -26,7 +26,7 @@ public class IncidentWorker_MysticalShaman : IncidentWorker
                                          && CommsConsoleUtility.PlayerHasPoweredCommsConsole();
     }
 
-    protected override bool TryExecuteWorker(IncidentParms parms)
+    public override bool TryExecuteWorker(IncidentParms parms)
     {
         if (!Find.FactionManager.AllFactionsVisible.Where(f => f.def.techLevel <= TechLevel.Neolithic
                                                                && !f.HostileTo(Faction.OfPlayer) && !f.temporary)

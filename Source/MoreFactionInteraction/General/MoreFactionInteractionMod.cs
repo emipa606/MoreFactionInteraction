@@ -14,8 +14,7 @@ public class MoreFactionInteractionMod : Mod
     {
         GetSettings<MoreFactionInteraction_Settings>();
         currentVersion =
-            VersionFromManifest.GetVersionFromModMetaData(
-                ModLister.GetActiveModWithIdentifier("Mlie.MoreFactionInteraction"));
+            VersionFromManifest.GetVersionFromModMetaData(content.ModMetaData);
     }
 
     public override void DoSettingsWindowContents(Rect inRect)

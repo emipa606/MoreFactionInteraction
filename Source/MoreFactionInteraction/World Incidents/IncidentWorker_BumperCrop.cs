@@ -20,7 +20,7 @@ public class IncidentWorker_BumperCrop : IncidentWorker
                                                                   faction.GoodwillWith(Faction.OfPlayer)) /
                                                           100);
 
-    protected override bool CanFireNowSub(IncidentParms parms)
+    public override bool CanFireNowSub(IncidentParms parms)
     {
         return base.CanFireNowSub(parms) && TryGetRandomAvailableTargetMap(out var map)
                                          && RandomNearbyGrowerSettlement(map.Tile) != null
@@ -28,7 +28,7 @@ public class IncidentWorker_BumperCrop : IncidentWorker
                                              RandomNearbyGrowerSettlement(map.Tile).Tile);
     }
 
-    protected override bool TryExecuteWorker(IncidentParms parms)
+    public override bool TryExecuteWorker(IncidentParms parms)
     {
         TryGetRandomAvailableTargetMap(out var map);
         if (map == null)

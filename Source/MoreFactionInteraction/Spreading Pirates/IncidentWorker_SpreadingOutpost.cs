@@ -17,7 +17,7 @@ public class IncidentWorker_SpreadingOutpost : IncidentWorker
     public override float BaseChanceThisGame =>
         base.BaseChanceThisGame * MoreFactionInteraction_Settings.pirateBaseUpgraderModifier;
 
-    protected override bool CanFireNowSub(IncidentParms parms)
+    public override bool CanFireNowSub(IncidentParms parms)
     {
         return base.CanFireNowSub(parms) && TryFindFaction(out faction)
                                          && TileFinder.TryFindNewSiteTile(out _, minDist, maxDist)
@@ -25,7 +25,7 @@ public class IncidentWorker_SpreadingOutpost : IncidentWorker
                                          && Find.World.worldObjects.Sites.Count <= maxSites;
     }
 
-    protected override bool TryExecuteWorker(IncidentParms parms)
+    public override bool TryExecuteWorker(IncidentParms parms)
     {
         if (!TryFindFaction(out faction))
         {

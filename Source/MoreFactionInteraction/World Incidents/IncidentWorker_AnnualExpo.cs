@@ -13,7 +13,7 @@ public class IncidentWorker_AnnualExpo : IncidentWorker
 
     public override float BaseChanceThisGame => 0f;
 
-    protected override bool CanFireNowSub(IncidentParms parms)
+    public override bool CanFireNowSub(IncidentParms parms)
     {
         if (!MoreFactionInteraction_Settings.enableAnnualExpo)
         {
@@ -27,7 +27,7 @@ public class IncidentWorker_AnnualExpo : IncidentWorker
                                          && !Find.World.worldObjects.AllWorldObjects.Any(x => x is AnnualExpo);
     }
 
-    protected override bool TryExecuteWorker(IncidentParms parms)
+    public override bool TryExecuteWorker(IncidentParms parms)
     {
         if (!MoreFactionInteraction_Settings.enableAnnualExpo)
         {

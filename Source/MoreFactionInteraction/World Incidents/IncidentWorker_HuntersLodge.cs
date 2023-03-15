@@ -13,14 +13,14 @@ public class IncidentWorker_HuntersLodge : IncidentWorker
     private static readonly IntRange TimeoutDaysRange = new IntRange(15, 25);
 
 
-    protected override bool CanFireNowSub(IncidentParms parms)
+    public override bool CanFireNowSub(IncidentParms parms)
     {
         return base.CanFireNowSub(parms) && Find.AnyPlayerHomeMap != null
                                          && Find.FactionManager.RandomAlliedFaction(false, false, false) != null
                                          && TryFindTile(out _);
     }
 
-    protected override bool TryExecuteWorker(IncidentParms parms)
+    public override bool TryExecuteWorker(IncidentParms parms)
     {
         var faction = parms.faction ?? Find.FactionManager.RandomAlliedFaction(false, false, false);
 

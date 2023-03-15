@@ -9,14 +9,14 @@ namespace MoreFactionInteraction;
 
 public class IncidentWorker_ReverseTradeRequest : IncidentWorker
 {
-    protected override bool CanFireNowSub(IncidentParms parms)
+    public override bool CanFireNowSub(IncidentParms parms)
     {
         return base.CanFireNowSub(parms) && TryGetRandomAvailableTargetMap(out var map)
                                          && RandomNearbyTradeableSettlement(map.Tile) != null
                                          && CommsConsoleUtility.PlayerHasPoweredCommsConsole(map);
     }
 
-    protected override bool TryExecuteWorker(IncidentParms parms)
+    public override bool TryExecuteWorker(IncidentParms parms)
     {
         if (!TryGetRandomAvailableTargetMap(out var map))
         {
@@ -137,15 +137,12 @@ public class IncidentWorker_ReverseTradeRequest : IncidentWorker
 
     private static Settlement RandomNearbyTradeableSettlement(int originTile)
     {
-        return Find.WorldObjects.Settlements.Where(settlement => settlement is
-            {
-                Visitable: true, Faction: { leader: { } }
-            } && settlement.GetComponent<TradeRequestComp>() !=
-            null && !settlement.GetComponent<TradeRequestComp>()
-                .ActiveRequest && Find.WorldGrid.ApproxDistanceInTiles(originTile,
-                settlement.Tile) < 36f && Find.WorldReachability.CanReach(originTile,
-                settlement.Tile)
-        ).RandomElementWithFallback();
+        return Find.WorldObjects.Settlements.Where(settlement =>
+            settlement is { Visitable: true, Faction: { leader: not null } } &&
+            settlement.GetComponent<TradeRequestComp>() != null &&
+            !settlement.GetComponent<TradeRequestComp>().ActiveRequest &&
+            Find.WorldGrid.ApproxDistanceInTiles(originTile, settlement.Tile) < 36f &&
+            Find.WorldReachability.CanReach(originTile, settlement.Tile)).RandomElementWithFallback();
     }
 
     private static bool TryGetRandomAvailableTargetMap(out Map map)

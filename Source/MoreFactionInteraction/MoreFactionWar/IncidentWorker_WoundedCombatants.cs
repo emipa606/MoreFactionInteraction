@@ -10,7 +10,7 @@ public class IncidentWorker_WoundedCombatants : IncidentWorker
 {
     private readonly IntRange pawnstoSpawn = new IntRange(4, 6);
 
-    protected override bool CanFireNowSub(IncidentParms parms)
+    public override bool CanFireNowSub(IncidentParms parms)
     {
         return base.CanFireNowSub(parms) && Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarIsOngoing
                                          && FindAlliedWarringFaction(out var _)
@@ -19,7 +19,7 @@ public class IncidentWorker_WoundedCombatants : IncidentWorker
                                              (Map)parms.target);
     }
 
-    protected override bool TryExecuteWorker(IncidentParms parms)
+    public override bool TryExecuteWorker(IncidentParms parms)
     {
         if (!DropCellFinder.TryFindRaidDropCenterClose(out var dropSpot, (Map)parms.target))
         {

@@ -222,9 +222,9 @@ public static class HarmonyPatches
 
         var goodwillFactions = map.GetComponent<MapComponent_GoodWillTrader>().TimesTraded;
         var goodwillFactor = 1f;
-        if (goodwillFactions.ContainsKey(parms.makingFaction))
+        if (goodwillFactions.TryGetValue(parms.makingFaction, out var faction))
         {
-            goodwillFactor = goodwillFactions[parms.makingFaction];
+            goodwillFactor = faction;
         }
 
         __result.First(x => x.def == ThingDefOf.Silver).stackCount +=
@@ -277,9 +277,9 @@ public static class HarmonyPatches
         var qualityIncreaseFromTimesTradedWithFaction = 0f;
         var qualityIncreaseFactorFromPlayerGoodWill = 0f;
         var goodwillFactions = map.GetComponent<MapComponent_GoodWillTrader>().TimesTraded;
-        if (goodwillFactions.ContainsKey(faction))
+        if (goodwillFactions.TryGetValue(faction, out var goodwillFaction))
         {
-            qualityIncreaseFromTimesTradedWithFaction = Mathf.Clamp01((float)goodwillFactions[faction] / 100);
+            qualityIncreaseFromTimesTradedWithFaction = Mathf.Clamp01((float)goodwillFaction / 100);
             qualityIncreaseFactorFromPlayerGoodWill =
                 Mathf.Clamp01((float)faction.GoodwillWith(Faction.OfPlayer) / 100);
         }

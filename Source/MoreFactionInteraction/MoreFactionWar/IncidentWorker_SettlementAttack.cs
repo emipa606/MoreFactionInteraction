@@ -9,7 +9,7 @@ namespace MoreFactionInteraction;
 
 public class IncidentWorker_SettlementAttack : IncidentWorker
 {
-    protected override bool CanFireNowSub(IncidentParms parms)
+    public override bool CanFireNowSub(IncidentParms parms)
     {
         return base.CanFireNowSub(parms) && Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarIsOngoing;
     }
@@ -22,7 +22,7 @@ public class IncidentWorker_SettlementAttack : IncidentWorker
     //4. find closest enemy faction near it.
     //5. If enemy is closer than ally, it's a win for enemy. 
     //6? If enemy is twice as close, base in question becomes enemy base? maybe.
-    protected override bool TryExecuteWorker(IncidentParms parms)
+    public override bool TryExecuteWorker(IncidentParms parms)
     {
         static int FindTile(int root)
         {

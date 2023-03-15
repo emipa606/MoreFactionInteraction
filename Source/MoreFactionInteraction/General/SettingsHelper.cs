@@ -29,7 +29,7 @@ internal static class SettingsHelper
         Text.Anchor = TextAnchor.MiddleLeft;
         Widgets.Label(rect2, label);
 
-        var result = Widgets.HorizontalSlider(rect3, val, min, max, true);
+        var result = Widgets.HorizontalSlider_NewTemp(rect3, val, min, max, true);
         val = result;
         Text.Anchor = TextAnchor.MiddleRight;
         Widgets.Label(rect4, string.Format(format, val));

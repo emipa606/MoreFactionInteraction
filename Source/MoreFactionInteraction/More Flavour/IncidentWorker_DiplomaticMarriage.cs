@@ -16,14 +16,14 @@ public class IncidentWorker_DiplomaticMarriage : IncidentWorker
     public override float BaseChanceThisGame => Math.Max(0.01f,
         base.BaseChanceThisGame - StorytellerUtilityPopulation.PopulationIntent);
 
-    protected override bool CanFireNowSub(IncidentParms parms)
+    public override bool CanFireNowSub(IncidentParms parms)
     {
         return base.CanFireNowSub(parms) && TryFindMarriageSeeker(out marriageSeeker)
                                          && TryFindBetrothed(out betrothed)
                                          && !this.IsScenarioBlocked();
     }
 
-    protected override bool TryExecuteWorker(IncidentParms parms)
+    public override bool TryExecuteWorker(IncidentParms parms)
     {
         if (!TryFindMarriageSeeker(out marriageSeeker))
         {

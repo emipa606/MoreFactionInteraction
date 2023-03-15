@@ -9,7 +9,7 @@ public class IncidentWorker_FactionPeaceTalks : IncidentWorker
 {
     private static readonly IntRange TimeoutDaysRange = new IntRange(21, 23);
 
-    protected override bool CanFireNowSub(IncidentParms parms)
+    public override bool CanFireNowSub(IncidentParms parms)
     {
         return base.CanFireNowSub(parms) && FoundTwoFactions()
                                          && TryFindTile(out _)
@@ -18,7 +18,7 @@ public class IncidentWorker_FactionPeaceTalks : IncidentWorker
                                              .UnrestIsBrewing;
     }
 
-    protected override bool TryExecuteWorker(IncidentParms parms)
+    public override bool TryExecuteWorker(IncidentParms parms)
     {
         if (!FoundTwoFactions())
         {

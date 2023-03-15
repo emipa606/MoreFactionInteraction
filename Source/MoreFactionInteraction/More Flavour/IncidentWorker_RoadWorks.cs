@@ -12,14 +12,14 @@ internal class IncidentWorker_RoadWorks : IncidentWorker
     private const float directConnectionChance = 0.7f;
     private Map map;
 
-    protected override bool CanFireNowSub(IncidentParms parms)
+    public override bool CanFireNowSub(IncidentParms parms)
     {
         return base.CanFireNowSub(parms) && TryGetRandomAvailableTargetMap(out var localMap)
                                          && CommsConsoleUtility.PlayerHasPoweredCommsConsole()
                                          && RandomNearbyTradeableSettlement(localMap.Tile) != null;
     }
 
-    protected override bool TryExecuteWorker(IncidentParms parms)
+    public override bool TryExecuteWorker(IncidentParms parms)
     {
         if (!TryGetRandomAvailableTargetMap(out map))
         {

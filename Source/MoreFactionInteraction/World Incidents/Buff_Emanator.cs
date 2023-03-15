@@ -8,17 +8,17 @@ public class Buff_Emanator : Buff
 {
     public override void Apply()
     {
-        ThoughtDef.Named("PsychicEmanatorSoothe").stages.First().baseMoodEffect = 6f;
-        ThingDefOf.PsychicEmanator.specialDisplayRadius = 20f;
-        var power = (CompProperties_Power)ThingDefOf.PsychicEmanator.comps.FirstOrDefault(x =>
-            x is CompProperties_Power);
-
-        if (power != null)
+        try
         {
-            typeof(CompProperties_Power).GetField("basePowerConsumption").SetValue(power, 350f);
+            ThoughtDef.Named("PsychicEmanatorSoothe").stages.First().baseMoodEffect = 6f;
+            ThingDefOf.PsychicEmanator.specialDisplayRadius = 20f;
+            ThingDefOf.PsychicEmanator.GetCompProperties<CompProperties_Power>().basePowerConsumption = 350f;
+            Active = true;
         }
-
-        Active = true;
+        catch
+        {
+            // ignored
+        }
     }
 
     public override TechLevel MinTechLevel()

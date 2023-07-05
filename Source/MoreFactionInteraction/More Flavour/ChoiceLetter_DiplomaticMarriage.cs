@@ -52,7 +52,7 @@ public class ChoiceLetter_DiplomaticMarriage : ChoiceLetter
                         {
                             CaravanInventoryUtility.MoveAllInventoryToSomeoneElse(betrothed,
                                 caravan.PawnsListForReading);
-                            HealIfPossible(betrothed);
+                            PawnBanishUtility.HealIfPossible(betrothed);
                             caravan.RemovePawn(betrothed);
                         }
 
@@ -102,30 +102,9 @@ public class ChoiceLetter_DiplomaticMarriage : ChoiceLetter
             ? marriageSeeker.Faction
             : null);
 
+        Faction.OfPlayer.ideos?.RecalculateIdeosBasedOnPlayerPawns();
+
         //todo: maybe plan visit, deliver dowry, do wedding.
-    }
-
-    private static void HealIfPossible(Pawn p)
-    {
-        var tmpHediffs = new List<Hediff>();
-        tmpHediffs.AddRange(p.health.hediffSet.hediffs);
-        foreach (var hediffTemp in tmpHediffs)
-        {
-            if (hediffTemp is Hediff_Injury hediffInjury && !hediffInjury.IsPermanent())
-            {
-                p.health.RemoveHediff(hediffInjury);
-            }
-            else
-            {
-                var immunityRecord = p.health.immunity.GetImmunityRecord(hediffTemp.def);
-                if (immunityRecord != null)
-                {
-                    immunityRecord.immunity = 1f;
-                }
-            }
-        }
-
-        tmpHediffs.Clear();
     }
 
     public override void ExposeData()

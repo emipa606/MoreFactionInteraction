@@ -1,5 +1,8 @@
 # Changelog for MoreFactionInteraction
 
+1.4.4 - Diplomatic marriages will now recalculate any ideology stuff after marriage
+
+
 1.4.3 - Some null-checks added to the buff enamanator code
 
 

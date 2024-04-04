@@ -114,12 +114,7 @@ internal class WorstCaravanPawnUtility
         }
 
         var hediffInjury5 = FindInjury(usedBy);
-        if (hediffInjury5 != null)
-        {
-            return 2;
-        }
-
-        return 0;
+        return hediffInjury5 != null ? 2 : 0;
     }
 
     private static Hediff FindLifeThreateningHediff(Pawn pawn)

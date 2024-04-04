@@ -7,13 +7,9 @@ using Verse;
 
 namespace MoreFactionInteraction;
 
-internal class WorldComponent_OutpostGrower : WorldComponent
+internal class WorldComponent_OutpostGrower(World world) : WorldComponent(world)
 {
-    private List<ChoiceLetter> choiceLetters = new List<ChoiceLetter>();
-
-    public WorldComponent_OutpostGrower(World world) : base(world)
-    {
-    }
+    private List<ChoiceLetter> choiceLetters = [];
 
     public override void WorldComponentTick()
     {
@@ -39,7 +35,7 @@ internal class WorldComponent_OutpostGrower : WorldComponent
                   && site.Faction.def.permanentEnemy && !site.Faction.def.hidden
                   && !site.Faction.defeated
                   && (!site.HasMap || site.ShouldRemoveMapNow(out _))
-                  && site.parts.Any(x => x.def == SitePartDefOf.Outpost)
+                  && site.parts.Any(x => x.def == DefDatabase<SitePartDef>.GetNamedSilentFail("Outpost"))
                   && !site.GetComponent<TimeoutComp>().Active
             select site;
 

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <IncidentDef>
+    <defName>MFI_HerdMigration_Ambush</defName>
+    <label>herd migration</label>
+    <category>Misc</category>
+    <targetTags>
+      <li>Map_Misc</li>
+    </targetTags>
+    <workerClass>MoreFactionInteraction.World_Incidents.IncidentWorker_HerdMigration_Ambush</workerClass>
+    <pointsScaleable>true</pointsScaleable>
+    <minRefireDays>200</minRefireDays>
+    <letterText>A group of {0} is passing through the area.\n\nIt's hunting time.</letterText>
+    <letterLabel>Animal migration: {0}</letterLabel>
+    <letterDef>NeutralEvent</letterDef>
+  </IncidentDef>
+</Defs>

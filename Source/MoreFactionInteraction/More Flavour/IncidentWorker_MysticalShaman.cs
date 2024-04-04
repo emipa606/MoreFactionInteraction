@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using MoreFactionInteraction.More_Flavour;
 using RimWorld;
 using RimWorld.Planet;
@@ -83,7 +82,7 @@ public class IncidentWorker_MysticalShaman : IncidentWorker
             action = () => { },
             resolveTree = true
         };
-        diaNode.options = new List<DiaOption> { accept, reject };
+        diaNode.options = [accept, reject];
 
         Find.WindowStack.Add(new Dialog_NodeTree(diaNode, title: def.letterLabel));
         Find.Archive.Add(new ArchivedDialog(diaNode.text, def.letterLabel));

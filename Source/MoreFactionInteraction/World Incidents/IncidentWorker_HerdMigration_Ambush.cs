@@ -34,7 +34,7 @@ public class IncidentWorker_HerdMigration_Ambush : IncidentWorker_Ambush
     {
         if (parms.target is not Map map)
         {
-            pawnKindDef = PawnKindDefOf.Thrumbo; //something went really wrong. Let's uh.. brush it under the rug.
+            pawnKindDef = PawnKindDefOf.Thrumbo; //something went really wrong. Lets uh. brush it under the rug.
         }
         else if (Find.WorldObjects.SiteAt(map.Tile) is { } site)
         {

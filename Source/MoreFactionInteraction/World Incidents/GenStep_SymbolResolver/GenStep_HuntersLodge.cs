@@ -9,7 +9,7 @@ public class GenStep_HuntersLodge : GenStep
 {
     private const int Size = 36;
 
-    private static readonly List<CellRect> possibleRects = new List<CellRect>();
+    private static readonly List<CellRect> possibleRects = [];
 
     public override int SeedPart => 735013949;
 
@@ -50,11 +50,6 @@ public class GenStep_HuntersLodge : GenStep
         possibleRects.Add(new CellRect(centralPoint.CenterCell.x - 8, centralPoint.maxZ + 1, Size, Size));
         var mapRect = new CellRect(0, 0, map.Size.x, map.Size.z);
         possibleRects.RemoveAll(x => !x.FullyContainedWithin(mapRect));
-        if (possibleRects.Any())
-        {
-            return possibleRects.RandomElement();
-        }
-
-        return centralPoint;
+        return possibleRects.Any() ? possibleRects.RandomElement() : centralPoint;
     }
 }

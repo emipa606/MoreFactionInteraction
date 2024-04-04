@@ -14,7 +14,7 @@ internal class MFI_SymbolResolver_BasePart_Outdoors_Leaf_Farm : SymbolResolver
                                    BaseGen.globalSettings.minEmptyNodes
                                    && BaseGen.globalSettings.basePart_farmsCoverage +
                                    (rp.rect.Area / (float)BaseGen.globalSettings.mainRect.Area) < MaxCoverage
-                                   && rp.rect.Width <= 15 && rp.rect.Height <= 15
+                                   && rp.rect is { Width: <= 15, Height: <= 15 }
                                    && (rp.cultivatedPlantDef != null ||
                                        SymbolResolver_CultivatedPlants.DeterminePlantDef(rp.rect) != null);
     }

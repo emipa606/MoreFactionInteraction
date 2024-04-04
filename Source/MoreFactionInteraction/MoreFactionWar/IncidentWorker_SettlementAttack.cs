@@ -19,21 +19,11 @@ public class IncidentWorker_SettlementAttack : IncidentWorker
     //1. find random player tile
     //2. find warring faction settlement near it.
     //3. find closest allied (for now: faction = faction) near it
-    //4. find closest enemy faction near it.
+    //4. find the closest enemy faction near it.
     //5. If enemy is closer than ally, it's a win for enemy. 
     //6? If enemy is twice as close, base in question becomes enemy base? maybe.
     public override bool TryExecuteWorker(IncidentParms parms)
     {
-        static int FindTile(int root)
-        {
-            if (TileFinder.TryFindPassableTileWithTraversalDistance(root, 7, 66, out var num))
-            {
-                return num;
-            }
-
-            return -1;
-        }
-
         if (!TileFinder.TryFindRandomPlayerTile(out var randomPlayerTile, true, x => FindTile(x) != -1))
         {
             return false;
@@ -46,20 +36,6 @@ public class IncidentWorker_SettlementAttack : IncidentWorker
         {
             Find.World.GetComponent<WorldComponent_MFI_FactionWar>().AllOuttaFactionSettlements();
             return false;
-        }
-
-        bool HasNearbyAlliedFaction(int x)
-        {
-            return Find.WorldObjects.AnySettlementAt(x) &&
-                   Find.WorldObjects.SettlementAt(x).Faction ==
-                   someRandomPreferablyNearbySettlement.Faction;
-        }
-
-        bool HasNearbyEnemyFaction(int x)
-        {
-            return Find.WorldObjects.AnySettlementAt(x) &&
-                   Find.WorldObjects.SettlementAt(x).Faction ==
-                   someRandomPreferablyNearbySettlement.Faction.EnemyInFactionWar();
         }
 
         TileFinder.TryFindPassableTileWithTraversalDistance(someRandomPreferablyNearbySettlement.Tile,
@@ -119,6 +95,30 @@ public class IncidentWorker_SettlementAttack : IncidentWorker
             someRandomPreferablyNearbySettlement.Faction);
 
         return true;
+
+        static int FindTile(int root)
+        {
+            if (TileFinder.TryFindPassableTileWithTraversalDistance(root, 7, 66, out var num))
+            {
+                return num;
+            }
+
+            return -1;
+        }
+
+        bool HasNearbyAlliedFaction(int x)
+        {
+            return Find.WorldObjects.AnySettlementAt(x) &&
+                   Find.WorldObjects.SettlementAt(x).Faction ==
+                   someRandomPreferablyNearbySettlement.Faction;
+        }
+
+        bool HasNearbyEnemyFaction(int x)
+        {
+            return Find.WorldObjects.AnySettlementAt(x) &&
+                   Find.WorldObjects.SettlementAt(x).Faction ==
+                   someRandomPreferablyNearbySettlement.Faction.EnemyInFactionWar();
+        }
     }
 
     private static string DestroyOldOutpostAndCreateNewAtSpot(Settlement someRandomPreferablyNearbySettlement)

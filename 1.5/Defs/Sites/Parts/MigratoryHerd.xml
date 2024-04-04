@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <SitePartDef>
+    <defName>MFI_HuntersLodgePart</defName>
+    <label>Hunter's lodge</label>
+    <description>A small outpost, used by friendly factions as a hunting base.</description>
+    <siteTexture>World/WorldObjects/Sites/GenericSite</siteTexture>
+    <expandingIconTexture>World/WorldObjects/Expanding/Sites/Nothing</expandingIconTexture>
+    <workerClass>MoreFactionInteraction.World_Incidents.SitePartWorker_MigratoryHerd</workerClass>
+    <requiresFaction>true</requiresFaction>
+    <showFactionInInspectString>true</showFactionInInspectString>
+    <approachOrderString>Visit {0}</approachOrderString>
+    <approachingReportString>Visiting {0}</approachingReportString>
+    <arrivedLetter>Your caravan has arrived at the hunter's lodge. It seems nobody is here, but they've obviously been expecting you and have made the place hospitable.</arrivedLetter>
+    <arrivedLetterDef>PositiveEvent</arrivedLetterDef>
+    <tags>
+      <li>MigratoryHerd</li>
+    </tags>
+  </SitePartDef>
+  <GenStepDef>
+    <defName>MFI_HuntersLodgePart</defName>
+    <linkWithSite>MFI_HuntersLodgePart</linkWithSite>
+    <order>450</order>
+    <genStep Class="MoreFactionInteraction.World_Incidents.GenStep_HuntersLodge" />
+  </GenStepDef>
+  <GenStepDef>
+    <defName>MFI_HuntersLodgePartPower</defName>
+    <linkWithSite>MFI_HuntersLodgePart</linkWithSite>
+    <order>451</order>
+    <genStep Class="GenStep_Power">
+      <canSpawnPowerGenerators>true</canSpawnPowerGenerators>
+    </genStep>
+  </GenStepDef>
+</Defs>

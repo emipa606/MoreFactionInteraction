@@ -16,7 +16,7 @@ internal class MFI_SymbolResolver_BasePart_Indoors_Division_Split : SymbolResolv
 
     public override void Resolve(ResolveParams rp)
     {
-        if (rp.rect.Width < MinWidthOrHeight && rp.rect.Height < MinWidthOrHeight)
+        if (rp.rect is { Width: < MinWidthOrHeight, Height: < MinWidthOrHeight })
         {
             Log.Warning($"Too small rect. params={rp}");
         }

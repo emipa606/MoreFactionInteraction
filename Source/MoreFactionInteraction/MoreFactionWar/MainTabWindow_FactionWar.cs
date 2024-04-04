@@ -104,7 +104,7 @@ public class MainTabWindow_FactionWar : MainTabWindow_Factions
         GUI.color = Color.white;
         Text.Anchor = TextAnchor.UpperLeft;
 
-        //"score card" bar
+        //"scorecard" bar
         var leftFactionOneScoreBox = new Rect(0f, yPositionBar,
             position.width * Find.World.GetComponent<WorldComponent_MFI_FactionWar>().ScoreForFaction(factionOne),
             barHeight);

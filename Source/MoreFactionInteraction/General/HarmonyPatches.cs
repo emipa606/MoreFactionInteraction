@@ -20,35 +20,35 @@ public static class HarmonyPatches
     //resources must be loaded in cctor
     public static readonly Texture2D setPlantToGrowTex = ContentFinder<Texture2D>.Get("UI/Commands/SetPlantToGrow");
 
-    private static readonly SimpleCurve WealthSilverIncreaseDeterminationCurve = new SimpleCurve
-    {
+    private static readonly SimpleCurve WealthSilverIncreaseDeterminationCurve =
+    [
         new CurvePoint(0, 0.8f),
         new CurvePoint(10000, 1),
         new CurvePoint(75000, 2),
         new CurvePoint(300000, 4),
         new CurvePoint(1000000, 6f),
         new CurvePoint(2000000, 7f)
-    };
+    ];
 
-    private static readonly SimpleCurve WealthQualityDeterminationCurve = new SimpleCurve
-    {
+    private static readonly SimpleCurve WealthQualityDeterminationCurve =
+    [
         new CurvePoint(0, 1),
         new CurvePoint(10000, 1.5f),
         new CurvePoint(75000, 2.5f),
         new CurvePoint(300000, 3),
         new CurvePoint(1000000, 3.8f),
         new CurvePoint(2000000, 4.3f)
-    };
+    ];
 
-    private static readonly SimpleCurve WealthQualitySpreadDeterminationCurve = new SimpleCurve
-    {
+    private static readonly SimpleCurve WealthQualitySpreadDeterminationCurve =
+    [
         new CurvePoint(0, 4.2f),
         new CurvePoint(10000, 4),
         new CurvePoint(75000, 2.5f),
         new CurvePoint(300000, 2.1f),
         new CurvePoint(1000000, 1.5f),
         new CurvePoint(2000000, 1.2f)
-    };
+    ];
 
     static HarmonyPatches()
     {
@@ -66,7 +66,7 @@ public static class HarmonyPatches
 
         harmony.Patch(
             AccessTools.Method(typeof(ThingSetMaker), nameof(ThingSetMaker.Generate),
-                new[] { typeof(ThingSetMakerParams) }),
+                [typeof(ThingSetMakerParams)]),
             postfix: new HarmonyMethod(typeof(HarmonyPatches), nameof(TraderStocker_OverStockerPostFix)));
 
         harmony.Patch(AccessTools.Method(typeof(Tradeable), "InitPriceDataIfNeeded"),
@@ -97,6 +97,9 @@ public static class HarmonyPatches
         {
             ((Action)(() =>
             {
+                MainTabWindow_Relations.ExtraFactionDetailDrawers.Add(func);
+                return;
+
                 static float func(Faction faction, Vector2 pos, float width)
                 {
                     if (!Find.World.GetComponent<WorldComponent_MFI_FactionWar>().StuffIsGoingDown)
@@ -108,8 +111,6 @@ public static class HarmonyPatches
                     MainTabWindow_FactionWar.DrawFactionWarBar(canvas);
                     return 125f;
                 }
-
-                MainTabWindow_Relations.ExtraFactionDetailDrawers.Add(func);
             }))();
         }
         catch (TypeLoadException)

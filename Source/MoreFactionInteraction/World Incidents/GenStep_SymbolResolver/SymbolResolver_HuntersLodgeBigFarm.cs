@@ -9,7 +9,7 @@ public class SymbolResolver_HuntersLodgeBigFarm : SymbolResolver
     public override void Resolve(ResolveParams rp)
     {
         var num = 0;
-        if (rp.rect.Width >= 20 && rp.rect.Height >= 20 &&
+        if (rp.rect is { Width: >= 20, Height: >= 20 } &&
             (rp.faction.def.techLevel >= TechLevel.Industrial || Rand.Bool))
         {
             num = !Rand.Bool ? 4 : 2;

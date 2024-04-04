@@ -54,7 +54,7 @@ public class IncidentWorker_SpreadingOutpost : IncidentWorker
             return false;
         }
 
-        var site = SiteMaker.MakeSite(SitePartDefOf.Outpost, tile, faction);
+        var site = SiteMaker.MakeSite(DefDatabase<SitePartDef>.GetNamedSilentFail("Outpost"), tile, faction);
         site.Tile = tile;
         site.sitePartsKnown = true;
         Find.WorldObjects.Add(site);

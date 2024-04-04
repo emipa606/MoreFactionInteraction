@@ -7,7 +7,7 @@ internal class MFI_SymbolResolver_BasePart_Outdoors_LeafPossiblyDecorated : Symb
 {
     public override void Resolve(ResolveParams rp)
     {
-        if (rp.rect.Width >= 10 && rp.rect.Height >= 10 && Rand.Chance(0.25f))
+        if (rp.rect is { Width: >= 10, Height: >= 10 } && Rand.Chance(0.25f))
         {
             BaseGen.symbolStack.Push("MFI_basePart_outdoors_leafDecorated", rp);
         }

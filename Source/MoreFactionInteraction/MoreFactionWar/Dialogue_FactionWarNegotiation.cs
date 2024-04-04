@@ -4,20 +4,18 @@ using Verse;
 
 namespace MoreFactionInteraction;
 
-public class Dialogue_FactionWarNegotiation : Dialog_NodeTree
+public class Dialogue_FactionWarNegotiation(
+    Faction factionOne,
+    Faction factionInstigator,
+    DiaNode nodeRoot,
+    bool delayInteractivity = false,
+    bool radioMode = false,
+    string title = null)
+    : Dialog_NodeTree(nodeRoot,
+        delayInteractivity, radioMode, title)
 {
     private const float TitleHeight = 70f;
     private const float InfoHeight = 60f;
-    private readonly Faction factionInstigator;
-    private readonly Faction factionOne;
-
-    public Dialogue_FactionWarNegotiation(Faction factionOne, Faction factionInstigator, DiaNode nodeRoot,
-        bool delayInteractivity = false, bool radioMode = false, string title = null) : base(nodeRoot,
-        delayInteractivity, radioMode, title)
-    {
-        this.factionOne = factionOne;
-        this.factionInstigator = factionInstigator;
-    }
 
     public override Vector2 InitialSize => new Vector2(720f, 600f);
 

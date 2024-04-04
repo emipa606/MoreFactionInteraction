@@ -7,11 +7,11 @@ using Verse;
 
 namespace MoreFactionInteraction.More_Flavour;
 
-public class WorldComponent_MFI_AnnualExpo : WorldComponent
+public class WorldComponent_MFI_AnnualExpo(World world) : WorldComponent(world)
 {
     private readonly IncidentDef incident = MFI_DefOf.MFI_AnnualExpo;
     private readonly float intervalDays = 60f;
-    private List<Buff> activeBuffList = new List<Buff>();
+    private List<Buff> activeBuffList = [];
 
     public Dictionary<EventDef, int> events = new Dictionary<EventDef, int>
     {
@@ -24,10 +24,6 @@ public class WorldComponent_MFI_AnnualExpo : WorldComponent
 
     private float occuringTick;
     public int timesHeld;
-
-    public WorldComponent_MFI_AnnualExpo(World world) : base(world)
-    {
-    }
 
     private List<Buff> ActiveBuffsList => activeBuffList;
 

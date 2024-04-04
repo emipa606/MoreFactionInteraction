@@ -22,14 +22,14 @@ internal class MFI_SymbolResolver_BasePart_Outdoors_Division_Grid : SymbolResolv
     private const float AllowNonSquareRoomsInTheFirstStepChance = 0.2f;
 
     private static readonly List<Pair<Pair<int, int>, Pair<int, int>>> options =
-        new List<Pair<Pair<int, int>, Pair<int, int>>>();
+        [];
 
     private readonly List<Child> children =
-        new List<Child>();
+        [];
 
-    private readonly List<Pair<int, int>> optionsX = new List<Pair<int, int>>();
+    private readonly List<Pair<int, int>> optionsX = [];
 
-    private readonly List<Pair<int, int>> optionsZ = new List<Pair<int, int>>();
+    private readonly List<Pair<int, int>> optionsZ = [];
 
     public override bool CanResolve(ResolveParams rp)
     {
@@ -38,7 +38,7 @@ internal class MFI_SymbolResolver_BasePart_Outdoors_Division_Grid : SymbolResolv
         {
             result = false;
         }
-        else if (rp.rect.Width < MinWidthOrHeight && rp.rect.Height < MinWidthOrHeight)
+        else if (rp.rect is { Width: < MinWidthOrHeight, Height: < MinWidthOrHeight })
         {
             result = false;
         }

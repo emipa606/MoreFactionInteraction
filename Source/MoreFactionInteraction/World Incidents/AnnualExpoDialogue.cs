@@ -10,22 +10,8 @@ using Verse.Grammar;
 
 namespace MoreFactionInteraction.More_Flavour;
 
-public class AnnualExpoDialogue
+public class AnnualExpoDialogue(Pawn participant, Caravan caravan, EventDef activity, Faction host)
 {
-    private readonly EventDef activity;
-    private readonly Caravan caravan;
-    private readonly Faction host;
-
-    private readonly Pawn participant;
-
-    public AnnualExpoDialogue(Pawn participant, Caravan caravan, EventDef activity, Faction host)
-    {
-        this.participant = participant;
-        this.caravan = caravan;
-        this.activity = activity;
-        this.host = host;
-    }
-
     public DiaNode AnnualExpoDialogueNode()
     {
         GrammarRequest request = default;

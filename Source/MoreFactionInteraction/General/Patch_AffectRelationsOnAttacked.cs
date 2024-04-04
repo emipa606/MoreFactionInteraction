@@ -3,7 +3,7 @@ using RimWorld.Planet;
 
 namespace MoreFactionInteraction;
 
-[HarmonyPatch(typeof(SettlementUtility), "AffectRelationsOnAttacked")]
+[HarmonyPatch(typeof(SettlementUtility), nameof(SettlementUtility.AffectRelationsOnAttacked))]
 internal static class Patch_AffectRelationsOnAttacked
 {
     private static bool Prefix(MapParent mapParent)

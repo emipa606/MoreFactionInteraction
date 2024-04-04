@@ -12,7 +12,7 @@ public class EventRewardWorker_ScienceFaire : EventRewardWorker
 {
     private readonly EventDef eventDef = MFI_DefOf.MFI_ScienceFaire;
 
-    public override Predicate<ThingDef> ValidatorFirstOther => x => x == ThingDefOf.TechprofSubpersonaCore;
+    public override Predicate<ThingDef> ValidatorFirstOther => x => x == ThingDef.Named("TechprofSubpersonaCore");
 
     public override string GenerateRewards(Pawn pawn, Caravan caravan, Predicate<ThingDef> globalValidator,
         ThingSetMakerDef thingSetMakerDef)

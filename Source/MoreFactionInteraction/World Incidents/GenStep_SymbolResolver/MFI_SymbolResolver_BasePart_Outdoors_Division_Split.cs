@@ -4,7 +4,7 @@ using Verse;
 
 namespace MoreFactionInteraction.World_Incidents.GenStep_SymbolResolver;
 
-// yeah this is mostly taken from vanilla.
+// yeah, this is mostly taken from vanilla.
 internal class MFI_SymbolResolver_BasePart_Outdoors_Division_Split : SymbolResolver
 {
     private const int MinLengthAfterSplit = 5;

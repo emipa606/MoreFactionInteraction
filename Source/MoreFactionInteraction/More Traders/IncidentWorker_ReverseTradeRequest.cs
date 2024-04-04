@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
 using RimWorld.Planet;
@@ -90,7 +89,7 @@ public class IncidentWorker_ReverseTradeRequest : IncidentWorker
             resolveTree = true
         };
 
-        diaNode.options = new List<DiaOption> { accept, reject };
+        diaNode.options = [accept, reject];
 
         Find.WindowStack.Add(new Dialog_NodeTreeWithFactionInfo(diaNode, settlement.Faction,
             title: "MFI_ReverseTradeRequestTitle".Translate(map.info.parent.Label).CapitalizeFirst()));
@@ -138,7 +137,7 @@ public class IncidentWorker_ReverseTradeRequest : IncidentWorker
     private static Settlement RandomNearbyTradeableSettlement(int originTile)
     {
         return Find.WorldObjects.Settlements.Where(settlement =>
-            settlement is { Visitable: true, Faction: { leader: not null } } &&
+            settlement is { Visitable: true, Faction.leader: not null } &&
             settlement.GetComponent<TradeRequestComp>() != null &&
             !settlement.GetComponent<TradeRequestComp>().ActiveRequest &&
             Find.WorldGrid.ApproxDistanceInTiles(originTile, settlement.Tile) < 36f &&

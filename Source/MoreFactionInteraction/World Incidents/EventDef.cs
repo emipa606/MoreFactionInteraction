@@ -7,6 +7,12 @@ namespace MoreFactionInteraction;
 
 public class EventDef : Def
 {
+    public readonly Type workerClass = typeof(EventRewardWorker);
+
+    public readonly float xPGainFirstLoser = 2000f;
+    public readonly float xPGainFirstOther = 1000f;
+
+    public readonly float xPGainFirstPlace = 4000f;
     public List<SkillDef> learnedSkills;
 
     [MustTranslate] public string outcomeFirstLoser;
@@ -24,16 +30,9 @@ public class EventDef : Def
 
     [MustTranslate] public string themeDesc;
 
-    public Type workerClass = typeof(EventRewardWorker);
-
     [Unsaved] private EventRewardWorker workerInt;
 
-    public float xPGainFirstLoser = 2000f;
-    public float xPGainFirstOther = 1000f;
-
-    public float xPGainFirstPlace = 4000f;
-
-    //dunno why vanilla caches it but there's prolly good reason for it.
+    //don't know why vanilla caches it but there's prolly good reason for it.
     public EventRewardWorker Worker
     {
         get

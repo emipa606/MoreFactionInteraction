@@ -12,7 +12,7 @@ public class SymbolResolver_HuntersLodgeBase : SymbolResolver
         var faction = rp.faction ?? Find.FactionManager.RandomAlliedFaction();
         var num = 0;
 
-        if (rp.rect.Width >= 20 && rp.rect.Height >= 20 &&
+        if (rp.rect is { Width: >= 20, Height: >= 20 } &&
             (faction.def.techLevel >= TechLevel.Industrial || Rand.Bool))
         {
             num = !Rand.Bool ? 4 : 2;

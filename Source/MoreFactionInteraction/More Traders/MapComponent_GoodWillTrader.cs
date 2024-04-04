@@ -8,40 +8,35 @@ using Verse;
 
 namespace MoreFactionInteraction;
 
-public class MapComponent_GoodWillTrader : MapComponent
+public class MapComponent_GoodWillTrader(Map map) : MapComponent(map)
 {
     private readonly List<IncidentDef> allowedIncidentDefs =
-        new List<IncidentDef>
-        {
-            MFI_DefOf.MFI_QuestSpreadingPirateCamp,
-            MFI_DefOf.MFI_DiplomaticMarriage,
-            MFI_DefOf.MFI_ReverseTradeRequest,
-            MFI_DefOf.MFI_BumperCropRequest,
-            MFI_DefOf.MFI_HuntersLodge,
-            IncidentDef.Named("MFI_MysticalShaman"),
-            IncidentDefOf.TraderCaravanArrival
-        };
+    [
+        MFI_DefOf.MFI_QuestSpreadingPirateCamp,
+        MFI_DefOf.MFI_DiplomaticMarriage,
+        MFI_DefOf.MFI_ReverseTradeRequest,
+        MFI_DefOf.MFI_BumperCropRequest,
+        MFI_DefOf.MFI_HuntersLodge,
+        IncidentDef.Named("MFI_MysticalShaman"),
+        IncidentDefOf.TraderCaravanArrival
+    ];
 
     private readonly List<IncidentDef> incidentsInNeedOfValidFactionLeader =
-        new List<IncidentDef>
-        {
-            MFI_DefOf.MFI_ReverseTradeRequest,
-            MFI_DefOf.MFI_HuntersLodge
-        };
+    [
+        MFI_DefOf.MFI_ReverseTradeRequest,
+        MFI_DefOf.MFI_HuntersLodge
+    ];
 
     //working lists for ExposeData.
-    private List<Faction> factionsListforInteraction = new List<Faction>();
-    private List<Faction> factionsListforTimesTraded = new List<Faction>();
-    private List<int> intListForInteraction = new List<int>();
-    private List<int> intListforTimesTraded = new List<int>();
+    private List<Faction> factionsListforInteraction = [];
+    private List<Faction> factionsListforTimesTraded = [];
+    private List<int> intListForInteraction = [];
+    private List<int> intListforTimesTraded = [];
     private Dictionary<Faction, int> nextFactionInteraction = new Dictionary<Faction, int>();
     private List<QueuedIncident> queued;
     private Dictionary<Faction, int> timesTraded = new Dictionary<Faction, int>();
 
     //empty constructor
-    public MapComponent_GoodWillTrader(Map map) : base(map)
-    {
-    }
 
     /// <summary>
     ///     Used to keep track of how many times the player traded with the faction and increase trader stock based on that.

@@ -5,10 +5,12 @@ namespace MoreFactionInteraction.More_Flavour;
 
 public class Buff_Chemfuel : Buff
 {
+    private static readonly ThingDef infiniteChemreactor = ThingDef.Named("InfiniteChemreactor");
+
     public override void Apply()
     {
         var spawner =
-            (CompProperties_Spawner)ThingDefOf.InfiniteChemreactor.comps.FirstOrDefault(x =>
+            (CompProperties_Spawner)infiniteChemreactor.comps.FirstOrDefault(x =>
                 x is CompProperties_Spawner);
 
         if (spawner != null)
@@ -41,12 +43,12 @@ public class Buff_Chemfuel : Buff
 
     public override ThingDef RelevantThingDef()
     {
-        return ThingDefOf.InfiniteChemreactor;
+        return infiniteChemreactor;
     }
 
     public override string Description()
     {
-        return "MFI_buffChemfuel".Translate(ThingDefOf.InfiniteChemreactor.label,
-            ThingDefOf.InfiniteChemreactor.GetCompProperties<CompProperties_Spawner>().thingToSpawn.label);
+        return "MFI_buffChemfuel".Translate(infiniteChemreactor.label,
+            infiniteChemreactor.GetCompProperties<CompProperties_Spawner>().thingToSpawn.label);
     }
 }

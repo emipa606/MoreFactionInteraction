@@ -6,7 +6,7 @@ using Verse;
 
 namespace MoreFactionInteraction;
 
-[HarmonyPatch(typeof(TransportPodsArrivalAction_VisitSite), "Arrived")]
+[HarmonyPatch(typeof(TransportPodsArrivalAction_VisitSite), nameof(TransportPodsArrivalAction_VisitSite.Arrived))]
 internal static class Patch_Arrived
 {
     private static bool Prefix(Site ___site, PawnsArrivalModeDef ___arrivalMode, List<ActiveDropPodInfo> pods)

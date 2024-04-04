@@ -184,15 +184,10 @@ public class IncidentWorker_WoundedCombatants : IncidentWorker
             return false;
         }
 
-        if (Find.World.GetComponent<WorldComponent_MFI_FactionWar>().AllFactionsInVolvedInWar
+        return Find.World.GetComponent<WorldComponent_MFI_FactionWar>().AllFactionsInVolvedInWar
             .Where(f => f.RelationWith(Faction.OfPlayer).kind == FactionRelationKind.Ally
                         && f.def.techLevel >= TechLevel.Industrial)
             .TryRandomElementByWeight(f => f.def.RaidCommonalityFromPoints(600f),
-                out faction))
-        {
-            return true;
-        }
-
-        return false;
+                out faction);
     }
 }

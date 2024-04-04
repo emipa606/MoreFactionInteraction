@@ -21,7 +21,7 @@ public class CustomFaction_HealthUtility
         {
             foreach (var apparel in p.apparel.WornApparel)
             {
-                if (!apparel.def.StatBaseDefined(StatDefOf.SmokepopBeltRadius))
+                if (!apparel.def.StatBaseDefined(StatDef.Named("SmokepopBeltRadius")))
                 {
                     continue;
                 }

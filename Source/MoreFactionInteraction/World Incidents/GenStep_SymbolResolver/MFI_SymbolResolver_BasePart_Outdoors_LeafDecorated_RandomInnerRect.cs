@@ -11,10 +11,8 @@ internal class MFI_SymbolResolver_BasePart_Outdoors_LeafDecorated_RandomInnerRec
 
     public override bool CanResolve(ResolveParams rp)
     {
-        return base.CanResolve(rp) && rp.rect.Width <= MaxRectSize
-                                   && rp.rect.Height <= MaxRectSize
-                                   && rp.rect.Width > MinLength
-                                   && rp.rect.Height > MinLength;
+        return base.CanResolve(rp) && rp.rect is { Width: <= MaxRectSize, Height: <= MaxRectSize } and
+            { Width: > MinLength, Height: > MinLength };
     }
 
     public override void Resolve(ResolveParams rp)

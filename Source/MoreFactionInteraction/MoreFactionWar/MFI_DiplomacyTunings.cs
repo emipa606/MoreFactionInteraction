@@ -4,12 +4,12 @@ namespace MoreFactionInteraction.MoreFactionWar;
 
 public static class MFI_DiplomacyTunings
 {
-    public static readonly SimpleCurve BadOutcomeFactorAtStatPower = new SimpleCurve
-    {
+    public static readonly SimpleCurve BadOutcomeFactorAtStatPower =
+    [
         new CurvePoint(0f, 4f),
         new CurvePoint(1f, 1f),
         new CurvePoint(1.5f, 0.4f)
-    };
+    ];
 
     public static readonly IntRange GoodWill_FactionWarPeaceTalks_ImpactHuge = new IntRange(50, 80);
     public static readonly IntRange GoodWill_FactionWarPeaceTalks_ImpactBig = new IntRange(30, 70);
@@ -18,14 +18,14 @@ public static class MFI_DiplomacyTunings
 
     public static readonly IntRange GoodWill_DeclinedMarriage_Impact = new IntRange(-5, -15);
 
-    public static readonly SimpleCurve PawnValueInGoodWillAmountOut = new SimpleCurve
-    {
+    public static readonly SimpleCurve PawnValueInGoodWillAmountOut =
+    [
         new CurvePoint(0f, 0),
         new CurvePoint(500f, 20),
         new CurvePoint(1000f, 40),
         new CurvePoint(2000f, 60),
         new CurvePoint(4000f, 80)
-    };
+    ];
 
     public static Outcome FavourDisaster => new Outcome
     {

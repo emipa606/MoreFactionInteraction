@@ -88,4 +88,6 @@
   <MFI_RoadWorks>Obras en la carretera</MFI_RoadWorks>
   <MFI_RoadSectionCompleted>Se ha completado un nuevo tramo de carretera.</MFI_RoadSectionCompleted>
   <MFI_RoadWorksDialogue>{0} propone una idea que cree que aumentará el comercio y la prosperidad económica en la región. Quieren construir una carretera de {1} baldosas de longitud, que comience en su asentamiento. Para compensar el coste de los materiales y la mano de obra, piden a todos los asentamientos de sus alrededores una única contribución de {2} plata.\NSi no les das la cantidad solicitada, invertirán sus esfuerzos en otra parte.</MFI_RoadWorksDialogue>
+  <MFI_doNotAffectTraders>No afectan a los comerciantes</MFI_doNotAffectTraders>
+  <MFI_doNotAffectTradersDesc>La modificación de las interacciones entre facciones no afectará a las caravanas comerciales.</MFI_doNotAffectTradersDesc>
 </LanguageData>

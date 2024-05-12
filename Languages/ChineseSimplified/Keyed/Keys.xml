@@ -73,4 +73,6 @@
   <MFI_CurrentModVersion>已安装的mod-version。{0}</MFI_CurrentModVersion>
   <MFI_enableannualexpo>启用年度博览会</MFI_enableannualexpo>
   <MFI_enableannualexpotooltip>由于该事件似乎对一些用户造成了问题，因此可以在这里禁用它。</MFI_enableannualexpotooltip>
+  <MFI_doNotAffectTraders>不影响贸易商</MFI_doNotAffectTraders>
+  <MFI_doNotAffectTradersDesc>修改后的派系互动不会影响贸易商队。</MFI_doNotAffectTradersDesc>
 </LanguageData>

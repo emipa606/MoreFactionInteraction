@@ -83,4 +83,6 @@
   <MFI_CurrentModVersion>Installierte Mod-Version: {0}</MFI_CurrentModVersion>
   <MFI_enableannualexpo>Jährliche Ausstellung ermöglichen</MFI_enableannualexpo>
   <MFI_enableannualexpotooltip>Da dieses Ereignis bei einigen Benutzern Probleme zu verursachen scheint, kann es hier deaktiviert werden</MFI_enableannualexpotooltip>
+  <MFI_doNotAffectTraders>Händler nicht beeinträchtigen</MFI_doNotAffectTraders>
+  <MFI_doNotAffectTradersDesc>Die geänderten Fraktionsinteraktionen werden sich nicht auf Handelskarawanen auswirken.</MFI_doNotAffectTradersDesc>
 </LanguageData>

@@ -77,4 +77,6 @@
   <MFI_RoadWorks>Roboty drogowe</MFI_RoadWorks>
   <MFI_RoadSectionCompleted>Oddano do użytku nowy odcinek drogi.</MFI_RoadSectionCompleted>
   <MFI_RoadWorksDialogue>{0} proponuje pomysł, który ich zdaniem zwiększy handel i dobrobyt gospodarczy w regionie. Chcą zbudować drogę o długości {1} płytek, zaczynającą się przy ich osadzie. Aby zrekompensować koszty materiałów i pracy, proszą wszystkie osady w ich okolicy o jednorazowy datek w wysokości {2} srebra.Jeśli nie dasz im żądanej kwoty, zainwestują swoje wysiłki gdzie indziej.</MFI_RoadWorksDialogue>
+  <MFI_doNotAffectTraders>Nie wpływają na handlowców</MFI_doNotAffectTraders>
+  <MFI_doNotAffectTradersDesc>Zmodyfikowane interakcje frakcji nie będą miały wpływu na karawany handlowe.</MFI_doNotAffectTradersDesc>
 </LanguageData>

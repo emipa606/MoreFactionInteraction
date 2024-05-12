@@ -152,11 +152,18 @@ public class MapComponent_GoodWillTrader(Map map) : MapComponent(map)
             //forced, because half the time game doesn't feel like firing events.
             incidentParms.forced = true;
 
-            //trigger incident somewhere between half a day and 3 days from now
-            Find.Storyteller.incidentQueue.Add(incident,
-                Find.TickManager.TicksGame + Rand.Range(GenDate.TicksPerDay / 2, GenDate.TicksPerDay * 3),
-                incidentParms,
-                2500);
+            if (!MoreFactionInteraction_Settings.doNotAffectTraders || !incident.defName.Contains("Trader"))
+            {
+                //trigger incident somewhere between half a day and 3 days from now
+                Find.Storyteller.incidentQueue.Add(incident,
+                    Find.TickManager.TicksGame + Rand.Range(GenDate.TicksPerDay / 2, GenDate.TicksPerDay * 3),
+                    incidentParms,
+                    2500);
+            }
+            else
+            {
+                Log.Message($"Skipping extra trade-caravan from {faction}");
+            }
 
             NextFactionInteraction[faction] =
                 Find.TickManager.TicksGame

@@ -83,4 +83,6 @@
   <MFI_CurrentModVersion>Versione mod installata: {0}</MFI_CurrentModVersion>
   <MFI_enableannualexpo>Attiva l'esposizione annuale</MFI_enableannualexpo>
   <MFI_enableannualexpotooltip>Poiché questo evento sembra causare problemi ad alcuni utenti, è possibile disattivarlo qui</MFI_enableannualexpotooltip>
+  <MFI_doNotAffectTraders>Non influenzano i commercianti</MFI_doNotAffectTraders>
+  <MFI_doNotAffectTradersDesc>Le interazioni di fazione modificate non influiranno sulle carovane commerciali.</MFI_doNotAffectTradersDesc>
 </LanguageData>

@@ -11,6 +11,7 @@ public class MoreFactionInteraction_Settings : ModSettings
     public static float traderWealthOffsetFromTimesTraded = 0.7f;
     public static float pirateBaseUpgraderModifier = 0.8f;
     public static bool enableAnnualExpo = true;
+    public static bool doNotAffectTraders;
 
     public void DoWindowContents(Rect rect)
     {
@@ -29,7 +30,9 @@ public class MoreFactionInteraction_Settings : ModSettings
             ref timeModifierBetweenFactionInteraction,
             timeModifierBetweenFactionInteraction.ToStringByStyle(ToStringStyle.FloatOne), 0.5f, 20f,
             "MFI_timeModifierBetweenFactionInteractionDesc".Translate());
-        options.Gap();
+        options.CheckboxLabeled("MFI_doNotAffectTraders".Translate(), ref doNotAffectTraders,
+            "MFI_doNotAffectTradersDesc".Translate());
+        options.GapLine();
         options.SliderLabeled("MFI_traderWealthOffsetFromTimesTraded".Translate(),
             ref traderWealthOffsetFromTimesTraded,
             traderWealthOffsetFromTimesTraded.ToStringByStyle(ToStringStyle.FloatOne), 0.5f, 3f);
@@ -51,6 +54,7 @@ public class MoreFactionInteraction_Settings : ModSettings
     {
         Scribe_Values.Look(ref ticksToUpgrade, "ticksToUpgrade", 2700000);
         Scribe_Values.Look(ref enableAnnualExpo, "enableAnnualExpo", true);
+        Scribe_Values.Look(ref doNotAffectTraders, "doNotAffectTraders");
         Scribe_Values.Look(ref timeModifierBetweenFactionInteraction, "timeModifierBetweenFactionInteraction", 1f);
         Scribe_Values.Look(ref traderWealthOffsetFromTimesTraded, "traderWealthOffsetFromTimesTraded", 0.8f);
         Scribe_Values.Look(ref pirateBaseUpgraderModifier, "MFI_pirateBaseUpgraderModifier", 0.8f);

@@ -1,7 +1,6 @@
-# MoreFactionInteraction
+# [More Faction Interaction (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=2379076640)
 
 ![Image](https://i.imgur.com/buuPQel.png)
-
 Update of Mehnis mod
 https://steamcommunity.com/sharedfiles/filedetails/?id=1454024362
 
@@ -21,13 +20,11 @@ Regarding getting too many caravans: (via Black Goat)
 
 My recommendations for people who play with MFI + DD or faction mods would be to increase the "Time modifier for faction interaction" slider in the MFI mod settings menu from 1 to 3 and to disable the "Allow Alliance" and "Allow permanent enemy factions to change relationships" options for DD. ”
 
-- Another solution for the trader-spam is to use my mod https://steamcommunity.com/sharedfiles/filedetails/?id=2813027453]Ask before enter
+- Another solution for the trader-spam is to use my mod [https://steamcommunity.com/sharedfiles/filedetails/?id=2813027453](Ask before enter)
 
 ![Image](https://i.imgur.com/pufA0kM.png)
-
 	
 ![Image](https://i.imgur.com/Z4GOv8H.png)
-
 Adds more interaction with and between factions, bringing the world to life.
 
 # Meaningful faction relations
@@ -80,9 +77,9 @@ Adds more interaction with and between factions, bringing the world to life.
 - ShotgunFrenzy, art.
 - Halno, art.
 - Ian, text revisions.
-- My testers. You know who you are. Thanks to https://twitch.tv/Eviltrick]Eviltrick in particular.
+- My testers. You know who you are. Thanks to [https://twitch.tv/Eviltrick](Eviltrick) in particular.
 
-Shoutout to https://steamcommunity.com/sharedfiles/filedetails/?id=1123043922]Albion of Sparkling Worlds, for the inspiration and support. 
+Shoutout to [https://steamcommunity.com/sharedfiles/filedetails/?id=1123043922](Albion of Sparkling Worlds), for the inspiration and support. 
 
 # Languages
 
@@ -111,16 +108,14 @@ Want to help translate this mod in your language? Check out the "Pirate" folder 
 ![Image](https://i.imgur.com/PwoNOj4.png)
 
 
-
 -  See if the the error persists if you just have this mod and its requirements active.
 -  If not, try adding your other mods until it happens again.
--  Post your error-log using https://steamcommunity.com/workshop/filedetails/?id=818773962]HugsLib or the standalone https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404]Uploader and command Ctrl+F12
+-  Post your error-log using [https://steamcommunity.com/workshop/filedetails/?id=818773962]HugsLib[/url] or the standalone [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404](Uploader) and command Ctrl+F12
 -  For best support, please use the Discord-channel for error-reporting.
 -  Do not report errors by making a discussion-thread, I get no notification of that.
 -  If you have the solution for a problem, please post it to the GitHub repository.
--  Use https://github.com/RimSort/RimSort/releases/latest]RimSort to sort your mods
+-  Use [https://github.com/RimSort/RimSort/releases/latest](RimSort) to sort your mods
 
 
 
-https://steamcommunity.com/sharedfiles/filedetails/changelog/2379076640]![Image](https://img.shields.io/github/v/release/emipa606/MoreFactionInteraction?label=latest%20version&style=plastic&color=9f1111&labelColor=black)
-
+[https://steamcommunity.com/sharedfiles/filedetails/changelog/2379076640]![Image]((https://img.shields.io/github/v/release/emipa606/MoreFactionInteraction?label=latest%20version&style=plastic&color=9f1111&labelColor=black))

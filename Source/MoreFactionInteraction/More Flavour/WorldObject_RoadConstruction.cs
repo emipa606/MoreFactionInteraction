@@ -20,7 +20,7 @@ public class WorldObject_RoadConstruction : WorldObject
                $": {(projectedTimeOfCompletion - Find.TickManager.TicksGame).ToStringTicksToPeriodVague(false)}";
     }
 
-    public override void Tick()
+    protected override void Tick()
     {
         if (Find.TickManager.TicksGame <= projectedTimeOfCompletion)
         {
@@ -30,9 +30,9 @@ public class WorldObject_RoadConstruction : WorldObject
         Messages.Message("MFI_RoadSectionCompleted".Translate(), this, MessageTypeDefOf.TaskCompletion);
         Find.WorldGrid.OverlayRoad(Tile, nextTile, road); //OverlayRoad makes sure roads don't degrade
         Find.WorldObjects.Remove(this);
-        Find.World.renderer.SetDirty<WorldLayer_Roads>();
-        Find.World.renderer.SetDirty<WorldLayer_Paths>();
-        Find.WorldPathGrid.RecalculatePerceivedMovementDifficultyAt(Tile);
+        Find.World.renderer.SetDirty<WorldDrawLayer_Roads>(PlanetLayer.Selected);
+        Find.World.renderer.SetDirty<WorldDrawLayer_Roads>(PlanetLayer.Selected);
+        Find.WorldPathGrid.RecalculatePerceivedMovementDifficultyAt(Tile, out _);
     }
 
     public override void ExposeData()

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
   <!--settings -->
   <MFI_ticksToUpgrade>Время до того, как аванпост бандитов станет полноценной базой</MFI_ticksToUpgrade>
@@ -84,4 +84,11 @@
   <MFI_RoadWorksDialogue>{0} предлагает идею, которая, по их мнению, увеличит торговлю и экономическое процветание в регионе. Они хотят построить дорогу длиной {1} плиток, начинающуюся в их поселении. Чтобы компенсировать стоимость материалов и рабочей силы, они просят все поселения в окрестностях сделать единый взнос в размере {2} серебра.\n\nЕсли вы не дадите им требуемую сумму, они направят свои усилия в другое место.</MFI_RoadWorksDialogue>
   <MFI_doNotAffectTraders>Не влияют на торговцев</MFI_doNotAffectTraders>
   <MFI_doNotAffectTradersDesc>Измененные взаимодействия фракций не повлияют на торговые караваны.</MFI_doNotAffectTradersDesc>
+  <!-- equivalent to NeedSilverLaunchable, just with steel. (currently unused) -->
+  <!-- Annual Expo start -->
+  <!-- it is time for the {ORDINALNUMBER} annual {WORLDNAME}. This year's host is {FACTIONLABEL} and the theme is {MFI_gameOfUrComp / MFI_shootingComp / MFI_culturalSwap / etc} {MFI_gameOfUrCompExpl / MFI_shootingCompExpl / etc} -->
+  <!-- It's gotta *sound* fancy, it doesn't necessarily has to make sense. {0} is the label for the Psychic Emitter; replaced automagically. -->
+  <!-- like the emanator above, only for the infinite chemfuel reactor generator doodad thing. -->
+  <!-- {Pawn.LabelShort} has gained {amount} {SkillDef.label} experience. -->
+  <!-- Annual Expo end -->
 </LanguageData>

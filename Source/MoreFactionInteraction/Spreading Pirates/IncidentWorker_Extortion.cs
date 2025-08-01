@@ -54,7 +54,7 @@ public class IncidentWorker_Extortion : IncidentWorker
             select worldObject;
     }
 
-    public override bool CanFireNowSub(IncidentParms parms)
+    protected override bool CanFireNowSub(IncidentParms parms)
     {
         var map = (Map)parms.target;
         return base.CanFireNowSub(parms) && CommsConsoleUtility.PlayerHasPoweredCommsConsole(map)
@@ -62,7 +62,7 @@ public class IncidentWorker_Extortion : IncidentWorker
                                              out faction);
     }
 
-    public override bool TryExecuteWorker(IncidentParms parms)
+    protected override bool TryExecuteWorker(IncidentParms parms)
     {
         var map = (Map)parms.target;
 

@@ -13,12 +13,12 @@ public class IncidentWorker_HerdMigration_Ambush : IncidentWorker_Ambush
 
     public override float BaseChanceThisGame => 0f;
 
-    public override bool CanFireNowSub(IncidentParms parms)
+    protected override bool CanFireNowSub(IncidentParms parms)
     {
         return base.CanFireNowSub(parms) && Current.Game.Maps.Any(x => x.Tile == parms.target.Tile) && parms.forced;
     }
 
-    public override LordJob CreateLordJob(List<Pawn> generatedPawns, IncidentParms parms)
+    protected override LordJob CreateLordJob(List<Pawn> generatedPawns, IncidentParms parms)
     {
         var map = parms.target as Map;
         TryFindEndCell(map, generatedPawns, out var end);
@@ -30,7 +30,7 @@ public class IncidentWorker_HerdMigration_Ambush : IncidentWorker_Ambush
         return new LordJob_ExitMapNear(end, LocomotionUrgency.Walk);
     }
 
-    public override List<Pawn> GeneratePawns(IncidentParms parms)
+    protected override List<Pawn> GeneratePawns(IncidentParms parms)
     {
         if (parms.target is not Map map)
         {
@@ -56,12 +56,12 @@ public class IncidentWorker_HerdMigration_Ambush : IncidentWorker_Ambush
         return list;
     }
 
-    public override string GetLetterLabel(Pawn anyPawn, IncidentParms parms)
+    protected override string GetLetterLabel(Pawn anyPawn, IncidentParms parms)
     {
         return string.Format(def.letterLabel, pawnKindDef.GetLabelPlural().CapitalizeFirst());
     }
 
-    public override string GetLetterText(Pawn anyPawn, IncidentParms parms)
+    protected override string GetLetterText(Pawn anyPawn, IncidentParms parms)
     {
         return string.Format(def.letterText, pawnKindDef.GetLabelPlural());
     }

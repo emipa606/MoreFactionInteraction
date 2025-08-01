@@ -10,11 +10,11 @@ namespace MoreFactionInteraction;
 [Obsolete]
 public class ChoiceLetter_MysticalShaman : ChoiceLetter
 {
-    private static readonly IntRange TimeoutDaysRange = new IntRange(5, 15);
+    private static readonly IntRange TimeoutDaysRange = new(5, 15);
     public Faction faction;
     public int fee;
     public Map map;
-    public int tile;
+    public PlanetTile tile;
 
     public override IEnumerable<DiaOption> Choices
     {

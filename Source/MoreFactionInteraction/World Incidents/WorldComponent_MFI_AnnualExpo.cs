@@ -13,7 +13,7 @@ public class WorldComponent_MFI_AnnualExpo(World world) : WorldComponent(world)
     private readonly float intervalDays = 60f;
     private List<Buff> activeBuffList = [];
 
-    public Dictionary<EventDef, int> events = new Dictionary<EventDef, int>
+    public Dictionary<EventDef, int> events = new()
     {
         { MFI_DefOf.MFI_GameOfUrComp, 0 },
         { MFI_DefOf.MFI_ShootingComp, 0 },
@@ -54,9 +54,9 @@ public class WorldComponent_MFI_AnnualExpo(World world) : WorldComponent(world)
         return result;
     }
 
-    public override void FinalizeInit()
+    public override void FinalizeInit(bool fromLoad)
     {
-        base.FinalizeInit();
+        base.FinalizeInit(fromLoad);
 
         Buff_Chemfuel.Register();
         Buff_Emanator.Register();

@@ -16,14 +16,14 @@ public class IncidentWorker_DiplomaticMarriage : IncidentWorker
     public override float BaseChanceThisGame => Math.Max(0.01f,
         base.BaseChanceThisGame - StorytellerUtilityPopulation.PopulationIntent);
 
-    public override bool CanFireNowSub(IncidentParms parms)
+    protected override bool CanFireNowSub(IncidentParms parms)
     {
         return base.CanFireNowSub(parms) && TryFindMarriageSeeker(out marriageSeeker)
                                          && TryFindBetrothed(out betrothed)
                                          && !this.IsScenarioBlocked();
     }
 
-    public override bool TryExecuteWorker(IncidentParms parms)
+    protected override bool TryExecuteWorker(IncidentParms parms)
     {
         if (!TryFindMarriageSeeker(out marriageSeeker))
         {
@@ -67,7 +67,7 @@ public class IncidentWorker_DiplomaticMarriage : IncidentWorker
     private bool TryFindBetrothed(out Pawn betrothed)
     {
         return (from potentialPartners in PawnsFinder
-                .AllMapsCaravansAndTravelingTransportPods_Alive_FreeColonistsAndPrisoners_NoCryptosleep
+                .AllMapsCaravansAndTravellingTransporters_Alive_FreeColonistsAndPrisoners_NoCryptosleep
             where !LovePartnerRelationUtility.HasAnyLovePartner(potentialPartners) ||
                   LovePartnerRelationUtility.ExistingMostLikedLovePartner(potentialPartners, false) ==
                   marriageSeeker

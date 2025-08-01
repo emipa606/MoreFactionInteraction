@@ -8,7 +8,7 @@ namespace MoreFactionInteraction.World_Incidents;
 
 public class IncidentWorker_BumperCrop : IncidentWorker
 {
-    private static readonly IntRange OfferDurationRange = new IntRange(10, 30);
+    private static readonly IntRange OfferDurationRange = new(10, 30);
 
     public override float BaseChanceThisGame => base.BaseChanceThisGame
                                                 + (float)(Find.FactionManager.AllFactionsVisible
@@ -20,7 +20,7 @@ public class IncidentWorker_BumperCrop : IncidentWorker
                                                                   faction.GoodwillWith(Faction.OfPlayer)) /
                                                           100);
 
-    public override bool CanFireNowSub(IncidentParms parms)
+    protected override bool CanFireNowSub(IncidentParms parms)
     {
         return base.CanFireNowSub(parms) && TryGetRandomAvailableTargetMap(out var map)
                                          && RandomNearbyGrowerSettlement(map.Tile) != null
@@ -28,7 +28,7 @@ public class IncidentWorker_BumperCrop : IncidentWorker
                                              RandomNearbyGrowerSettlement(map.Tile).Tile);
     }
 
-    public override bool TryExecuteWorker(IncidentParms parms)
+    protected override bool TryExecuteWorker(IncidentParms parms)
     {
         TryGetRandomAvailableTargetMap(out var map);
         if (map == null)
@@ -84,7 +84,7 @@ public class IncidentWorker_BumperCrop : IncidentWorker
             .RandomElementWithFallback();
     }
 
-    private static int RandomOfferDuration(int tileIdFrom, int tileIdTo)
+    private static int RandomOfferDuration(PlanetTile tileIdFrom, PlanetTile tileIdTo)
     {
         var offerValidForDays = OfferDurationRange.RandomInRange;
         var travelTimeByCaravan = CaravanArrivalTimeEstimator.EstimatedTicksToArrive(tileIdFrom, tileIdTo, null);

@@ -8,14 +8,14 @@ namespace MoreFactionInteraction;
 
 public class IncidentWorker_ReverseTradeRequest : IncidentWorker
 {
-    public override bool CanFireNowSub(IncidentParms parms)
+    protected override bool CanFireNowSub(IncidentParms parms)
     {
         return base.CanFireNowSub(parms) && TryGetRandomAvailableTargetMap(out var map)
                                          && RandomNearbyTradeableSettlement(map.Tile) != null
                                          && CommsConsoleUtility.PlayerHasPoweredCommsConsole(map);
     }
 
-    public override bool TryExecuteWorker(IncidentParms parms)
+    protected override bool TryExecuteWorker(IncidentParms parms)
     {
         if (!TryGetRandomAvailableTargetMap(out var map))
         {

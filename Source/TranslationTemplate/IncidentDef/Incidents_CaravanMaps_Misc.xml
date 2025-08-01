@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: herd migration -->
+  <MFI_HerdMigration_Ambush.label>herd migration</MFI_HerdMigration_Ambush.label>
+  <!-- EN: Animal migration: {0} -->
+  <MFI_HerdMigration_Ambush.letterLabel>Animal migration: {0}</MFI_HerdMigration_Ambush.letterLabel>
+  <!-- EN: A group of {0} is passing through the area.\n\nIt's hunting time. -->
+  <MFI_HerdMigration_Ambush.letterText>A group of {0} is passing through the area.
+
+It's hunting time.</MFI_HerdMigration_Ambush.letterText>
+</LanguageData>

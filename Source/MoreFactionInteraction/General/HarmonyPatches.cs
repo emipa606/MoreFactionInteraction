@@ -235,7 +235,7 @@ public static class HarmonyPatches
     }
 
     private static bool CompQuality_TradeQualityIncreaseDestructivePreFix(CompQuality __instance,
-        TraderKindDef trader, int forTile, Faction forFaction)
+        TraderKindDef trader, PlanetTile forTile, Faction forFaction)
     {
         //forTile is assigned in RimWorld.ThingSetMaker_TraderStock.Generate. It's either a best-effort map, or -1.
         Map map = null;

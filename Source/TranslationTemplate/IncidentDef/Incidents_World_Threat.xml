@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: spreading bandit camp -->
+  <MFI_QuestSpreadingPirateCamp.label>spreading bandit camp</MFI_QuestSpreadingPirateCamp.label>
+  <!-- EN: Bandits are spreading -->
+  <MFI_QuestSpreadingPirateCamp.letterLabel>Bandits are spreading</MFI_QuestSpreadingPirateCamp.letterLabel>
+  <!-- EN: {0}, {1} of {2}, feels the need to sent us a taunting message.\n\nIt states they have set up another outpost. -->
+  <MFI_QuestSpreadingPirateCamp.letterText>{0}, {1} of {2}, feels the need to sent us a taunting message.
+
+It states they have set up another outpost.</MFI_QuestSpreadingPirateCamp.letterText>
+</LanguageData>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
   <!--settings -->
   <MFI_ticksToUpgrade>Czas, aż piraci ulepszą swoje placówki do baz</MFI_ticksToUpgrade>
@@ -79,4 +79,11 @@
   <MFI_RoadWorksDialogue>{0} proponuje pomysł, który ich zdaniem zwiększy handel i dobrobyt gospodarczy w regionie. Chcą zbudować drogę o długości {1} płytek, zaczynającą się przy ich osadzie. Aby zrekompensować koszty materiałów i pracy, proszą wszystkie osady w ich okolicy o jednorazowy datek w wysokości {2} srebra.Jeśli nie dasz im żądanej kwoty, zainwestują swoje wysiłki gdzie indziej.</MFI_RoadWorksDialogue>
   <MFI_doNotAffectTraders>Nie wpływają na handlowców</MFI_doNotAffectTraders>
   <MFI_doNotAffectTradersDesc>Zmodyfikowane interakcje frakcji nie będą miały wpływu na karawany handlowe.</MFI_doNotAffectTradersDesc>
+  <!-- equivalent to NeedSilverLaunchable, just with steel. (currently unused) -->
+  <!-- Annual Expo start -->
+  <!-- it is time for the {ORDINALNUMBER} annual {WORLDNAME}. This year's host is {FACTIONLABEL} and the theme is {MFI_gameOfUrComp / MFI_shootingComp / MFI_culturalSwap / etc} {MFI_gameOfUrCompExpl / MFI_shootingCompExpl / etc} -->
+  <!-- It's gotta *sound* fancy, it doesn't necessarily has to make sense. {0} is the label for the Psychic Emitter; replaced automagically. -->
+  <!-- like the emanator above, only for the infinite chemfuel reactor generator doodad thing. -->
+  <!-- {Pawn.LabelShort} has gained {amount} {SkillDef.label} experience. -->
+  <!-- Annual Expo end -->
 </LanguageData>

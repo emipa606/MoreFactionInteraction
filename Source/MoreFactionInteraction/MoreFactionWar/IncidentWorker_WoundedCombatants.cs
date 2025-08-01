@@ -8,18 +8,18 @@ namespace MoreFactionInteraction.MoreFactionWar;
 
 public class IncidentWorker_WoundedCombatants : IncidentWorker
 {
-    private readonly IntRange pawnstoSpawn = new IntRange(4, 6);
+    private readonly IntRange pawnstoSpawn = new(4, 6);
 
-    public override bool CanFireNowSub(IncidentParms parms)
+    protected override bool CanFireNowSub(IncidentParms parms)
     {
         return base.CanFireNowSub(parms) && Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarIsOngoing
-                                         && FindAlliedWarringFaction(out var _)
+                                         && FindAlliedWarringFaction(out _)
                                          && CommsConsoleUtility.PlayerHasPoweredCommsConsole((Map)parms.target)
-                                         && DropCellFinder.TryFindRaidDropCenterClose(out var _,
+                                         && DropCellFinder.TryFindRaidDropCenterClose(out _,
                                              (Map)parms.target);
     }
 
-    public override bool TryExecuteWorker(IncidentParms parms)
+    protected override bool TryExecuteWorker(IncidentParms parms)
     {
         if (!DropCellFinder.TryFindRaidDropCenterClose(out var dropSpot, (Map)parms.target))
         {
@@ -66,7 +66,7 @@ public class IncidentWorker_WoundedCombatants : IncidentWorker
             IncidentParmsUtility.GetDefaultPawnGroupMakerParms(PawnGroupKindDefOf.Combat, raidParms);
         defaultPawnGroupMakerParms.points = IncidentWorker_Raid.AdjustedRaidPoints(
             defaultPawnGroupMakerParms.points, raidParms.raidArrivalMode, raidParms.raidStrategy,
-            defaultPawnGroupMakerParms.faction, PawnGroupKindDefOf.Combat);
+            defaultPawnGroupMakerParms.faction, PawnGroupKindDefOf.Combat, parms.target);
         IEnumerable<PawnKindDef> pawnKinds =
             PawnGroupMakerUtility.GeneratePawnKindsExample(defaultPawnGroupMakerParms).ToList();
         var pawnlist = new List<Thing>();

@@ -2,5 +2,14 @@
   "Continued": true,
   "CanAdd": "0",
   "CanRemove": "1",
-  "PreviewVersion": "1.5"
+  "PreviewVersion": "1.6",
+  "Patches": true,
+  "Defs": true,
+  "Assemblies": true,
+  "LinesOfCode": 268214,
+  "LinesOfXML": 61232,
+  "CodeBaseSize": 87,
+  "LastXmlCleaning": "2025-08-01T16:43:38.1660473+02:00",
+  "SocialImageSet": true,
+  "SearchTags": " faction diplomacy"
 }

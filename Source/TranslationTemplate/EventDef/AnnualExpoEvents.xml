@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: acoustic show -->
+  <MFI_AcousticShow.label>acoustic show</MFI_AcousticShow.label>
+  <!-- EN: The expo turned out to be a very cosy get-together, spent jamming on guitars. Someone played Wonderwall but other than that it was a pretty chill evening that put everybody in a good mood. Your reward for coming is:\n\n{0} -->
+  <MFI_AcousticShow.outcomeFirstLoser>The expo turned out to be a very cosy get-together, spent jamming on guitars. Someone played Wonderwall but other than that it was a pretty chill evening that put everybody in a good mood. Your reward for coming is:
+
+{0}</MFI_AcousticShow.outcomeFirstLoser>
+  <!-- EN: One of your caravan members picked up an instrument they shouldn't have and, not being musically gifted, broke a string while fingering a minor. Apologies were made but it wasn't sufficient: your klutzy caravan member was to work as a stage-hand on the night of the performance. Since a good time was still had by all, they were given the after-party leftovers:\n\n{0} -->
+  <MFI_AcousticShow.outComeFirstOther>One of your caravan members picked up an instrument they shouldn't have and, not being musically gifted, broke a string while fingering a minor. Apologies were made but it wasn't sufficient: your klutzy caravan member was to work as a stage-hand on the night of the performance. Since a good time was still had by all, they were given the after-party leftovers:
+
+{0}</MFI_AcousticShow.outComeFirstOther>
+  <!-- EN: Your caravan spent the day gallivanting through the stalls and admiring the wide array of eclectic non-electric musical instruments from all over this world and beyond. As dusk fell and people gathered their instruments an intimate concert was held on the main-stage. It lifted the spirits of your caravan members. Your reward for coming is:\n\n{0} -->
+  <MFI_AcousticShow.outComeFirstPlace>Your caravan spent the day gallivanting through the stalls and admiring the wide array of eclectic non-electric musical instruments from all over this world and beyond. As dusk fell and people gathered their instruments an intimate concert was held on the main-stage. It lifted the spirits of your caravan members. Your reward for coming is:
+
+{0}</MFI_AcousticShow.outComeFirstPlace>
+  <!-- EN: an acoustic show -->
+  <MFI_AcousticShow.theme>an acoustic show</MFI_AcousticShow.theme>
+  <!-- EN: You wonder whether to bring earplugs. -->
+  <MFI_AcousticShow.themeDesc>You wonder whether to bring earplugs.</MFI_AcousticShow.themeDesc>
+  <!-- EN: cultural swap -->
+  <MFI_CulturalSwap.label>cultural swap</MFI_CulturalSwap.label>
+  <!-- EN: Not being better prepared or having brought anything, your caravan broke out in a song and dance routine with [PAWN_nameDef] taking centre stage. It wasn't well-rehearsed, which shone through the performance. Not all participating factions were able to appreciate the improvised show, but it was an admirable effort nonetheless. Your reward for participating is:\n\n{0} -->
+  <MFI_CulturalSwap.outcomeFirstLoser>Not being better prepared or having brought anything, your caravan broke out in a song and dance routine with [PAWN_nameDef] taking centre stage. It wasn't well-rehearsed, which shone through the performance. Not all participating factions were able to appreciate the improvised show, but it was an admirable effort nonetheless. Your reward for participating is:
+
+{0}</MFI_CulturalSwap.outcomeFirstLoser>
+  <!-- EN: The host faction moved the audience to tears with their dazzling display; a dramatic reenactment of their ancestor's discovery of White Rabbit Mountain Range. It was a touching piece of theatre that transcended language barriers, and reached the hearts of young and old alike.\n\nAnd then there was your troupe. Your reward for participating is:\n\n{0} -->
+  <MFI_CulturalSwap.outComeFirstOther>The host faction moved the audience to tears with their dazzling display; a dramatic reenactment of their ancestor's discovery of White Rabbit Mountain Range. It was a touching piece of theatre that transcended language barriers, and reached the hearts of young and old alike.
+
+And then there was your troupe. Your reward for participating is:
+
+{0}</MFI_CulturalSwap.outComeFirstOther>
+  <!-- EN: As the last of daylight slowly dimmed away, [PAWN_nameDef] simply sat down on a granite stool and told of [PAWN_possessive] upbringing as a [PAWN_title]. This simple story and more importantly the atmosphere [PAWN_pronoun] created was lauded by judges for its intimacy, originality and bravery. Your reward for participating is:\n\n{0} -->
+  <MFI_CulturalSwap.outComeFirstPlace>As the last of daylight slowly dimmed away, [PAWN_nameDef] simply sat down on a granite stool and told of [PAWN_possessive] upbringing as a [PAWN_title]. This simple story and more importantly the atmosphere [PAWN_pronoun] created was lauded by judges for its intimacy, originality and bravery. Your reward for participating is:
+
+{0}</MFI_CulturalSwap.outComeFirstPlace>
+  <!-- EN: culture and art -->
+  <MFI_CulturalSwap.theme>culture and art</MFI_CulturalSwap.theme>
+  <!-- EN: There may be an opportunity for trade. -->
+  <MFI_CulturalSwap.themeDesc>There may be an opportunity for trade.</MFI_CulturalSwap.themeDesc>
+  <!-- EN: Game-of-Ur competition -->
+  <MFI_GameOfUrComp.label>Game-of-Ur competition</MFI_GameOfUrComp.label>
+  <!-- EN: For the tense final round, [PAWN_nameDef] went head to head with the five-year reigning champion and lost. Your reward for participating is:\n\n{0} -->
+  <MFI_GameOfUrComp.outcomeFirstLoser>For the tense final round, [PAWN_nameDef] went head to head with the five-year reigning champion and lost. Your reward for participating is:
+
+{0}</MFI_GameOfUrComp.outcomeFirstLoser>
+  <!-- EN: During the second inning of the fifth round, [PAWN_nameDef] played a move which confused [PAWN_possessive] opponent and astounded referees. Understandably, a massive brawl ensued. Your reward for participating is:\n\n{0} -->
+  <MFI_GameOfUrComp.outComeFirstOther>During the second inning of the fifth round, [PAWN_nameDef] played a move which confused [PAWN_possessive] opponent and astounded referees. Understandably, a massive brawl ensued. Your reward for participating is:
+
+{0}</MFI_GameOfUrComp.outComeFirstOther>
+  <!-- EN: Through skill, nerves of steel and a good amount of luck, [PAWN_nameDef] won the tournament! Your reward for participating is:\n\n{0} -->
+  <MFI_GameOfUrComp.outComeFirstPlace>Through skill, nerves of steel and a good amount of luck, [PAWN_nameDef] won the tournament! Your reward for participating is:
+
+{0}</MFI_GameOfUrComp.outComeFirstPlace>
+  <!-- EN: the Royal Game-of-Ur -->
+  <MFI_GameOfUrComp.theme>the Royal Game-of-Ur</MFI_GameOfUrComp.theme>
+  <!-- EN: Send your best gamer. -->
+  <MFI_GameOfUrComp.themeDesc>Send your best gamer.</MFI_GameOfUrComp.themeDesc>
+  <!-- EN: Science Fair -->
+  <MFI_ScienceFaire.label>Science Fair</MFI_ScienceFaire.label>
+  <!-- EN: Your caravan nestles in between members of a group called "appreciators of science". They bestow upon you a gift of knowledge:\n\n{0} -->
+  <MFI_ScienceFaire.outcomeFirstLoser>Your caravan nestles in between members of a group called "appreciators of science". They bestow upon you a gift of knowledge:
+
+{0}</MFI_ScienceFaire.outcomeFirstLoser>
+  <!-- EN: Weary from the long journey, your caravan members have trouble staying awake during the long and tenuous lecture by a famous professor. As a departure gift, you get:\n\n{0} -->
+  <MFI_ScienceFaire.outComeFirstOther>Weary from the long journey, your caravan members have trouble staying awake during the long and tenuous lecture by a famous professor. As a departure gift, you get:
+
+{0}</MFI_ScienceFaire.outComeFirstOther>
+  <!-- EN: Settling in easily, a powerful orator and great scholar explains you nothing about the complexities of the universe. Instead they reveal its simplicities:\n\n{0} -->
+  <MFI_ScienceFaire.outComeFirstPlace>Settling in easily, a powerful orator and great scholar explains you nothing about the complexities of the universe. Instead they reveal its simplicities:
+
+{0}</MFI_ScienceFaire.outComeFirstPlace>
+  <!-- EN: exchanging scientific discoveries -->
+  <MFI_ScienceFaire.theme>exchanging scientific discoveries</MFI_ScienceFaire.theme>
+  <!-- EN: Exciting! -->
+  <MFI_ScienceFaire.themeDesc>Exciting!</MFI_ScienceFaire.themeDesc>
+  <!-- EN: Shooting competition -->
+  <MFI_ShootingComp.label>Shooting competition</MFI_ShootingComp.label>
+  <!-- EN: There was a strong field of contenders this year, with many faction representatives having lived as a hunter or just plain decked out in (archotech) bionics. [PAWN_nameDef] stranded somewhere in the quarter finals. Your reward for participating is:\n\n{0} -->
+  <MFI_ShootingComp.outcomeFirstLoser>There was a strong field of contenders this year, with many faction representatives having lived as a hunter or just plain decked out in (archotech) bionics. [PAWN_nameDef] stranded somewhere in the quarter finals. Your reward for participating is:
+
+{0}</MFI_ShootingComp.outcomeFirstLoser>
+  <!-- EN: [PAWN_nameDef] did not proceed past the first round, which consisted of "hit the broad side of a barn". They added that part as a gag years ago. [PAWN_nameDef] is the first since its introduction not to progress to the second round. Your reward for participating is:\n\n{0}\n\n It seems to represent [PAWN_nameDef]'s skill as a shooter. -->
+  <MFI_ShootingComp.outComeFirstOther>[PAWN_nameDef] did not proceed past the first round, which consisted of "hit the broad side of a barn". They added that part as a gag years ago. [PAWN_nameDef] is the first since its introduction not to progress to the second round. Your reward for participating is:
+
+{0}
+
+ It seems to represent [PAWN_nameDef]'s skill as a shooter.</MFI_ShootingComp.outComeFirstOther>
+  <!-- EN: With almost robotic accuracy, [PAWN_nameDef] took aim and hit all targets with pinpoint precision. Judges were very impressed and rewarded you with:\n\n{0} -->
+  <MFI_ShootingComp.outComeFirstPlace>With almost robotic accuracy, [PAWN_nameDef] took aim and hit all targets with pinpoint precision. Judges were very impressed and rewarded you with:
+
+{0}</MFI_ShootingComp.outComeFirstPlace>
+  <!-- EN: a shooting competition -->
+  <MFI_ShootingComp.theme>a shooting competition</MFI_ShootingComp.theme>
+  <!-- EN: Send your best shot. -->
+  <MFI_ShootingComp.themeDesc>Send your best shot.</MFI_ShootingComp.themeDesc>
+</LanguageData>

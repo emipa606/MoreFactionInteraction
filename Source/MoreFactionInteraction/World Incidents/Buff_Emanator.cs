@@ -1,4 +1,6 @@
 ﻿using System.Linq;
+using System.Reflection;
+using HarmonyLib;
 using RimWorld;
 using Verse;
 
@@ -6,13 +8,17 @@ namespace MoreFactionInteraction.More_Flavour;
 
 public class Buff_Emanator : Buff
 {
+    private static readonly FieldInfo basePowerConsumptionFieldInfo =
+        AccessTools.Field(typeof(CompProperties_Power), "basePowerConsumption");
+
     public override void Apply()
     {
         try
         {
             ThoughtDef.Named("PsychicEmanatorSoothe").stages.First().baseMoodEffect = 6f;
             ThingDefOf.PsychicEmanator.specialDisplayRadius = 20f;
-            ThingDefOf.PsychicEmanator.GetCompProperties<CompProperties_Power>().basePowerConsumption = 350f;
+            basePowerConsumptionFieldInfo.SetValue(ThingDefOf.PsychicEmanator.GetCompProperties<CompProperties_Power>(),
+                350f);
             Active = true;
         }
         catch

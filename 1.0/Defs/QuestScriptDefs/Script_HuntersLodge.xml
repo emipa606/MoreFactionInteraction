@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Defs>
   <QuestScriptDef>
     <defName>OpportunitySite_MFI_HuntersLodge</defName>
@@ -7,13 +7,13 @@
     <autoAccept>true</autoAccept>
     <questNameRules>
       <rulesStrings>
-        <li>questName-&gt;[leader_nameDef]'s Retreat</li>
-        <li>questName-&gt;Hunting [target_kindPlural]</li>
+        <li>questName->[leader_nameDef]'s Retreat</li>
+        <li>questName->Hunting [target_kindPlural]</li>
       </rulesStrings>
     </questNameRules>
     <questDescriptionRules>
       <rulesStrings>
-        <li>questDescription-&gt;You are invited to [leader_factionName]'s [factionLeaderTitle] summer retreat. There's usually a large herd of [target_kindPlural] coming through around this time of year. There is an outpost at the site with all the required facilities to make meals, and they've extended their hospitality to you. This offer expires in [duration] days.</li>
+        <li>questDescription->You are invited to [leader_factionName]'s [factionLeaderTitle] summer retreat. There's usually a large herd of [target_kindPlural] coming through around this time of year. There is an outpost at the site with all the required facilities to make meals, and they've extended their hospitality to you. This offer expires in [duration] days.</li>
       </rulesStrings>
     </questDescriptionRules>
     <!-- <IncidentDef>

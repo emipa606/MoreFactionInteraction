@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
   <!--settings -->
   <MFI_ticksToUpgrade>Temps avant que les pirates améliorent leurs avant-postes vers les bases</MFI_ticksToUpgrade>
@@ -79,4 +79,11 @@
   <MFI_RoadWorksDialogue>{0} propose une idée qui, selon lui, permettra d'accroître le commerce et la prospérité économique de la région. Ils veulent construire une route de {1} carreaux de long, partant de leur colonie. Pour compenser le coût des matériaux et de la main-d'œuvre, ils demandent à toutes les colonies situées dans leur voisinage une contribution unique de {2} pièces d'argent.\n\nSi vous ne leur donnez pas le montant demandé, ils investiront leurs efforts ailleurs.</MFI_RoadWorksDialogue>
   <MFI_doNotAffectTraders>N'affecte pas les commerçants</MFI_doNotAffectTraders>
   <MFI_doNotAffectTradersDesc>Les interactions modifiées entre les factions n'affecteront pas les caravanes commerciales.</MFI_doNotAffectTradersDesc>
+  <!-- equivalent to NeedSilverLaunchable, just with steel. (currently unused) -->
+  <!-- Annual Expo start -->
+  <!-- it is time for the {ORDINALNUMBER} annual {WORLDNAME}. This year's host is {FACTIONLABEL} and the theme is {MFI_gameOfUrComp / MFI_shootingComp / MFI_culturalSwap / etc} {MFI_gameOfUrCompExpl / MFI_shootingCompExpl / etc} -->
+  <!-- It's gotta *sound* fancy, it doesn't necessarily has to make sense. {0} is the label for the Psychic Emitter; replaced automagically. -->
+  <!-- like the emanator above, only for the infinite chemfuel reactor generator doodad thing. -->
+  <!-- {Pawn.LabelShort} has gained {amount} {SkillDef.label} experience. -->
+  <!-- Annual Expo end -->
 </LanguageData>

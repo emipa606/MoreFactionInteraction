@@ -15,7 +15,7 @@ public class ChoiceLetter_ReverseTradeRequest : ChoiceLetter
     public IncidentParms incidentParms;
     public Map map;
     public ThingCategoryDef thingCategoryDef;
-    public int tile;
+    public PlanetTile tile;
 
     public override IEnumerable<DiaOption> Choices
     {

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: pirate extortion -->
+  <MFI_PirateExtortion.label>pirate extortion</MFI_PirateExtortion.label>
+  <!-- EN: Pirate fee demand -->
+  <MFI_PirateExtortion.letterLabel>Pirate fee demand</MFI_PirateExtortion.letterLabel>
+  <!-- EN: trade request -->
+  <MFI_ReverseTradeRequest.label>trade request</MFI_ReverseTradeRequest.label>
+  <!-- EN: Trade request -->
+  <MFI_ReverseTradeRequest.letterLabel>Trade request</MFI_ReverseTradeRequest.letterLabel>
+  <!-- EN: wounded combatants -->
+  <MFI_WoundedCombatants.label>wounded combatants</MFI_WoundedCombatants.label>
+</LanguageData>

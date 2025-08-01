@@ -10,9 +10,9 @@ public class IncidentWorker_MysticalShaman : IncidentWorker
 {
     private const int MinDistance = 8;
     private const int MaxDistance = 22;
-    private static readonly IntRange TimeoutDaysRange = new IntRange(5, 15);
+    private static readonly IntRange TimeoutDaysRange = new(5, 15);
 
-    public override bool CanFireNowSub(IncidentParms parms)
+    protected override bool CanFireNowSub(IncidentParms parms)
     {
         return base.CanFireNowSub(parms) && Find.AnyPlayerHomeMap != null
                                          && !Find.WorldObjects.AllWorldObjects.Any(o =>
@@ -25,7 +25,7 @@ public class IncidentWorker_MysticalShaman : IncidentWorker
                                          && CommsConsoleUtility.PlayerHasPoweredCommsConsole();
     }
 
-    public override bool TryExecuteWorker(IncidentParms parms)
+    protected override bool TryExecuteWorker(IncidentParms parms)
     {
         if (!Find.FactionManager.AllFactionsVisible.Where(f => f.def.techLevel <= TechLevel.Neolithic
                                                                && !f.HostileTo(Faction.OfPlayer) && !f.temporary)
@@ -90,7 +90,7 @@ public class IncidentWorker_MysticalShaman : IncidentWorker
         return true;
     }
 
-    private static bool TryFindTile(out int tile)
+    private static bool TryFindTile(out PlanetTile tile)
     {
         return TileFinder.TryFindNewSiteTile(out tile, MinDistance, MaxDistance, true);
     }
@@ -102,7 +102,7 @@ public class IncidentWorker_MysticalShaman : IncidentWorker
             .TryRandomElement(out map);
     }
 
-    private Settlement RandomNearbyTradeableSettlement(int tile)
+    private Settlement RandomNearbyTradeableSettlement(PlanetTile tile)
     {
         return Find.WorldObjects.SettlementBases.Where(settlement => settlement.Visitable
                                                                      && settlement

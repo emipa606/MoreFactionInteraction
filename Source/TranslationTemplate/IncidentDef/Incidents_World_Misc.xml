@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: diplomatic marriage -->
+  <MFI_DiplomaticMarriage.label>diplomatic marriage</MFI_DiplomaticMarriage.label>
+  <!-- EN: Diplomatic marriage -->
+  <MFI_DiplomaticMarriage.letterLabel>Diplomatic marriage</MFI_DiplomaticMarriage.letterLabel>
+  <!-- EN: mystical shaman -->
+  <MFI_MysticalShaman.label>mystical shaman</MFI_MysticalShaman.label>
+  <!-- EN: Mystical shaman -->
+  <MFI_MysticalShaman.letterLabel>Mystical shaman</MFI_MysticalShaman.letterLabel>
+  <!-- EN: road works -->
+  <MFI_RoadWorks.label>road works</MFI_RoadWorks.label>
+  <!-- EN: Faction base attacked -->
+  <MFI_SettlementBaseAttack.label>Faction base attacked</MFI_SettlementBaseAttack.label>
+</LanguageData>

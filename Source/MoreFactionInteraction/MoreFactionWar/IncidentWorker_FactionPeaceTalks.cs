@@ -7,9 +7,9 @@ namespace MoreFactionInteraction.MoreFactionWar;
 
 public class IncidentWorker_FactionPeaceTalks : IncidentWorker
 {
-    private static readonly IntRange TimeoutDaysRange = new IntRange(21, 23);
+    private static readonly IntRange TimeoutDaysRange = new(21, 23);
 
-    public override bool CanFireNowSub(IncidentParms parms)
+    protected override bool CanFireNowSub(IncidentParms parms)
     {
         return base.CanFireNowSub(parms) && FoundTwoFactions()
                                          && TryFindTile(out _)
@@ -18,7 +18,7 @@ public class IncidentWorker_FactionPeaceTalks : IncidentWorker
                                              .UnrestIsBrewing;
     }
 
-    public override bool TryExecuteWorker(IncidentParms parms)
+    protected override bool TryExecuteWorker(IncidentParms parms)
     {
         if (!FoundTwoFactions())
         {
@@ -55,7 +55,7 @@ public class IncidentWorker_FactionPeaceTalks : IncidentWorker
         return true;
     }
 
-    private static bool TryFindTile(out int tile)
+    private static bool TryFindTile(out PlanetTile tile)
     {
         return TileFinder.TryFindNewSiteTile(out tile, 5, 13);
     }

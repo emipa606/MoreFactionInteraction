@@ -1,5 +1,9 @@
 # Changelog for MoreFactionInteraction
 
+1.6.0 - Mod updated for 1.6 and passed autotests
+Used DeepL to update translations for ChineseSimplified, French, Polish, Russian, Spanish
+
+
 1.5.1 - Added option to exclude traders from the modified faction interactions
 Used DeepL to update translations for ChineseSimplified, Czech, French, German, Italian, Japanese, Polish, Russian, Spanish
 

@@ -9,7 +9,7 @@ namespace MoreFactionInteraction;
 
 public class IncidentWorker_SettlementAttack : IncidentWorker
 {
-    public override bool CanFireNowSub(IncidentParms parms)
+    protected override bool CanFireNowSub(IncidentParms parms)
     {
         return base.CanFireNowSub(parms) && Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarIsOngoing;
     }
@@ -22,7 +22,7 @@ public class IncidentWorker_SettlementAttack : IncidentWorker
     //4. find the closest enemy faction near it.
     //5. If enemy is closer than ally, it's a win for enemy. 
     //6? If enemy is twice as close, base in question becomes enemy base? maybe.
-    public override bool TryExecuteWorker(IncidentParms parms)
+    protected override bool TryExecuteWorker(IncidentParms parms)
     {
         if (!TileFinder.TryFindRandomPlayerTile(out var randomPlayerTile, true, x => FindTile(x) != -1))
         {
@@ -106,14 +106,14 @@ public class IncidentWorker_SettlementAttack : IncidentWorker
             return -1;
         }
 
-        bool HasNearbyAlliedFaction(int x)
+        bool HasNearbyAlliedFaction(PlanetTile x)
         {
             return Find.WorldObjects.AnySettlementAt(x) &&
                    Find.WorldObjects.SettlementAt(x).Faction ==
                    someRandomPreferablyNearbySettlement.Faction;
         }
 
-        bool HasNearbyEnemyFaction(int x)
+        bool HasNearbyEnemyFaction(PlanetTile x)
         {
             return Find.WorldObjects.AnySettlementAt(x) &&
                    Find.WorldObjects.SettlementAt(x).Faction ==

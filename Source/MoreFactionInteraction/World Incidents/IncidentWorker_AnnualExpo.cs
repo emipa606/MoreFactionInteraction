@@ -9,11 +9,11 @@ public class IncidentWorker_AnnualExpo : IncidentWorker
 {
     private const int MinDistance = 12;
     private const int MaxDistance = 26;
-    private static readonly IntRange TimeoutDaysRange = new IntRange(15, 21);
+    private static readonly IntRange TimeoutDaysRange = new(15, 21);
 
     public override float BaseChanceThisGame => 0f;
 
-    public override bool CanFireNowSub(IncidentParms parms)
+    protected override bool CanFireNowSub(IncidentParms parms)
     {
         if (!MoreFactionInteraction_Settings.enableAnnualExpo)
         {
@@ -27,7 +27,7 @@ public class IncidentWorker_AnnualExpo : IncidentWorker
                                          && !Find.World.worldObjects.AllWorldObjects.Any(x => x is AnnualExpo);
     }
 
-    public override bool TryExecuteWorker(IncidentParms parms)
+    protected override bool TryExecuteWorker(IncidentParms parms)
     {
         if (!MoreFactionInteraction_Settings.enableAnnualExpo)
         {
@@ -99,7 +99,7 @@ public class IncidentWorker_AnnualExpo : IncidentWorker
         return Find.Maps.Where(x => x.IsPlayerHome).TryRandomElement(out map);
     }
 
-    private static bool TryFindTile(out int tile)
+    private static bool TryFindTile(out PlanetTile tile)
     {
         return TileFinder.TryFindNewSiteTile(out tile, MinDistance, MaxDistance, true);
     }

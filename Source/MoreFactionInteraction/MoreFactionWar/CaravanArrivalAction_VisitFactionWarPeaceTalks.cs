@@ -33,14 +33,14 @@ public class CaravanArrivalAction_VisitFactionWarPeaceTalks : CaravanArrivalActi
         Scribe_References.Look(ref factionWarPeaceTalks, "factionWarPeaceTalks");
     }
 
-    public override FloatMenuAcceptanceReport StillValid(Caravan caravan, int destinationTile)
+    public override FloatMenuAcceptanceReport StillValid(Caravan caravan, PlanetTile planetTile)
     {
-        if (!base.StillValid(caravan, destinationTile))
+        if (!base.StillValid(caravan, planetTile))
         {
-            return base.StillValid(caravan, destinationTile);
+            return base.StillValid(caravan, planetTile);
         }
 
-        if (factionWarPeaceTalks?.Tile != destinationTile)
+        if (factionWarPeaceTalks?.Tile != planetTile)
         {
             return false;
         }

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
   <MFI_ticksToUpgrade>Tiempo hasta que los piratas actualicen sus puestos de avanzada a bases</MFI_ticksToUpgrade>
   <MFI_ticksToUpgradeDesc>Valores más altos significa que los piratas tardan más en actualizar los puestos de avanzada.</MFI_ticksToUpgradeDesc>

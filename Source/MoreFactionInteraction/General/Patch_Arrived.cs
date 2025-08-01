@@ -6,10 +6,11 @@ using Verse;
 
 namespace MoreFactionInteraction;
 
-[HarmonyPatch(typeof(TransportPodsArrivalAction_VisitSite), nameof(TransportPodsArrivalAction_VisitSite.Arrived))]
+[HarmonyPatch(typeof(TransportersArrivalAction_VisitSite), nameof(TransportersArrivalAction_VisitSite.Arrived))]
 internal static class Patch_Arrived
 {
-    private static bool Prefix(Site ___site, PawnsArrivalModeDef ___arrivalMode, List<ActiveDropPodInfo> pods)
+    private static bool Prefix(Site ___site, PawnsArrivalModeDef ___arrivalMode,
+        List<ActiveTransporterInfo> transporters)
     {
         if (___site.parts == null)
         {
@@ -23,7 +24,7 @@ internal static class Patch_Arrived
                 continue;
             }
 
-            var lookTarget = TransportPodsArrivalActionUtility.GetLookTarget(pods);
+            var lookTarget = TransportersArrivalActionUtility.GetLookTarget(transporters);
             var num = !___site.HasMap;
             var orGenerateMap = GetOrGenerateMapUtility.GetOrGenerateMap(___site.Tile,
                 ___site.PreferredMapSize, null);
@@ -37,7 +38,7 @@ internal static class Patch_Arrived
 
             Messages.Message("MessageTransportPodsArrived".Translate(), lookTarget,
                 MessageTypeDefOf.TaskCompletion);
-            ___arrivalMode.Worker.TravelingTransportPodsArrived(pods, orGenerateMap);
+            ___arrivalMode.Worker.TravellingTransportersArrived(transporters, orGenerateMap);
             return false;
         }
 

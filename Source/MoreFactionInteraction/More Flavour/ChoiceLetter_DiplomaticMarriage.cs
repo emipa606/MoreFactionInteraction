@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using HarmonyLib;
 using MoreFactionInteraction.MoreFactionWar;
 using RimWorld;
 using RimWorld.Planet;
@@ -12,11 +14,15 @@ public class ChoiceLetter_DiplomaticMarriage : ChoiceLetter
 {
     public Pawn betrothed;
     private int goodWillGainedFromMarriage;
+
+    private readonly MethodInfo healIfPossibleMethodInfo =
+        AccessTools.Method(typeof(PawnBanishUtility), "HealIfPossible");
+
     public Pawn marriageSeeker;
 
     public override bool CanShowInLetterStack => base.CanShowInLetterStack &&
                                                  PawnsFinder
-                                                     .AllMapsCaravansAndTravelingTransportPods_Alive_FreeColonists
+                                                     .AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists
                                                      .Contains(value: betrothed);
 
     public override IEnumerable<DiaOption> Choices
@@ -52,7 +58,7 @@ public class ChoiceLetter_DiplomaticMarriage : ChoiceLetter
                         {
                             CaravanInventoryUtility.MoveAllInventoryToSomeoneElse(betrothed,
                                 caravan.PawnsListForReading);
-                            PawnBanishUtility.HealIfPossible(betrothed);
+                            healIfPossibleMethodInfo.Invoke(betrothed, null);
                             caravan.RemovePawn(betrothed);
                         }
 

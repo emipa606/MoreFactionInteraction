@@ -12,14 +12,14 @@ internal class IncidentWorker_RoadWorks : IncidentWorker
     private const float directConnectionChance = 0.7f;
     private Map map;
 
-    public override bool CanFireNowSub(IncidentParms parms)
+    protected override bool CanFireNowSub(IncidentParms parms)
     {
         return base.CanFireNowSub(parms) && TryGetRandomAvailableTargetMap(out var localMap)
                                          && CommsConsoleUtility.PlayerHasPoweredCommsConsole()
                                          && RandomNearbyTradeableSettlement(localMap.Tile) != null;
     }
 
-    public override bool TryExecuteWorker(IncidentParms parms)
+    protected override bool TryExecuteWorker(IncidentParms parms)
     {
         if (!TryGetRandomAvailableTargetMap(out map))
         {
@@ -48,15 +48,15 @@ internal class IncidentWorker_RoadWorks : IncidentWorker
         var timeToBuild = 0;
         string letterTitle = "MFI_RoadWorks".Translate();
         var list = new List<WorldObject_RoadConstruction>();
-        using (path = Find.WorldPathFinder.FindPath(destination, Settlement.Tile, null))
+        using (path = map.Tile.Layer.Pather.FindPath(destination, Settlement.Tile, null))
         {
             if (path == null || path == WorldPath.NotFound)
             {
                 return true;
             }
 
-            float roadCount = path.NodesReversed.Count(x => !Find.WorldGrid[x].Roads.NullOrEmpty()
-                                                            && Find.WorldGrid[x].Roads.Any(roadLink =>
+            float roadCount = path.NodesReversed.Count(x => !((SurfaceTile)Find.WorldGrid[x]).Roads.NullOrEmpty()
+                                                            && ((SurfaceTile)Find.WorldGrid[x]).Roads.Any(roadLink =>
                                                                 roadLink.road.priority >= roadToBuild.priority)
                                                             || Find.WorldObjects.AnyWorldObjectOfDefAt(
                                                                 MFI_DefOf.MFI_RoadUnderConstruction, x));
@@ -76,9 +76,9 @@ internal class IncidentWorker_RoadWorks : IncidentWorker
                                        * WorldPathGrid.CalculatedMovementDifficultyAt(path.NodesReversed[i], true)
                                        * Find.WorldGrid.GetRoadMovementDifficultyMultiplier(i, i + 1));
 
-                if (!Find.WorldGrid[path.NodesReversed[i]].Roads.NullOrEmpty()
-                    && Find.WorldGrid[path.NodesReversed[i]].Roads
-                        .Any(roadLink => roadLink.road.priority >= roadToBuild.priority))
+                if (!((SurfaceTile)Find.WorldGrid[path.NodesReversed[i]]).Roads.NullOrEmpty()
+                    && ((SurfaceTile)Find.WorldGrid[path.NodesReversed[i]]).Roads
+                    .Any(roadLink => roadLink.road.priority >= roadToBuild.priority))
                 {
                     timeToBuild /= 2;
                 }

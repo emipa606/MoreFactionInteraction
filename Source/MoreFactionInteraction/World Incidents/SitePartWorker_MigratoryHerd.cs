@@ -30,22 +30,22 @@ public class SitePartWorker_MigratoryHerd : SitePartWorker
     //    return string.Format(base.GetPostProcessedDescriptionDialogue(site, siteCoreOrPart), GenLabel.BestKindLabel(siteCoreOrPart.parms.animalKind, Gender.None, true));
     //}
 
-    private bool TryFindAnimalKind(int tile, out PawnKindDef animalKind)
+    private bool TryFindAnimalKind(PlanetTile tile, out PawnKindDef animalKind)
     {
         var fallback = PawnKindDefOf.Thrumbo;
 
         animalKind = (from k in DefDatabase<PawnKindDef>.AllDefs
             where k.RaceProps.CanDoHerdMigration &&
                   Find.World.tileTemperatures.SeasonAndOutdoorTemperatureAcceptableFor(tile, k.race)
-            select k).RandomElementByWeightWithFallback(x => x.RaceProps.wildness, fallback);
+            select k).RandomElementByWeightWithFallback(x => x.race.GetStatValueAbstract(StatDefOf.Wildness), fallback);
 
         return animalKind != fallback;
     }
 
-    public override SitePartParams GenerateDefaultParams(float myThreatPoints, int tile, Faction faction)
+    public override SitePartParams GenerateDefaultParams(float myThreatPoints, PlanetTile planetTile, Faction faction)
     {
-        var siteCoreOrPartParams = base.GenerateDefaultParams(myThreatPoints, tile, faction);
-        if (TryFindAnimalKind(tile, out siteCoreOrPartParams.animalKind))
+        var siteCoreOrPartParams = base.GenerateDefaultParams(myThreatPoints, planetTile, faction);
+        if (TryFindAnimalKind(planetTile, out siteCoreOrPartParams.animalKind))
         {
             siteCoreOrPartParams.threatPoints = Mathf.Max(siteCoreOrPartParams.threatPoints,
                 siteCoreOrPartParams.animalKind.combatPower);

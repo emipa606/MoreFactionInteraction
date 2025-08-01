@@ -10,17 +10,17 @@ public class IncidentWorker_HuntersLodge : IncidentWorker
     private const int MinDistance = 2;
     private const int MaxDistance = 15;
 
-    private static readonly IntRange TimeoutDaysRange = new IntRange(15, 25);
+    private static readonly IntRange TimeoutDaysRange = new(15, 25);
 
 
-    public override bool CanFireNowSub(IncidentParms parms)
+    protected override bool CanFireNowSub(IncidentParms parms)
     {
         return base.CanFireNowSub(parms) && Find.AnyPlayerHomeMap != null
                                          && Find.FactionManager.RandomAlliedFaction(false, false, false) != null
                                          && TryFindTile(out _);
     }
 
-    public override bool TryExecuteWorker(IncidentParms parms)
+    protected override bool TryExecuteWorker(IncidentParms parms)
     {
         var faction = parms.faction ?? Find.FactionManager.RandomAlliedFaction(false, false, false);
 
@@ -64,7 +64,7 @@ public class IncidentWorker_HuntersLodge : IncidentWorker
         return true;
     }
 
-    public static string GetDescriptionDialogue(Site site, SitePart sitePart)
+    private static string GetDescriptionDialogue(Site site, SitePart sitePart)
     {
         if (sitePart != null && !sitePart.def.defaultHidden)
         {
@@ -74,7 +74,7 @@ public class IncidentWorker_HuntersLodge : IncidentWorker
         return "HiddenOrNoSitePartDescription".Translate();
     }
 
-    private static bool TryFindTile(out int tile)
+    private static bool TryFindTile(out PlanetTile tile)
     {
         return TileFinder.TryFindNewSiteTile(out tile, MinDistance, MaxDistance, true);
     }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: Hunter's lodge -->
+  <MFI_HuntersLodgePart.label>Hunter's lodge</MFI_HuntersLodgePart.label>
+  <!-- EN: A small outpost, used by friendly factions as a hunting base. -->
+  <MFI_HuntersLodgePart.description>A small outpost, used by friendly factions as a hunting base.</MFI_HuntersLodgePart.description>
+  <!-- EN: Visiting {0} -->
+  <MFI_HuntersLodgePart.approachingReportString>Visiting {0}</MFI_HuntersLodgePart.approachingReportString>
+  <!-- EN: Visit {0} -->
+  <MFI_HuntersLodgePart.approachOrderString>Visit {0}</MFI_HuntersLodgePart.approachOrderString>
+  <!-- EN: Your caravan has arrived at the hunter's lodge. It seems nobody is here, but they've obviously been expecting you and have made the place hospitable. -->
+  <MFI_HuntersLodgePart.arrivedLetter>Your caravan has arrived at the hunter's lodge. It seems nobody is here, but they've obviously been expecting you and have made the place hospitable.</MFI_HuntersLodgePart.arrivedLetter>
+</LanguageData>

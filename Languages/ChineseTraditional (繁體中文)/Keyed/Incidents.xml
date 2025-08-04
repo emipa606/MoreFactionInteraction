@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <MFI_ExtortionDemandTitle>勒索： {0}</MFI_ExtortionDemandTitle>
+  <MFI_ExtortionDemand>{0}，來自 {2} 的 {1}，透過通訊台聯絡你。由於你接近了他們的 {3} {4}，[PAWN_pronoun] 認為你侵犯了他們的領地。\n\n[PAWN_pronoun] 表示願意以 {5} 枚白銀的價格，來忽視這項「違法」行為。[PAWN_pronoun] 還說，如果不支付，你將會受到攻擊，但他大方地給你一天時間來付款。</MFI_ExtortionDemand>
+  <MFI_Representative>一名代表</MFI_Representative>
+  
+  <MFI_ReverseTradeRequest_Pyro>{0}，來自 {2} 的 {1}，傳來了訊息。他們附近的聚落 {3} 的居民才剛遭遇縱火狂的襲擊，現在急需 {4}。他們願意為這類物品支付額外的費用，但你必須支付 {5} 枚白銀作為商隊的費用。\n\n{0} 承諾他們會管好自己的縱火狂。\n\n花費 {5} 枚白銀，來招募這支願意為 {4} 支付額外費用的商隊嗎？</MFI_ReverseTradeRequest_Pyro>
+  <MFI_ReverseTradeRequest_Mechs>這是一則寫得有些倉促且糟糕的訊息，來自 {0}（{2} 的 {1}）。內容說道：他們附近聚落 {3} 的居民，僥倖從致命的機械族攻擊中逃脫！他們已經開始重建家園，但希望我們能提供幫助。具體來說，他們非常需要 {4}。他們願意為這類物品支付額外費用，但需要 {5} 枚白銀來雇用一支商隊，因為居民們無法分散人手。\n\n花費 {5} 枚白銀，來招募這支願意為 {4} 支付額外費用的商隊嗎？</MFI_ReverseTradeRequest_Mechs>
+  <MFI_ReverseTradeRequest_Caravan>我們收到了一則來自 {0}（{2} 的 {1}）的謙卑請求。他們附近聚落 {3} 的居民因為時間管理不善，現在急需 {4}。他們願意為這類物品支付額外的費用，但需要 {5} 枚白銀來雇用一支商隊。\n\n花費 {5} 枚白銀，來招募這支願意為 {4} 支付額外費用的商隊嗎？</MFI_ReverseTradeRequest_Caravan>
+  <MFI_ReverseTradeRequest_Pirates>{0}，來自 {2} 的 {1}，給我們發來了訊息。他們附近聚落 {3} 的居民最近飽受海盜蹂躪，現在急需 {4}。他們願意為這類物品支付額外的費用，但需要 {5} 枚白銀來雇用一支商隊。\n\n花費 {5} 枚白銀，來招募這支願意為 {4} 支付額外費用的商隊嗎？</MFI_ReverseTradeRequest_Pirates>
+  <MFI_ReverseTradeRequest_Hardship>一名匿名經紀人透過通訊台聯絡你。他一直在和 {2} 接洽，並成功為 {4} 達成了一項協議。他設法讓一名商人願意為這類物品支付額外費用，但他要求 {5} 枚白銀作為仲介費，才會將這支商隊派過來。\n\n支付 {5} 枚白銀，來招募這支願意為 {4} 付更多錢的商隊嗎？</MFI_ReverseTradeRequest_Hardship>
+  <MFI_ReverseTradeRequest_Blight>{0} 代表附近的聚落 {3} 傳來了訊息。他們的莊稼遭受了枯萎病的侵襲，如果沒有額外的 {4} 供應，他們可能無法度過冬天。他們願意為這類物品支付額外的費用，但他們目前沒有足夠的食物與金錢，所以要求 {5} 枚白銀作為費用，才能將他們的商隊打包出發。\n\n支付 {5} 枚白銀，來招募這支願意為 {4} 付更多錢的商隊嗎？</MFI_ReverseTradeRequest_Blight>
+  <MFI_ReverseTradeRequestTitle>商隊請求：{0}</MFI_ReverseTradeRequestTitle>
+  
+  <MFI_LetterLabel_HarvestRequest>請求協助</MFI_LetterLabel_HarvestRequest>
+  <MFI_LetterHarvestRequest>「今天真是個好日子啊～」附近的聚落 {0} 傳來了特別請求。他們的田地大豐收！他們需要你的協助來收割作物。\n\n這個請求會在 {1} 天後過期。\n\n如果你想幫助他們，請派出一支有種植小人的隊伍。你可以在地圖上選擇 {0} 來重新查看這則訊息。</MFI_LetterHarvestRequest>
+  <MFI_CommandFulfillBumperCropHarvestConfirm>協助收割？在收穫過程中，{0} 將暫時無法移動。</MFI_CommandFulfillBumperCropHarvestConfirm>
+  <MFI_MessageBumperCropNoGrower>沒有清醒且能種植的小人。</MFI_MessageBumperCropNoGrower>
+  <MFI_HarvestRequestInfo>請求幫忙收割。（剩餘 {0}）</MFI_HarvestRequestInfo>
+  <MFI_CommandHelpOutHarvesting>協助收割</MFI_CommandHelpOutHarvesting>
+  <MFI_Harvest_Triumph>收割行動大獲成功。在收割過程中，你的小人與 {1} 的 {0} 建立了良好關係。\n\n與 {1} 的關係提升了 {2} 點。\n\n當你的隊伍離開時，{0} 提供了這些禮物：{3}。</MFI_Harvest_Triumph>
+  <MFI_LetterLabelHarvest_Triumph>豐收大成功</MFI_LetterLabelHarvest_Triumph>
+  <MFI_BumperCropXPGain>你負責種植的小人 {0} 獲得了 {1} 點種植經驗。</MFI_BumperCropXPGain>
+  
+  <MFI_DiplomaticMarriage>{1} 的魅力影響了 {0}，他們現在願意提供一個風華正茂的小人，與你的殖民地成員 {1} 聯姻。接受這門婚事將鞏固與 {2} 派系的關係，但 {1} 將會離開你的派系，轉而加入他們。</MFI_DiplomaticMarriage>
+  <MFI_DiplomaticMarriageLabel>外交聯姻</MFI_DiplomaticMarriageLabel>
+  <MFI_AcceptedProposal>[PAWN_nameDef] 欣喜若狂。[PAWN_pronoun] 相信他們會從此與 {0} 過上幸福快樂的日子。\n\n與 {1} 的關係提升了。</MFI_AcceptedProposal>
+  <MFI_DejectedProposal>[PAWN_nameDef] 努力壓抑著不被拒絕的希望。\n\n與 {1} 的關係惡化了。</MFI_DejectedProposal>
+  <MFI_MysticalShamanLetter>一位自稱來自 {0} 的江湖術士聯絡了我們，他說他認識一位精通「療癒之術」的神祕薩滿，能治癒任何傷口與身體部位的缺損。他願意透露這位隱士的行蹤，但要求我們施捨 {1} 枚白銀。</MFI_MysticalShamanLetter>
+  <MFI_MysticalShamanTitle>神秘的薩滿</MFI_MysticalShamanTitle>
+  <MFI_MysticalShamanFoundNoSickPawn>當你的隊伍剛抵達時，薩滿從圓錐形帳篷裡走了出來。他靜靜地打量著你的隊伍，當他看到這支毫無問題、十分健康的團隊時，他的其中一隻眼睛抽搐了一下，另一隻則閃過一絲明顯的「冥想」。他額頭冒汗，命令你在他走進帳篷時退後一段距離。過了一會兒，你聽到了布料沙沙作響的聲音，接著他便消失了。\n\n看起來這個薩滿落跑了。</MFI_MysticalShamanFoundNoSickPawn>
+  <MFI_MysticalShamanDoesHisMagic>薩滿似乎一直在等你們。他展現了傳說中的「療癒之術」，當他結束後，他邀請 {0} 進入他的帳篷。在 {0} 再次出現之前，螢幕有短暫的震動，而 {0} 也感覺好多了。</MFI_MysticalShamanDoesHisMagic>
+  
+  <MFI_WoundedCombatant>來自 {0} 的一位高級軍官發出求救訊號。他麾下有多名戰士受了重傷，需要立即就醫。他們被裝在運輸艙裡，但最近的醫療站太遠，可能無法挽救這些人的性命，所以他向盟友——你——尋求協助。你會回應他的請求，幫助他的軍隊康復嗎？</MFI_WoundedCombatant>
+  <MFI_WoundedCombatantRejected>你驚訝地聽到指揮官在猛烈的迫擊炮聲中咒罵著，他希望你的殖民地發生不好的事情，並將他手下的死歸咎於你。\n\n與 {0} 的關係惡化了 {1} 點。</MFI_WoundedCombatantRejected>
+  <MFI_WoundedCombatantTitle>盟友求救訊號：{0}</MFI_WoundedCombatantTitle>
+  <MFI_WoundedCombatantAmbush>這是個陷阱！{0} 的敵人不知怎麼地入侵了你的通訊，並利用它在戰爭中獲取優勢。{1}</MFI_WoundedCombatantAmbush>
+  <MFI_WoundedCombatantGratitude>指揮官向你傳達了誠懇且真摯的問候。但由於你無法透過通訊台看到這個手勢，這份問候失去了很多意義，於是你掛斷了通訊。</MFI_WoundedCombatantGratitude>
+  <MFI_WoundedCombatantAmbushAvoided>你聽到一個聲音在背景中大喊，問著：「他們上鉤了嗎？」你迅速地掛斷了通訊，感到有些困惑，但同時也鬆了一口氣，你避開了一場潛在的災難。</MFI_WoundedCombatantAmbushAvoided>
+  
+  </LanguageData>

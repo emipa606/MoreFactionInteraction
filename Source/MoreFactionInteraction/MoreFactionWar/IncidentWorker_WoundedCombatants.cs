@@ -143,7 +143,7 @@ public class IncidentWorker_WoundedCombatants : IncidentWorker
         diaNode.options.Add(diaOptionAccept);
         acceptDiaNode.options.Add(diaOptionOk);
 
-        var diaOptionRejection = new DiaOption("RansomDemand_Reject".Translate())
+        var diaOptionRejection = new DiaOption("MFI_Reject".Translate())
         {
             action = () =>
             {

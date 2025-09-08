@@ -57,7 +57,7 @@ public class IncidentWorker_MysticalShaman : IncidentWorker
         var fee = Rand.RangeInclusive(400, 1000);
 
         var diaNode = new DiaNode("MFI_MysticalShamanLetter".Translate(faction.Name, fee.ToString()));
-        var accept = new DiaOption("RansomDemand_Accept".Translate())
+        var accept = new DiaOption("Accept".Translate())
         {
             action = () =>
             {
@@ -77,7 +77,7 @@ public class IncidentWorker_MysticalShaman : IncidentWorker
             accept.Disable("NeedSilverLaunchable".Translate(fee.ToString()));
         }
 
-        var reject = new DiaOption("RansomDemand_Reject".Translate())
+        var reject = new DiaOption("MFI_Reject".Translate())
         {
             action = () => { },
             resolveTree = true

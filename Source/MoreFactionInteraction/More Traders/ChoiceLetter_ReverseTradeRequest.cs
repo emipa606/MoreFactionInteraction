@@ -28,7 +28,7 @@ public class ChoiceLetter_ReverseTradeRequest : ChoiceLetter
             else
             {
                 var traveltime = CalcuteTravelTimeForTrader(tile);
-                var accept = new DiaOption("RansomDemand_Accept".Translate())
+                var accept = new DiaOption("Accept".Translate())
                 {
                     action = () =>
                     {
@@ -66,7 +66,7 @@ public class ChoiceLetter_ReverseTradeRequest : ChoiceLetter
 
                 yield return accept;
 
-                var reject = new DiaOption("RansomDemand_Reject".Translate())
+                var reject = new DiaOption("MFI_Reject".Translate())
                 {
                     action = () => Find.LetterStack.RemoveLetter(this),
                     resolveTree = true

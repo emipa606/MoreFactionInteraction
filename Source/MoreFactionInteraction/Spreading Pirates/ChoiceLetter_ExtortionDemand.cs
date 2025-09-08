@@ -22,7 +22,7 @@ public class ChoiceLetter_ExtortionDemand : ChoiceLetter
             }
             else
             {
-                var accept = new DiaOption("RansomDemand_Accept".Translate())
+                var accept = new DiaOption("Accept".Translate())
                 {
                     action = () =>
                     {
@@ -39,7 +39,7 @@ public class ChoiceLetter_ExtortionDemand : ChoiceLetter
 
                 yield return accept;
 
-                var reject = new DiaOption("RansomDemand_Reject".Translate())
+                var reject = new DiaOption("MFI_Reject".Translate())
                 {
                     action = () =>
                     {

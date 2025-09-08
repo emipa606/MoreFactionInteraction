@@ -12,11 +12,11 @@ namespace MoreFactionInteraction;
 
 public class ChoiceLetter_DiplomaticMarriage : ChoiceLetter
 {
-    public Pawn betrothed;
-    private int goodWillGainedFromMarriage;
-
     private readonly MethodInfo healIfPossibleMethodInfo =
         AccessTools.Method(typeof(PawnBanishUtility), "HealIfPossible");
+
+    public Pawn betrothed;
+    private int goodWillGainedFromMarriage;
 
     public Pawn marriageSeeker;
 
@@ -41,7 +41,7 @@ public class ChoiceLetter_DiplomaticMarriage : ChoiceLetter
                 //wedding (doable)
                 //bring us the betrothed? (complicated.)
                 //betrothed picks a transport pod (meh)
-                var accept = new DiaOption("RansomDemand_Accept".Translate())
+                var accept = new DiaOption("Accept".Translate())
                 {
                     action = () =>
                     {
@@ -71,7 +71,7 @@ public class ChoiceLetter_DiplomaticMarriage : ChoiceLetter
                 dialogueNodeAccept.options.Add(Option_Close);
                 accept.link = dialogueNodeAccept;
 
-                var reject = new DiaOption("RansomDemand_Reject".Translate())
+                var reject = new DiaOption("MFI_Reject".Translate())
                 {
                     action = () =>
                     {

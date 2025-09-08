@@ -100,4 +100,5 @@
   <!-- like the emanator above, only for the infinite chemfuel reactor generator doodad thing. -->
   <!-- {Pawn.LabelShort} has gained {amount} {SkillDef.label} experience. -->
   <!-- Annual Expo end -->
+  <MFI_Reject>Rechazar</MFI_Reject>
 </LanguageData>

@@ -6,10 +6,10 @@
   "Patches": true,
   "Defs": true,
   "Assemblies": true,
-  "LinesOfCode": 268214,
-  "LinesOfXML": 61232,
+  "LinesOfCode": 268064,
+  "LinesOfXML": 60038,
   "CodeBaseSize": 87,
-  "LastXmlCleaning": "2025-08-01T16:43:38.1660473+02:00",
+  "LastXmlCleaning": "2025-09-08T16:04:11.810569+02:00",
   "SocialImageSet": true,
   "SearchTags": " faction diplomacy"
 }

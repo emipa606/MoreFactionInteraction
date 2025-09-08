@@ -85,4 +85,5 @@
   <MFI_enableannualexpotooltip>Da dieses Ereignis bei einigen Benutzern Probleme zu verursachen scheint, kann es hier deaktiviert werden</MFI_enableannualexpotooltip>
   <MFI_doNotAffectTraders>Händler nicht beeinträchtigen</MFI_doNotAffectTraders>
   <MFI_doNotAffectTradersDesc>Die geänderten Fraktionsinteraktionen werden sich nicht auf Handelskarawanen auswirken.</MFI_doNotAffectTradersDesc>
+  <MFI_Reject>Ablehnen</MFI_Reject>
 </LanguageData>

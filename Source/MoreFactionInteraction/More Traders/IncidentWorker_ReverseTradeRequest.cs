@@ -83,7 +83,7 @@ public class IncidentWorker_ReverseTradeRequest : IncidentWorker
             accept.Disable("NeedSilverLaunchable".Translate(feeRequest.ToString()));
         }
 
-        var reject = new DiaOption("RansomDemand_Reject".Translate())
+        var reject = new DiaOption("MFI_Reject".Translate())
         {
             action = () => { },
             resolveTree = true

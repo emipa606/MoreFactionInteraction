@@ -85,4 +85,5 @@
   <MFI_enableannualexpotooltip>このイベントは、一部のユーザーにとって問題を引き起こす可能性があるため、ここで無効にすることができます。</MFI_enableannualexpotooltip>
   <MFI_doNotAffectTraders>トレーダーに影響を与えない</MFI_doNotAffectTraders>
   <MFI_doNotAffectTradersDesc>修正された派閥間の交流は、貿易キャラバンには影響しない。</MFI_doNotAffectTradersDesc>
+  <MFI_Reject>拒否する</MFI_Reject>
 </LanguageData>

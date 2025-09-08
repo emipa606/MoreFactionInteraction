@@ -45,7 +45,7 @@ public class EventRewardWorker_CulturalSwap : EventRewardWorker
     {
         var marketValue = broughtSculpture.GetStatValue(StatDefOf.MarketValue);
         var resolver = new DiaNode(textResult.Translate(broughtSculpture, marketValue * OVERPAYINGBY, marketValue));
-        var accept = new DiaOption("RansomDemand_Accept".Translate())
+        var accept = new DiaOption("Accept".Translate())
         {
             resolveTree = true,
             action = () =>
@@ -56,7 +56,7 @@ public class EventRewardWorker_CulturalSwap : EventRewardWorker
                 CaravanInventoryUtility.GiveThing(caravan, silver);
             }
         };
-        var reject = new DiaOption("RansomDemand_Reject".Translate())
+        var reject = new DiaOption("MFI_Reject".Translate())
         {
             resolveTree = true
         };

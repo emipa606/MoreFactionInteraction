@@ -31,7 +31,7 @@
   <MFI_FactionWarBrokerPeaceBackFire>會談適得其反。儘管交換了一些傳統問題，但代表們在實質性問題上沒有取得進展，許多陳述被解讀為侮辱。他們決定重新安排和平談判的時間。\n\n與 {0} 的關係保持不變。\n\n與 {1} 的關係保持不變。</MFI_FactionWarBrokerPeaceBackFire>
   <MFI_FactionWarBrokerPeaceFlounder>談判舉步維艱。代表們成功地進行了清晰的溝通和基本的尊重，但在你方談判代表到來之前，派系領導們無法在真正的問題上取得任何進展。你的代表在緩解恐懼和撫慰情緒上起到了很大的作用。\n\n與 {0} 的關係有所提升。\n\n與 {1} 的關係有所提升。</MFI_FactionWarBrokerPeaceFlounder>
   <MFI_FactionWarBrokerPeaceSuccess>會談是成功的。多虧了你方談判代表，代表們就幾個重大問題達成了新的共識。\n\n與 {0} 的關係大幅提升了。\n\n與 {1} 的關係大幅提升了。</MFI_FactionWarBrokerPeaceSuccess>
-  <MFI_FactionWarBrokerPeaceTriumph>這次會談是一次巨大的成功！你的談判者迅速地將代表們聯繫在一起，為真正看到彼此對當今最困難的問題的看法鋪平了道路。\n\n與 {0} 的關係極大地提升了。\n\n與 {1} 的關係極大地提升了。</MFI_FactionWarBrokerPeaceTriumph>
+  <MFI_FactionWarBrokerPeaceTriumph>這次會談是一次巨大的成功！你的談判者迅速地將代表們聯絡在一起，為真正看到彼此對當今最困難的問題的看法鋪平了道路。\n\n與 {0} 的關係極大地提升了。\n\n與 {1} 的關係極大地提升了。</MFI_FactionWarBrokerPeaceTriumph>
   <MFI_FactionWarProgress>派系戰爭進展</MFI_FactionWarProgress>
   <MFI_UnrestIsBrewing>派系動盪正在醞釀之中</MFI_UnrestIsBrewing>
   <MFI_FactionWarBaseBattleTookPlaceLabel>派系基地襲擊</MFI_FactionWarBaseBattleTookPlaceLabel>
@@ -50,10 +50,10 @@
   <MFI_SellingWarBondsNeedSteelLaunchable>需要 {0} 份鋼鐵在軌道交易信標附近</MFI_SellingWarBondsNeedSteelLaunchable>
   <MFI_AnnualExpoLetterLabel>{0} 年度博覽會</MFI_AnnualExpoLetterLabel>
   <MFI_AnnualExpoLetterText>又到了年度博覽會的時間！你的派系收到了邀請。今年的舉辦地是：{2}，主題定為：{3}。{4}\n\n年度博覽會是一場備受尊崇的和平集會。在歷史上，幾乎所有派系都將其視為交流文化、經驗和炫耀的機會。\n\n烏爾王族博戲競賽：棋盤遊戲競賽\n\n射擊比賽：射擊比賽\n\n文化交流：文化交流\n\n科學展覽：科技平衡\n\n不插電表演：聲學表演</MFI_AnnualExpoLetterText>
-  <MFI_AnnualExpoDialogueIntroduction>你的商隊抵達了年度博覽會舉辦地。{0} 作為今年的主題，這裡有許多這方面的專家。他們中的大多數人都在準備，而其他人已經開始展示他們的才能。\n\n博覽會是一堆雜亂的攤位，一些攤位是由普通的本地材料搭建的，而另一些攤位則是由來自城鎮的高科技打造的。它們在主舞台周圍形成一個圈，{1}。\n\n當然，它以後會被用在更有用的地方。</MFI_AnnualExpoDialogueIntroduction>
+  <MFI_AnnualExpoDialogueIntroduction>你的商隊抵達了年度博覽會舉辦地。{0} 作為今年的主題，這裡有許多這方面的專家。他們中的大多數人都在準備，而其他人已經開始展示他們的才能。\n\n博覽會是一堆雜亂的攤位，一些攤位是由普通的本地材料搭建的，而另一些攤位則是由來自城鎮的高科技打造的。它們在主舞臺周圍形成一個圈，{1}。\n\n當然，它以後會被用在更有用的地方。</MFI_AnnualExpoDialogueIntroduction>
   <MFI_AnnualExpoFirstOption>讓我們開始吧！</MFI_AnnualExpoFirstOption>
-  <MFI_buffPemmican>一種保存乾肉餅的新方法，這樣它就不會腐敗了。</MFI_buffPemmican>
-  <MFI_buffEmanator>你學會了超頻：透過調整毫伏電流，穿過簧片開關上的半月線圈來獲得更好的性能。{0} 現在有了更大的範圍和效果，但將以增加功耗和減少壽命為代價。</MFI_buffEmanator>
+  <MFI_buffPemmican>一種儲存乾肉餅的新方法，這樣它就不會腐敗了。</MFI_buffPemmican>
+  <MFI_buffEmanator>你學會了超頻：透過調整毫伏電流，穿過簧片開關上的半月線圈來獲得更好的效能。{0} 現在有了更大的範圍和效果，但將以增加功耗和減少壽命為代價。</MFI_buffEmanator>
   <MFI_buffChemfuel>透過移除標有「服務鎖存器」的面板 A，並啟動外露的標有「GO FASTER」的 2-A 型搖桿開關，{0} 現在生產 {1} 更頻繁了。</MFI_buffChemfuel>
   <MFI_buffPsychite>透過更長的浸泡時間，{0} 現在更有效。真是現代工程的奇蹟。</MFI_buffPsychite>
   <MFI_SinceYouSuckAndDidntHaveIt>因為你還沒有，他們給了你 {0}！</MFI_SinceYouSuckAndDidntHaveIt>
@@ -73,4 +73,6 @@
   <MFI_enableannualexpotooltip>由於此事件似乎對某些使用者造成了問題，因此可以在這裡將其停用。</MFI_enableannualexpotooltip>
   <MFI_doNotAffectTraders>不影響貿易商</MFI_doNotAffectTraders>
   <MFI_doNotAffectTradersDesc>修改後的派系互動不會影響貿易商隊。</MFI_doNotAffectTradersDesc>
+  <MFI_Reject>拒絕</MFI_Reject>
+
 </LanguageData>

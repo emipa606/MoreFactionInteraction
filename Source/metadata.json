@@ -9,7 +9,10 @@
   "LinesOfCode": 268064,
   "LinesOfXML": 60038,
   "CodeBaseSize": 87,
-  "LastXmlCleaning": "2025-09-08T16:04:11.810569+02:00",
+  "LastXmlCleaning": "2025-09-13T16:47:26.6021016+02:00",
   "SocialImageSet": true,
-  "SearchTags": " faction diplomacy"
+  "SearchTags": " faction diplomacy",
+  "SkipLanguages": [
+    "ChineseTraditional (繁體中文)"
+  ]
 }

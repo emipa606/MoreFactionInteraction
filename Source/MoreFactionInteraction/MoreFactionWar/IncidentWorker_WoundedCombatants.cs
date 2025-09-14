@@ -101,7 +101,7 @@ public class IncidentWorker_WoundedCombatants : IncidentWorker
 
         var diaOptionOk = new DiaOption("OK".Translate()) { resolveTree = true };
 
-        var diaOptionAccept = new DiaOption("RansomDemand_Accept".Translate())
+        var diaOptionAccept = new DiaOption("Accept".Translate())
         {
             action = () =>
             {

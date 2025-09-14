@@ -47,7 +47,7 @@ public class IncidentWorker_ReverseTradeRequest : IncidentWorker
         ).AdjustedFor(settlement.Faction.leader));
 
         var traveltime = CalcuteTravelTimeForTrader(settlement.Tile, map);
-        var accept = new DiaOption("RansomDemand_Accept".Translate())
+        var accept = new DiaOption("Accept".Translate())
         {
             action = () =>
             {

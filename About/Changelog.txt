@@ -1,5 +1,8 @@
 # Changelog for MoreFactionInteraction
 
+1.6.3 - Missed two translation keys
+
+
 1.6.2 - Updated chinese translation again
 
 

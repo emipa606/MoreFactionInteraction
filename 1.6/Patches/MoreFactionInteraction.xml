@@ -29,7 +29,7 @@
   </Operation>
   <Operation Class="PatchOperationFindMod">
     <mods>
-      <li>Relations Tab</li>
+      <li>Relations Tab (Continued)</li>
     </mods>
     <nomatch Class="PatchOperationReplace">
       <xpath>/Defs/MainButtonDef[defName="Factions"]/tabWindowClass</xpath>

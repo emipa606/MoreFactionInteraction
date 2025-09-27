@@ -1,5 +1,8 @@
 # Changelog for MoreFactionInteraction
 
+1.6.4 - Updated reference to Relations Tab
+
+
 1.6.3 - Missed two translation keys
 
 

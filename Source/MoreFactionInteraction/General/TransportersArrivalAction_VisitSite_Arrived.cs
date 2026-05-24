@@ -7,7 +7,7 @@ using Verse;
 namespace MoreFactionInteraction;
 
 [HarmonyPatch(typeof(TransportersArrivalAction_VisitSite), nameof(TransportersArrivalAction_VisitSite.Arrived))]
-internal static class Patch_Arrived
+internal static class TransportersArrivalAction_VisitSite_Arrived
 {
     private static bool Prefix(Site ___site, PawnsArrivalModeDef ___arrivalMode,
         List<ActiveTransporterInfo> transporters)

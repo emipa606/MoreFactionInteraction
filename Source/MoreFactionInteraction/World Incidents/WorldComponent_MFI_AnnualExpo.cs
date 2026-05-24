@@ -63,6 +63,8 @@ public class WorldComponent_MFI_AnnualExpo(World world) : WorldComponent(world)
         Buff_Pemmican.Register();
         Buff_PsychTea.Register();
 
+        Buff_Emanator.Reset();
+
         foreach (var item in ActiveBuffsList.Where(x => x.Active))
         {
             item.Apply();

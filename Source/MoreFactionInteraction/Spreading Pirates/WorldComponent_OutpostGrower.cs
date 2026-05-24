@@ -55,8 +55,12 @@ internal class WorldComponent_OutpostGrower(World world) : WorldComponent(world)
     private static void MakeHomeForSquatters()
     {
         var abandoned = Find.WorldObjects.AllWorldObjects
-            .Where(wObject => wObject.def == WorldObjectDefOf.AbandonedSettlement ||
-                              wObject.def == WorldObjectDefOf.DestroyedSettlement);
+            .Where(wObject => (wObject.def == WorldObjectDefOf.AbandonedSettlement ||
+                               wObject.def == WorldObjectDefOf.DestroyedSettlement)
+                              && wObject.Tile.Valid
+                              && wObject.Tile.LayerDef.SurfaceTiles
+                              && !Find.WorldGrid[wObject.Tile].WaterCovered)
+            .ToList();
 
         foreach (var wObject in abandoned)
         {
@@ -76,9 +80,19 @@ internal class WorldComponent_OutpostGrower(World world) : WorldComponent(world)
                 continue;
             }
 
+            var settlementFaction = Find.FactionManager.AllFactionsVisible
+                .Where(x => x.def.settlementGenerationWeight > 0f
+                            && !x.temporary
+                            && !x.def.hidden
+                            && !x.defeated)
+                .RandomElementWithFallback();
+            if (settlementFaction == null)
+            {
+                continue;
+            }
+
             var settlement = (Settlement)WorldObjectMaker.MakeWorldObject(WorldObjectDefOf.Settlement);
-            settlement.SetFaction(Find.FactionManager.AllFactionsVisible
-                .Where(x => x.def.settlementGenerationWeight > 0f && !x.temporary).RandomElement());
+            settlement.SetFaction(settlementFaction);
             settlement.Tile = wObject.Tile;
             settlement.Name = SettlementNameGenerator.GenerateSettlementName(settlement);
             Find.WorldObjects.Remove(wObject);

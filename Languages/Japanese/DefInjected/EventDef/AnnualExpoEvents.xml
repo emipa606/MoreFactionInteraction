@@ -7,8 +7,8 @@
   <MFI_AcousticShow.outcomeFirstLoser>エキスポはとても居心地の良い懇親会となり、ギターでジャムって過ごした。誰かがワンダーウォールを演奏してくれたが、それ以外はとても静かな夜で、みんないい気分だった。来てくれたご褒美は
 
 {0}</MFI_AcousticShow.outcomeFirstLoser>
-  <!-- EN: One of your caravan members picked up an instrument they shouldn't have and, not being musically gifted, broke a string while fingering a minor. Apologies were made but it wasn't sufficient: your klutzy caravan member was to work as a stage-hand on the night of the performance. Since a good time was still had by all, they were given the after-party leftovers:\n\n{0} -->
-  <MFI_AcousticShow.outComeFirstOther>あなたのキャラバン隊員の一人が、持ってはいけない楽器を手に取り、音楽の才能がなかったため、短調の指弾きの最中に弦を切ってしまった。謝罪はしたが、十分ではなかった。その不器用なキャラバン隊員は、公演の夜に舞台係として働くことになった。それでも全員が楽しい時間を過ごしたので、彼らは二次会の残り物を与えられた：
+  <!-- EN: One of your caravan members picked up an instrument they shouldn't have and, not being musically gifted, broke a string. Apologies were made but it wasn't sufficient: your klutzy caravan member was to work as a stage-hand on the night of the performance. Since a good time was still had by all, they were given the after-party leftovers:\n\n{0} -->
+  <MFI_AcousticShow.outComeFirstOther>キャラバン一行は一日中、露店を巡り、世界中から集められた多種多様な非電気楽器を堪能しました。夕暮れが訪れ、人々が楽器をまとめ始めると、メインステージで親密なコンサートが開催されました。それはキャラバン一行の士気を高めました。ご来場いただいたお礼として、以下の特典をご用意しております。：
 
 {0}</MFI_AcousticShow.outComeFirstOther>
   <!-- EN: Your caravan spent the day gallivanting through the stalls and admiring the wide array of eclectic non-electric musical instruments from all over this world and beyond. As dusk fell and people gathered their instruments an intimate concert was held on the main-stage. It lifted the spirits of your caravan members. Your reward for coming is:\n\n{0} -->

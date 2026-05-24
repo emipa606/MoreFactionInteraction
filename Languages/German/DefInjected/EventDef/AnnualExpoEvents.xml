@@ -7,12 +7,12 @@
   <MFI_AcousticShow.outcomeFirstLoser>Die Expo entpuppte sich als ein sehr gemütliches Beisammensein, bei dem mit Gitarren gejammt wurde. Jemand hat Wonderwall gespielt, aber ansonsten war es ein ziemlich chilliger Abend, der alle in gute Laune versetzt hat. Eure Belohnung für euer Kommen ist:
 
 {0}</MFI_AcousticShow.outcomeFirstLoser>
-  <!-- EN: One of your caravan members picked up an instrument they shouldn't have and, not being musically gifted, broke a string while fingering a minor. Apologies were made but it wasn't sufficient: your klutzy caravan member was to work as a stage-hand on the night of the performance. Since a good time was still had by all, they were given the after-party leftovers:\n\n{0} -->
+  <!-- EN: One of your caravan members picked up an instrument they shouldn't have and, not being musically gifted, broke a string. Apologies were made but it wasn't sufficient: your klutzy caravan member was to work as a stage-hand on the night of the performance. Since a good time was still had by all, they were given the after-party leftovers:\n\n{0} -->
   <MFI_AcousticShow.outComeFirstOther>Eines eurer Karawanenmitglieder hat ein Instrument in die Hand genommen, das es nicht hätte nehmen sollen, und da es nicht musikalisch begabt ist, ist ihm beim Spielen einer Moll-Tonart eine Saite gerissen. Es wurde sich entschuldigt, aber das reichte nicht aus: Ihr ungeschicktes Karawanenmitglied sollte am Abend der Aufführung als Bühnenarbeiter arbeiten. Da sich trotzdem alle gut amüsierten, wurden ihnen die Reste der Party überlassen:
 
 {0}</MFI_AcousticShow.outComeFirstOther>
   <!-- EN: Your caravan spent the day gallivanting through the stalls and admiring the wide array of eclectic non-electric musical instruments from all over this world and beyond. As dusk fell and people gathered their instruments an intimate concert was held on the main-stage. It lifted the spirits of your caravan members. Your reward for coming is:\n\n{0} -->
-  <MFI_AcousticShow.outComeFirstPlace>Eure Karawane verbrachte den Tag damit, durch die Stände zu schlendern und die breite Palette an eklektischen, nicht-elektrischen Musikinstrumenten aus der ganzen Welt und darüber hinaus zu bewundern. Als die Dämmerung hereinbrach und die Leute ihre Instrumente einsammelten, fand auf der Hauptbühne ein intimes Konzert statt. Es hat die Stimmung der Mitglieder eurer Karawane gehoben. Eure Belohnung für euer Kommen ist:
+  <MFI_AcousticShow.outComeFirstPlace>Eure Karawane verbrachte den Tag damit, durch die Stände zu schlendern und die große Vielfalt an ausgefallenen, nicht-elektrischen Musikinstrumenten aus aller Welt und darüber hinaus zu bewundern. Als die Dämmerung hereinbrach und die Leute ihre Instrumente zusammenpackten, fand auf der Hauptbühne ein intimes Konzert statt. Es hob die Stimmung eurer Karawanenmitglieder. Eure Belohnung für eure Teilnahme ist:
 
 {0}</MFI_AcousticShow.outComeFirstPlace>
   <!-- EN: an acoustic show -->

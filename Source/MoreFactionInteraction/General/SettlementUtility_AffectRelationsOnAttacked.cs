@@ -4,7 +4,7 @@ using RimWorld.Planet;
 namespace MoreFactionInteraction;
 
 [HarmonyPatch(typeof(SettlementUtility), nameof(SettlementUtility.AffectRelationsOnAttacked))]
-internal static class Patch_AffectRelationsOnAttacked
+internal static class SettlementUtility_AffectRelationsOnAttacked
 {
     private static bool Prefix(MapParent mapParent)
     {
@@ -12,7 +12,7 @@ internal static class Patch_AffectRelationsOnAttacked
         {
             return true;
         }
-
+        
         foreach (var part in site.parts)
         {
             if (part.def == MFI_DefOf.MFI_HuntersLodgePart)

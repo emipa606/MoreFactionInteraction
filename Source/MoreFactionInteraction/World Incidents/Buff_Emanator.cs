@@ -11,6 +11,26 @@ public class Buff_Emanator : Buff
     private static readonly FieldInfo basePowerConsumptionFieldInfo =
         AccessTools.Field(typeof(CompProperties_Power), "basePowerConsumption");
 
+    private static readonly float defaultMoodEffect = ThoughtDef.Named("PsychicEmanatorSoothe").stages.First().baseMoodEffect;
+    private static readonly float defaultDisplayRadius = ThingDefOf.PsychicEmanator.specialDisplayRadius;
+    private static readonly float defaultPowerConsumption =
+        (float)basePowerConsumptionFieldInfo.GetValue(ThingDefOf.PsychicEmanator.GetCompProperties<CompProperties_Power>());
+
+    public static void Reset()
+    {
+        try
+        {
+            ThoughtDef.Named("PsychicEmanatorSoothe").stages.First().baseMoodEffect = defaultMoodEffect;
+            ThingDefOf.PsychicEmanator.specialDisplayRadius = defaultDisplayRadius;
+            basePowerConsumptionFieldInfo.SetValue(ThingDefOf.PsychicEmanator.GetCompProperties<CompProperties_Power>(),
+                defaultPowerConsumption);
+        }
+        catch
+        {
+            // ignored
+        }
+    }
+
     public override void Apply()
     {
         try

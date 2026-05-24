@@ -19,9 +19,16 @@ public class IncidentWorker_SpreadingOutpost : IncidentWorker
 
     protected override bool CanFireNowSub(IncidentParms parms)
     {
+        if (parms.forced)
+        {
+            return true;
+        }
+
         return base.CanFireNowSub(parms) && TryFindFaction(out faction)
-                                         && TileFinder.TryFindNewSiteTile(out _, minDist, maxDist)
-                                         && TryGetRandomAvailableTargetMap(out _)
+                                         && TileFinder.TryFindNewSiteTile(out _, minDist, maxDist,
+                                             validator: candidate => candidate.LayerDef.SurfaceTiles &&
+                                                                     !Find.WorldGrid[candidate].WaterCovered)
+                                         && TryGetRandomAvailableTargetMap(out _, false)
                                          && Find.World.worldObjects.Sites.Count <= maxSites;
     }
 
@@ -32,7 +39,7 @@ public class IncidentWorker_SpreadingOutpost : IncidentWorker
             return false;
         }
 
-        if (!TryGetRandomAvailableTargetMap(out var map))
+        if (!TryGetRandomAvailableTargetMap(out var map, parms.forced))
         {
             return false;
         }
@@ -42,14 +49,14 @@ public class IncidentWorker_SpreadingOutpost : IncidentWorker
             return false;
         }
 
-        var pirateTile = RandomNearbyHostileSettlement(map.Tile)?.Tile ?? PlanetTile.Invalid;
+        var pirateTile = RandomNearbyHostileSettlement(map.Tile, parms.forced)?.Tile ?? PlanetTile.Invalid;
 
         if (pirateTile == PlanetTile.Invalid)
         {
             return false;
         }
 
-        if (!TileFinder.TryFindNewSiteTile(out var tile, 2, 8))
+        if (!TryFindOutpostTile(out var tile, parms.forced))
         {
             return false;
         }
@@ -63,14 +70,26 @@ public class IncidentWorker_SpreadingOutpost : IncidentWorker
         return true;
     }
 
-    private Settlement RandomNearbyHostileSettlement(int originTile)
+    private Settlement RandomNearbyHostileSettlement(int originTile, bool force)
     {
         return Find.WorldObjects.Settlements
             .Where(settlement => settlement.Attackable
+                                 && (force || settlement.Tile.LayerDef.SurfaceTiles)
                                  && Find.WorldGrid.ApproxDistanceInTiles(originTile, settlement.Tile) < 36f
                                  && Find.WorldReachability.CanReach(originTile, settlement.Tile)
                                  && settlement.Faction == faction)
             .RandomElementWithFallback();
+    }
+
+    private static bool TryFindOutpostTile(out PlanetTile tile, bool force)
+    {
+        if (force)
+        {
+            return TileFinder.TryFindNewSiteTile(out tile, 1, 8, true, canBeSpace: true);
+        }
+
+        return TileFinder.TryFindNewSiteTile(out tile, 2, 8,
+            validator: candidate => candidate.LayerDef.SurfaceTiles && !Find.WorldGrid[candidate].WaterCovered);
     }
 
     private static bool TryFindFaction(out Faction enemyFaction)
@@ -81,10 +100,18 @@ public class IncidentWorker_SpreadingOutpost : IncidentWorker
             .TryRandomElement(out enemyFaction);
     }
 
-    private bool TryGetRandomAvailableTargetMap(out Map map)
+    private bool TryGetRandomAvailableTargetMap(out Map map, bool force)
     {
+        if (force)
+        {
+            return Find.Maps.Where(x => x.IsPlayerHome).TryRandomElement(out map)
+                   || Find.Maps.Where(x => x.mapPawns.FreeColonistsSpawnedCount > 0).TryRandomElement(out map);
+        }
+
         return Find.Maps
-            .Where(x => x.IsPlayerHome && RandomNearbyHostileSettlement(x.Tile) != null)
+            .Where(x => x.IsPlayerHome
+                        && x.Tile.LayerDef.SurfaceTiles
+                        && RandomNearbyHostileSettlement(x.Tile, false) != null)
             .TryRandomElement(out map);
     }
 }

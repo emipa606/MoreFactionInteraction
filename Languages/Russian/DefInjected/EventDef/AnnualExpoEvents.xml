@@ -7,12 +7,12 @@
   <MFI_AcousticShow.outcomeFirstLoser>Экспозиция оказалась очень уютной встречей, проведенной в джемах на гитарах. Кто-то сыграл Wonderwall, но в остальном это был довольно прохладный вечер, подаривший всем хорошее настроение. Ваша награда за участие:
 
 {0}</MFI_AcousticShow.outcomeFirstLoser>
-  <!-- EN: One of your caravan members picked up an instrument they shouldn't have and, not being musically gifted, broke a string while fingering a minor. Apologies were made but it wasn't sufficient: your klutzy caravan member was to work as a stage-hand on the night of the performance. Since a good time was still had by all, they were given the after-party leftovers:\n\n{0} -->
+  <!-- EN: One of your caravan members picked up an instrument they shouldn't have and, not being musically gifted, broke a string. Apologies were made but it wasn't sufficient: your klutzy caravan member was to work as a stage-hand on the night of the performance. Since a good time was still had by all, they were given the after-party leftovers:\n\n{0} -->
   <MFI_AcousticShow.outComeFirstOther>Один из членов вашего каравана взял в руки инструмент, который ему не следовало брать, и, не будучи музыкально одаренным, порвал струну, играя минорную гамму. Извинения были принесены, но этого оказалось недостаточно: ваш неуклюжий член каравана должен был работать в качестве помощника на сцене в ночь выступления. Поскольку все равно все хорошо провели время, им достались остатки после вечеринки:
 
 {0}</MFI_AcousticShow.outComeFirstOther>
   <!-- EN: Your caravan spent the day gallivanting through the stalls and admiring the wide array of eclectic non-electric musical instruments from all over this world and beyond. As dusk fell and people gathered their instruments an intimate concert was held on the main-stage. It lifted the spirits of your caravan members. Your reward for coming is:\n\n{0} -->
-  <MFI_AcousticShow.outComeFirstPlace>Ваш караван провел день, прогуливаясь по прилавкам и любуясь широким ассортиментом эклектичных неэлектрических музыкальных инструментов со всего мира и за его пределами. С наступлением сумерек, когда люди собрали свои инструменты, на главной сцене состоялся интимный концерт. Он поднял настроение членам вашего каравана. Ваша награда за участие:
+  <MFI_AcousticShow.outComeFirstPlace>Ваш караван провел день, прогуливаясь по прилавкам и любуясь широким ассортиментом эклектичных неэлектрических музыкальных инструментов со всего мира и из-за его пределов. С наступлением сумерек, когда люди собрали свои инструменты, на главной сцене состоялся камерный концерт. Он поднял настроение участникам вашего каравана. Ваша награда за участие:
 
 {0}</MFI_AcousticShow.outComeFirstPlace>
   <!-- EN: an acoustic show -->

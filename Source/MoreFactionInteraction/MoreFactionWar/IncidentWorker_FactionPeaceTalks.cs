@@ -11,8 +11,13 @@ public class IncidentWorker_FactionPeaceTalks : IncidentWorker
 
     protected override bool CanFireNowSub(IncidentParms parms)
     {
+        if (parms.forced)
+        {
+            return true;
+        }
+
         return base.CanFireNowSub(parms) && FoundTwoFactions()
-                                         && TryFindTile(out _)
+                                         && TryFindTile(out _, false)
                                          && !Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarIsOngoing
                                          && !Find.World.GetComponent<WorldComponent_MFI_FactionWar>()
                                              .UnrestIsBrewing;
@@ -25,7 +30,7 @@ public class IncidentWorker_FactionPeaceTalks : IncidentWorker
             return false;
         }
 
-        if (!TryFindTile(out var tile))
+        if (!TryFindTile(out var tile, parms.forced))
         {
             return false;
         }
@@ -55,9 +60,15 @@ public class IncidentWorker_FactionPeaceTalks : IncidentWorker
         return true;
     }
 
-    private static bool TryFindTile(out PlanetTile tile)
+    private static bool TryFindTile(out PlanetTile tile, bool force)
     {
-        return TileFinder.TryFindNewSiteTile(out tile, 5, 13);
+        if (force)
+        {
+            return TileFinder.TryFindNewSiteTile(out tile, 1, 13, true, canBeSpace: true);
+        }
+
+        return TileFinder.TryFindNewSiteTile(out tile, 5, 13,
+            validator: candidate => candidate.LayerDef.SurfaceTiles && !Find.WorldGrid[candidate].WaterCovered);
     }
 
     private static bool FoundTwoFactions()

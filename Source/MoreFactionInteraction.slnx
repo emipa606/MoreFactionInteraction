@@ -6,4 +6,49 @@
     <BuildType Name="Release" />
   </Configurations>
   <Project Path="MoreFactionInteraction/MoreFactionInteraction.csproj" />
+  <Folder Name="/XML/1.6/Defs/QuestScriptDefs/">
+    <File Path="../1.6/Defs/QuestScriptDefs/Script_HuntersLodge.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/">
+    <File Path="../1.6/Defs/CustomChoiceLetters.xml" />
+    <File Path="../1.6/Defs/Trader_KindDef.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/WorldObjects/">
+    <File Path="../1.6/Defs/WorldObjects/WorldObjects.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/Sites/Parts/">
+    <File Path="../1.6/Defs/Sites/Parts/MigratoryHerd.xml" />
+  </Folder>
+  <Folder Name="/XML/Languages/English/Keyed/">
+    <File Path="../Languages/English/Keyed/Incidents.xml" />
+    <File Path="../Languages/English/Keyed/Keys.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Patches/">
+    <File Path="../1.6/Patches/MoreFactionInteraction.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/RuleDefs/">
+    <File Path="../1.6/Defs/RuleDefs/KitchenRules.xml" />
+    <File Path="../1.6/Defs/RuleDefs/SymbolResolver_Rules_BasePart_Indoors.xml" />
+    <File Path="../1.6/Defs/RuleDefs/SymbolResolver_Rules_BasePart_Outdoors.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/Incidents/">
+    <File Path="../1.6/Defs/Incidents/Incidents_CaravanMaps_Misc.xml" />
+    <File Path="../1.6/Defs/Incidents/Incidents_Map_Misc.xml" />
+    <File Path="../1.6/Defs/Incidents/Incidents_World_Misc.xml" />
+    <File Path="../1.6/Defs/Incidents/Incidents_World_Quests.xml" />
+    <File Path="../1.6/Defs/Incidents/Incidents_World_Threat.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/ThingSetMakerDefs/">
+    <File Path="../1.6/Defs/ThingSetMakerDefs/Event_Rewards_AcousticShow.xml" />
+    <File Path="../1.6/Defs/ThingSetMakerDefs/Event_Rewards_CulturalSwap.xml" />
+    <File Path="../1.6/Defs/ThingSetMakerDefs/Event_Rewards_GameOfUrComp.xml" />
+    <File Path="../1.6/Defs/ThingSetMakerDefs/Event_Rewards_ScienceFaire.xml" />
+    <File Path="../1.6/Defs/ThingSetMakerDefs/Event_Rewards_ShootingComp.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/Events/">
+    <File Path="../1.6/Defs/Events/AnnualExpoEvents.xml" />
+  </Folder>
+  <Folder Name="/XML/About/">
+    <File Path="../About/about.xml" />
+  </Folder>
 </Solution>

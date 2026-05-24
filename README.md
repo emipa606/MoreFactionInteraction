@@ -1,6 +1,6 @@
 # [More Faction Interaction (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=2379076640)
 
-![Image](https://i.imgur.com/buuPQel.png)
+![Image](https://img.litet.net/logos/Info.png)
 
 Update of Mehnis mod
 https://steamcommunity.com/sharedfiles/filedetails/?id=1454024362
@@ -24,9 +24,9 @@ My recommendations for people who play with MFI + DD or faction mods would be to
 
 - Another solution for the trader-spam is to use my mod [Ask before enter](https://steamcommunity.com/sharedfiles/filedetails/?id=2813027453)
 
-![Image](https://i.imgur.com/pufA0kM.png)
+![Image](https://img.litet.net/logos/Notice.png)
 	
-![Image](https://i.imgur.com/Z4GOv8H.png)
+![Image](https://img.litet.net/logos/OriginalDescription.png)
 
 Adds more interaction with and between factions, bringing the world to life.
 
@@ -108,7 +108,7 @@ Want to help translate this mod in your language? Check out the "Pirate" folder 
 - Yes it's compatible with Roads of the Rim. MFI treats roadworks as a silver sink, with Roads of the Rim you're more involved.
 - For compatibility with Zetrith's multiplayer mod, you need https://steamcommunity.com/sharedfiles/filedetails/?id=1629973374
 
-![Image](https://i.imgur.com/PwoNOj4.png)
+![Image](https://img.litet.net/logos/ReportingIssues.png)
 
 
 
@@ -122,4 +122,4 @@ Want to help translate this mod in your language? Check out the "Pirate" folder 
 
  
 
-[![Image](https://img.shields.io/github/v/release/emipa606/MoreFactionInteraction?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/2379076640) | tags:  faction diplomacy
+[![Image](https://img.shields.io/github/v/release/emipa606/MoreFactionInteraction?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/2379076640) | tags: faction diplomacy

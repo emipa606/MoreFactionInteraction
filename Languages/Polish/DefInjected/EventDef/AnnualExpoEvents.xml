@@ -7,12 +7,12 @@
   <MFI_AcousticShow.outcomeFirstLoser>Expo okazało się bardzo przytulnym spotkaniem, spędzonym na jammowaniu na gitarach. Ktoś zagrał Wonderwall, ale poza tym był to dość chłodny wieczór, który wprawił wszystkich w dobry nastrój. Nagrodą za przybycie jest:
 
 {0}</MFI_AcousticShow.outcomeFirstLoser>
-  <!-- EN: One of your caravan members picked up an instrument they shouldn't have and, not being musically gifted, broke a string while fingering a minor. Apologies were made but it wasn't sufficient: your klutzy caravan member was to work as a stage-hand on the night of the performance. Since a good time was still had by all, they were given the after-party leftovers:\n\n{0} -->
+  <!-- EN: One of your caravan members picked up an instrument they shouldn't have and, not being musically gifted, broke a string. Apologies were made but it wasn't sufficient: your klutzy caravan member was to work as a stage-hand on the night of the performance. Since a good time was still had by all, they were given the after-party leftovers:\n\n{0} -->
   <MFI_AcousticShow.outComeFirstOther>Jeden z członków twojej karawany wziął do ręki instrument, którego nie powinien mieć, i nie będąc uzdolnionym muzycznie, zerwał strunę podczas palcowania moll. Przeprosiny zostały złożone, ale to nie wystarczyło: twój niezdarny członek karawany miał pracować jako pomocnik na scenie w noc występu. Ponieważ wszyscy nadal dobrze się bawili, otrzymali resztki po imprezie:
 
 {0}</MFI_AcousticShow.outComeFirstOther>
   <!-- EN: Your caravan spent the day gallivanting through the stalls and admiring the wide array of eclectic non-electric musical instruments from all over this world and beyond. As dusk fell and people gathered their instruments an intimate concert was held on the main-stage. It lifted the spirits of your caravan members. Your reward for coming is:\n\n{0} -->
-  <MFI_AcousticShow.outComeFirstPlace>Wasza karawana spędziła dzień galopując przez stragany i podziwiając szeroką gamę eklektycznych nieelektrycznych instrumentów muzycznych z całego świata i nie tylko. Gdy zapadł zmierzch i ludzie zebrali swoje instrumenty, na głównej scenie odbył się kameralny koncert. Podniósł on na duchu członków karawany. Nagrodą za przybycie jest:
+  <MFI_AcousticShow.outComeFirstPlace>Wasza karawana spędziła dzień, przechadzając się po straganach i podziwiając szeroki wachlarz eklektycznych, nieelektrycznych instrumentów muzycznych z całego świata i nie tylko. Gdy zapadł zmierzch i ludzie zebrali swoje instrumenty, na głównej scenie odbył się kameralny koncert. Podniósł on na duchu członków waszej karawany. Nagrodą za przybycie jest:
 
 {0}</MFI_AcousticShow.outComeFirstPlace>
   <!-- EN: an acoustic show -->

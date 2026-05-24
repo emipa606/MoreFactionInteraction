@@ -14,14 +14,19 @@ public class IncidentWorker_MysticalShaman : IncidentWorker
 
     protected override bool CanFireNowSub(IncidentParms parms)
     {
+        if (parms.forced)
+        {
+            return true;
+        }
+
         return base.CanFireNowSub(parms) && Find.AnyPlayerHomeMap != null
                                          && !Find.WorldObjects.AllWorldObjects.Any(o =>
                                              o.def == MFI_DefOf.MFI_MysticalShaman)
                                          && Find.FactionManager.AllFactionsVisible.Where(f =>
                                              f.def.techLevel <= TechLevel.Neolithic
                                              && !f.HostileTo(Faction.OfPlayer) && !f.temporary).TryRandomElement(out _)
-                                         && TryFindTile(out _)
-                                         && TryGetRandomAvailableTargetMap(out _)
+                                         && TryFindTile(out _, false)
+                                         && TryGetRandomAvailableTargetMap(out _, false)
                                          && CommsConsoleUtility.PlayerHasPoweredCommsConsole();
     }
 
@@ -39,7 +44,7 @@ public class IncidentWorker_MysticalShaman : IncidentWorker
             return false;
         }
 
-        if (!TryGetRandomAvailableTargetMap(out var map))
+        if (!TryGetRandomAvailableTargetMap(out var map, parms.forced))
         {
             return false;
         }
@@ -49,7 +54,7 @@ public class IncidentWorker_MysticalShaman : IncidentWorker
             return false;
         }
 
-        if (!TryFindTile(out var tile))
+        if (!TryFindTile(out var tile, parms.forced))
         {
             return false;
         }
@@ -90,21 +95,36 @@ public class IncidentWorker_MysticalShaman : IncidentWorker
         return true;
     }
 
-    private static bool TryFindTile(out PlanetTile tile)
+    private static bool TryFindTile(out PlanetTile tile, bool force)
     {
-        return TileFinder.TryFindNewSiteTile(out tile, MinDistance, MaxDistance, true);
+        if (force)
+        {
+            return TileFinder.TryFindNewSiteTile(out tile, 1, MaxDistance, true, canBeSpace: true);
+        }
+
+        return TileFinder.TryFindNewSiteTile(out tile, MinDistance, MaxDistance, true,
+            validator: candidate => candidate.LayerDef.SurfaceTiles && !Find.WorldGrid[candidate].WaterCovered);
     }
 
-    private bool TryGetRandomAvailableTargetMap(out Map map)
+    private bool TryGetRandomAvailableTargetMap(out Map map, bool force)
     {
+        if (force)
+        {
+            return Find.Maps.Where(target => target.IsPlayerHome).TryRandomElement(out map)
+                   || Find.Maps.Where(target => target.mapPawns.FreeColonistsSpawnedCount > 0).TryRandomElement(out map);
+        }
+
         return Find.Maps
-            .Where(target => target.IsPlayerHome && RandomNearbyTradeableSettlement(target.Tile) != null)
+            .Where(target => target.IsPlayerHome
+                             && target.Tile.LayerDef.SurfaceTiles
+                             && RandomNearbyTradeableSettlement(target.Tile) != null)
             .TryRandomElement(out map);
     }
 
     private Settlement RandomNearbyTradeableSettlement(PlanetTile tile)
     {
         return Find.WorldObjects.SettlementBases.Where(settlement => settlement.Visitable
+                                                                     && settlement.Tile.LayerDef.SurfaceTiles
                                                                      && settlement
                                                                          .GetComponent<TradeRequestComp>() != null
                                                                      && !settlement.GetComponent<TradeRequestComp>()

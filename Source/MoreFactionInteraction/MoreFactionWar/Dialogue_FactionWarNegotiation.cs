@@ -14,10 +14,10 @@ public class Dialogue_FactionWarNegotiation(
     : Dialog_NodeTree(nodeRoot,
         delayInteractivity, radioMode, title)
 {
-    private new const float TitleHeight = 70f;
+    private const float TitleHeight = 70f;
     private const float InfoHeight = 60f;
 
-    public override Vector2 InitialSize => new Vector2(720f, 600f);
+    public override Vector2 InitialSize => new(720f, 600f);
 
     public override void DoWindowContents(Rect inRect)
     {

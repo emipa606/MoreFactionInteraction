@@ -120,29 +120,33 @@ public class FactionWarDialogue
 
     private string CurryFavour(float badOutcomeWeightFactor, float goodOutcomeWeightFactor)
     {
-        outComes = new List<(Action, float, string)>
-        {
+        outComes =
+        [
             (
                 () => HandleOutcome(MFI_DiplomacyTunings.FavourDisaster),
                 BaseWeight_Disaster * GetBadOutcomeWeightFactor(_pawn),
                 "MFI_FactionWarFavourFactionDisaster".Translate(_favouredFaction.Name, _burdenedFaction.Name)),
+
             (
                 () => HandleOutcome(MFI_DiplomacyTunings.FavourBackfire),
                 BaseWeight_Backfire * badOutcomeWeightFactor,
                 "MFI_FactionWarFavourFactionBackFire".Translate(_favouredFaction.Name, _burdenedFaction.Name)),
+
             (
                 () => HandleOutcome(MFI_DiplomacyTunings.FavourFlounder),
                 BaseWeight_TalksFlounder,
                 "MFI_FactionWarFavourFactionFlounder".Translate(_favouredFaction.Name, _burdenedFaction.Name)),
+
             (
                 () => HandleOutcome(MFI_DiplomacyTunings.FavourSuccess),
                 BaseWeight_Success * goodOutcomeWeightFactor,
                 "MFI_FactionWarFavourFactionSuccess".Translate(_favouredFaction.Name, _burdenedFaction.Name)),
+
             (
                 () => HandleOutcome(MFI_DiplomacyTunings.FavourTriumph),
                 BaseWeight_Triumph * goodOutcomeWeightFactor,
                 "MFI_FactionWarFavourFactionTriumph".Translate(_favouredFaction.Name, _burdenedFaction.Name))
-        };
+        ];
 
 
         var factionWarNegotiationsOutcome = TriggerOutcome();
@@ -151,8 +155,8 @@ public class FactionWarDialogue
 
     private string Sabotage(float badOutcomeWeightFactor, float goodOutcomeWeightFactor)
     {
-        outComes = new List<(Action, float, string)>
-        {
+        outComes =
+        [
             (
                 () =>
                 {
@@ -161,23 +165,27 @@ public class FactionWarDialogue
                 },
                 BaseWeight_Disaster * badOutcomeWeightFactor,
                 "MFI_FactionWarSabotageDisaster".Translate(_favouredFaction.Name, _burdenedFaction.Name)),
+
             (
                 () => HandleOutcome(MFI_DiplomacyTunings.SabotageBackfire),
                 BaseWeight_Backfire * badOutcomeWeightFactor,
                 "MFI_FactionWarSabotageBackFire".Translate(_favouredFaction.Name, _burdenedFaction.Name)),
+
             (
                 () => HandleOutcome(MFI_DiplomacyTunings.SabotageFlounder),
                 BaseWeight_TalksFlounder,
                 "MFI_FactionWarSabotageFlounder".Translate(_favouredFaction.Name, _burdenedFaction.Name)),
+
             (
                 () => HandleOutcome(MFI_DiplomacyTunings.SabotageSuccess),
                 BaseWeight_Success * goodOutcomeWeightFactor,
                 "MFI_FactionWarSabotageSuccess".Translate(_favouredFaction.Name, _burdenedFaction.Name)),
+
             (
                 () => HandleOutcome(MFI_DiplomacyTunings.SabotageTriumph),
                 BaseWeight_Triumph * goodOutcomeWeightFactor,
                 "MFI_FactionWarSabotageTriumph".Translate(_favouredFaction.Name, _burdenedFaction.Name))
-        };
+        ];
 
 
         var factionWarNegotiationsOutcome = TriggerOutcome();
@@ -186,29 +194,33 @@ public class FactionWarDialogue
 
     private string BrokerPeace(float badOutcomeWeightFactor, float goodOutcomeWeightFactor)
     {
-        outComes = new List<(Action, float, string)>
-        {
+        outComes =
+        [
             (
                 () => HandleOutcome(MFI_DiplomacyTunings.BrokerPeaceDisaster),
                 BaseWeight_Disaster * badOutcomeWeightFactor,
                 "MFI_FactionWarBrokerPeaceDisaster".Translate(_favouredFaction.Name, _burdenedFaction.Name)),
+
             (
                 () => HandleOutcome(MFI_DiplomacyTunings.BrokerPeaceBackfire),
                 BaseWeight_Backfire * badOutcomeWeightFactor,
                 "MFI_FactionWarBrokerPeaceBackFire".Translate(_favouredFaction.Name, _burdenedFaction.Name)),
+
             (
                 () => HandleOutcome(MFI_DiplomacyTunings.BrokerPeaceFlounder),
                 BaseWeight_TalksFlounder,
                 "MFI_FactionWarBrokerPeaceFlounder".Translate(_favouredFaction.Name, _burdenedFaction.Name)),
+
             (
                 () => HandleOutcome(MFI_DiplomacyTunings.BrokerPeaceSuccess),
                 BaseWeight_Success * goodOutcomeWeightFactor,
                 "MFI_FactionWarBrokerPeaceSuccess".Translate(_favouredFaction.Name, _burdenedFaction.Name)),
+
             (
                 () => HandleOutcome(MFI_DiplomacyTunings.BrokerPeaceTriumph),
                 BaseWeight_Triumph * goodOutcomeWeightFactor,
                 "MFI_FactionWarBrokerPeaceTriumph".Translate(_favouredFaction.Name, _burdenedFaction.Name))
-        };
+        ];
 
 
         var factionWarNegotiationsOutcome = TriggerOutcome();

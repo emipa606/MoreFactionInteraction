@@ -37,10 +37,7 @@ public class EventDef : Def
     {
         get
         {
-            if (workerInt == null)
-            {
-                workerInt = (EventRewardWorker)Activator.CreateInstance(workerClass);
-            }
+            workerInt ??= (EventRewardWorker)Activator.CreateInstance(workerClass);
 
             return workerInt;
         }

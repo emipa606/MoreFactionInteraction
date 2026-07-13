@@ -25,8 +25,6 @@
   <MFI_CulturalSwap.outcomeFirstLoser>Al no estar mejor preparada ni haber traído nada, tu caravana se puso a cantar y bailar con [PAWN_nameDef] como protagonista. No estaba bien ensayado, lo que se notó en la actuación. No todas las facciones participantes pudieron apreciar el espectáculo improvisado, pero fue un esfuerzo admirable. Tu recompensa por participar es:
 
 {0}</MFI_CulturalSwap.outcomeFirstLoser>
-  <!-- EN: The host faction moved the audience to tears with their dazzling display; a dramatic reenactment of their ancestor's discovery of White Rabbit Mountain Range. It was a touching piece of theatre that transcended language barriers, and reached the hearts of young and old alike.\n\nAnd then there was your troupe. Your reward for participating is:\n\n{0} -->
-  <MFI_CulturalSwap.outComeFirstOther>La facción anfitriona conmovió al público hasta las lágrimas con su deslumbrante exhibición</MFI_CulturalSwap.outComeFirstOther>
   <!-- EN: As the last of daylight slowly dimmed away, [PAWN_nameDef] simply sat down on a granite stool and told of [PAWN_possessive] upbringing as a [PAWN_title]. This simple story and more importantly the atmosphere [PAWN_pronoun] created was lauded by judges for its intimacy, originality and bravery. Your reward for participating is:\n\n{0} -->
   <MFI_CulturalSwap.outComeFirstPlace>Mientras la última luz del día se iba apagando poco a poco, [PAWN_nameDef] se sentó en un taburete de granito y contó cómo se crió [PAWN_possessive] como [PAWN_title]. Esta sencilla historia y, lo que es más importante, la atmósfera que creó [PAWN_pronoun] fueron alabadas por los jueces por su intimidad, originalidad y valentía. Tu recompensa por participar es:
 
@@ -91,4 +89,10 @@
   <MFI_ShootingComp.theme>una competición de tiro</MFI_ShootingComp.theme>
   <!-- EN: Send your best shot. -->
   <MFI_ShootingComp.themeDesc>Envía tu mejor tiro.</MFI_ShootingComp.themeDesc>
+  <!-- EN: The host faction moved the audience to tears with their dazzling display; a dramatic reenactment of their ancestor's discovery of White Rabbit Mountain Range. It was a touching piece of theatre that transcended language barriers, and reached the hearts of young and old alike.\n\nAnd then there was your troupe. Your reward for participating is:\n\n{0} -->
+  <MFI_CulturalSwap.outComeFirstOther>La facción anfitriona conmovió al público hasta las lágrimas con su deslumbrante representación: una dramática recreación del descubrimiento de la cordillera White Rabbit por parte de sus antepasados. Fue una obra teatral conmovedora que traspasó las barreras del idioma y llegó al corazón de grandes y pequeños por igual.
+
+Y luego estaba vuestra compañía. Vuestra recompensa por participar es:
+
+{0}</MFI_CulturalSwap.outComeFirstOther>
 </LanguageData>

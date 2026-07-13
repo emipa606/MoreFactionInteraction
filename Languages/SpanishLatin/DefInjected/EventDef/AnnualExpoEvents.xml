@@ -25,8 +25,6 @@
   <MFI_CulturalSwap.outcomeFirstLoser>你们的商队没有做好准备，也没有带任何东西，就开始了歌舞表演，[PAWN_nameDef] 站在舞台中央。这并不是精心排练的，这一点在表演中体现得淋漓尽致。并不是所有参与的派系都能欣赏到这一即兴表演，但无论如何，这都是一次令人钦佩的努力。您的参与奖励是
 
 {0}</MFI_CulturalSwap.outcomeFirstLoser>
-  <!-- EN: The host faction moved the audience to tears with their dazzling display; a dramatic reenactment of their ancestor's discovery of White Rabbit Mountain Range. It was a touching piece of theatre that transcended language barriers, and reached the hearts of young and old alike.\n\nAnd then there was your troupe. Your reward for participating is:\n\n{0} -->
-  <MFI_CulturalSwap.outComeFirstOther>东道主派的炫目表演让观众感动落泪</MFI_CulturalSwap.outComeFirstOther>
   <!-- EN: As the last of daylight slowly dimmed away, [PAWN_nameDef] simply sat down on a granite stool and told of [PAWN_possessive] upbringing as a [PAWN_title]. This simple story and more importantly the atmosphere [PAWN_pronoun] created was lauded by judges for its intimacy, originality and bravery. Your reward for participating is:\n\n{0} -->
   <MFI_CulturalSwap.outComeFirstPlace>当最后一抹日光慢慢暗去，[PAWN_nameDef]只是坐在花岗岩凳子上，讲述了[PAWN_possessive]作为[PAWN_title]的成长经历。这个简单的故事，更重要的是[PAWN_pronoun]所营造的氛围，因其亲切感、独创性和勇气而受到评委们的称赞。您的参赛奖励是
 
@@ -91,4 +89,10 @@
   <MFI_ShootingComp.theme>射击比赛</MFI_ShootingComp.theme>
   <!-- EN: Send your best shot. -->
   <MFI_ShootingComp.themeDesc>发送您的最佳照片。</MFI_ShootingComp.themeDesc>
+  <!-- EN: The host faction moved the audience to tears with their dazzling display; a dramatic reenactment of their ancestor's discovery of White Rabbit Mountain Range. It was a touching piece of theatre that transcended language barriers, and reached the hearts of young and old alike.\n\nAnd then there was your troupe. Your reward for participating is:\n\n{0} -->
+  <MFI_CulturalSwap.outComeFirstOther>主办派系以一场精彩绝伦的演出令观众潸然泪下；这场戏剧生动再现了他们的祖先发现“白兔山脉”的历程。这是一场感人至深的戏剧表演，它跨越了语言的隔阂，打动了老少观众的心。
+
+随后轮到你们的剧团登场。你们参与此次活动的奖励是：
+
+{0}</MFI_CulturalSwap.outComeFirstOther>
 </LanguageData>

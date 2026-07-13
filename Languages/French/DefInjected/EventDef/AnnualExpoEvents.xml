@@ -25,8 +25,6 @@
   <MFI_CulturalSwap.outcomeFirstLoser>N'étant pas mieux préparée et n'ayant rien apporté, votre caravane s'est lancée dans un numéro de chant et de danse avec [PAWN_nameDef] au centre de la scène. Ce n'était pas très bien préparé, ce qui s'est vu dans la performance. Toutes les factions participantes n'ont pas pu apprécier le spectacle improvisé, mais c'était tout de même un effort admirable. Votre récompense pour votre participation est la suivante :
 
 {0}</MFI_CulturalSwap.outcomeFirstLoser>
-  <!-- EN: The host faction moved the audience to tears with their dazzling display; a dramatic reenactment of their ancestor's discovery of White Rabbit Mountain Range. It was a touching piece of theatre that transcended language barriers, and reached the hearts of young and old alike.\n\nAnd then there was your troupe. Your reward for participating is:\n\n{0} -->
-  <MFI_CulturalSwap.outComeFirstOther>La faction hôte a ému le public jusqu'aux larmes avec son spectacle éblouissant</MFI_CulturalSwap.outComeFirstOther>
   <!-- EN: As the last of daylight slowly dimmed away, [PAWN_nameDef] simply sat down on a granite stool and told of [PAWN_possessive] upbringing as a [PAWN_title]. This simple story and more importantly the atmosphere [PAWN_pronoun] created was lauded by judges for its intimacy, originality and bravery. Your reward for participating is:\n\n{0} -->
   <MFI_CulturalSwap.outComeFirstPlace>Alors que les dernières lueurs du jour disparaissaient lentement, [PAWN_nameDef] s'est simplement assis sur un tabouret en granit et a raconté l'éducation de [PAWN_possessive] en tant que [PAWN_title]. Cette simple histoire et, plus important encore, l'atmosphère créée par [PAWN_pronoun] ont été saluées par les juges pour leur intimité, leur originalité et leur courage. Votre récompense pour votre participation est la suivante :
 
@@ -91,4 +89,10 @@
   <MFI_ShootingComp.theme>une compétition de tir</MFI_ShootingComp.theme>
   <!-- EN: Send your best shot. -->
   <MFI_ShootingComp.themeDesc>Envoyez votre meilleure photo.</MFI_ShootingComp.themeDesc>
+  <!-- EN: The host faction moved the audience to tears with their dazzling display; a dramatic reenactment of their ancestor's discovery of White Rabbit Mountain Range. It was a touching piece of theatre that transcended language barriers, and reached the hearts of young and old alike.\n\nAnd then there was your troupe. Your reward for participating is:\n\n{0} -->
+  <MFI_CulturalSwap.outComeFirstOther>La faction hôte a ému le public aux larmes avec son spectacle éblouissant : une reconstitution dramatique de la découverte de la chaîne de montagnes White Rabbit par ses ancêtres. Ce fut une pièce de théâtre émouvante qui a transcendé les barrières linguistiques et a touché le cœur des petits comme des grands.
+
+Et puis il y a eu votre troupe. Votre récompense pour votre participation est :
+
+{0}</MFI_CulturalSwap.outComeFirstOther>
 </LanguageData>

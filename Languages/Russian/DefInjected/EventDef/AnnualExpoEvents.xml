@@ -25,8 +25,6 @@
   <MFI_CulturalSwap.outcomeFirstLoser>Не подготовившись лучше и не взяв с собой ничего, ваш караван разразился песнями и танцами, в которых [PAWN_nameDef] занял центральное место. Это не было хорошо отрепетировано, что и проявилось в выступлении. Не все участвующие фракции смогли оценить импровизированное шоу, но тем не менее это была достойная восхищения попытка. Ваша награда за участие:
 
 {0}</MFI_CulturalSwap.outcomeFirstLoser>
-  <!-- EN: The host faction moved the audience to tears with their dazzling display; a dramatic reenactment of their ancestor's discovery of White Rabbit Mountain Range. It was a touching piece of theatre that transcended language barriers, and reached the hearts of young and old alike.\n\nAnd then there was your troupe. Your reward for participating is:\n\n{0} -->
-  <MFI_CulturalSwap.outComeFirstOther>Фракция-хозяин довела зрителей до слез своим ослепительным выступлением</MFI_CulturalSwap.outComeFirstOther>
   <!-- EN: As the last of daylight slowly dimmed away, [PAWN_nameDef] simply sat down on a granite stool and told of [PAWN_possessive] upbringing as a [PAWN_title]. This simple story and more importantly the atmosphere [PAWN_pronoun] created was lauded by judges for its intimacy, originality and bravery. Your reward for participating is:\n\n{0} -->
   <MFI_CulturalSwap.outComeFirstPlace>Когда последние лучи дневного света медленно гасли, [PAWN_nameDef] просто сел на гранитный табурет и рассказал о воспитании [PAWN_possessive] в качестве [PAWN_title]. Эта простая история и, что еще важнее, атмосфера, которую создал [PAWN_pronoun], были отмечены судьями за интимность, оригинальность и смелость. Ваша награда за участие:
 
@@ -91,4 +89,10 @@
   <MFI_ShootingComp.theme>соревнование по стрельбе</MFI_ShootingComp.theme>
   <!-- EN: Send your best shot. -->
   <MFI_ShootingComp.themeDesc>Присылайте свои лучшие снимки.</MFI_ShootingComp.themeDesc>
+  <!-- EN: The host faction moved the audience to tears with their dazzling display; a dramatic reenactment of their ancestor's discovery of White Rabbit Mountain Range. It was a touching piece of theatre that transcended language barriers, and reached the hearts of young and old alike.\n\nAnd then there was your troupe. Your reward for participating is:\n\n{0} -->
+  <MFI_CulturalSwap.outComeFirstOther>Фракция-хозяйка довела зрителей до слёз своим ослепительным представлением — драматической реконструкцией открытия их предками горного хребта «Белый Кролик». Это было трогательное театральное представление, преодолевшее языковые барьеры и тронувшее сердца как молодых, так и старых.
+
+А затем выступила ваша труппа. Ваша награда за участие:
+
+{0}</MFI_CulturalSwap.outComeFirstOther>
 </LanguageData>

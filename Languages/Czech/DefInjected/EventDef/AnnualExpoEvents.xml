@@ -25,8 +25,6 @@
   <MFI_CulturalSwap.outcomeFirstLoser>Jelikož jste nebyli lépe připraveni ani jste si nic nepřivezli, vaše karavana propukla v písničkový a taneční rej s [PAWN_jménoDef] v centru pozornosti. Nebylo to dobře nacvičené, což se na vystoupení projevilo. Ne všechny zúčastněné frakce dokázaly improvizovanou show ocenit, ale i tak to byla obdivuhodná snaha. Odměnou za účast je:
 
 {0}</MFI_CulturalSwap.outcomeFirstLoser>
-  <!-- EN: The host faction moved the audience to tears with their dazzling display; a dramatic reenactment of their ancestor's discovery of White Rabbit Mountain Range. It was a touching piece of theatre that transcended language barriers, and reached the hearts of young and old alike.\n\nAnd then there was your troupe. Your reward for participating is:\n\n{0} -->
-  <MFI_CulturalSwap.outComeFirstOther>Hostitelská frakce dojala publikum k slzám svou oslnivou show</MFI_CulturalSwap.outComeFirstOther>
   <!-- EN: As the last of daylight slowly dimmed away, [PAWN_nameDef] simply sat down on a granite stool and told of [PAWN_possessive] upbringing as a [PAWN_title]. This simple story and more importantly the atmosphere [PAWN_pronoun] created was lauded by judges for its intimacy, originality and bravery. Your reward for participating is:\n\n{0} -->
   <MFI_CulturalSwap.outComeFirstPlace>Když pomalu pohasínalo poslední denní světlo, [PAWN_jménoDef] se prostě posadil na žulovou stoličku a vyprávěl o výchově [PAWN_poselství] jako [PAWN_titul]. Tento jednoduchý příběh a hlavně atmosféra, kterou [PAWN_jméno] vytvořil, byly porotci oceněny pro svou intimitu, originalitu a odvahu. Odměnou za účast je vám:
 
@@ -91,4 +89,10 @@
   <MFI_ShootingComp.theme>Střelecká soutěž</MFI_ShootingComp.theme>
   <!-- EN: Send your best shot. -->
   <MFI_ShootingComp.themeDesc>Pošlete svůj nejlepší výstřel.</MFI_ShootingComp.themeDesc>
+  <!-- EN: The host faction moved the audience to tears with their dazzling display; a dramatic reenactment of their ancestor's discovery of White Rabbit Mountain Range. It was a touching piece of theatre that transcended language barriers, and reached the hearts of young and old alike.\n\nAnd then there was your troupe. Your reward for participating is:\n\n{0} -->
+  <MFI_CulturalSwap.outComeFirstOther>Hostitelská frakce dojala diváky k slzám svým oslnivým představením – dramatickou rekonstrukcí objevu pohoří White Rabbit jejich předky. Bylo to dojemné divadelní představení, které překonalo jazykové bariéry a oslovilo srdce mladých i starých.
+
+A pak tu byla vaše divadelní skupina. Vaší odměnou za účast je:
+
+{0}</MFI_CulturalSwap.outComeFirstOther>
 </LanguageData>

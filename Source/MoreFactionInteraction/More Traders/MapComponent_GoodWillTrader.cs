@@ -32,9 +32,9 @@ public class MapComponent_GoodWillTrader(Map map) : MapComponent(map)
     private List<Faction> factionsListforTimesTraded = [];
     private List<int> intListForInteraction = [];
     private List<int> intListforTimesTraded = [];
-    private Dictionary<Faction, int> nextFactionInteraction = new Dictionary<Faction, int>();
+    private Dictionary<Faction, int> nextFactionInteraction = new();
     private List<QueuedIncident> queued;
-    private Dictionary<Faction, int> timesTraded = new Dictionary<Faction, int>();
+    private Dictionary<Faction, int> timesTraded = new();
 
     //empty constructor
 
@@ -130,7 +130,8 @@ public class MapComponent_GoodWillTrader(Map map) : MapComponent(map)
         base.MapComponentTick();
 
         //We don't need to run all that often
-        if (Find.TickManager.TicksGame % 531 != 0 || GenDate.DaysPassed <= 8)
+        if (Find.TickManager.TicksGame % 531 != 0 || GenDate.DaysPassed <= 8 || Find.World == null ||
+            Find.FactionManager == null)
         {
             return;
         }

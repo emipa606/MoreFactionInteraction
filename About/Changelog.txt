@@ -1,5 +1,11 @@
 # Changelog for MoreFactionInteraction
 
+1.6.7 - Updated legacy translations
+
+
+1.6.6 - Added some null-checks, hopefully fixes some rare issues with the mapcomponent tick triggering before the factionmanager is available
+
+
 1.6.5 - Fix for Buff_Emanator sticking between saves.
 Art expo failtext cleaned up.
 Events handles space-tiles better.

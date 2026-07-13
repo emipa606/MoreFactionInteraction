@@ -25,8 +25,6 @@
   <MFI_CulturalSwap.outcomeFirstLoser>何の準備もせず、何も持ってこなかったあなたのキャラバンは、[PAWN_nameDef]を中心に歌と踊りを披露した。リハーサルが十分でなかったことが、パフォーマンスで光った。参加したすべての派閥が即興のショーを評価できたわけではないが、それでも立派な努力だった。参加賞は
 
 {0}</MFI_CulturalSwap.outcomeFirstLoser>
-  <!-- EN: The host faction moved the audience to tears with their dazzling display; a dramatic reenactment of their ancestor's discovery of White Rabbit Mountain Range. It was a touching piece of theatre that transcended language barriers, and reached the hearts of young and old alike.\n\nAnd then there was your troupe. Your reward for participating is:\n\n{0} -->
-  <MFI_CulturalSwap.outComeFirstOther>主催者派閥はまばゆいばかりの演出で観客の涙を誘った</MFI_CulturalSwap.outComeFirstOther>
   <!-- EN: As the last of daylight slowly dimmed away, [PAWN_nameDef] simply sat down on a granite stool and told of [PAWN_possessive] upbringing as a [PAWN_title]. This simple story and more importantly the atmosphere [PAWN_pronoun] created was lauded by judges for its intimacy, originality and bravery. Your reward for participating is:\n\n{0} -->
   <MFI_CulturalSwap.outComeFirstPlace>最後の日がゆっくりと暮れていく中、[PAWN_nameDef]はただ御影石のスツールに座り、[PAWN_title]としての[PAWN_possessive]の生い立ちを語った。このシンプルなストーリーと、さらに重要なのは、[PAWN_pronoun]が作り出した雰囲気が、その親密さ、独創性、勇気を審査員から称賛されたのだ。参加賞は
 
@@ -91,4 +89,10 @@
   <MFI_ShootingComp.theme>射撃競技</MFI_ShootingComp.theme>
   <!-- EN: Send your best shot. -->
   <MFI_ShootingComp.themeDesc>ベストショットを送ってください。</MFI_ShootingComp.themeDesc>
+  <!-- EN: The host faction moved the audience to tears with their dazzling display; a dramatic reenactment of their ancestor's discovery of White Rabbit Mountain Range. It was a touching piece of theatre that transcended language barriers, and reached the hearts of young and old alike.\n\nAnd then there was your troupe. Your reward for participating is:\n\n{0} -->
+  <MFI_CulturalSwap.outComeFirstOther>主催派閥は、先祖による「ホワイト・ラビット山脈」の発見を劇的に再現した見事な演目で、観客を涙に誘いました。それは言語の壁を越え、老若男女を問わずすべての人の心に響く、感動的な演劇でした。
+
+そして、あなたの劇団の登場です。参加への報酬は以下の通りです：
+
+{0}</MFI_CulturalSwap.outComeFirstOther>
 </LanguageData>

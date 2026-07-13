@@ -25,8 +25,6 @@
   <MFI_CulturalSwap.outcomeFirstLoser>Nie będąc lepiej przygotowanym ani niczego nie przynosząc, twoja karawana wybuchła rutyną pieśni i tańca, w której [PAWN_nameDef] zajął centralne miejsce. Nie było to dobrze przećwiczone, co odbiło się na występie. Nie wszystkie uczestniczące frakcje były w stanie docenić improwizowany pokaz, ale mimo wszystko był to godny podziwu wysiłek. Nagrodą za udział jest:
 
 {0}</MFI_CulturalSwap.outcomeFirstLoser>
-  <!-- EN: The host faction moved the audience to tears with their dazzling display; a dramatic reenactment of their ancestor's discovery of White Rabbit Mountain Range. It was a touching piece of theatre that transcended language barriers, and reached the hearts of young and old alike.\n\nAnd then there was your troupe. Your reward for participating is:\n\n{0} -->
-  <MFI_CulturalSwap.outComeFirstOther>Frakcja gospodarzy poruszyła publiczność do łez swoim olśniewającym pokazem</MFI_CulturalSwap.outComeFirstOther>
   <!-- EN: As the last of daylight slowly dimmed away, [PAWN_nameDef] simply sat down on a granite stool and told of [PAWN_possessive] upbringing as a [PAWN_title]. This simple story and more importantly the atmosphere [PAWN_pronoun] created was lauded by judges for its intimacy, originality and bravery. Your reward for participating is:\n\n{0} -->
   <MFI_CulturalSwap.outComeFirstPlace>Gdy ostatnie światło dnia powoli przygasało, [PAWN_nameDef] po prostu usiadł na granitowym stołku i opowiedział o wychowaniu [PAWN_possessive] jako [PAWN_title]. Ta prosta historia i, co ważniejsze, atmosfera stworzona przez [PAWN_pronoun] została doceniona przez sędziów za intymność, oryginalność i odwagę. Nagrodą za udział w konkursie jest:
 
@@ -91,4 +89,10 @@
   <MFI_ShootingComp.theme>zawody strzeleckie</MFI_ShootingComp.theme>
   <!-- EN: Send your best shot. -->
   <MFI_ShootingComp.themeDesc>Wyślij swój najlepszy strzał.</MFI_ShootingComp.themeDesc>
+  <!-- EN: The host faction moved the audience to tears with their dazzling display; a dramatic reenactment of their ancestor's discovery of White Rabbit Mountain Range. It was a touching piece of theatre that transcended language barriers, and reached the hearts of young and old alike.\n\nAnd then there was your troupe. Your reward for participating is:\n\n{0} -->
+  <MFI_CulturalSwap.outComeFirstOther>Frakcja gospodarzowa wzruszyła publiczność do łez swoim olśniewającym przedstawieniem – dramatyczną rekonstrukcją odkrycia przez ich przodków pasma górskiego White Rabbit. Było to poruszające przedstawienie teatralne, które przekroczyło bariery językowe i dotarło do serc zarówno młodych, jak i starszych widzów.
+
+A potem pojawiła się twoja trupa. Twoją nagrodą za udział jest:
+
+{0}</MFI_CulturalSwap.outComeFirstOther>
 </LanguageData>

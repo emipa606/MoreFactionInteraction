@@ -25,8 +25,6 @@
   <MFI_CulturalSwap.outcomeFirstLoser>Da ihr nicht besser vorbereitet wart oder etwas mitgebracht habt, ist eure Karawane in eine Gesangs- und Tanznummer ausgebrochen, bei der [PAWN_nameDef] die Hauptrolle spielte. Sie war nicht gut einstudiert, was sich in der Aufführung zeigte. Nicht alle teilnehmenden Fraktionen waren in der Lage, die improvisierte Show zu würdigen, aber es war dennoch eine bewundernswerte Leistung. Eure Belohnung für die Teilnahme ist:
 
 {0}</MFI_CulturalSwap.outcomeFirstLoser>
-  <!-- EN: The host faction moved the audience to tears with their dazzling display; a dramatic reenactment of their ancestor's discovery of White Rabbit Mountain Range. It was a touching piece of theatre that transcended language barriers, and reached the hearts of young and old alike.\n\nAnd then there was your troupe. Your reward for participating is:\n\n{0} -->
-  <MFI_CulturalSwap.outComeFirstOther>Die Gastgeberfraktion rührte das Publikum mit ihrer schillernden Vorführung zu Tränen</MFI_CulturalSwap.outComeFirstOther>
   <!-- EN: As the last of daylight slowly dimmed away, [PAWN_nameDef] simply sat down on a granite stool and told of [PAWN_possessive] upbringing as a [PAWN_title]. This simple story and more importantly the atmosphere [PAWN_pronoun] created was lauded by judges for its intimacy, originality and bravery. Your reward for participating is:\n\n{0} -->
   <MFI_CulturalSwap.outComeFirstPlace>Als das letzte Tageslicht langsam verblasste, setzte sich [PAWN_nameDef] einfach auf einen Granitschemel und erzählte von [PAWN_possessive] Erziehung als [PAWN_title]. Diese einfache Geschichte und vor allem die von [PAWN_pronoun] geschaffene Atmosphäre wurde von der Jury für ihre Intimität, Originalität und ihren Mut gelobt. Ihre Belohnung für die Teilnahme ist:
 
@@ -91,4 +89,10 @@
   <MFI_ShootingComp.theme>ein Schießwettbewerb</MFI_ShootingComp.theme>
   <!-- EN: Send your best shot. -->
   <MFI_ShootingComp.themeDesc>Senden Sie Ihr bestes Bild.</MFI_ShootingComp.themeDesc>
+  <!-- EN: The host faction moved the audience to tears with their dazzling display; a dramatic reenactment of their ancestor's discovery of White Rabbit Mountain Range. It was a touching piece of theatre that transcended language barriers, and reached the hearts of young and old alike.\n\nAnd then there was your troupe. Your reward for participating is:\n\n{0} -->
+  <MFI_CulturalSwap.outComeFirstOther>Die gastgebende Fraktion rührte das Publikum mit ihrer beeindruckenden Darbietung zu Tränen: einer dramatischen Nachstellung der Entdeckung der White-Rabbit-Bergkette durch ihre Vorfahren. Es war ein bewegendes Theaterstück, das Sprachbarrieren überwand und die Herzen von Jung und Alt gleichermaßen berührte.
+
+Und dann war da noch eure Truppe. Eure Belohnung für die Teilnahme lautet:
+
+{0}</MFI_CulturalSwap.outComeFirstOther>
 </LanguageData>

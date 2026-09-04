@@ -8,34 +8,6 @@ namespace MoreFactionInteraction.General;
 //I'm fancy, I wrote an extension method.
 public static class MFI_Utilities
 {
-    public static Faction EnemyInFactionWar(this Faction faction)
-    {
-        if (faction == Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionOne)
-        {
-            return Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionTwo;
-        }
-
-        return faction == Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionTwo
-            ? Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionOne
-            : null;
-
-        //Dear reader: Resharper suggests the following:
-        //
-        //return faction == Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionOne
-        //      ? Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionTwo
-        //      : (faction == Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionTwo
-        //          ? Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionOne
-        //          : null);
-        //
-        // which is a nested ternary and just awful to read. Be happy I spared you.
-    }
-
-    public static bool IsPartOfFactionWar(this Faction faction)
-    {
-        return faction == Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionOne
-               || faction == Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionTwo;
-    }
-
     public static bool TryGetBestArt(Caravan caravan, out Thing thing, out Pawn owner)
     {
         thing = null;
@@ -87,7 +59,7 @@ public static class MFI_Utilities
         }
 
         maps.SortBy(x => x.PlayerWealthForStoryteller);
-        var richestMap = maps.First();
+        var richestMap = maps[0];
 
         if (thingdef.IsBuildingArtificial)
         {
@@ -105,7 +77,7 @@ public static class MFI_Utilities
         var buildingsOfDef = map.listerBuildings.AllBuildingsColonistOfDef(thingdef);
         if (buildingsOfDef.Any())
         {
-            thing = buildingsOfDef.First();
+            thing = buildingsOfDef[0];
             return true;
         }
 
@@ -123,5 +95,26 @@ public static class MFI_Utilities
 
         thing = null;
         return false;
+    }
+
+    extension(Faction faction)
+    {
+        public Faction EnemyInFactionWar()
+        {
+            if (faction == Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionOne)
+            {
+                return Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionTwo;
+            }
+
+            return faction == Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionTwo
+                ? Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionOne
+                : null;
+        }
+
+        public bool IsPartOfFactionWar()
+        {
+            return faction == Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionOne
+                   || faction == Find.World.GetComponent<WorldComponent_MFI_FactionWar>().WarringFactionTwo;
+        }
     }
 }

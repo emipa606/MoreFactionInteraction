@@ -20,7 +20,7 @@ public class StockGenerator_BuyCategory : StockGenerator
                && thingDef.BaseMarketValue / thingDef.VolumePerUnit < maxValuePerUnit;
     }
 
-    public override IEnumerable<Thing> GenerateThings(PlanetTile planetTile, Faction faction = null)
+    public override IEnumerable<Thing> GenerateThings(PlanetTile forTile, Faction faction = null)
     {
         yield break;
     }

@@ -12,7 +12,7 @@ internal static class SettlementUtility_AffectRelationsOnAttacked
         {
             return true;
         }
-        
+
         foreach (var part in site.parts)
         {
             if (part.def == MFI_DefOf.MFI_HuntersLodgePart)

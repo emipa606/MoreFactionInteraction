@@ -9,7 +9,7 @@ namespace MoreFactionInteraction;
 [HarmonyPatch(typeof(TransportersArrivalAction_VisitSite), nameof(TransportersArrivalAction_VisitSite.Arrived))]
 internal static class TransportersArrivalAction_VisitSite_Arrived
 {
-    private static bool Prefix(Site ___site, PawnsArrivalModeDef ___arrivalMode,
+    internal static bool Prefix(Site ___site, PawnsArrivalModeDef ___arrivalMode,
         List<ActiveTransporterInfo> transporters)
     {
         if (___site.parts == null)

@@ -53,7 +53,6 @@ public static class HarmonyPatches
     static HarmonyPatches()
     {
         var harmony = new Harmony("mehni.rimworld.MFI.main");
-        //HarmonyInstance.DEBUG = true;
 
         harmony.Patch(AccessTools.Method(typeof(TraderKindDef), nameof(TraderKindDef.PriceTypeFor)),
             postfix: new HarmonyMethod(typeof(HarmonyPatches), nameof(PriceTypeSetter_PostFix)));
@@ -115,6 +114,7 @@ public static class HarmonyPatches
         }
         catch (TypeLoadException)
         {
+            // ignore
         }
     }
 
@@ -342,7 +342,6 @@ public static class HarmonyPatches
             return;
         }
 
-        //if (__instance.stockGenerators[i] is StockGenerator_BuyCategory && action == TradeAction.PlayerSells)
         if (__instance.stockGenerators.Any(x => x is StockGenerator_BuyCategory) &&
             action == TradeAction.PlayerSells)
         {

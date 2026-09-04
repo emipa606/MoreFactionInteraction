@@ -13,7 +13,7 @@ internal class CaravanArrivalAction_VisitMysticalShaman : CaravanArrivalAction
     {
     }
 
-    public CaravanArrivalAction_VisitMysticalShaman(MysticalShaman mysticalShaman)
+    private CaravanArrivalAction_VisitMysticalShaman(MysticalShaman mysticalShaman)
     {
         this.mysticalShaman = mysticalShaman;
     }
@@ -36,7 +36,7 @@ internal class CaravanArrivalAction_VisitMysticalShaman : CaravanArrivalAction
             mysticalShaman);
     }
 
-    public static FloatMenuAcceptanceReport CanVisit(MysticalShaman mysticalShaman)
+    private static FloatMenuAcceptanceReport CanVisit(MysticalShaman mysticalShaman)
     {
         return mysticalShaman is { Spawned: true };
     }

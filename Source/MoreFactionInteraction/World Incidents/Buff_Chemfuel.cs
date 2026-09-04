@@ -13,10 +13,7 @@ public class Buff_Chemfuel : Buff
             (CompProperties_Spawner)infiniteChemreactor.comps.FirstOrDefault(x =>
                 x is CompProperties_Spawner);
 
-        if (spawner != null)
-        {
-            spawner.spawnIntervalRange.min = (int)(spawner.spawnIntervalRange.min * 0.9f);
-        }
+        spawner?.spawnIntervalRange.min = (int)(spawner.spawnIntervalRange.min * 0.9f);
 
         Active = true;
     }

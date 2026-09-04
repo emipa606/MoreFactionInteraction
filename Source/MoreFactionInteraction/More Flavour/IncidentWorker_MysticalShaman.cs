@@ -106,12 +106,13 @@ public class IncidentWorker_MysticalShaman : IncidentWorker
             validator: candidate => candidate.LayerDef.SurfaceTiles && !Find.WorldGrid[candidate].WaterCovered);
     }
 
-    private bool TryGetRandomAvailableTargetMap(out Map map, bool force)
+    private static bool TryGetRandomAvailableTargetMap(out Map map, bool force)
     {
         if (force)
         {
             return Find.Maps.Where(target => target.IsPlayerHome).TryRandomElement(out map)
-                   || Find.Maps.Where(target => target.mapPawns.FreeColonistsSpawnedCount > 0).TryRandomElement(out map);
+                   || Find.Maps.Where(target => target.mapPawns.FreeColonistsSpawnedCount > 0)
+                       .TryRandomElement(out map);
         }
 
         return Find.Maps
@@ -121,7 +122,7 @@ public class IncidentWorker_MysticalShaman : IncidentWorker
             .TryRandomElement(out map);
     }
 
-    private Settlement RandomNearbyTradeableSettlement(PlanetTile tile)
+    private static Settlement RandomNearbyTradeableSettlement(PlanetTile tile)
     {
         return Find.WorldObjects.SettlementBases.Where(settlement => settlement.Visitable
                                                                      && settlement.Tile.LayerDef.SurfaceTiles

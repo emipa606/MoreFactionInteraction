@@ -8,20 +8,18 @@ namespace MoreFactionInteraction.More_Flavour;
 
 public class MysticalShaman : WorldObject
 {
-    private Material cachedMat;
-
     public override Material Material
     {
         get
         {
-            if (cachedMat == null)
+            if (field == null)
             {
-                cachedMat = MaterialPool.MatFrom(def.expandingIconTexture,
+                field = MaterialPool.MatFrom(def.expandingIconTexture,
                     ShaderDatabase.WorldOverlayTransparentLit, Faction.Color,
                     WorldMaterials.WorldObjectRenderQueue);
             }
 
-            return cachedMat;
+            return field;
         }
     }
 

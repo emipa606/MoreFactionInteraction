@@ -56,7 +56,7 @@ public class IncidentWorker_HuntersLodge : IncidentWorker
         var text = string.Format(def.letterText,
                 faction,
                 faction.def.leaderTitle,
-                GetDescriptionDialogue(site, site.parts.FirstOrDefault()),
+                GetDescriptionDialogue(site.parts.FirstOrDefault()),
                 randomInRange)
             .CapitalizeFirst();
 
@@ -64,7 +64,7 @@ public class IncidentWorker_HuntersLodge : IncidentWorker
         return true;
     }
 
-    private static string GetDescriptionDialogue(Site site, SitePart sitePart)
+    private static string GetDescriptionDialogue(SitePart sitePart)
     {
         if (sitePart != null && !sitePart.def.defaultHidden)
         {

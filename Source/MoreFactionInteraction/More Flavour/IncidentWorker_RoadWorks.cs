@@ -96,7 +96,6 @@ internal class IncidentWorker_RoadWorks : IncidentWorker
 
             cost2 /= 10;
             var node = new DiaNode("MFI_RoadWorksDialogue".Translate(Settlement, path.NodesReversed.Count, cost2));
-            // {Settlement} wants {cost2 / 10} to build a road of {path.NodesReversed.Count}");
             var accept = new DiaOption("OK".Translate())
             {
                 resolveTree = true,
@@ -134,7 +133,6 @@ internal class IncidentWorker_RoadWorks : IncidentWorker
             node.options.Add(accept);
             node.options.Add(reject);
 
-            //Log.Message(stringBuilder.ToString());
             Find.WindowStack.Add(new Dialog_NodeTreeWithFactionInfo(node, Settlement.Faction));
             Find.Archive.Add(new ArchivedDialog(node.text, letterTitle, Settlement.Faction));
         }
@@ -142,7 +140,7 @@ internal class IncidentWorker_RoadWorks : IncidentWorker
         return true;
     }
 
-    private Settlement RandomNearbyTradeableSettlement(int originTile)
+    private static Settlement RandomNearbyTradeableSettlement(int originTile)
     {
         return (from settlement in Find.WorldObjects.Settlements
             where settlement.Visitable && settlement.Faction?.leader != null
@@ -152,7 +150,7 @@ internal class IncidentWorker_RoadWorks : IncidentWorker
             select settlement).RandomElementWithFallback();
     }
 
-    private Settlement AllyOfNearbySettlement(Settlement origin)
+    private static Settlement AllyOfNearbySettlement(Settlement origin)
     {
         return (from settlement in Find.WorldObjects.Settlements
             where settlement.Tile != origin.Tile
@@ -163,7 +161,7 @@ internal class IncidentWorker_RoadWorks : IncidentWorker
             select settlement).RandomElement();
     }
 
-    private bool TryGetRandomAvailableTargetMap(out Map localMap)
+    private static bool TryGetRandomAvailableTargetMap(out Map localMap)
     {
         return Find.Maps.Where(m => m.IsPlayerHome).TryRandomElement(out localMap);
     }

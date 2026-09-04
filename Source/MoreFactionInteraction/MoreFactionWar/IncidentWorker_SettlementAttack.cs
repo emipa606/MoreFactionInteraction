@@ -167,7 +167,7 @@ public class IncidentWorker_SettlementAttack : IncidentWorker
             select settlement).RandomElementWithFallback();
     }
 
-    private int CalcuteTravelTimeForReinforcements(int originTile, int destinationTile)
+    private static int CalcuteTravelTimeForReinforcements(int originTile, int destinationTile)
     {
         return CaravanArrivalTimeEstimator.EstimatedTicksToArrive(originTile, destinationTile, null);
     }

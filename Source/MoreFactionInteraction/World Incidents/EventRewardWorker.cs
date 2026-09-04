@@ -49,7 +49,7 @@ public abstract class EventRewardWorker
         text = $"{text2}\n\n---\n\n{rewards[0].LabelCapNoCount}: {rewards[0].DescriptionFlavor}";
     }
 
-    protected void TryAppendExpGainInfo(ref string rewardsOutcome, Pawn pawn, SkillDef skill, float amount)
+    protected static void TryAppendExpGainInfo(ref string rewardsOutcome, Pawn pawn, SkillDef skill, float amount)
     {
         if (amount > 0)
         {

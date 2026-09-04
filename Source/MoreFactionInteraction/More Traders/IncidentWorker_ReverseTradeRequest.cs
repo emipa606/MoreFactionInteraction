@@ -150,7 +150,7 @@ public class IncidentWorker_ReverseTradeRequest : IncidentWorker
             .TryRandomElement(out map);
     }
 
-    private int CalcuteTravelTimeForTrader(int originTile, Map map)
+    private static int CalcuteTravelTimeForTrader(int originTile, Map map)
     {
         var travelTime = CaravanArrivalTimeEstimator.EstimatedTicksToArrive(originTile, map.Tile, null);
         return Math.Min(travelTime, GenDate.TicksPerDay * 4);

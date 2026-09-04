@@ -23,9 +23,4 @@ public abstract class Buff : IExposable, IEquatable<Buff>
     public abstract void Apply();
     public abstract string Description();
     public abstract ThingDef RelevantThingDef();
-
-    //public override int GetHashCode() //oof.
-    //{
-    //    return base.GetHashCode();
-    //}
 }

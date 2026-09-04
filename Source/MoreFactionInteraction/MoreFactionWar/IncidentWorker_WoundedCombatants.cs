@@ -83,7 +83,7 @@ public class IncidentWorker_WoundedCombatants : IncidentWorker
 
             var usedWeaponDef = weapon;
             var damageDef =
-                usedWeaponDef?.Verbs?.First()?.defaultProjectile?.projectile
+                usedWeaponDef?.Verbs?[0]?.defaultProjectile?.projectile
                     ?.damageDef; //null? check? All? THE? THINGS!!!!?
             if (usedWeaponDef != null && damageDef == null)
             {
@@ -175,7 +175,7 @@ public class IncidentWorker_WoundedCombatants : IncidentWorker
     /// </summary>
     /// <param name="faction"></param>
     /// <returns></returns>
-    private bool FindAlliedWarringFaction(out Faction faction)
+    private static bool FindAlliedWarringFaction(out Faction faction)
     {
         faction = null;
 

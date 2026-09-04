@@ -8,10 +8,10 @@ namespace MoreFactionInteraction.World_Incidents;
 
 public class SitePartWorker_MigratoryHerd : SitePartWorker
 {
-    public override string GetPostProcessedThreatLabel(Site site, SitePart siteCoreOrPart)
+    public override string GetPostProcessedThreatLabel(Site site, SitePart sitePart)
     {
         return
-            $"{base.GetPostProcessedThreatLabel(site, siteCoreOrPart)} ({GenLabel.BestKindLabel(siteCoreOrPart.parms.animalKind, Gender.None, true)})";
+            $"{base.GetPostProcessedThreatLabel(site, sitePart)} ({GenLabel.BestKindLabel(sitePart.parms.animalKind, Gender.None, true)})";
     }
 
     public override void PostMapGenerate(Map map)
@@ -25,12 +25,7 @@ public class SitePartWorker_MigratoryHerd : SitePartWorker
         Find.Storyteller.incidentQueue.Add(queuedIncident);
     }
 
-    //public override string GetPostProcessedDescriptionDialogue(Site site, SitePart siteCoreOrPart, )
-    //{
-    //    return string.Format(base.GetPostProcessedDescriptionDialogue(site, siteCoreOrPart), GenLabel.BestKindLabel(siteCoreOrPart.parms.animalKind, Gender.None, true));
-    //}
-
-    private bool TryFindAnimalKind(PlanetTile tile, out PawnKindDef animalKind)
+    private static bool TryFindAnimalKind(PlanetTile tile, out PawnKindDef animalKind)
     {
         var fallback = PawnKindDefOf.Thrumbo;
 
@@ -42,10 +37,10 @@ public class SitePartWorker_MigratoryHerd : SitePartWorker
         return animalKind != fallback;
     }
 
-    public override SitePartParams GenerateDefaultParams(float myThreatPoints, PlanetTile planetTile, Faction faction)
+    public override SitePartParams GenerateDefaultParams(float myThreatPoints, PlanetTile tile, Faction faction)
     {
-        var siteCoreOrPartParams = base.GenerateDefaultParams(myThreatPoints, planetTile, faction);
-        if (TryFindAnimalKind(planetTile, out siteCoreOrPartParams.animalKind))
+        var siteCoreOrPartParams = base.GenerateDefaultParams(myThreatPoints, tile, faction);
+        if (TryFindAnimalKind(tile, out siteCoreOrPartParams.animalKind))
         {
             siteCoreOrPartParams.threatPoints = Mathf.Max(siteCoreOrPartParams.threatPoints,
                 siteCoreOrPartParams.animalKind.combatPower);

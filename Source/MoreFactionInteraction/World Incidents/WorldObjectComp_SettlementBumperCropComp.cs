@@ -13,7 +13,7 @@ public class WorldObjectComp_SettlementBumperCropComp : WorldObjectComp
     private const int basereward = 50;
     private const int workAmount = GenDate.TicksPerDay;
     private const float expGain = 6000f;
-    private static readonly IntRange FactionRelationOffset = new IntRange(3, 8);
+    private static readonly IntRange FactionRelationOffset = new(3, 8);
 
     private readonly Texture2D setPlantToGrowTex = HarmonyPatches.setPlantToGrowTex;
     public int expiration = -1;
@@ -38,25 +38,23 @@ public class WorldObjectComp_SettlementBumperCropComp : WorldObjectComp
             icon = setPlantToGrowTex,
             action = () =>
             {
+                if (!ActiveRequest)
                 {
-                    if (!ActiveRequest)
-                    {
-                        Log.Error("Attempted to fulfill an unavailable request");
-                        return;
-                    }
-
-                    if (BestCaravanPawnUtility.FindPawnWithBestStat(caravan, StatDefOf.PlantHarvestYield) ==
-                        null)
-                    {
-                        Messages.Message("MFI_MessageBumperCropNoGrower".Translate(), caravan,
-                            MessageTypeDefOf.NegativeEvent);
-                        return;
-                    }
-
-                    Find.WindowStack.Add(Dialog_MessageBox.CreateConfirmation(
-                        "MFI_CommandFulfillBumperCropHarvestConfirm".Translate(caravan.LabelCap),
-                        () => NotifyCaravanArrived(caravan)));
+                    Log.Error("Attempted to fulfill an unavailable request");
+                    return;
                 }
+
+                if (BestCaravanPawnUtility.FindPawnWithBestStat(caravan, StatDefOf.PlantHarvestYield) ==
+                    null)
+                {
+                    Messages.Message("MFI_MessageBumperCropNoGrower".Translate(), caravan,
+                        MessageTypeDefOf.NegativeEvent);
+                    return;
+                }
+
+                Find.WindowStack.Add(Dialog_MessageBox.CreateConfirmation(
+                    "MFI_CommandFulfillBumperCropHarvestConfirm".Translate(caravan.LabelCap),
+                    () => NotifyCaravanArrived(caravan)));
             }
         };
 

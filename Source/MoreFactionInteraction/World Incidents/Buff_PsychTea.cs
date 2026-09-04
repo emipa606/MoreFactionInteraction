@@ -9,10 +9,7 @@ public class Buff_PsychTea : Buff
     {
         var giveHediff = (IngestionOutcomeDoer_GiveHediff)ThingDef.Named("PsychiteTea").ingestible.outcomeDoers
             .FirstOrDefault(x => x is IngestionOutcomeDoer_GiveHediff);
-        if (giveHediff != null)
-        {
-            giveHediff.severity = 1f;
-        }
+        giveHediff?.severity = 1f;
 
         Active = true;
     }

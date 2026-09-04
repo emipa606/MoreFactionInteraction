@@ -9,9 +9,6 @@ namespace MoreFactionInteraction;
 
 public class FactionWarPeaceTalks : WorldObject
 {
-    private Texture2D cachedExpandoIco;
-    private Material cachedMat;
-
     private bool canRemoveWithoutPostRemove;
     private Faction factionInstigator;
 
@@ -21,13 +18,13 @@ public class FactionWarPeaceTalks : WorldObject
     {
         get
         {
-            if (cachedMat == null && Faction != null)
+            if (field == null && Faction != null)
             {
-                cachedMat = MaterialPool.MatFrom(def.texture, ShaderDatabase.WorldOverlayTransparentLit,
+                field = MaterialPool.MatFrom(def.texture, ShaderDatabase.WorldOverlayTransparentLit,
                     factionOne?.Color ?? Color.white, WorldMaterials.WorldObjectRenderQueue);
             }
 
-            return cachedMat;
+            return field;
         }
     }
 
@@ -37,13 +34,13 @@ public class FactionWarPeaceTalks : WorldObject
     {
         get
         {
-            if (cachedExpandoIco == null)
+            if (field == null)
             {
-                cachedExpandoIco = MatFrom(def.expandingIconTexture, ShaderDatabase.CutoutComplex, factionOne.Color,
+                field = MatFrom(def.expandingIconTexture, ShaderDatabase.CutoutComplex, factionOne.Color,
                     factionInstigator.Color, WorldMaterials.WorldObjectRenderQueue).GetMaskTexture();
             }
 
-            return cachedExpandoIco;
+            return field;
         }
     }
 

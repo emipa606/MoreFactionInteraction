@@ -9,7 +9,7 @@ internal class MFI_SymbolResolver_BasePart_Outdoors_Division_Split : SymbolResol
 {
     private const int MinLengthAfterSplit = 5;
 
-    private static readonly IntRange SpaceBetweenRange = new IntRange(1, 2);
+    private static readonly IntRange SpaceBetweenRange = new(1, 2);
 
     public override bool CanResolve(ResolveParams rp)
     {
@@ -83,7 +83,7 @@ internal class MFI_SymbolResolver_BasePart_Outdoors_Division_Split : SymbolResol
         }
     }
 
-    private bool TryFindSplitPoint(bool horizontal, CellRect rect, out int splitPoint, out int spaceBetween)
+    private static bool TryFindSplitPoint(bool horizontal, CellRect rect, out int splitPoint, out int spaceBetween)
     {
         var num = !horizontal ? rect.Width : rect.Height;
         spaceBetween = SpaceBetweenRange.RandomInRange;

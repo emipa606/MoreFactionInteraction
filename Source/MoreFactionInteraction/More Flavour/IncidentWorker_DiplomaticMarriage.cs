@@ -60,11 +60,10 @@ public class IncidentWorker_DiplomaticMarriage : IncidentWorker
         choiceLetterDiplomaticMarriage.betrothed = betrothed;
         choiceLetterDiplomaticMarriage.StartTimeout(TimeoutTicks);
         Find.LetterStack.ReceiveLetter(choiceLetterDiplomaticMarriage);
-        //Find.World.GetComponent<WorldComponent_OutpostGrower>().Registerletter(choiceLetterDiplomaticMarriage);
         return true;
     }
 
-    private bool TryFindBetrothed(out Pawn betrothed)
+    private bool TryFindBetrothed(out Pawn pawn)
     {
         return (from potentialPartners in PawnsFinder
                 .AllMapsCaravansAndTravellingTransporters_Alive_FreeColonistsAndPrisoners_NoCryptosleep
@@ -72,7 +71,7 @@ public class IncidentWorker_DiplomaticMarriage : IncidentWorker
                   LovePartnerRelationUtility.ExistingMostLikedLovePartner(potentialPartners, false) ==
                   marriageSeeker
             select potentialPartners).TryRandomElementByWeight(
-            marriageSeeker2 => marriageSeeker.relations.SecondaryLovinChanceFactor(marriageSeeker2), out betrothed);
+            marriageSeeker2 => marriageSeeker.relations.SecondaryLovinChanceFactor(marriageSeeker2), out pawn);
     }
 
     private static bool TryFindMarriageSeeker(out Pawn marriageSeeker)

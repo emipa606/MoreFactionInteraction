@@ -2,12 +2,15 @@
   <PropertyGroup>
     <OutputPath>..\..\1.6\Assemblies</OutputPath>
     <TargetFramework>net48</TargetFramework>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
     <DebugType>None</DebugType>
     <LangVersion>latest</LangVersion>
-    <FileVersion>1.6.6</FileVersion>
+    <FileVersion>1.6.8</FileVersion>
+    <AssemblyVersion>1.6</AssemblyVersion>
+    <Product>More Faction Interaction (Continued)</Product>
+    <Copyright>© Mehni 2026 - MIT License</Copyright>
+    <Nullable>warnings</Nullable>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Krafs.Rimworld.Ref">

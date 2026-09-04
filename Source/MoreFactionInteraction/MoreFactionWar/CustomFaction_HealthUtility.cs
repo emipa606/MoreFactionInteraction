@@ -7,7 +7,7 @@ using Verse;
 
 namespace MoreFactionInteraction.MoreFactionWar;
 
-public class CustomFaction_HealthUtility
+public static class CustomFaction_HealthUtility
 {
     public static void DamageUntilDownedWithSpecialOptions(Pawn p, bool allowBleedingWounds = true,
         DamageDef damageDef = null, ThingDef weapon = null)

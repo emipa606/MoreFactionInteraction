@@ -16,13 +16,11 @@ public class EventRewardWorker_AcousticShow : EventRewardWorker
         {
             GiveHappyThoughtsToCaravan(caravan, 20);
         }
-
-        if (thingSetMakerDef == eventDef.rewardFirstLoser)
+        else if (thingSetMakerDef == eventDef.rewardFirstLoser)
         {
             GiveHappyThoughtsToCaravan(caravan, 15);
         }
-
-        if (thingSetMakerDef == eventDef.rewardFirstOther)
+        else if (thingSetMakerDef == eventDef.rewardFirstOther)
         {
             GiveHappyThoughtsToCaravan(caravan, 10);
         }

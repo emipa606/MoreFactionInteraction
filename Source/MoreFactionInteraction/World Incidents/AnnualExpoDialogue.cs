@@ -36,8 +36,8 @@ public class AnnualExpoDialogue(Pawn participant, Caravan caravan, EventDef acti
         var annualExpoDialogueOutcome =
             $"Something went wrong with More Faction Interaction. Contact the mod author with this year's theme. If you bring a log (press CTRL + F12 now), you get a cookie. P: {participatingPawn} C: {caravan} E: {activity} H: {host}";
 
-        var broughtArt = (activity == MFI_DefOf.MFI_CulturalSwap) &
-                         MFI_Utilities.TryGetBestArt(caravan, out var art, out _);
+        var broughtArt = MFI_Utilities.TryGetBestArt(caravan, out var art, out _) &&
+                         activity == MFI_DefOf.MFI_CulturalSwap;
 
         yield return new DiaOption("MFI_AnnualExpoFirstOption".Translate())
         {
@@ -139,6 +139,7 @@ public class AnnualExpoDialogue(Pawn participant, Caravan caravan, EventDef acti
     private void DetermineOutcome(out string annualExpoDialogueOutcome)
     {
         string rewards;
+        annualExpoDialogueOutcome = "";
         var thisYearsRelevantSkill = activity.learnedSkills.RandomElement();
 
         if (participant.skills.GetSkill(thisYearsRelevantSkill).TotallyDisabled)
@@ -147,8 +148,7 @@ public class AnnualExpoDialogue(Pawn participant, Caravan caravan, EventDef acti
                 .RandomElementByWeight(x => (int)x.passion).def;
         }
 
-        switch (DeterminePlacementFor(participant, activity, out _, out _, out _,
-                    out _, out _))
+        switch (DeterminePlacementFor(participant, activity))
         {
             case Placement.First:
                 rewards = activity.Worker.GenerateRewards(participant, caravan, activity.Worker.ValidatorFirstPlace,
@@ -176,13 +176,14 @@ public class AnnualExpoDialogue(Pawn participant, Caravan caravan, EventDef acti
 
             default:
                 Log.Error($"P: {participant}, C: {caravan}, E: {activity}");
-                throw new Exception(
-                    $"Something went wrong with More Faction Interaction. Contact the mod author with this year's theme. If you bring a log (press CTRL+F12 now), you get a cookie. P: {participant} C: {caravan} E: {activity} H: {host}. C: default.");
+                Log.ErrorOnce(
+                    $"Something went wrong with More Faction Interaction. Contact the mod author with this year's theme. If you bring a log (press CTRL+F12 now), you get a cookie. P: {participant} C: {caravan} E: {activity} H: {host}. C: default.",
+                    GetHashCode());
+                break;
         }
     }
 
-    private Placement DeterminePlacementFor(Pawn rep, EventDef eventDef, out double mean, out double variance,
-        out double stdDev, out double max, out double min)
+    private Placement DeterminePlacementFor(Pawn rep, EventDef eventDef)
     {
         var difficultyModifier =
             1.05f + (0.01f * Find.World.GetComponent<WorldComponent_MFI_AnnualExpo>().timesHeld);
@@ -207,11 +208,11 @@ public class AnnualExpoDialogue(Pawn participant, Caravan caravan, EventDef acti
 
         var repSkill = rep.GetStatValue(eventDef.relevantStat);
 
-        max = leaders.Max(x => x.score);
-        min = leaders.Min(x => x.score);
-        mean = leaders.Average(x => x.score);
-        variance = (((max - min + 1) * (max - min + 1)) - 1.0) / 12;
-        stdDev = Math.Sqrt(variance);
+        double max = leaders.Max(x => x.score);
+        double min = leaders.Min(x => x.score);
+        double mean = leaders.Average(x => x.score);
+        var variance = (((max - min + 1) * (max - min + 1)) - 1.0) / 12;
+        var stdDev = Math.Sqrt(variance);
 
         var averageSkillRange = new FloatRange((float)(mean - (stdDev * 0.3)), (float)(mean + (stdDev * 0.3)));
 
@@ -255,7 +256,7 @@ public class AnnualExpoDialogue(Pawn participant, Caravan caravan, EventDef acti
             return str;
         }
 
-        return char.ToLowerInvariant(str[0]) + str.Substring(1);
+        return char.ToLowerInvariant(str[0]) + str[1..];
     }
 
     private enum Placement

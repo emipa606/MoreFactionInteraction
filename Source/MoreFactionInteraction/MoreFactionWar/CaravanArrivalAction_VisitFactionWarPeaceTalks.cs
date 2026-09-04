@@ -33,14 +33,14 @@ public class CaravanArrivalAction_VisitFactionWarPeaceTalks : CaravanArrivalActi
         Scribe_References.Look(ref factionWarPeaceTalks, "factionWarPeaceTalks");
     }
 
-    public override FloatMenuAcceptanceReport StillValid(Caravan caravan, PlanetTile planetTile)
+    public override FloatMenuAcceptanceReport StillValid(Caravan caravan, PlanetTile destinationTile)
     {
-        if (!base.StillValid(caravan, planetTile))
+        if (!base.StillValid(caravan, destinationTile))
         {
-            return base.StillValid(caravan, planetTile);
+            return base.StillValid(caravan, destinationTile);
         }
 
-        if (factionWarPeaceTalks?.Tile != planetTile)
+        if (factionWarPeaceTalks?.Tile != destinationTile)
         {
             return false;
         }
@@ -48,7 +48,7 @@ public class CaravanArrivalAction_VisitFactionWarPeaceTalks : CaravanArrivalActi
         return CanVisit(factionWarPeaceTalks);
     }
 
-    public static FloatMenuAcceptanceReport CanVisit(FactionWarPeaceTalks factionWarPeaceTalks)
+    private static FloatMenuAcceptanceReport CanVisit(FactionWarPeaceTalks factionWarPeaceTalks)
     {
         return factionWarPeaceTalks is { Spawned: true };
     }

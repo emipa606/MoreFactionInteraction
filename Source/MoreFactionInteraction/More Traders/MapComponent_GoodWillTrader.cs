@@ -121,13 +121,14 @@ public class MapComponent_GoodWillTrader(Map map) : MapComponent(map)
 
         if (queued == null)
         {
-            throw new NullReferenceException("MFI failed to initialise IncidentQueue in MapComponent.");
+            Log.ErrorOnce("MFI failed to initialise IncidentQueue in MapComponent.", GetHashCode());
         }
     }
 
     public override void MapComponentTick()
     {
         base.MapComponentTick();
+
 
         //We don't need to run all that often
         if (Find.TickManager.TicksGame % 531 != 0 || GenDate.DaysPassed <= 8 || Find.World == null ||

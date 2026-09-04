@@ -122,4 +122,4 @@ Want to help translate this mod in your language? Check out the "Pirate" folder 
 
  
 
-[![Image](https://img.shields.io/github/v/release/emipa606/MoreFactionInteraction?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/2379076640) | tags: faction diplomacy
+[![Image](https://img.shields.io/github/v/release/emipa606/MoreFactionInteraction?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/2379076640) | faction diplomacy

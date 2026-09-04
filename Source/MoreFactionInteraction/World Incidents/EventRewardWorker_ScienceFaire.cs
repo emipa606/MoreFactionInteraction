@@ -27,12 +27,8 @@ public class EventRewardWorker_ScienceFaire : EventRewardWorker
         string reward;
 
         var buff = Find.World.GetComponent<WorldComponent_MFI_AnnualExpo>()
-            .ApplyRandomBuff(x => x.MinTechLevel() >= desiredTechLevel && !x.Active);
-
-        if (buff == null)
-        {
-            buff = Find.World.GetComponent<WorldComponent_MFI_AnnualExpo>().ApplyRandomBuff(x => !x.Active);
-        }
+            .ApplyRandomBuff(x => x.MinTechLevel() >= desiredTechLevel && !x.Active) ?? Find.World
+            .GetComponent<WorldComponent_MFI_AnnualExpo>().ApplyRandomBuff(x => !x.Active);
 
         if (buff != null)
         {

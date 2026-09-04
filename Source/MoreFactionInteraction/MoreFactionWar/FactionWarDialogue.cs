@@ -8,28 +8,21 @@ using Verse.AI.Group;
 
 namespace MoreFactionInteraction.MoreFactionWar;
 
-public class FactionWarDialogue
+public class FactionWarDialogue(
+    Pawn pawn,
+    Faction factionOne,
+    Faction factionInstigator,
+    IIncidentTarget incidentTarget)
 {
     private const float BaseWeight_Disaster = 0.05f;
     private const float BaseWeight_Backfire = 0.1f;
     private const float BaseWeight_TalksFlounder = 0.2f;
     private const float BaseWeight_Success = 0.55f;
     private const float BaseWeight_Triumph = 0.1f;
-    private readonly IIncidentTarget _incidentTarget;
 
-    private readonly Pawn _pawn;
-    private Faction _burdenedFaction;
-    private Faction _favouredFaction;
+    private Faction _burdenedFaction = factionInstigator;
+    private Faction _favouredFaction = factionOne;
     private List<(Action Outcome_Talks, float weight, string dialogueResolverText)> outComes;
-
-    public FactionWarDialogue(Pawn pawn, Faction factionOne, Faction factionInstigator,
-        IIncidentTarget incidentTarget)
-    {
-        _pawn = pawn;
-        _favouredFaction = factionOne;
-        _burdenedFaction = factionInstigator;
-        _incidentTarget = incidentTarget;
-    }
 
     public DiaNode FactionWarPeaceTalks()
     {
@@ -42,7 +35,7 @@ public class FactionWarDialogue
 
         var dialogueGreeting =
             new DiaNode("MFI_FactionWarPeaceTalksIntroduction".Translate(factionOneLeaderName,
-                factionInstigatorLeaderName, _pawn.Label));
+                factionInstigatorLeaderName, pawn.Label));
 
         foreach (var option in DialogueOptions())
         {
@@ -99,7 +92,7 @@ public class FactionWarDialogue
 
     public void DetermineOutcome(DesiredOutcome desiredOutcome, out string factionWarNegotiationsOutcome)
     {
-        var badOutcomeWeightFactor = BaseWeight_Disaster * GetBadOutcomeWeightFactor(_pawn);
+        var badOutcomeWeightFactor = BaseWeight_Disaster * GetBadOutcomeWeightFactor(pawn);
         var goodOutcomeWeightFactor = 1f / badOutcomeWeightFactor;
         factionWarNegotiationsOutcome =
             "Something went wrong with More Faction Interaction. Please contact mod author.";
@@ -124,7 +117,7 @@ public class FactionWarDialogue
         [
             (
                 () => HandleOutcome(MFI_DiplomacyTunings.FavourDisaster),
-                BaseWeight_Disaster * GetBadOutcomeWeightFactor(_pawn),
+                BaseWeight_Disaster * GetBadOutcomeWeightFactor(pawn),
                 "MFI_FactionWarFavourFactionDisaster".Translate(_favouredFaction.Name, _burdenedFaction.Name)),
 
             (
@@ -161,7 +154,7 @@ public class FactionWarDialogue
                 () =>
                 {
                     HandleOutcome(MFI_DiplomacyTunings.SabotageDisaster);
-                    Outcome_TalksSabotageDisaster(_favouredFaction, _burdenedFaction, _pawn, _incidentTarget);
+                    Outcome_TalksSabotageDisaster(_favouredFaction, _burdenedFaction, pawn, incidentTarget);
                 },
                 BaseWeight_Disaster * badOutcomeWeightFactor,
                 "MFI_FactionWarSabotageDisaster".Translate(_favouredFaction.Name, _burdenedFaction.Name)),
@@ -229,7 +222,7 @@ public class FactionWarDialogue
 
     private string TriggerOutcome()
     {
-        _pawn.skills.Learn(SkillDefOf.Social, 6000f, true);
+        pawn.skills.Learn(SkillDefOf.Social, 6000f, true);
 
         var (chosenOutcome, _, flavor) = outComes.RandomElementByWeight(x => x.weight);
         chosenOutcome();
@@ -254,18 +247,18 @@ public class FactionWarDialogue
 
     private void HandleOutcome(Outcome result)
     {
-        _favouredFaction.TryAffectGoodwillWith(_pawn.Faction, result.goodwillChangeFavouredFaction);
-        _burdenedFaction.TryAffectGoodwillWith(_pawn.Faction, result.goodwillChangeBurdenedFaction);
+        _favouredFaction.TryAffectGoodwillWith(pawn.Faction, result.goodwillChangeFavouredFaction);
+        _burdenedFaction.TryAffectGoodwillWith(pawn.Faction, result.goodwillChangeBurdenedFaction);
 
         if (result.setHostile)
         {
-            _burdenedFaction.SetRelationDirect(_pawn.Faction, FactionRelationKind.Hostile, false);
+            _burdenedFaction.SetRelationDirect(pawn.Faction, FactionRelationKind.Hostile, false);
         }
 
         if (result.startWar)
         {
             Find.World.GetComponent<WorldComponent_MFI_FactionWar>().StartWar(_favouredFaction,
-                _burdenedFaction, _favouredFaction.leader == _pawn);
+                _burdenedFaction, _favouredFaction.leader == pawn);
         }
     }
 

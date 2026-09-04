@@ -13,7 +13,7 @@ public class GenStep_HuntersLodge : GenStep
 
     public override int SeedPart => 735013949;
 
-    public override void Generate(Map map, GenStepParams genStepParams)
+    public override void Generate(Map map, GenStepParams parms)
     {
         if (!MapGenerator.TryGetVar("RectOfInterest", out CellRect centralPoint))
         {
@@ -31,8 +31,6 @@ public class GenStep_HuntersLodge : GenStep
         maxFoodAndStuffForHuntersLodge.totalMarketValueRange = new FloatRange(200, 500);
         maxFoodAndStuffForHuntersLodge.totalNutritionRange = new FloatRange(20, 50);
 
-        //maxFoodAndStuffForHuntersLodge.filter.SetAllow(ThingCategoryDefOf.PlantFoodRaw, true);
-
         resolveParams.thingSetMakerParams = maxFoodAndStuffForHuntersLodge;
 
         BaseGen.globalSettings.map = map;
@@ -42,7 +40,7 @@ public class GenStep_HuntersLodge : GenStep
         BaseGen.Generate();
     }
 
-    private CellRect GetHuntersLodgeRect(CellRect centralPoint, Map map)
+    private static CellRect GetHuntersLodgeRect(CellRect centralPoint, Map map)
     {
         possibleRects.Add(new CellRect(centralPoint.minX - 1 - Size, centralPoint.CenterCell.z - 8, Size, Size));
         possibleRects.Add(new CellRect(centralPoint.maxX + 1, centralPoint.CenterCell.z - 8, Size, Size));

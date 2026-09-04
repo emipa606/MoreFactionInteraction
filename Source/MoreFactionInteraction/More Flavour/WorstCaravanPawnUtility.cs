@@ -6,12 +6,12 @@ using Verse;
 
 namespace MoreFactionInteraction.More_Flavour;
 
-internal class WorstCaravanPawnUtility
+internal static class WorstCaravanPawnUtility
 {
-    private static readonly Dictionary<Pawn, int> tempPawns = new Dictionary<Pawn, int>();
+    private static readonly Dictionary<Pawn, int> tempPawns = new();
 
     private static float HandCoverageAbsWithChildren => ThingDefOf.Human.race.body
-        .GetPartsWithDef(BodyPartDefOf.Hand).First().coverageAbsWithChildren;
+        .GetPartsWithDef(BodyPartDefOf.Hand)[0].coverageAbsWithChildren;
 
     public static Pawn FindSickestPawn(Caravan caravan)
     {
@@ -257,22 +257,22 @@ internal class WorstCaravanPawnUtility
     private static BodyPartRecord FindBiggestMissingBodyPart(Pawn pawn, float minCoverage = 0f)
     {
         BodyPartRecord bodyPartRecord = null;
-        foreach (var current in pawn.health.hediffSet.GetMissingPartsCommonAncestors())
+        foreach (var current in pawn.health.hediffSet.GetMissingPartsCommonAncestors().Select(part => part.Part))
         {
-            if (!(current.Part.coverageAbsWithChildren >= minCoverage))
+            if (!(current.coverageAbsWithChildren >= minCoverage))
             {
                 continue;
             }
 
-            if (pawn.health.hediffSet.PartOrAnyAncestorHasDirectlyAddedParts(current.Part))
+            if (pawn.health.hediffSet.PartOrAnyAncestorHasDirectlyAddedParts(current))
             {
                 continue;
             }
 
-            if (bodyPartRecord == null || current.Part.coverageAbsWithChildren >
+            if (bodyPartRecord == null || current.coverageAbsWithChildren >
                 bodyPartRecord.coverageAbsWithChildren)
             {
-                bodyPartRecord = current.Part;
+                bodyPartRecord = current;
             }
         }
 

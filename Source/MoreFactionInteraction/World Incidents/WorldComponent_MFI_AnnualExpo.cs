@@ -10,7 +10,6 @@ namespace MoreFactionInteraction.More_Flavour;
 public class WorldComponent_MFI_AnnualExpo(World world) : WorldComponent(world)
 {
     private readonly IncidentDef incident = MFI_DefOf.MFI_AnnualExpo;
-    private readonly float intervalDays = 60f;
     private List<Buff> activeBuffList = [];
 
     public Dictionary<EventDef, int> events = new()
@@ -34,7 +33,10 @@ public class WorldComponent_MFI_AnnualExpo(World world) : WorldComponent(world)
 
     public bool BuffedEmanator => ActiveBuffsList.Find(x => x is Buff_Emanator)?.Active ?? false; //used by patches.
 
-    private float IntervalTicks => GenDate.TicksPerDay * intervalDays;
+    private float IntervalTicks
+    {
+        get => GenDate.TicksPerDay * field;
+    } = 60f;
 
     public void RegisterBuff(Buff buff)
     {

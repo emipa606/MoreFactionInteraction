@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Reflection;
+﻿using System.Reflection;
 using HarmonyLib;
 using RimWorld;
 using Verse;
@@ -12,7 +11,7 @@ public class Buff_Emanator : Buff
         AccessTools.Field(typeof(CompProperties_Power), "basePowerConsumption");
 
     private static readonly float defaultMoodEffect =
-        ThoughtDef.Named("PsychicEmanatorSoothe").stages.First().baseMoodEffect;
+        ThoughtDef.Named("PsychicEmanatorSoothe").stages[0].baseMoodEffect;
 
     private static readonly float defaultDisplayRadius = ThingDefOf.PsychicEmanator.specialDisplayRadius;
 
@@ -24,7 +23,7 @@ public class Buff_Emanator : Buff
     {
         try
         {
-            ThoughtDef.Named("PsychicEmanatorSoothe").stages.First().baseMoodEffect = defaultMoodEffect;
+            ThoughtDef.Named("PsychicEmanatorSoothe").stages[0].baseMoodEffect = defaultMoodEffect;
             ThingDefOf.PsychicEmanator.specialDisplayRadius = defaultDisplayRadius;
             basePowerConsumptionFieldInfo.SetValue(ThingDefOf.PsychicEmanator.GetCompProperties<CompProperties_Power>(),
                 defaultPowerConsumption);
@@ -39,7 +38,7 @@ public class Buff_Emanator : Buff
     {
         try
         {
-            ThoughtDef.Named("PsychicEmanatorSoothe").stages.First().baseMoodEffect = 6f;
+            ThoughtDef.Named("PsychicEmanatorSoothe").stages[0].baseMoodEffect = 6f;
             ThingDefOf.PsychicEmanator.specialDisplayRadius = 20f;
             basePowerConsumptionFieldInfo.SetValue(ThingDefOf.PsychicEmanator.GetCompProperties<CompProperties_Power>(),
                 350f);

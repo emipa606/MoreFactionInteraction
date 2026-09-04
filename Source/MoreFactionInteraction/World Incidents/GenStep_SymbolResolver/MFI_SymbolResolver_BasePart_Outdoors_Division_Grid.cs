@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using RimWorld;
 using RimWorld.BaseGen;
 using UnityEngine;
@@ -6,7 +7,6 @@ using Verse;
 
 namespace MoreFactionInteraction.World_Incidents.GenStep_SymbolResolver;
 
-//magic numbers. Magic numbers everywhere ;-;
 internal class MFI_SymbolResolver_BasePart_Outdoors_Division_Grid : SymbolResolver
 {
     private const int MinWidthOrHeight = 13;
@@ -105,7 +105,7 @@ internal class MFI_SymbolResolver_BasePart_Outdoors_Division_Grid : SymbolResolv
         }
     }
 
-    private void FillOptions(List<Pair<int, int>> outOptions, int length)
+    private static void FillOptions(List<Pair<int, int>> outOptions, int length)
     {
         outOptions.Clear();
         for (var i = MinRoomsPerRow; i <= MaxRoomsPerRow; i++)
@@ -121,7 +121,7 @@ internal class MFI_SymbolResolver_BasePart_Outdoors_Division_Grid : SymbolResolv
         }
     }
 
-    private int GetRoomSize(int roomsPerRow, int pathwayWidth, int totalLength)
+    private static int GetRoomSize(int roomsPerRow, int pathwayWidth, int totalLength)
     {
         var num = totalLength - ((roomsPerRow - 1) * pathwayWidth);
         int result;
@@ -248,11 +248,11 @@ internal class MFI_SymbolResolver_BasePart_Outdoors_Division_Grid : SymbolResolv
 
         MergeRandomChildren();
         children.Shuffle();
-        foreach (var child in children)
+        foreach (var child in children.Select(child => child.rect))
         {
             if (thingDef != null)
             {
-                var c = new IntVec3(child.rect.maxX + 1, 0, child.rect.maxZ);
+                var c = new IntVec3(child.maxX + 1, 0, child.maxZ);
                 if (rp.rect.Contains(c) && c.Standable(map))
                 {
                     var resolveParams3 = rp;
@@ -263,7 +263,7 @@ internal class MFI_SymbolResolver_BasePart_Outdoors_Division_Grid : SymbolResolv
             }
 
             var resolveParams4 = rp;
-            resolveParams4.rect = child.rect;
+            resolveParams4.rect = child;
             BaseGen.symbolStack.Push("MFI_basePart_outdoors", resolveParams4);
         }
     }
@@ -312,7 +312,7 @@ internal class MFI_SymbolResolver_BasePart_Outdoors_Division_Grid : SymbolResolv
         }
     }
 
-    private class Child
+    private sealed class Child
     {
         public int gridX;
 

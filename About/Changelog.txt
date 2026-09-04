@@ -1,5 +1,8 @@
 # Changelog for MoreFactionInteraction
 
+1.6.8 - Fixed issue with mods like rimdoctor that instantiates classes before a game exists
+
+
 1.6.7 - Updated legacy translations
 
 
